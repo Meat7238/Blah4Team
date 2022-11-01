@@ -1,1 +1,18 @@
 @charset "UTF-8";
+*{
+	margin:0;
+	padding:0;	
+}
+
+a{a:link, a:visited, a:hover, a:active {color:#333;)}
+
+header {display : flex; justify-content: space-between;}
+header h1 {position:absolute;left:-2000px;}
+header nav ul { display : flex; text-align:center;}
+header nav ul li {padding:20px 10px; width: 88px;}
+
+.contatiner {width:1270px; margin:0 auto;}
+/* 
+background-image: url("../image/background.png" */
+
+p{cp;pr:red;}
