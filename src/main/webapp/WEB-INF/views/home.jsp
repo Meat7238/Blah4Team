@@ -5,11 +5,16 @@
 	<title>Home</title>
 </head>
 <body>
+	<%@ include file="/WEB-INF/views/layout/header.jsp"%>
 <h1>
 	Hello world!  
 </h1>
 
 <P>  The time on the server is ${serverTime}. </P>
-<a href="list">글 목록</a>
+<a href="list" color="black">글 목록</a>
+
+
+<%@ include file="/WEB-INF/views/layout/footer.jsp"%>
+
 </body>
 </html>
