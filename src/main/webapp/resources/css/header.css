@@ -108,4 +108,9 @@ a {
 	.navbar_toogleBtn {
 		display: block;
 	}
+	
+	.navbar_menu.active,
+	.navbar_right.active {
+	display:flex;
+	}
 }

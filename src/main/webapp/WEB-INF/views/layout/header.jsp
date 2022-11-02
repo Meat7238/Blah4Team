@@ -8,10 +8,11 @@
 <meta charset="UTF-8">
 <title>header</title>
 <link href="${path}/resources/css/header.css" rel="stylesheet" />
-<%-- <link href="${path}/resources/js/menu.js" rel="stylesheet" />
+<link href="${path}/resources/js/menu.js" rel="stylesheet" />
+
+<%--  <script src="${path}/resources/js/menu.js" defer></script>
  --%>
- <script src="${path}/resources/js/menu.js" defer></script>
- </head>
+  </head>
 <body>
 	<nav class="navbar">
 		<div class="navbar_logo">
