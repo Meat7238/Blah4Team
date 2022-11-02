@@ -5,11 +5,13 @@
 	<title>Home</title>
 </head>
 <body>
+<%@ include file="/WEB-INF/views/layout/header.jsp" %>
+
 <h1>
 	Hello world!  
 </h1>
 
-<P>  The time on the server is ${serverTime}. </P>
+<P> 
 <img alt="logo" src="resources/images/logo.png">
 </body>
 </html>

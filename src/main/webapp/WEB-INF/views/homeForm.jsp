@@ -13,37 +13,42 @@
 <link href="${path}/resources/css/home.css" rel="stylesheet" />
 </head>
 <body>
-	<h1>BlahBlah 홈페이지</h1>
-	<p>test 경로 : ${path}</p>
-
-
-
-	<nav>
-		<ul>
-			<li><a href="/ui-b">게시판</a></li>
-			<li><a href="/ui-r">기업리뷰</a></li>
-			<li><a href="/ui-e">채용공고</a></li>
-			<li><a href="/ui-b/write">글쓰기</a></li>
-			<li><a href="/login">로그인</a></li>
-		</ul>
-	</nav>
-</br></br></br></br></br>
 	<header>
 		<section class="hbody">
 			<article class="nav">
 				<div class="title">
-					<a	href="/home/"><img alt="로고" src="resources/images/logo.png"> </a>
+					<a href="${path }/home/"><img alt="로고" src="resources/images/logo.png">
+					
+					</a>
 				</div>
 				<ul id="menu">
 					<li><a href="/ui-b">게시판</a></li>
 					<li><a href="/ui-r">기업리뷰</a></li>
-					<li>Contact</li>
+					<li><a href="/ui-e">채용공고</a></li>
+					<li><a href="/ui-b/write">글쓰기</a></li>
+					<li><a href="/login">로그인</a></li>
 				</ul>
 				<i class="fab fa-twitter-square"></i> <i class="fas fa-bars"></i>
 			</article>
 		</section>
 	</header>
-	</br></br></br></br></br></br></br></br></br>
+	
+	</br>
+	</br>
+	</br>
+	</br>
+	</br>
+	</br>
+	</br>
+	</br>
+	</br>
+		<h1>BlahBlah 홈페이지</h1>
+	<p>test 경로 : ${path}</p>
+	</br>
+	</br>
+	</br>
+	</br>
+	</br>
 	<h2>Hello! ${name}</h2>
 	<div>JSP List Test</div>
 	<c:forEach var="item" items="${list}" varStatus="idx">
