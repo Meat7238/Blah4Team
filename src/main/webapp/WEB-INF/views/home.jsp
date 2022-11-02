@@ -7,11 +7,13 @@
 <body>
 <%@ include file="/WEB-INF/views/layout/header.jsp" %>
 
+
+</br>
+</br></br>
 <h1>
 	Hello world!  test
 </h1>
 
 <P> 
-<img alt="logo" src="resources/images/logo.png">
 </body>
 </html>
