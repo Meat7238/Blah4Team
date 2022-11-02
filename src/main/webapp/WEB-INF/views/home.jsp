@@ -1,33 +1,15 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page session="false"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page language="java" pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" %>
 <html>
 <head>
-<title>Home</title>
+	<title>Home</title>
 </head>
 <body>
-	<%@ include file="/WEB-INF/views/layout/header.jsp"%>
+<h1>
+	Hello world!  
+</h1>
 
-
-	</br>
-	</br>
-	</br>
-	<h1>Hello world! test</h1>
-	<img alt="로고" src="resources/images/logo.png"></br>
-	<img alt="로고" src="resources/images/logo.png"></br>
-	<img alt="로고" src="resources/images/logo.png"></br>
-	<img alt="로고" src="resources/images/logo.png"></br>
-	<img alt="로고" src="resources/images/logo.png"></br>
-	<img alt="로고" src="resources/images/logo.png"></br>
-	<img alt="로고" src="resources/images/logo.png"></br>
-	<img alt="로고" src="resources/images/logo.png"></br>
-	<img alt="로고" src="resources/images/logo.png"></br>
-	<img alt="로고" src="resources/images/logo.png"></br>
-	<img alt="로고" src="resources/images/logo.png"></br>
-	<img alt="로고" src="resources/images/logo.png"></br>
-	<img alt="로고" src="resources/images/logo.png"></br>
-	<img alt="로고" src="resources/images/logo.png"></br>
-	<img alt="로고" src="resources/images/logo.png"></br>
-
-		<%@ include file="/WEB-INF/views/layout/footer.jsp"%>
+<P>  The time on the server is ${serverTime}. </P>
+<a href="list">글 목록</a>
 </body>
 </html>

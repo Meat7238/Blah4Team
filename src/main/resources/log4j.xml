@@ -11,7 +11,7 @@
 	</appender>
 	
 	<!-- Application Loggers -->
-	<logger name="com.douzone.th3">
+	<logger name="com.douzone.blah">
 		<level value="info" />
 	</logger>
 	
