@@ -3,16 +3,44 @@
 	margin:0;
 	padding:0;	
 }
-
-/* a{a:link, a:visited, a:hover, a:active {color:#333;)}
-
+/* header nav ul { display : flex; text-align:center;}
+header nav ul li {padding:20px 10px; width: 88px;}
+ */
+/*  */a{a:link; a:visited; a:hover; a:active color:#333;}
+/*  
 header {display : flex; justify-content: space-between;}
 header h1 {position:absolute;left:-2000px;}
-header nav ul { display : flex; text-align:center;}
-header nav ul li {padding:20px 10px; width: 88px;}
 
 .contatiner {width:1270px; margin:0 auto;} */
 /* 
 background-image: url("../image/background.png" */
 
-p { color:red; }
+a {
+  text-decoration: none;
+}
+
+li {
+  list-style-type: none;
+}
+
+.hbody {
+  background-color: black;
+  width: 100%;
+  height: 100px;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 50px;
+  color: white;
+}
+
+.title {
+  font-size: 2em;
+}
+
+.title > a {
+  color: white;
+}
