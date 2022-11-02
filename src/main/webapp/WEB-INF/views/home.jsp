@@ -8,7 +8,7 @@
 <%@ include file="/WEB-INF/views/layout/header.jsp" %>
 
 <h1>
-	Hello world!  
+	Hello world!  test
 </h1>
 
 <P> 
