@@ -4,8 +4,24 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.douzone.blah.dao.User2DAO">
-
-<select id="getAllUserList" parameterType="hashmap" resultType="com.douzone.blah.model.User2DTO">
-	select * from user2
+	<!-- 회원 전체 조회 -->
+	<select id="getAllUserList" parameterType="hashmap"
+		resultType="com.douzone.blah.model.User2DTO">
+		select * from user2
 	</select>
+	<!-- 특정 회원 검색 -->
+
+
+	<!-- 회원 삭제 -->
+	<delete id="deleteUser2"
+		parameterType="com.douzone.blah.model.User2DTO">
+		delete from user2 where user_num = #{num}
+	</delete>
+
+	<!-- 회원 수정 -->
+	<update id="">
+
+	</update>
+
+
 </mapper>
