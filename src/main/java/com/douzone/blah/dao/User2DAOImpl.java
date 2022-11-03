@@ -33,9 +33,8 @@ public class User2DAOImpl implements User2DAO {
   }
 
   @Override
-  public int deleteUser2(User2DTO dto) {
-    // TODO Auto-generated method stub
-    return 0;
+  public int deleteUser2(int user_num) {
+    return sqlSession.delete("deleteUser2", user_num);
   }
 
 }

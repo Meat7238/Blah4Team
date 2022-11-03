@@ -13,17 +13,35 @@ import com.douzone.blah.model.User2DTO;
 public class UserController {
 
   @Resource
-  private User2DAO User2DAO;
+  private User2DAO user2;
 
   @RequestMapping("/admin")
   public String adminHandler(HttpServletRequest request) {
 
-      HashMap map = new HashMap();
 
-      List<User2DTO> list = User2DAO.getAllUserList(map);
-      request.setAttribute("list", list);
+      return "admin/admin";
+  }
 
-      return "admin/editMember";
+
+  @RequestMapping("/admin/edit")
+  public String list(HttpServletRequest request) {
+
+    HashMap map = new HashMap();
+
+    List<User2DTO> list = user2.getAllUserList(map);
+    request.setAttribute("list", list);
+
+    return "admin/editMember";
+  }
+  @RequestMapping("/admin/edit/delete")
+  public String delete(HttpServletRequest request,User2DTO dto) {
+    String num = request.getParameter("num");
+    int cnt =user2.deleteUser2(Integer.parseInt(num));
+    String res = "redirect:/admin/edit";
+    if(cnt ==0) {
+      res = "fail";
+    }
+    return res;
   }
 
 }
