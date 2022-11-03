@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<h1>/login/login</h1>
+<h1>/login/all</h1>
 
 </body>
 </html>

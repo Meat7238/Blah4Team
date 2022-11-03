@@ -6,6 +6,8 @@ import java.util.List;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,14 +15,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.douzone.blah.dao.User2DAO;
 import com.douzone.blah.model.User2DTO;
 
-import lombok.extern.log4j.Log4j;
-
 
 @Controller
 public class UserController {
 
   @Resource
   private User2DAO user2;
+  
+  @Autowired
+  BCryptPasswordEncoder passwordEncoder;
 
   @RequestMapping("/admin")
   public String adminHandler(HttpServletRequest request) {
@@ -48,7 +51,7 @@ public class UserController {
     return res;
   }
   
-  @GetMapping("/login/login")
+  @GetMapping("/login/member")
   public void logIn() {
 	  System.out.println("call logIn()");
   }

@@ -6,11 +6,21 @@
 		http://www.springframework.org/schema/security/spring-security.xsd
 		http://www.springframework.org/schema/beans 
 		http://www.springframework.org/schema/beans/spring-beans.xsd">
+		
+	<bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"></bean>
 
 	<security:http>
+		<security:intercept-url pattern="/login/member" access="hasRole('ROLE_MEMBER')"/>
+		<security:intercept-url pattern="/login/all" access="permitAll"/>
+	
 		<security:form-login/>
 	</security:http>
 	<security:authentication-manager>
+		<security:authentication-provider>
+			<security:user-service>
+				<security:user name="member" password="{noop}member" authorities="ROLE_MEMBER" />
+			</security:user-service>
+		</security:authentication-provider>
 	</security:authentication-manager>
 	
 </beans>

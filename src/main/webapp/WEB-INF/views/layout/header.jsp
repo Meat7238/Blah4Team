@@ -26,7 +26,7 @@
 		</ul>
 		<ul class="navbar_right">
 			<li><a href="/ui-b/write">글쓰기</a></li>
-			<li><a href="/login/login">로그인</a></li>
+			<li><a href="/login/member">로그인</a></li>
 		</ul>
 		<a href="" class="navbar_toogleBtn"><img alt="menu"
 			src="resources/images/menu.png"></a>
