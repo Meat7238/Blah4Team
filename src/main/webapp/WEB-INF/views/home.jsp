@@ -13,7 +13,7 @@
 <P>  The time on the server is ${serverTime}. </P>
 <a href="list" color="black">글 목록</a>
 
-
+<a href="admin" > 관리자페이지</a>
 <%@ include file="/WEB-INF/views/layout/footer.jsp"%>
 
 </body>
