@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<c:set var="path" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,7 +9,7 @@
 <title>editMember</title>
 </head>
 <body>
-	<h>회원정보 편집</h1>
+	<h1>회원정보 편집</h1>
 
 	<table border="1" width="850">
 		<tr>
@@ -36,22 +36,24 @@
 				<td>${e.user_enddate }</td>
 				<td>${e.user_jobgroup }</td>
 				<td>${e.user_workspace }</td>
-				<td><a href="javascript:location.href='${pageContext.request.contextPath}/admin/edit/delete?num=${e.user_num}'">삭제하기</a></td>
-				<td><button onclick="test()">경고창(alert) 발생</button></td>
+				<%-- <td><a href="javascript:location.href='${pageContext.request.contextPath}/admin/edit/delete?num=${e.user_num}'">삭제하기</a></td> --%>
+				<td><button onclick="test('${path}','${ e.user_num }')">
+						삭제하기</button></td>
 			</tr>
 		</c:forEach>
 	</table>
-	
-<script>
-    function test() {
-    	 if (confirm("정말 삭제하시겠습니까??") == true){    //확인
-    		 window.location.href ='${pageContext.request.contextPath}/admin/edit/delete?num=${e.user_num}'
-	    	alert("삭제완료했습니다.");
-    	 }else{   //취소
-    	     return false;
-    	 }
-    }
-    
-</script>
+<a href="">뒤로가기</a>
+	<script>
+		function test(str, num) {
+			if (confirm("정말 삭제하시겠습니까??") == true) { //확인
+			/*     		 window.location.href =path+'/admin/edit/delete?num='+ e.user_num; */
+
+				location.href = str + '/admin/edit/delete?num=' + num;
+				alert("삭제완료했습니다.");
+			} else { //취소
+				return false;
+			}
+		}
+	</script>
 </body>
 </html>
