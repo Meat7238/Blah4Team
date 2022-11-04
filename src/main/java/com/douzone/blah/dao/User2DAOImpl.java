@@ -33,7 +33,7 @@ public class User2DAOImpl implements User2DAO {
   }
 
   @Override
-  public int deleteUser2(int user_num) {
+  public int deleteUser2(String user_num) {
     return sqlSession.delete("deleteUser2", user_num);
   }
 
