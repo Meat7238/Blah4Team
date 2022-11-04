@@ -9,7 +9,7 @@ public interface User2DAO {
   public void insertUser2(User2DTO dto); //추가
   public List<User2DTO> getAllUserList(HashMap map);//전체조회
   public int updateUser2(User2DTO dto); //수정
-  public int deleteUser2(int user_num); //삭제
+  public int deleteUser2(String user_num); //삭제
 
 
 }

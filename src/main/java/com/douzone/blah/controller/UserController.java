@@ -2,16 +2,13 @@ package com.douzone.blah.controller;
 
 import java.util.HashMap;
 import java.util.List;
-
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import com.douzone.blah.dao.User2DAO;
 import com.douzone.blah.model.User2DTO;
 
@@ -20,8 +17,8 @@ import com.douzone.blah.model.User2DTO;
 public class UserController {
 
   @Resource
-  private User2DAO user2;
-  
+  private User2DAO user2DAOImpl;
+
   @Autowired
   BCryptPasswordEncoder passwordEncoder;
 
@@ -35,7 +32,7 @@ public class UserController {
 
     HashMap map = new HashMap();
 
-    List<User2DTO> list = user2.getAllUserList(map);
+    List<User2DTO> list = user2DAOImpl.getAllUserList(map);
     request.setAttribute("list", list);
 
     return "admin/editMember";
@@ -43,18 +40,20 @@ public class UserController {
   @RequestMapping("/admin/edit/delete")
   public String delete(HttpServletRequest request,User2DTO dto) {
     String num = request.getParameter("num");
-    int cnt =user2.deleteUser2(Integer.parseInt(num));
+    System.out.println(num);
+    int cnt =user2DAOImpl.deleteUser2(num);
+    System.out.println("여기까지 정상실행");
     String res = "redirect:/admin/edit";
     if(cnt ==0) {
       res = "fail";
     }
     return res;
   }
-  
+
   @GetMapping("/login/member")
   public void logIn() {
 	  System.out.println("call logIn()");
   }
-  
+
 
 }

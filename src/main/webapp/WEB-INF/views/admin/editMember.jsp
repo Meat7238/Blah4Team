@@ -42,7 +42,7 @@
 			</tr>
 		</c:forEach>
 	</table>
-<a href="">뒤로가기</a>
+<a href="${path}/admin">뒤로가기</a>
 	<script>
 		function test(str, num) {
 			if (confirm("정말 삭제하시겠습니까??") == true) { //확인
