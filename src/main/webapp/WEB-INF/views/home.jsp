@@ -11,7 +11,6 @@
 </h1>
 
 <P>  The time on the server is ${serverTime}. </P>
-<a href="list" color="black">글 목록</a>
 
 
 <%@ include file="/WEB-INF/views/layout/footer.jsp"%>

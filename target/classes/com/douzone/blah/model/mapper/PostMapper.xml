@@ -4,7 +4,32 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.douzone.blah.dao.PostDAO">
-<select id="getPostList" parameterType="hashMap" resultType="com.douzone.blah.model.PostDTO">
-	select * from post
+
+	<!-- 게시글 목록 -->
+	<select id="getPostList" parameterType="hashmap"
+		resultType="com.douzone.blah.model.PostDTO">
+		select * from post
 	</select>
+
+	<!-- 글 쓰기 -->
+	<insert id="insertPost"
+		parameterType="com.douzone.blah.model.PostDTO">
+		insert into post(post_num, post_title, post_category,
+		post_content,
+		post_usernum, post_like, post_regdate, post_readcount)
+		values( (select NVL(max(post_num),0)+1 from post), #{post_title},
+		#{post_category},
+		#{post_content}, #{post_usernum}, 0, sysdate, 0)
+	</insert>
+
+	<!-- 글 읽기 -->
+	<select id="getPost" parameterType="Integer"
+		resultType="com.douzone.blah.model.PostDTO">
+		select * from post where post_num = #{post_num}
+	</select>
+	
+	<delete id="deletePost" parameterType="com.douzone.blah.model.PostDTO">
+		delete from post where post_num = #{post_num}
+	</delete>
+
 </mapper>
