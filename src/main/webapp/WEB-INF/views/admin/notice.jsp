@@ -23,7 +23,7 @@
 		<c:forEach var="l" items="${noticelist}">
 			<tr>
 				<td>${l.notice_num}</td>
-				<td><a href="readform?post_num=${l.notice_num}">${l.notice_title}</a></td>
+				<td><a href="noticeDetail?notice_num=${l.notice_num}">${l.notice_title}</a></td>
 				<td>${l.notice_category }</td>
 				<td>${l.notice_adminnum}</td>
 				<td>${l.notice_regdate}</td>
@@ -36,8 +36,6 @@
 	<script>
 		function test2(str, num) {
 			if (confirm("정말 삭제하시겠습니까??") == true) { //확인
-			/*     		 window.location.href =path+'/admin/edit/delete?num='+ e.user_num; */
-
 				location.href = str + '/admin/notice/delete?notice_num=' + num;
 				alert("삭제완료했습니다.");
 			} else { //취소

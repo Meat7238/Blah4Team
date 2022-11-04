@@ -10,9 +10,34 @@
 		resultType="com.douzone.blah.model.NoticeDTO">
 		select * from notice
 	</select>
-	
+
 	<!-- 공지글 삭제 -->
-	<delete id="deleteNotice" parameterType="com.douzone.blah.model.NoticeDTO">
-	delete from notice where notice_num = #{notice_num}
+	<delete id="deleteNotice"
+		parameterType="com.douzone.blah.model.NoticeDTO">
+		delete from notice where notice_num = #{notice_num}
 	</delete>
+
+	<!-- 조회수 증가 -->
+	<update id="updateHit" parameterType="Integer">
+		update notice set
+		notice_readcount = notice_readcount+1
+		where notice_num = #{notice_num}
+	</update>
+
+	<!-- 글 읽기 -->
+	<select id="getNotice" parameterType="Integer"
+		resultType="com.douzone.blah.model.NoticeDTO">
+		select * from notice where notice_num = #{notice_num}
+	</select>
+
+	<!-- 글 수정 -->
+	<update id="updateNotice"
+		parameterType="com.douzone.blah.model.NoticeDTO">
+		update notice set notice_title=#{notice_title},
+		notice_category= #{notice_category},
+		notice_content=#{notice_content},
+		notice_adminnum=#{notice_adminnum},
+		notice_regdate=sysdate
+		where notice_num = #{notice_num}
+	</update>
 </mapper>

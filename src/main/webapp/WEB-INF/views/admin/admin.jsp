@@ -7,6 +7,8 @@
 <title>admin Home</title>
 </head>
 <body>
+	<%@ include file="/WEB-INF/views/layout/header.jsp"%>
+
  <h1>admin Home</h1>
  </br></br></br></br>
  
