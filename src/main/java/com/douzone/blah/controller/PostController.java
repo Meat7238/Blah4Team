@@ -43,8 +43,7 @@ public class PostController {
 	@RequestMapping("/readform")
 	public String read(int post_num, Model model) {
 
-		postDAO.updateHit(post_num);
-		PostDTO dto = postDAO.getPost(post_num);
+		postDAOImpl.updateHit(post_num);
 		PostDTO dto = postDAOImpl.getPost(post_num);
 		model.addAttribute("b", dto);
 		return "board/readform";
@@ -64,13 +63,13 @@ public class PostController {
 	// 게시글 수정
 	@RequestMapping("/updateform")
 	public String updateform(int post_num, Model model) {
-		PostDTO dto = postDAO.getPost(post_num);
+		PostDTO dto = postDAOImpl.getPost(post_num);
 		model.addAttribute("b", dto);
 		return "board/updateform";
 	}
 	@RequestMapping("/update")
 	public String update(PostDTO dto) {
-		int result = postDAO.updatePost(dto);
+		int result = postDAOImpl.updatePost(dto);
 		String res= "redirect:/board";
 		System.out.println(result);
 		return res;
