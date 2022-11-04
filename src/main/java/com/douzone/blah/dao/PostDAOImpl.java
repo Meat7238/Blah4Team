@@ -39,4 +39,16 @@ public class PostDAOImpl implements PostDAO {
 		return postDAO.getPost(post_num);
 	}
 
+	@Override
+	public int updatePost(PostDTO dto) {
+		PostDAO postDAO = sqlSession.getMapper(PostDAO.class);
+		return postDAO.updatePost(dto);
+	}
+
+	@Override
+	public void updateHit(int post_num) {
+		PostDAO postDAO = sqlSession.getMapper(PostDAO.class);
+		postDAO.updateHit(post_num);
+	}
+
 }

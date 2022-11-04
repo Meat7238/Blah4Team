@@ -19,6 +19,7 @@ public class PostController {
 	@Resource
 	private PostDAO postDAO;
 	
+	// 게시글 목록
 	@RequestMapping("/board")
 	public String list(HttpServletRequest request) {
 		
@@ -29,6 +30,7 @@ public class PostController {
 		return "/board/board";
 	}
 	
+	// 게시글 쓰기
 	@RequestMapping("/writeform")
 	public String writeform() {
 		return "board/writeform";
@@ -40,13 +42,16 @@ public class PostController {
 		return "redirect:/board";
 	}
 	
+	// 게시글 하나 읽기
 	@RequestMapping("/readform")
 	public String read(int post_num, Model model) {
+		postDAO.updateHit(post_num);
 		PostDTO dto = postDAO.getPost(post_num);
 		model.addAttribute("b", dto);
 		return "board/readform";
 	}
 	
+	// 게시글 삭제
 	@RequestMapping("/delete")
 	public String delete(PostDTO dto) {
 		int result = postDAO.deletePost(dto);
@@ -54,6 +59,21 @@ public class PostController {
 		if(result == 0) {
 			res = "fail";
 		}
+		return res;
+	}
+	
+	// 게시글 수정
+	@RequestMapping("/updateform")
+	public String updateform(int post_num, Model model) {
+		PostDTO dto = postDAO.getPost(post_num);
+		model.addAttribute("b", dto);
+		return "board/updateform";
+	}
+	@RequestMapping("/update")
+	public String update(PostDTO dto) {
+		int result = postDAO.updatePost(dto);
+		String res= "redirect:/board";
+		System.out.println(result);
 		return res;
 	}
 

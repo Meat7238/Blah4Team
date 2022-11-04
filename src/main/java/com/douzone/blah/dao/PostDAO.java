@@ -18,4 +18,10 @@ public interface PostDAO {
 	
 	//글 읽기
 	public PostDTO getPost(int post_num);
+	
+	// 글 수정
+	public int updatePost(PostDTO dto);
+	
+	// 조회수 증가
+	public void updateHit(int post_num);
 }

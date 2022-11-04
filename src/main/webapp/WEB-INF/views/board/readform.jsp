@@ -21,7 +21,7 @@
 		<td width="20%">${b.post_usernum}</td>
 		<td>${b.post_category}</td>
 		<td width="15%">${b.post_regdate}</td>
-		<td width="15%">${b.post_readcount} post_readcount</td>
+		<td width="15%">조회수 ${b.post_readcount}</td>
 	</tr>
 	
 	<tr>
@@ -32,7 +32,7 @@
 	
 	<tr>
 		<td colspan="4" align="right">
-			<input type="button" value="수정" onclick="post_update()"/>
+			<input type="button" value="수정" onclick="location.href='${pageContext.request.contextPath}/updateform?post_num=${b.post_num}';"/>
 			<input type="button" value="삭제" onclick="location.href='${pageContext.request.contextPath}/delete?post_num=${b.post_num}';"/>
 		</td>
 	</tr>

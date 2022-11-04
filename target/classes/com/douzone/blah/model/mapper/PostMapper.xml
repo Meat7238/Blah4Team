@@ -8,7 +8,7 @@
 	<!-- 게시글 목록 -->
 	<select id="getPostList" parameterType="hashmap"
 		resultType="com.douzone.blah.model.PostDTO">
-		select * from post
+		select * from post order by post_num desc
 	</select>
 
 	<!-- 글 쓰기 -->
@@ -28,8 +28,22 @@
 		select * from post where post_num = #{post_num}
 	</select>
 	
+	<!-- 글 삭제 -->
 	<delete id="deletePost" parameterType="com.douzone.blah.model.PostDTO">
 		delete from post where post_num = #{post_num}
 	</delete>
+	
+	<!-- 글 수정 -->
+	<update id="updatePost" parameterType="com.douzone.blah.model.PostDTO">
+		update post set post_title=#{post_title}, post_category=#{post_category},
+		post_content=#{post_content}, post_usernum=#{post_usernum}, post_regdate=sysdate
+		where post_num = #{post_num}
+	</update>
+	
+	<!-- 조회수 증가 -->
+	<update id="updateHit" parameterType="Integer">
+		update post set post_readcount = post_readcount+1
+		where post_num = #{post_num}
+	</update>
 
 </mapper>

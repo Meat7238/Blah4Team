@@ -16,5 +16,5 @@ public class PostDTO {
 	private String post_usernum;
 	private String post_like;
 	private String post_regdate;
-	private String post_readcount;	
+	private int post_readcount;	
 }

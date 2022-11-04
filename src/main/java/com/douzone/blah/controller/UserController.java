@@ -22,8 +22,8 @@ public class UserController {
   @Resource
   private User2DAO user2;
   
-  @Autowired
-  BCryptPasswordEncoder passwordEncoder;
+//  @Autowired
+//  BCryptPasswordEncoder passwordEncoder;
 
   @RequestMapping("/admin")
   public String adminHandler(HttpServletRequest request) {
@@ -51,10 +51,10 @@ public class UserController {
     return res;
   }
   
-  @GetMapping("/login/member")
-  public void logIn() {
-	  System.out.println("call logIn()");
-  }
+//  @GetMapping("/login/member")
+//  public void logIn() {
+//	  System.out.println("call logIn()");
+//  }
   
 
 }
