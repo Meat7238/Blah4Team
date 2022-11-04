@@ -28,6 +28,17 @@
 			<groupId>com.oracle.database.jdbc</groupId>
 			<artifactId>ojdbc8</artifactId>
 			<version>19.3.0.0</version>
+			<!-- ha:ons 와 ha:simplefan 은 고가용성 사용을 위한 라이브러리, 제외해서 속도 증가 -->
+			<exclusions>
+				<exclusion>
+					<groupId>com.oracle.database.ha</groupId>
+					<artifactId>simplefan</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>com.oracle.database.ha</groupId>
+					<artifactId>ons</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 
 		<!-- aspectj dependency -->
