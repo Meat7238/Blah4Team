@@ -21,8 +21,8 @@ public class NoticeDAOImpl implements NoticeDAO {
 
   @Override
   public void insertNotice(NoticeDTO dto) {
-    // TODO Auto-generated method stub
-
+    NoticeDAO noticeDAO = sqlSession.getMapper(NoticeDAO.class);
+    noticeDAO.insertNotice(dto);
   }
 
   @Override
@@ -32,9 +32,9 @@ public class NoticeDAOImpl implements NoticeDAO {
   }
 
   @Override
-  public int deleteNotice(String notice_num) {
+  public int deleteNotice(NoticeDTO dto) {
     NoticeDAO noticeDAO = sqlSession.getMapper(NoticeDAO.class);
-    return noticeDAO.deleteNotice(notice_num);
+    return noticeDAO.deleteNotice(dto);
   }
 
   @Override

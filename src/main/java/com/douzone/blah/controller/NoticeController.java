@@ -17,15 +17,13 @@ public class NoticeController {
   @Resource
   private NoticeDAO noticeDAOImpl;
 
-  // 공지사항 수정페이지 진입
+  // 공지사항 수정
   @RequestMapping(value = "/admin/noticeUpdate", method = RequestMethod.GET)
   public String noticeUpdate(int notice_num, Model model) {
     NoticeDTO dto = noticeDAOImpl.getNotice(notice_num);
     model.addAttribute("p", dto);
     return "admin/noticeUpdate";
   }
-
-  // 공지사항 수정사항 반영
   @RequestMapping(value = "/admin/noticeUpdate", method = RequestMethod.POST)
   public String noticeUpdate(NoticeDTO dto) {
 
@@ -38,7 +36,40 @@ public class NoticeController {
     return "redirect:/admin/notice";
   }
 
-  // 공지사항 보기
+  // 공지사항 작성
+  @RequestMapping(value = "admin/writeform", method = RequestMethod.GET)
+  public String writeform() {
+      return "admin/writeform";
+  }
+  @RequestMapping(value = "admin/writeform", method = RequestMethod.POST)
+  public String writeform(NoticeDTO dto) {
+    System.out.println(dto);
+    noticeDAOImpl.insertNotice(dto);
+    return "redirect:notice";
+  }
+
+
+
+
+  // 클라이언트 공지사항 보기
+  @RequestMapping("/notice")
+  public String NoticeList(HttpServletRequest request) {
+    HashMap map = new HashMap();
+    List<NoticeDTO> list = noticeDAOImpl.getNoticeList(map);
+    request.setAttribute("noticelist", list);
+    System.out.println(list);
+    return "notice";
+  }
+  // 클라이언트 공지사항 상세 보기
+  @RequestMapping("/noticeDetail")
+  public String NoticeDetail(int notice_num, Model model) {
+    noticeDAOImpl.updateHit(notice_num);
+    NoticeDTO dto = noticeDAOImpl.getNotice(notice_num);
+    model.addAttribute("p", dto);
+    return "noticeDetail";
+  }
+
+  // 관리자 공지사항 보기
   @RequestMapping("/admin/notice")
   public String editNoticeList(HttpServletRequest request) {
     HashMap map = new HashMap();
@@ -48,7 +79,7 @@ public class NoticeController {
     return "admin/notice";
   }
 
-  // 공지사항 하나 보기
+  // 관리자 공지사항 상세 보기
   @RequestMapping("/admin/noticeDetail")
   public String editDetail(int notice_num, Model model) {
     noticeDAOImpl.updateHit(notice_num);
@@ -59,9 +90,8 @@ public class NoticeController {
 
   // 공지사항 삭제
   @RequestMapping("/admin/notice/delete")
-  public String delete(HttpServletRequest request, NoticeDTO dto) {
-    String num = request.getParameter("notice_num");
-    int cnt = noticeDAOImpl.deleteNotice(num);
+  public String delete(NoticeDTO dto) {
+    int cnt = noticeDAOImpl.deleteNotice(dto);
     String res = "redirect:/admin/notice";
     if (cnt == 0) {
       res = "fail";

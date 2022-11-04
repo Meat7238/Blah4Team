@@ -10,6 +10,10 @@
 </head>
 <body>
 	<h1>notice Edit</h1>
+	
+		<a href="${path}/admin">뒤로가기</a> &nbsp;&nbsp;
+		<a href="${path}/admin/writeform">공지글 작성하기</a>
+		
 	<table width="1000" cellpadding="3" border="1">
 		<tr>
 			<th width="50">번호</th>
@@ -32,7 +36,6 @@
 						삭제하기</button></td>
 		</c:forEach>
 	</table>
-	<a href="${path}/admin">뒤로가기</a>
 	<script>
 		function test2(str, num) {
 			if (confirm("정말 삭제하시겠습니까??") == true) { //확인

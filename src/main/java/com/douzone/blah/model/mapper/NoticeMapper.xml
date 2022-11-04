@@ -38,6 +38,21 @@
 		notice_content=#{notice_content},
 		notice_adminnum=#{notice_adminnum},
 		notice_regdate=sysdate
-		where notice_num = #{notice_num}
+		where
+		notice_num = #{notice_num}
 	</update>
+
+	<!-- 글 쓰기 -->
+	<insert id="insertNotice"
+		parameterType="com.douzone.blah.model.NoticeDTO">
+		insert into notice(notice_num, notice_title,
+		notice_category,
+		notice_content, notice_adminnum, notice_regdate,
+		notice_readcount) values((select NVL(max(notice_num),0)+1 from notice),
+		#{notice_title},
+		#{notice_category},
+		#{notice_content},
+		#{notice_adminnum},
+		sysdate, 0)
+	</insert>
 </mapper>

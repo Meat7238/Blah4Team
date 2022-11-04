@@ -14,7 +14,7 @@ public interface NoticeDAO {
   public void insertNotice(NoticeDTO dto);
 
   // 공지삭제
-  public int deleteNotice(String num);
+  public int deleteNotice(NoticeDTO dto);
 
   // 공지읽기
   public NoticeDTO getNotice(int notice_num);
