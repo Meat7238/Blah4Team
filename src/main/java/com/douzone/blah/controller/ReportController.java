@@ -6,6 +6,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import com.douzone.blah.dao.ReportPDAO;
 import com.douzone.blah.model.ReportPDTO;
 
@@ -25,6 +26,18 @@ public class ReportController {
     return "admin/ManageReport";
   }
 
+  // 신고사항 처리하기
+@RequestMapping(value = "/admin/ManageReport", method = RequestMethod.POST)
+public String reportPostUpdate(HttpServletRequest request, ReportPDTO dto) {
+  String str = request.getParameter("reportp_result");
+  System.out.println(str);
+  System.out.println(dto);
+  int result = reportPDAOImpl.updateReportP(dto);
+  if(result ==0) {
+    return "fail";
+  }
+  return "redirect:/admin/ManageReport";
+}
 //  // 공지사항 삭제
 //  @RequestMapping("/admin/notice/delete")
 //  public String delete(NoticeDTO dto) {
@@ -36,23 +49,6 @@ public class ReportController {
 //    return res;
 //  }
 //// 공지사항 수정
-//@RequestMapping(value = "/admin/noticeUpdate", method = RequestMethod.GET)
-//public String noticeUpdate(int notice_num, Model model) {
-//  NoticeDTO dto = noticeDAOImpl.getNotice(notice_num);
-//  model.addAttribute("p", dto);
-//  return "admin/noticeUpdate";
-//}
-//@RequestMapping(value = "/admin/noticeUpdate", method = RequestMethod.POST)
-//public String noticeUpdate(NoticeDTO dto) {
-//
-//  System.out.println("update : " + dto);
-//  int result = noticeDAOImpl.updateNotice(dto);
-//  System.out.println("result : " + result);
-//  if(result ==0) {
-//    return "fail";
-//  }
-//  return "redirect:/admin/notice";
-//}
 
 //// 공지사항 작성
 //@RequestMapping(value = "admin/writeform", method = RequestMethod.GET)

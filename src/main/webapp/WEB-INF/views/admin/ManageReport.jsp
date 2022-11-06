@@ -9,8 +9,8 @@
 <title>ManageReport</title>
 </head>
 <body>
-	<h1> 신고처리 </h1>
-<!-- 	<form action="edit" method="post">
+	<h1>신고처리</h1>
+	<!-- 	<form action="edit" method="post">
 		<select name="column">
 			<option value="user_num">유저번호</option>
 			<option value="user_id">아이디</option>
@@ -18,7 +18,7 @@
 		</select> <input type="text" name="keyvalue" stle="width:400px; height:100px;"> <input type="submit"
 			value="검색">
 	</form> -->
-	<br/>
+	<br />
 	<h3>신고접수된 게시판</h3>
 
 	<table border="1" width="1000">
@@ -34,6 +34,7 @@
 			<th>*처리완료*</th>
 			<th>*검토*</th>
 		</tr>
+
 		<c:forEach var="r" items="${reportPostList}">
 			<tr>
 				<td>${r.reportp_result }</td>
@@ -44,29 +45,39 @@
 				<td>${r.reportp_content }</td>
 				<td>${r.reportp_adminnum }</td>
 				<td>${r.reportp_regdate }</td>
-				<td><button onclick="test('${path}','${ e.user_num }')">
-						처리완료하기</button></td>
-				<%-- <td><a href="javascript:location.href='${pageContext.request.contextPath}/admin/edit/delete?num=${e.user_num}'">삭제하기</a></td> --%>
-				<td><button onclick="test('${path}','${ e.user_num }')">
-						검토하기</button></td>
+				<%-- 				<td><input type="button" value="처리완료"
+					onclick="reportp1('${path}','${ reportp_result1 }','${ r.reportp_num }')" />
+					<script type="text/javascript">
+					function reportp1(str,result,num){
+						if (confirm("정말 변경하시겠습니까??") == true) {
+						document.ManageReport.submit();
+						alert("수정완료했습니다.");
+						}else { //취소
+							return false;
+						}
+					}
+					</script></td> --%>
+				<td>
+					<form action="${path}/admin/ManageReport" method="post">
+						<input type="hidden" name="reportp_num" value="${r.reportp_num}" />
+						<input type="hidden" name="reportp_result" value="처리완료" /> <input
+							type="submit" value="처리완료">
+					</form>
+				</td>
+				<td>
+					<form action="${path}/admin/ManageReport" method="post">
+						<input type="hidden" name="reportp_num" value="${r.reportp_num}" />
+						<input type="hidden" name="reportp_result" value="검토중" /> <input
+							type="submit" value="검토하기">
+					</form>
+				</td>
 			</tr>
 		</c:forEach>
 	</table>
 	<a href="${path}/admin">뒤로가기</a>
-<br/>	
-		<h3>신고접수된 댓글</h3>
-		<h3>신고접수된 기업리뷰</h3>
-	<script>
-		function test(str, num) {
-			if (confirm("정말 삭제하시겠습니까??") == true) { //확인
-				/*     		 window.location.href =path+'/admin/edit/delete?num='+ e.user_num; */
+	<br />
+	<h3>신고접수된 댓글</h3>
+	<h3>신고접수된 기업리뷰</h3>
 
-				location.href = str + '/admin/edit/delete?num=' + num;
-				alert("삭제완료했습니다.");
-			} else { //취소
-				return false;
-			}
-		}
-	</script>
 </body>
 </html>

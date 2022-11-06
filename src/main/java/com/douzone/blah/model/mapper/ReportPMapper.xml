@@ -11,4 +11,9 @@
 		select * from reportp
 	</select>
 
+	<!-- 신고 처리 반영 -->
+	<update id="updateReportP"
+		parameterType="com.douzone.blah.model.ReportPDTO">
+		UPDATE reportp SET reportp_result = #{reportp_result} WHERE reportp_num =#{reportp_num}
+	</update>
 </mapper>

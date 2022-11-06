@@ -30,8 +30,8 @@ public class ReportPDAOImpl implements ReportPDAO {
   // 신고된 게시판 처리하기
   @Override
   public int updateReportP(ReportPDTO dto) {
-    // TODO Auto-generated method stub
-    return 0;
+    ReportPDAO reportPDAO = sqlSession.getMapper(ReportPDAO.class);
+    return reportPDAO.updateReportP(dto);
   }
 
 }
