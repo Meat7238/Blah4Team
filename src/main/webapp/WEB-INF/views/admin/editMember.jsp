@@ -10,7 +10,15 @@
 </head>
 <body>
 	<h1>회원정보 편집</h1>
-
+	<form action="edit" method="post">
+		<select name="column">
+			<option value="user_num">유저번호</option>
+			<option value="user_id">아이디</option>
+			<option value="user_nick">닉네임</option>
+		</select> <input type="text" name="keyvalue" stle="width:400px; height:100px;"> <input type="submit"
+			value="검색">
+	</form>
+	<br/>
 	<table border="1" width="850">
 		<tr>
 			<th>번호</th>
@@ -42,11 +50,11 @@
 			</tr>
 		</c:forEach>
 	</table>
-<a href="${path}/admin">뒤로가기</a>
+	<a href="${path}/admin">뒤로가기</a>
 	<script>
 		function test(str, num) {
 			if (confirm("정말 삭제하시겠습니까??") == true) { //확인
-			/*     		 window.location.href =path+'/admin/edit/delete?num='+ e.user_num; */
+				/*     		 window.location.href =path+'/admin/edit/delete?num='+ e.user_num; */
 
 				location.href = str + '/admin/edit/delete?num=' + num;
 				alert("삭제완료했습니다.");

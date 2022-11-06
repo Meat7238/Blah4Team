@@ -9,8 +9,6 @@
 		resultType="com.douzone.blah.model.User2DTO">
 		select * from user2
 	</select>
-	<!-- 특정 회원 검색 -->
-
 
 	<!-- 회원 삭제 -->
 	<delete id="deleteUser2"
@@ -23,5 +21,14 @@
 
 	</update>
 
+	<!-- 특정 회원 검색 -->
+	<select id="getSearchList" parameterType="hashmap"
+		resultType="com.douzone.blah.model.User2DTO">
+		select * from user2 
+		<if test="keyvalue != ''">
+    		where ${column} = #{keyvalue}    	
+<!--     		where ${column} like '%' || #{keyvalue} || '%'    	 -->
+    	</if>
+	</select>
 
 </mapper>
