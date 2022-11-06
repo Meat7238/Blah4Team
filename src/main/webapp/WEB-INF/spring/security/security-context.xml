@@ -9,12 +9,34 @@
 		
 	<bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"></bean>
 
-	<security:http>
-		<security:intercept-url pattern="/login/member" access="hasRole('ROLE_MEMBER')"/>
-		<security:intercept-url pattern="/login/all" access="permitAll"/>
-	
-		<security:form-login/>
+	<security:http auto-config="true" use-expressions="true">
+		<security:intercept-url pattern="/admin/*" access="permitAll"/>
+		<security:intercept-url pattern="/board/*" access="permitAll"/>
+		<security:intercept-url pattern="/error/*" access="permitAll"/>
+		<security:intercept-url pattern="/info/*" access="permitAll"/>
+		<security:intercept-url pattern="/layout/*" access="permitAll"/>
+		<security:intercept-url pattern="/login/logout" access="hasRole('ROLE_MEMBER')"/>
+		<security:intercept-url pattern="/login/loginForm" access="permitAll"/>
+		<security:intercept-url pattern="/member/*" access="permitAll"/>
+		<security:intercept-url pattern="/popup/*" access="permitAll"/>
+		<security:intercept-url pattern="/fail" access="permitAll"/>
+		<security:intercept-url pattern="/home" access="permitAll"/>
+		<security:intercept-url pattern="/list" access="permitAll"/>
+		<security:intercept-url pattern="/notice" access="permitAll"/>
+		<security:intercept-url pattern="/noticeDetail" access="permitAll"/>
+		
+		<security:csrf disabled="true"/>
+		
+		<security:form-login
+			login-page="/login/loginForm" 
+			default-target-url="/"
+			authentication-failure-url="/login/loginForm?error"
+			username-parameter="user_id" password-parameter="user_password" />
+		<security:logout logout-url="/login/logout" logout-success-url="/" />
+		<security:access-denied-handler error-page="/error/access-error" />
 	</security:http>
+		
+		
 	<security:authentication-manager>
 		<security:authentication-provider>
 			<security:user-service>

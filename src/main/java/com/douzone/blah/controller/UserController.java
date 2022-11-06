@@ -9,6 +9,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import com.douzone.blah.dao.User2DAO;
@@ -71,9 +72,11 @@ public class UserController {
   }
 
 
-  // @GetMapping("/login/member")
-  // public void logIn() {
-  // System.out.println("call logIn()");
-  // }
+   @GetMapping("/login/loginForm")
+   public String logIn() {
+	   return "login/loginForm";
+   }
+   
+
 
 }
