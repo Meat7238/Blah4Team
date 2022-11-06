@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.douzone.blah.dao.ReportPDAO">
+
+	<!-- 신고된 게시판 목록 -->
+	<select id="getReportP" parameterType="hashmap"
+		resultType="com.douzone.blah.model.ReportPDTO">
+		select * from reportp
+	</select>
+
+	<!-- 신고 처리 반영 -->
+	<update id="updateReportP"
+		parameterType="com.douzone.blah.model.ReportPDTO">
+		UPDATE reportp SET reportp_result = #{reportp_result} WHERE reportp_num =#{reportp_num}
+	</update>
+</mapper>
