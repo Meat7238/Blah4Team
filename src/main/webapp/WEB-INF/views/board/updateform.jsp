@@ -36,6 +36,7 @@
 			<input type="text" name="post_title" maxlength="50" size="65" value="${b.post_title}"/>
 		</td>
 		<td>
+		<input type="hidden" name="pg" value="${pg}"/>
 		<input type="hidden" name="post_num" value="${b.post_num}"/>
 		</td>
 		

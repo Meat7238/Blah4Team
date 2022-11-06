@@ -23,4 +23,8 @@ public interface PostDAO {
 	
 	// 조회수 증가
 	public void updateHit(int post_num);
+	
+	// 글의 수
+	public int getPostCount();
+	
 }

@@ -8,11 +8,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class PostReviewDTO {
-	private String postreview_num;
+	private int postreview_num;
 	private String postreview_usernum;
-	private String postreview_postnum;
+	private int postreview_postnum;
 	private String postreview_content;
-	private String postreview_like;
+	private int postreview_like;
 	private String postreview_regdate;
 
 
