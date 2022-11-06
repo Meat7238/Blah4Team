@@ -7,8 +7,6 @@
 		http://www.springframework.org/schema/beans 
 		http://www.springframework.org/schema/beans/spring-beans.xsd">
 		
-	<bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"></bean>
-
 	<security:http auto-config="true" use-expressions="true">
 		<security:intercept-url pattern="/admin/*" access="permitAll"/>
 		<security:intercept-url pattern="/board/*" access="permitAll"/>
@@ -35,15 +33,24 @@
 		<security:logout logout-url="/login/logout" logout-success-url="/" />
 		<security:access-denied-handler error-page="/error/access-error" />
 	</security:http>
+	
+	
+	<bean id="userAuthenticationService" class="com.douzone.blah.security.UserAuthenticationService" />
+	<bean id="passwordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
+
+	<!-- <bean id="userAuthProvider" class="com.douzone.blah.security.UserAuthProvider">
+    	<property name="userDetailsService" ref="userAuthenticationService" />
+    	<property name="passwordEncoder" ref="passwordEncoder" />
+	</bean> -->
 		
 		
-	<security:authentication-manager>
+	<!-- <security:authentication-manager>
 		<security:authentication-provider>
 			<security:user-service>
 				<security:user name="member" password="{noop}member" authorities="ROLE_MEMBER" />
 			</security:user-service>
 		</security:authentication-provider>
-	</security:authentication-manager>
+	</security:authentication-manager> -->
 	
 </beans>
 

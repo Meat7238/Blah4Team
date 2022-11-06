@@ -24,11 +24,27 @@
 	<!-- 특정 회원 검색 -->
 	<select id="getSearchList" parameterType="hashmap"
 		resultType="com.douzone.blah.model.User2DTO">
-		select * from user2 
+		select * from user2
 		<if test="keyvalue != ''">
-    		where ${column} = #{keyvalue}    	
-<!--     		where ${column} like '%' || #{keyvalue} || '%'    	 -->
-    	</if>
+			where ${column} = #{keyvalue}
+			<!-- where ${column} like '%' || #{keyvalue} || '%' -->
+		</if>
+	</select>
+
+	<!-- 회원가입 -->
+	<insert id="insertUser">
+		insert into user2(user_id,user_password,user_nick,user_email,user_jobgroup,user_workspace,enabled,
+		authority)
+		values (#{user_id},#{user_password},#{user_nick},#{user_email},#{user_jobgroup},#{user_workspace}, 1, 'user')
+	</insert>
+
+	<!-- 로그인 -->
+	<select id="selectUser" resultType="java.util.Map">
+		select user_id as username,
+		user_password as password, enabled, authority
+		from user2
+		where
+		user_id=#{user_id}
 	</select>
 
 </mapper>
