@@ -8,7 +8,12 @@
 	<!-- 게시글 목록 -->
 	<select id="getPostList" parameterType="hashmap"
 		resultType="com.douzone.blah.model.PostDTO">
-		select * from post order by post_num desc
+		select * from
+			(select A.*, ROWNUM r from
+				(select * from post order by post_num desc) A
+			)
+		where r >= #{start} and r &lt;= #{end}
+		<!-- 게시글 번호로 내림차순한거를 A로 네이밍. A에서 ROWNUM r 설정. r이 start와 end 범위에서 전체 출력 -->
 	</select>
 
 	<!-- 글 쓰기 -->
@@ -45,5 +50,10 @@
 		update post set post_readcount = post_readcount+1
 		where post_num = #{post_num}
 	</update>
+	
+	<!-- 글의 수 -->
+	<select id="getPostCount" resultType="Integer">
+		select count(*) from post
+	</select>
 
 </mapper>

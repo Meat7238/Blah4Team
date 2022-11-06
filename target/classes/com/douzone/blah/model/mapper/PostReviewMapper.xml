@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.douzone.blah.dao.PostReviewDAO">
+
+<insert id="insertPostReview" parameterType="com.douzone.blah.model.PostReviewDTO">
+	insert into postreview (postreview_num, postreview_usernum, postreview_postnum,
+	postreview_content, postreview_like, postreview_regdate) values( (select NVL(max(postreview_num),0)+1 from postreview),
+	#{postreview_usernum}, #{postreview_postnum}, #{postreview_content},
+	0, sysdate)
+</insert>
+
+<select id="getPostReview" resultType="com.douzone.blah.model.PostReviewDTO">
+	select * from postreview where postreview_postnum = #{postreview_postnum}
+</select>
+
+</mapper>
