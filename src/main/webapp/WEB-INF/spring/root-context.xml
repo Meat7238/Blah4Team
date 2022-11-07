@@ -14,9 +14,9 @@
     <!-- Root Context: defines shared resources visible to all other web components -->
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
-       <property name="url" value="jdbc:oracle:thin:@127.0.0.1:1521:orcl" />
-        <property name="username" value="jmg"/>
-        <property name="password" value="oracle"/>
+       <property name="url" value="jdbc:oracle:thin:@kosadb_high?TNS_ADMIN=/Users/meat/Wallet_kosaDB/" />
+        <property name="username" value="user06"/>
+        <property name="password" value="xxxxxxAt22cc"/>
     </bean>
 
     <!-- mybatis -->
