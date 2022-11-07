@@ -14,7 +14,7 @@ local.properties
 .loadpath
 .recommenders
 pom.properties
-
+root-context
 # External tool builders
 .externalToolBuilders/
 
