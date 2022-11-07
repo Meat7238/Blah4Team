@@ -19,6 +19,7 @@
 			value="검색">
 	</form>
 	<br/>
+	<br/>
 	<table border="1" width="850">
 		<tr>
 			<th>번호</th>
