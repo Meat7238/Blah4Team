@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.douzone.blah.dao.ReportDAO">
+
+	<!-- 신고된 게시판 목록 -->
+	<select id="getReportP" parameterType="hashmap"
+		resultType="com.douzone.blah.model.ReportPDTO">
+		select * from reportp
+	</select>
+	
+	<!-- 게시판 신고하기 -->
+	
+	<!-- 게시글신고 처리 반영 -->
+	<update id="updateReportP"
+		parameterType="com.douzone.blah.model.ReportPDTO">
+		UPDATE reportp SET reportp_result = #{reportp_result} WHERE reportp_num =#{reportp_num}
+	</update>
+	
+	
+	<!-- 신고된 댓글 목록 -->
+	<select id="getReportPr" parameterType="hashmap"
+		resultType="com.douzone.blah.model.ReportPrDTO">
+		select * from reportpr
+	</select>
+	
+	<!-- 댓글 신고하기 -->
+	
+	<!-- 댓글 신고 처리 반영 -->
+	<update id="updateReportPr"
+		parameterType="com.douzone.blah.model.ReportPrDTO">
+		UPDATE reportpr SET reportpr_result = #{reportpr_result} WHERE reportpr_num =#{reportpr_num}
+	</update>
+	
+	
+	<!-- 신고된 리뷰 목록 -->
+	<select id="getReportCr" parameterType="hashmap"
+		resultType="com.douzone.blah.model.ReportCrDTO">
+		select * from reportcr
+	</select>
+	<!-- 리뷰 신고하기 -->
+	
+	<!-- 신고된 리뷰 처리하기 -->
+		<update id="updateReportCr"
+		parameterType="com.douzone.blah.model.ReportCrDTO">
+		UPDATE reportcr SET reportcr_result = #{reportcr_result} WHERE reportcr_num =#{reportcr_num}
+	</update>
+</mapper>

@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class ReportCR {
+public class ReportCrDTO {
 	private String reportcr_num;
 	private String reportcr_corpreviewnum;
 	private String reportcr_usernum;
