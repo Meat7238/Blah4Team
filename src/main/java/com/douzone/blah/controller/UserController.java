@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import javax.annotation.Resource;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -13,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -28,6 +30,13 @@ public class UserController {
 
 	@Autowired
 	private PasswordEncoder passwordEncoder;
+	
+	
+	@Autowired
+	public UserController(PasswordEncoder passwordEncoder) {
+		super();
+		this.passwordEncoder = passwordEncoder;
+	}
 
 	@RequestMapping("/admin")
 	public String adminHandler(HttpServletRequest request) {
@@ -91,19 +100,25 @@ public class UserController {
 	
 
 	// 회원가입 처리
-	@RequestMapping("/join/joinAction")
-	public String insertUser(@RequestParam String user_id, @RequestParam String user_password, @RequestParam String user_email, 
-			@RequestParam String user_nick, @RequestParam String user_jobgroup, @RequestParam String user_workspace) {
+	@PostMapping("/join/joinAction")
+	public String insertUser(@RequestParam("user_id") String user_id, @RequestParam("user_password") String user_password, @RequestParam("user_email") String user_email, 
+			@RequestParam("user_nick") String user_nick, @RequestParam("user_jobgroup") String user_jobgroup, @RequestParam("user_workspace") String user_workspace) {
 		// 비밀번호 암호화
+		System.out.println("컨트롤러 오케이");
 		Map<String, String> map = new HashMap<>();
 		map.put("user_id", user_id);
+		map.get("user_id");
+		System.out.println("id까지");
 		map.put("user_password", passwordEncoder.encode(user_password));
+		System.out.println("암호화 오케이");
 		map.put("user_nick", user_nick);
 		map.put("user_email", user_email);
 		map.put("user_jobgroup", user_jobgroup);
 		map.put("user_workspace", user_workspace);
+		System.out.println("입력완료!");
 		// affected rows, 영향을 받은 행의 수가 리턴됨
 		int result = user2DAOImpl.insertUser(map);
+		System.out.println("insert끝");
 		return "/login/loginForm"; // login.jsp로 이동
 	}
 
