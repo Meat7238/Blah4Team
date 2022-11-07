@@ -13,7 +13,7 @@
 		}else if(document.updateform.post_category.value==""){
 			alert("카테고리를 입력하세요");
 		}else if(document.updateform.post_content.value==""){
-			alert("내용을 입력하세요");
+			alert("내용을 입력하세요"gks);
 		}else if(document.updateform.post_usernum.value==""){
 			alert("회원번호를 입력하세요");
 		}else{
