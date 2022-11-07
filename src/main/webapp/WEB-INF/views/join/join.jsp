@@ -8,7 +8,7 @@
 </head>
 <body>
 <h2>회원가입</h2>
-<form action="${path}/join/joinAction" method="post">
+<form action="/join/joinAction" method="post">
 <table>
 
 	<tr>
@@ -17,7 +17,7 @@
 	</tr>
 	<tr>
 		<td>비밀번호</td>
-		<td><input type="password" name="user_passworkd"></td>
+		<td><input type="password" name="user_password"></td>
 	</tr>
 	<tr>
 		<td>닉네임</td>
@@ -29,7 +29,7 @@
 	</tr>
 	<tr>
 		<td>직군</td>
-		<td><input name="user_email"></td>
+		<td><input name="user_jobgroup"></td>
 	</tr>
 	<tr>
 		<td>직장</td>

@@ -30,30 +30,40 @@
 			default-target-url="/"
 			authentication-failure-url="/login/loginForm?error"
 			username-parameter="user_id" password-parameter="user_password" />
-		<security:logout logout-url="/login/logout" logout-success-url="/" />
-		<security:access-denied-handler error-page="/error/access-error" />
+	<security:logout logout-url="/login/logout"
+		logout-success-url="/" />
+	<security:access-denied-handler
+		error-page="/error/access-error" />
 	</security:http>
 	
 	
-	<bean id="userAuthenticationService" class="com.douzone.blah.security.UserAuthenticationService" />
+	
 	<bean id="passwordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
+	<security:authentication-manager>
+		<security:authentication-provider>
+			<security:jdbc-user-service data-source-ref="dataSource"/>
+			<security:password-encoder ref="passwordEncoder"/>
+		</security:authentication-provider>
+	</security:authentication-manager>
+	
+</beans>
+
+<!-- <bean id="
+			userAuthenticationService "
+			class="com.douzone.blah.security.UserAuthenticationService" /> -->
 
 	<!-- <bean id="userAuthProvider" class="com.douzone.blah.security.UserAuthProvider">
     	<property name="userDetailsService" ref="userAuthenticationService" />
     	<property name="passwordEncoder" ref="passwordEncoder" />
 	</bean> -->
-		
-		
-	<!-- <security:authentication-manager>
+
+<!-- <security:authentication-manager>
 		<security:authentication-provider>
 			<security:user-service>
 				<security:user name="member" password="{noop}member" authorities="ROLE_MEMBER" />
 			</security:user-service>
 		</security:authentication-provider>
 	</security:authentication-manager> -->
-	
-</beans>
-
 
 
 

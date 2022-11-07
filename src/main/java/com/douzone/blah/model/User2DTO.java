@@ -42,6 +42,29 @@ public class User2DTO extends User {
 		super(username, password, authorities);
 	}
 	
+	// 회원가입
+	public User2DTO(String username, String password, Collection<? extends GrantedAuthority> authorities,
+			String user_num, String user_id, String user_password, String user_nick, String user_email,
+			String user_jobgroup, String user_workspace) {
+		super(username, password, authorities);
+		this.user_num = user_num;
+		this.user_id = user_id;
+		this.user_password = user_password;
+		this.user_nick = user_nick;
+		this.user_email = user_email;
+		this.user_jobgroup = user_jobgroup;
+		this.user_workspace = user_workspace;
+	}
+
+	//로그인
+	public User2DTO(String username, String password, Collection<? extends GrantedAuthority> authorities,
+			String user_id, String user_password, String user_jobgroup, String user_workspace) {
+		super(username, password, authorities);
+		this.user_id = user_id;
+		this.user_password = user_password;
+		this.user_jobgroup = user_jobgroup;
+		this.user_workspace = user_workspace;
+	}
 	
 	
 	

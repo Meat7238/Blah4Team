@@ -31,17 +31,17 @@ public class UserAuthenticationService implements UserDetailsService {
 	@Override
 	public UserDetails loadUserByUsername(String user_id) throws UsernameNotFoundException {
 		// 사용자 아이디 확인
-		Map<String, Object> user = sqlSession.selectOne("selectUser", user_id);
+		Map<String, Object> user2 = sqlSession.selectOne("selectUser", user_id);
 		// 아이디가 없으면 예외 발생
-		if (user == null)
+		if (user2 == null)
 			throw new UsernameNotFoundException(user_id);
 
 		// 사용권한 목록
 		List<GrantedAuthority> authority = new ArrayList<>();
-		authority.add(new SimpleGrantedAuthority(user.get("AUTHORITY").toString())); // 필드명은 대문자로
-		return new User2DTO(user.get("USERNAME").toString(), user.get("PASSWORD").toString(),
-				(Integer) Integer.valueOf(user.get("ENABLED").toString()) == 1, true, true, true, authority,
-				user.get("USERNAME").toString());
+		authority.add(new SimpleGrantedAuthority(user2.get("AUTHORITY").toString())); // 필드명은 대문자로
+		return new User2DTO(user2.get("USERNAME").toString(), user2.get("PASSWORD").toString(),
+				(Integer) Integer.valueOf(user2.get("ENABLED").toString()) == 1, true, true, true, authority,
+				user2.get("USERNAME").toString());
 	}
 
 }
