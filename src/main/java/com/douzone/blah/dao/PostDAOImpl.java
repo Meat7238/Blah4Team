@@ -3,7 +3,6 @@ package com.douzone.blah.dao;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -21,7 +20,7 @@ public class PostDAOImpl implements PostDAO {
 		PostDAO postDAO = sqlSession.getMapper(PostDAO.class);
 		return postDAO.getPostList(map);
 	}
-	
+
 	// 게시판 카테고리
 		@Override
 		public List getPostList1(String category) {
@@ -70,7 +69,7 @@ public class PostDAOImpl implements PostDAO {
 		PostDAO postDAO = sqlSession.getMapper(PostDAO.class);
 		return postDAO.getPostCount();
 	}
-	
+
 	// 게시글 검색
 	@Override
 	public List<PostDTO> getSearchList(Map<String, String> map) {
@@ -84,6 +83,12 @@ public class PostDAOImpl implements PostDAO {
 		PostDAO postDAO = sqlSession.getMapper(PostDAO.class);
 		return postDAO.getPostCountCategory(category);
 	}
+
+  @Override
+  public List getPostListAll(HashMap map) {
+    PostDAO postDAO = sqlSession.getMapper(PostDAO.class);
+    return postDAO.getPostListAll(map);
+  }
 
 
 

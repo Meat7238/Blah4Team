@@ -55,7 +55,7 @@ public class HomeController {
       map.put("start", start);
       map.put("end", end);
 
-      List<PostDTO> list = postDAOImpl.getPostList(map);
+      List<PostDTO> list = postDAOImpl.getPostListAll(map);
       request.setAttribute("list", list);
       request.setAttribute("pg",pg);
       request.setAttribute("allPage",allPage);
