@@ -33,16 +33,23 @@
 
 	<!-- 회원가입 -->
 	<insert id="insertUser" parameterType="hashmap">
-		insert into user2(user_num, user_id, user_password, user_nick, user_email, user_jobgroup, user_workspace, enabled, authority)
-		values (user_numseq.nextval, #{user_id},#{user_password},#{user_nick},#{user_email},#{user_jobgroup},#{user_workspace}, 1, 'user')
+		insert into
+		user2(user_num, user_id, user_password, user_nick, user_email,
+		user_jobgroup, user_workspace, enabled, authority)
+		values
+		('user'||TO_CHAR(USER_NUMseq.nextval, 00000),
+		#{user_id},#{user_password},#{user_nick},#{user_email},#{user_jobgroup},#{user_workspace},
+		1, 'user')
 	</insert>
-
+	
 	<!-- 로그인 -->
 	<select id="selectUser" resultType="hashmap">
-		select user_id as username, user_password as password, enabled, authority
+		select user_id as username,
+		user_password as password, enabled, authority
 		from user2
 		where
 		user_id=#{user_id}
 	</select>
+
 
 </mapper>

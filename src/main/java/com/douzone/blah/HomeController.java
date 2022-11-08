@@ -40,6 +40,8 @@ public class HomeController {
 		return "home";
 	}
 
-
-
+	@RequestMapping(value = "/home", method = RequestMethod.POST)
+	public String home() {
+		return "home";
+	}
 }
