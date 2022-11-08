@@ -67,8 +67,8 @@ public class UserLoginSuccessHandler implements AuthenticationSuccessHandler {
 			System.out.println(list.nextElement());
 		}
 		
-
-		response.sendRedirect(uri);
+		// 로그인 성공시 보낼 uri
+		response.sendRedirect("/");
 	}
 
 }

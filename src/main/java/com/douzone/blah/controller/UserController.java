@@ -89,14 +89,8 @@ public class UserController {
 		}
 		return res;
 	}
-
-	// 로그인 페이지로 이동
-	@GetMapping("/login/loginForm")
-	public String logIn() {
-		return "login/loginForm";
-	}
 	
-	/* 로그인 화면 요청 */
+	// 로그인 페이지 요청
 	@RequestMapping("/login/loginForm")
 	public String loginView(HttpServletRequest request) {
 
@@ -107,17 +101,8 @@ public class UserController {
 			request.getSession().setAttribute("prevPage",
 					request.getHeader("Referer"));
 		}
-
 		return "login/loginForm";
 	}
-
-//	// 로그인 처리
-//	@PostMapping("/login")
-//	public String selectUser(@RequestParam("user_id") String user_id, @RequestParam("user_password") String user_password) {
-//		Map<String, Object> user = user2DAOImpl.selectUser(user_id);
-//
-//		return "redirect:/";
-//	}
 
 	// 회원가입 페이지로 이동
 	@RequestMapping("/join/join")
@@ -134,7 +119,6 @@ public class UserController {
 		// 비밀번호 암호화
 		Map<String, String> map = new HashMap<>();
 		map.put("user_id", user_id);
-		map.get("user_id");
 		map.put("user_password", passwordEncoder.encode(user_password));
 		map.put("user_nick", user_nick);
 		map.put("user_email", user_email);
