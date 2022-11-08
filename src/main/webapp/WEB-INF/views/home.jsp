@@ -21,11 +21,18 @@ table {
 	display: table;
 	margin: auto;
 	cellpadding: "3";
-	border : "1";
+	border : none;
+	
 }
 
 table td {
 text-align: center;
+height: 40px;
+}
+
+table #recent{
+border:none;
+text-align: left;
 }
 #search_wrapper input {
 	width: 100%;
@@ -60,15 +67,14 @@ text-align: center;
 	</div>
 <br/></br>
 		<table border = "1">
-		<tr border = "0">
-		<th colspan='2' border="0">@최신글</th>
+		<tr border = "0" >
+		<th id="recent" colspan='2' >@최신글</th>
 		</tr>
 		<tr>
 			<th width="50" align="center">번호</th>
-			<th width=15%>제목</th>
-			<th width="200">카테고리</th>
-			<th width="120">내용</th>
-			<th width="80">회원번호</th>
+			<th width=10%>카테고리</th>
+			<th width=30%>제목</th>
+			<th width="80">닉네임</th>
 			<th width="120">좋아요</th>
 			<th width="200">작성일</th>
 			<th width="120">조회수</th>
@@ -76,9 +82,8 @@ text-align: center;
 		<c:forEach var="q" items="${list}">
 			<tr>
 				<td>${q.post_num}</td>
-				<td><a href="readform?post_num=${q.post_num}&pg=${pg}">${q.post_title}</a></td>
 				<td>${q.post_category }</td>
-				<td>${q.post_content}</td>
+				<td><a href="readform?post_num=${q.post_num}&pg=${pg}">${q.post_title}</a></td>
 				<td>${q.post_usernum}</td>
 				<td>${q.post_like}</td>
 				<td>${q.post_regdate}</td>
