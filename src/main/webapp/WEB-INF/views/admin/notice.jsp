@@ -52,11 +52,11 @@
 			<td align="center">
 				<!-- 처음 이전 링크 --> <c:if test="${pg>block}">
 					<!-- 5>10 : false / 15>10 : true -->
-			[<a href="notice?pg=1">◀◀</a>]
+			[<a href="notice?pg=1"> ◀◀ </a>]
 			[<a href="notice?pg=${fromPage-1}">◀</a>]		
 		</c:if> <c:if test="${pg<=block}">
 					<!-- 5<=10 :true / 15<=10:false -->
-			[<span style="color: gray">◀◀</span>]	
+			[<span style="color: gray">◀◀${block}</span>]	
 			[<span style="color: gray">◀</span>]
 		</c:if> <!-- 블록 범위 찍기 --> <c:forEach begin="${fromPage}" end="${toPage}"
 					var="i">

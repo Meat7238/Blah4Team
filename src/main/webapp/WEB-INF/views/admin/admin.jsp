@@ -15,7 +15,7 @@
  <h2><li>1 <a href="admin/edit" > 회원정보 관리</a></li></h2></br>
  <h2><li>2 <a href="admin/notice" > 공지사항 관리</a></li></h2></br>
 <h2> <li>3 <a href="admin/ManageReport" > 신고 관리</a></li></h2></br>
-<h2> <li>3 <a href="#" > 채용 공고 등록</a></li></h2></br>
+<h2> <li>3 <a href="admin/ManageReport" > 채용 공고 등록 </a></li></h2></br>
 
 </script>
 </body>

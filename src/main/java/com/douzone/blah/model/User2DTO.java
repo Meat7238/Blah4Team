@@ -16,9 +16,9 @@ public class User2DTO {
 	private String user_nick;
 	private String user_point;
 	private String user_email;
-	private String user_startdate;
+	private Date user_startdate;
 	private Date user_enddate;
-	private Date user_jobgroup;
+	private String user_jobgroup;
 	private String user_workspace;
 	private String enabled;
 	private String authority;
