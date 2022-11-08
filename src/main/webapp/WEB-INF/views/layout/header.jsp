@@ -24,7 +24,7 @@
 			<li><a href="board">게시판</a></li>
 			<!-- /blah/home -->
 			<li><a href="/ui-r">기업리뷰</a></li>
-			<li><a href="/ui-e">채용공고</a></li>
+			<li><a href="/recruit/recruitMain">채용공고</a></li>
 		</ul>
 		<ul class="navbar_right">
 			<li><a href="writeform">글쓰기</a></li>
