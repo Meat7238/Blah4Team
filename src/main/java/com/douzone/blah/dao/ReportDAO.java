@@ -9,6 +9,8 @@ import com.douzone.blah.model.ReportPrDTO;
 
 public interface ReportDAO {
 
+  // 게시판 신고수 count
+  public int getReportPCount();
 
   // 신고된 게시판 목록
   public List getReportP(HashMap map);
@@ -21,6 +23,9 @@ public interface ReportDAO {
 
 
 
+  // 댓글 신고수 count
+  public int getReportPrCount();
+
   // 신고된 댓글 목록
   public List getReportPr(HashMap map2);
 
@@ -31,6 +36,9 @@ public interface ReportDAO {
   public int updateReportPr(Map<String, String> map2);
 
 
+
+  // 리뷰 신고수 count
+  public int getReportCrCount();
 
   // 신고된 리뷰 목록
   public List getReportCr(HashMap map3);

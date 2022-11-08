@@ -10,6 +10,9 @@
 
 	<%@ include file="/WEB-INF/views/layout/header.jsp"%>
 	<h1>client notice view</h1>
+	</br>
+	<a href="${path}/">뒤로가기</a>
+	</br>
 	<table width="1000" cellpadding="3" border="1">
 		<tr>
 			<th width="50">번호</th>
@@ -29,8 +32,38 @@
 				<td>${l.notice_readcount}</td>
 		</c:forEach>
 	</table>
-	<a href="${path}/">뒤로가기</a>
+	<table width="600">
+		<tr>
+			<td align="center">
+				<!-- 처음 이전 링크 --> <c:if test="${pg>block}">
+					<!-- 5>10 : false / 15>10 : true -->
+			[<a href="notice?pg=1">◀◀</a>]
+			[<a href="notice?pg=${fromPage-1}">◀</a>]		
+		</c:if> <c:if test="${pg<=block}">
+					<!-- 5<=10 :true / 15<=10:false -->
+			[<span style="color: gray">◀◀</span>]	
+			[<span style="color: gray">◀</span>]
+		</c:if> <!-- 블록 범위 찍기 --> <c:forEach begin="${fromPage}" end="${toPage}"
+					var="i">
+					<c:if test="${i==pg}">[${i}]</c:if>
+					<c:if test="${i!=pg}">
+				[<a href="notice?pg=${i}">${i}</a>]
+			</c:if>
+				</c:forEach> <!-- 다음, 이후 --> <c:if test="${toPage<allPage}">
+					<!-- 20<21 : true -->
+				[<a href="notice?pg=${toPage+1}">▶</a>]
+				[<a href="notice?pg=${allPage}">▶▶</a>]
+		
+		</c:if> <c:if test="${toPage>=allPage}">
+					<!-- 21>=21 :true -->
+				[<span style="color: gray">▶</span>]
+				[<span style="color: gray">▶▶</span>]
+		
+		</c:if>
 
+			</td>
+		</tr>
+	</table>
 	<%@ include file="/WEB-INF/views/layout/footer.jsp"%>
 
 </body>

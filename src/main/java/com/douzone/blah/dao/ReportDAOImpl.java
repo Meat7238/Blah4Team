@@ -16,6 +16,7 @@ public class ReportDAOImpl implements ReportDAO {
   @Autowired
   private SqlSession sqlSession;
 
+
   // 신고된 게시판 목록
   @Override
   public List getReportP(HashMap map) {
@@ -57,6 +58,7 @@ public class ReportDAOImpl implements ReportDAO {
     ReportDAO reportPrDAO = sqlSession.getMapper(ReportDAO.class);
     return reportPrDAO.updateReportPr(map2);
   }
+  // 리뷰 신고수 count
 
   //신고된 리뷰 목록
   @Override
@@ -77,6 +79,28 @@ public class ReportDAOImpl implements ReportDAO {
   public int updateReportCr(Map<String, String> map3) {
     ReportDAO reportCrDAO = sqlSession.getMapper(ReportDAO.class);
     return reportCrDAO.updateReportCr(map3);
+  }
+
+
+  // 게시판 신고수 count
+  @Override
+  public int getReportPCount() {
+    ReportDAO reportPDAO = sqlSession.getMapper(ReportDAO.class);
+    return reportPDAO.getReportPCount();
+  }
+
+  // 댓글 신고수 count
+  @Override
+  public int getReportPrCount() {
+    ReportDAO reportPrDAO = sqlSession.getMapper(ReportDAO.class);
+    return reportPrDAO.getReportPCount();
+  }
+
+  // 리뷰 신고수 count
+  @Override
+  public int getReportCrCount() {
+    ReportDAO reportCrDAO = sqlSession.getMapper(ReportDAO.class);
+    return reportCrDAO.getReportPCount();
   }
 
 }
