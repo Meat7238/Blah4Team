@@ -20,7 +20,7 @@
 	</form>
 	<br/>
 	<br/>
-	<table border="1" width="850">
+	<table border="1" width="1300">
 		<tr>
 			<th>번호</th>
 			<th>아이디</th>
