@@ -15,8 +15,8 @@
 			<option value="user_num">유저번호</option>
 			<option value="user_id">아이디</option>
 			<option value="user_nick">닉네임</option>
-		</select> <input type="text" name="keyvalue" stle="width:400px; height:100px;"> <input type="submit"
-			value="검색">
+		</select> <input type="text" name="keyvalue" stle="width:400px; height:100px;"> <!-- <input type="submit"
+			value="검색"> -->
 	</form>
 	<br/>
 	<br/>
