@@ -38,7 +38,17 @@
 	<tr>
 		<th>카테고리</th>
 		<td>
-			<input type="text" name="post_category" maxlength="50" size="65"/>
+			<select name="post_category">
+				<option value="블라블라">블라블라</option>
+				<option value="주식투자">주식투자</option>
+				<option value="썸,연애">썸,연애</option>
+				<option value="회사생활">회사생활</option>
+				<option value="이직,커리어">이직,커리어</option>
+				<option value="결혼,육아">결혼,육아</option>
+				<option value="홍보">홍보</option>
+				<option value="취미생활">취미생활</option>
+				<option value="우리회사 채용해요">우리회사 채용해요</option>
+			</select>
 		</td>
 	</tr>
 	<tr>

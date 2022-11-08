@@ -20,7 +20,7 @@
 	<%@ include file="/WEB-INF/views/layout/header.jsp"%>
 
 	<h2>글 읽기</h2>
-	<a href="board?pg=${pg}">게시판 목록</a>
+	<a href="board?pg=${pg}">게시판 홈</a>
 	<table width="700">
 		<tr>
 			<th colspan="4">${b.post_title}</th>

@@ -21,7 +21,7 @@
 			<a href="${path }/"><img alt="로고" src="resources/images/logo.png"></a>
 		</div>
 		<ul class="navbar_menu">
-			<li><a href="board">게시판</a></li>
+			<li><a href=board>게시판</a></li>
 			<!-- /blah/home -->
 			<li><a href="/ui-r">기업리뷰</a></li>
 			<li><a href="/ui-e">채용공고</a></li>

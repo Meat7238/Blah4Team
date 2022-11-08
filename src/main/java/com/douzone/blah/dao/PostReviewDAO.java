@@ -12,4 +12,5 @@ public interface PostReviewDAO {
 	
 	//댓글 작성
 	public void insertPostReview(PostReviewDTO dto);
+	
 }

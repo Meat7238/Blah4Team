@@ -8,12 +8,20 @@
 	<!-- 게시글 목록 -->
 	<select id="getPostList" parameterType="hashmap"
 		resultType="com.douzone.blah.model.PostDTO">
-		select * from
-			(select A.*, ROWNUM r from
-				(select * from post order by post_num desc) A
+	select * from
+	(select A.*, ROWNUM r from
+		(select * from post where post_category = ${post_category} order by
+			post_num desc) A
 			)
 		where r >= #{start} and r &lt;= #{end}
+		
 		<!-- 게시글 번호로 내림차순한거를 A로 네이밍. A에서 ROWNUM r 설정. r이 start와 end 범위에서 전체 출력 -->
+	</select>
+	
+	<select id="getPostList1" parameterType="String"
+		resultType="com.douzone.blah.model.PostDTO">
+		select * from (select * from post where post_category = '${value}'
+		order by post_readcount desc) where ROWNUM &lt;= 3
 	</select>
 
 	<!-- 글 쓰기 -->
@@ -32,28 +40,57 @@
 		resultType="com.douzone.blah.model.PostDTO">
 		select * from post where post_num = #{post_num}
 	</select>
-	
+
 	<!-- 글 삭제 -->
-	<delete id="deletePost" parameterType="com.douzone.blah.model.PostDTO">
+	<delete id="deletePost"
+		parameterType="com.douzone.blah.model.PostDTO">
 		delete from post where post_num = #{post_num}
 	</delete>
-	
+
 	<!-- 글 수정 -->
-	<update id="updatePost" parameterType="com.douzone.blah.model.PostDTO">
-		update post set post_title=#{post_title}, post_category=#{post_category},
-		post_content=#{post_content}, post_usernum=#{post_usernum}, post_regdate=sysdate
-		where post_num = #{post_num}
+	<update id="updatePost"
+		parameterType="com.douzone.blah.model.PostDTO">
+		update post set post_title=#{post_title},
+		post_category=#{post_category},
+		post_content=#{post_content},
+		post_usernum=#{post_usernum}, post_regdate=sysdate
+		where post_num =
+		#{post_num}
 	</update>
-	
+
 	<!-- 조회수 증가 -->
 	<update id="updateHit" parameterType="Integer">
-		update post set post_readcount = post_readcount+1
+		update post set
+		post_readcount = post_readcount+1
 		where post_num = #{post_num}
 	</update>
-	
+
 	<!-- 글의 수 -->
 	<select id="getPostCount" resultType="Integer">
 		select count(*) from post
 	</select>
 
+	<!-- 댓글 개수 -->
+	<update id="updateReviewCount" parameterType="Integer">
+		update post
+		set post_reviewcount = post_reviewcount + #{amount} where post_num=#{post_num}
+		<!-- set
+		p.post_reviewcount = (select count(postreview_num) from postreview
+		where postreview_postnum=#{postreview_postnum})
+		where
+		p.post_num=#{post_num} -->
+	</update>
+	
+	<!-- 게시글 검색 -->
+	<select id="getSearchList" parameterType="hashMap" resultType="com.douzone.blah.model.PostDTO">
+		select * from post
+		<if test="column != null">
+    		where ${column} like '%' || #{keyvalue} || '%'    	
+    	</if>
+	</select>
+	
+	<!-- 카테고리 페이징 위한 게시글 카운트 -->
+	<select id="getPostCountCategory"  parameterType="String" resultType="Integer">
+		select count(*) from post where post_category = ${value}
+	</select>
 </mapper>
