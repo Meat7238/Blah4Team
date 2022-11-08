@@ -42,7 +42,7 @@
 	</security:http>
 	
 	<bean id="userLoginSuccessHandler"		class="com.douzone.blah.security.UserLoginSuccessHandler" />
-	<bean id="userLoginService" class="com.douzone.blah.security.UserDetailsServiceCustom "/>
+	<bean id="userLoginService" class="com.douzone.blah.security.UserDetailsServiceCustom"/>
 	<bean id="passwordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
 	
 	<security:authentication-manager>

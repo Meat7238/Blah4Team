@@ -11,7 +11,7 @@
 		user2(user_num, user_id, user_password, user_nick, user_email,
 		user_jobgroup, user_workspace)
 		values
-		('user'||TO_CHAR(USER_NUMseq.nextval, 00000),
+		('user'||TO_CHAR(USER_NUMseq.nextval),
 		#{user_id},#{user_password},#{user_nick},#{user_email},#{user_jobgroup},#{user_workspace})
 	</insert>
 	
