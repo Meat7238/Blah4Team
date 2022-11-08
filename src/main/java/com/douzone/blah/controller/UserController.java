@@ -1,6 +1,7 @@
 package com.douzone.blah.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,6 +12,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,11 +34,10 @@ public class UserController {
 	private User2DAO user2DAOImpl;
 
 	@Autowired
-	private PasswordEncoder passwordEncoder;
-	
-	
+	private BCryptPasswordEncoder passwordEncoder;
+
 	@Autowired
-	public UserController(PasswordEncoder passwordEncoder) {
+	public UserController(BCryptPasswordEncoder passwordEncoder) {
 		super();
 		this.passwordEncoder = passwordEncoder;
 	}
@@ -91,35 +95,53 @@ public class UserController {
 	public String logIn() {
 		return "login/loginForm";
 	}
+	
+	/* 로그인 화면 요청 */
+	@RequestMapping("/login/loginForm")
+	public String loginView(HttpServletRequest request) {
+
+		// 요청 시점의 사용자 URI 정보를 Session의 Attribute에 담아서 전달(잘 지워줘야 함)
+		// 로그인이 틀려서 다시 하면 요청 시점의 URI가 로그인 페이지가 되므로 조건문 설정
+		String uri = request.getHeader("Referer");
+		if (!uri.contains("/login/loginForm")) {
+			request.getSession().setAttribute("prevPage",
+					request.getHeader("Referer"));
+		}
+
+		return "login/loginForm";
+	}
+
+//	// 로그인 처리
+//	@PostMapping("/login")
+//	public String selectUser(@RequestParam("user_id") String user_id, @RequestParam("user_password") String user_password) {
+//		Map<String, Object> user = user2DAOImpl.selectUser(user_id);
+//
+//		return "redirect:/";
+//	}
 
 	// 회원가입 페이지로 이동
 	@RequestMapping("/join/join")
 	public String join() {
 		return "join/join";
 	}
-	
 
 	// 회원가입 처리
 	@PostMapping("/join/joinAction")
-	public String insertUser(@RequestParam("user_id") String user_id, @RequestParam("user_password") String user_password, @RequestParam("user_email") String user_email, 
-			@RequestParam("user_nick") String user_nick, @RequestParam("user_jobgroup") String user_jobgroup, @RequestParam("user_workspace") String user_workspace) {
+	public String insertUser(@RequestParam("user_id") String user_id,
+			@RequestParam("user_password") String user_password, @RequestParam("user_email") String user_email,
+			@RequestParam("user_nick") String user_nick, @RequestParam("user_jobgroup") String user_jobgroup,
+			@RequestParam("user_workspace") String user_workspace) {
 		// 비밀번호 암호화
-		System.out.println("컨트롤러 오케이");
 		Map<String, String> map = new HashMap<>();
 		map.put("user_id", user_id);
 		map.get("user_id");
-		System.out.println("id까지");
 		map.put("user_password", passwordEncoder.encode(user_password));
-		System.out.println("암호화 오케이");
 		map.put("user_nick", user_nick);
 		map.put("user_email", user_email);
 		map.put("user_jobgroup", user_jobgroup);
 		map.put("user_workspace", user_workspace);
-		System.out.println("입력완료!");
 		// affected rows, 영향을 받은 행의 수가 리턴됨
 		int result = user2DAOImpl.insertUser(map);
-		System.out.println("insert끝");
 		return "/login/loginForm"; // login.jsp로 이동
 	}
-
 }
