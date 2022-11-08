@@ -1,8 +1,7 @@
 package com.douzone.blah.model;
 
-import java.sql.Date;
-import java.util.List;
 
+import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

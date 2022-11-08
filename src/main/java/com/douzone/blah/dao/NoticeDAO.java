@@ -24,4 +24,7 @@ public interface NoticeDAO {
 
   // 조회수 증가
   public void updateHit(int notice_num);
+
+  // 공지글 수 count
+  public int getNoticeCount();
 }
