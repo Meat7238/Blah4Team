@@ -39,7 +39,8 @@ public class Admin2DAOImpl implements Admin2DAO {
   }
 
   @Override
-  public List<Admin2DTO> submit( Map<String, String> map) {
+  public String submit( Map<String, String> map) {
+    System.out.println("subbit:"+map);
      return sqlSession.getMapper(Admin2DAO.class).submit(map);
   }
 
