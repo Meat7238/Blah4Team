@@ -33,7 +33,7 @@
 					<a href="${root }login/loginForm">로그인</a>
 				</sec:authorize> 
 				<sec:authorize access="isAuthenticated()">
-					<a href="${root }member">내 정보</a> &nbsp
+					<a href="/member">내 정보</a> &nbsp
 					<a href="/logout">로그아웃</a>
 				</sec:authorize></li>
 				
