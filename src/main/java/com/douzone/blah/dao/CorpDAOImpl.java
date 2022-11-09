@@ -1,6 +1,7 @@
 package com.douzone.blah.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,10 +34,17 @@ public class CorpDAOImpl implements CorpDAO {
 		return corpDAO.corpDetail(corp_num);
 	}
 
+	/*
+	 * @Override public CorpreviewDTO corpReview(String corpreviewnum) { CorpDAO
+	 * corpDAO = sqlSession.getMapper(CorpDAO.class); return
+	 * corpDAO.corpReview(corpreviewnum); }
+	 */
+
 	@Override
-	public CorpreviewDTO corpReview(String corpreviewnum) {
-		CorpDAO corpDAO = sqlSession.getMapper(CorpDAO.class);
-		return corpDAO.corpReview(corpreviewnum);
+	public List<Map<String, Object>> corpReview(String corpreviewnum) {
+		List<Map<String, Object>> corpReiviewList = 
+				sqlSession.selectList("com.douzone.blah.dao.CorpDAO.corpReview",corpreviewnum);
+		return corpReiviewList;
 	}
 
 	@Override

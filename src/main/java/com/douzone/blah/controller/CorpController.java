@@ -2,6 +2,7 @@ package com.douzone.blah.controller;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.ServletException;
@@ -14,10 +15,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.douzone.blah.dao.CorpDAO;
-import com.douzone.blah.dao.CorpDAOImpl;
 import com.douzone.blah.model.CorpDTO;
 import com.douzone.blah.model.CorpreviewDTO;
 
+import lombok.extern.log4j.Log4j;
+
+@Log4j
 @Controller
 public class CorpController {
 
@@ -61,13 +64,21 @@ public class CorpController {
 
 	}
 
+//	@RequestMapping("/corpreviewmain")
+//	public String corpreviewmain(String corpreviewnum, Model model) {
+//
+//		model.addAttribute("corplist", corpDAOImpl.corpReview(corpreviewnum));
+//
+//		return "corpreviewmain";
+//
+//	}
+
 	@RequestMapping("/corpreviewmain")
-	public String corpreviewmain(String corpreviewnum, Model model) {
-
-		CorpreviewDTO dto = corpDAOImpl.corpReview(corpreviewnum);
-
-		model.addAttribute("corplist", dto);
-
+	public String corpreviewmain(String corpreviewnum, HttpServletRequest request) {
+		List<Map<String, Object>> corpReiviewList = corpDAOImpl.corpReview(corpreviewnum);
+		log.warn("받아온 값 : " + corpReiviewList);
+		request.setAttribute("corplist", corpReiviewList);
+//		model.addAttribute("corplist", corpDAOImpl.corpReview(corpreviewnum));
 		return "corpreviewmain";
 
 	}

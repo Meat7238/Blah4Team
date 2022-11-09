@@ -1,37 +1,33 @@
 @charset "UTF-8";
 
-#corpreviewstar fieldset {
+#corpreviewwriteform fieldset {
 	display: inline-block;
 	direction: rtl;
 	border: 0;
 }
 
-#corpreviewstar fieldset legend {
+#corpreviewwriteform fieldset legend {
 	text-align: right;
 }
 
-#corpreviewstar input[type=radio] {
+#corpreviewwriteform input[type=radio] {
 	display: none;
 }
 
-#corpreviewstar label {
+#corpreviewwriteform label {
 	font-size: 2em;
 	color: transparent;
 	text-shadow: 0 0 0 #f0f0f0;
 }
 
-#corpreviewstar label:hover {
+#corpreviewwriteform label:hover {
 	text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
 }
 
-#corpreviewstar label:hover ~ label {
+#corpreviewwriteform label:hover ~ label {
 	text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
 }
 
-#corpreviewstar input[type=radio]:checked ~ label {
+#corpreviewwriteform input[type=radio]:checked ~ label {
 	text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
-}
-
-#a{
-	float :left;
 }

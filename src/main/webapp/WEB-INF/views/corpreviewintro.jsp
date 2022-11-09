@@ -8,6 +8,7 @@
 <title>기업 리뷰 소개</title>
 </head>
 <body>
+
 	<%@ include file="/WEB-INF/views/layout/header.jsp"%>
 	<input type="button" value="소개"
 		onclick="location.href='corpreviewintro?corpnum=${corplist.corp_num}'" />
@@ -25,6 +26,7 @@
 					<col class="col-value">
 				</colgroup>
 				<tbody>
+
 					<tr class="field">
 						<th class="field-label">기업 이름</th>
 						<td class="field-value">
@@ -85,12 +87,14 @@
 						<td class="field-value">
 							<div class="value-container">
 								<div class="value">
-									<a href="http://www.samsung.com/sec" target="_blank">${corplist.corp_addr}</a>
+									<a href="${corplist.corp_addr}" target="_blank">${corplist.corp_addr}</a>
 								</div>
 							</div>
 						</td>
 					</tr>
+
 				</tbody>
+
 			</table>
 		</div>
 	</div>

@@ -23,8 +23,13 @@
 	</select>
 	
 	<!-- 기업리뷰 가져오기 -->
-	<select id="corpReview" parameterType="hashmap"
+	<!-- <select id="corpReview" parameterType="String"
 		resultType="com.douzone.blah.model.CorpreviewDTO">
+		select * from corpreview where corpreview_corpnum = #{corpreviewnum}
+	</select> -->
+	<!-- 기업리뷰 가져오기 -->
+	<select id="corpReview" 
+		resultType="map">
 		select * from corpreview where corpreview_corpnum = #{corpreviewnum}
 	</select>
 	
@@ -32,18 +37,18 @@
 	<insert id="insertReview"
 		parameterType="com.douzone.blah.model.CorpreviewDTO">
 		insert into corpreview values(
-		corpreview_seq.nextval,
-		corpreview_starpoint1,
-		corpreview_starpoint2,
-		corpreview_starpoint3,
-		corpreview_starpoint4,
-		corpreview_starpoint5,
-		corpreview_conclusion,
-		corpreview_pros,
-		corpreview_cons,
+		(select	NVL(max(corpreview_num),0)+1 from corpreview),
+		#{corpreview_starpoint1},
+		#{corpreview_starpoint2},
+		#{corpreview_starpoint3},
+		#{corpreview_starpoint4},
+		#{corpreview_starpoint5},
+		#{corpreview_conclusion},
+		#{corpreview_pros},
+		#{corpreview_cons},
 		sysdate,
-		corpreview_usernum,
-		corpreview_corpnum
+		9,
+		(select corp_num from corp where corp_name = #{corp_name})
 		);
 	</insert>
 
