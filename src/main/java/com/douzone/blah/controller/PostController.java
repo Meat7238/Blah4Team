@@ -30,7 +30,7 @@ public class PostController {
 	private PostReviewDAO postReviewDAOImpl;
 	
 	// 게시글 목록
-	@RequestMapping("/board")
+	@RequestMapping("/board/board")
 	public String list(HttpServletRequest request) {
 		String result = request.getParameter("category");
 		System.out.println(result);
@@ -140,12 +140,12 @@ public class PostController {
 	}
 
 	// 게시글 쓰기
-	@RequestMapping("/writeform")
+	@RequestMapping("/board/writeform")
 	public String writeform() {
 		return "board/writeform";
 	}
 
-	@RequestMapping("/write")
+	@RequestMapping("/board//write")
 	public String write(HttpServletRequest request, PostDTO dto) {
 		
 		postDAOImpl.insertPost(dto);
@@ -153,7 +153,7 @@ public class PostController {
 	}
 
 	// 게시글 하나 읽기
-	@RequestMapping("/readform")
+	@RequestMapping("/board/readform")
 	public String read(int post_num, Model model, int pg) {
 
 		postDAOImpl.updateHit(post_num);
@@ -171,7 +171,7 @@ public class PostController {
 	}
 
 	// 게시글 삭제
-	@RequestMapping("/delete")
+	@RequestMapping("/board/delete")
 	public String delete(PostDTO dto, int pg) {
 		int result = postDAOImpl.deletePost(dto);
 		String res = "redirect:/board?pg="+pg;
@@ -182,14 +182,14 @@ public class PostController {
 	}
 	
 	// 게시글 수정
-	@RequestMapping("/updateform")
+	@RequestMapping("/board/updateform")
 	public String updateform(int post_num, Model model, int pg) {
 		PostDTO dto = postDAOImpl.getPost(post_num);
 		model.addAttribute("b", dto);
 		model.addAttribute("pg", pg);
 		return "board/updateform";
 	}
-	@RequestMapping("/update")
+	@RequestMapping("/board//update")
 	public String update(PostDTO dto, int pg) {
 		int result = postDAOImpl.updatePost(dto);
 		String res= "redirect:/board?pg="+pg;
@@ -198,13 +198,13 @@ public class PostController {
 	}
 	
 	// 댓글 작성
-	@RequestMapping("/review")
+	@RequestMapping("/board/review")
 	public String insertPostReview(PostReviewDTO dto, int post_num, int pg) {
 		postReviewDAOImpl.insertPostReview(dto);
 		return "redirect:/readform?post_num="+post_num+"&pg="+pg;
 	}
 	
-	@RequestMapping("/search")
+	@RequestMapping("/board/search")
 	public String search(HttpServletRequest request, int pg){
 		String column = request.getParameter("column");
 		String keyvalue = request.getParameter("keyvalue");

@@ -6,6 +6,7 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,12 +28,13 @@ public class RecruitController {
 
 	// 검색 전 매핑
 	@GetMapping("/recruit/recruitMain")
-	public void RecruitPage() {
+	public String RecruitPage() {
+		return "/recruit/recruitShowResult";
 	}
 
 	// 검색 처리
-	@PostMapping("/recruit/recruitSelect")
-	public String searchRecruit(@RequestParam("corp_name") String corp_name, HttpServletRequest request) throws ParseException {
+	@GetMapping("/recruit/recruitSelect")
+	public String searchRecruit(@RequestParam("corp_name") String corp_name, HttpServletRequest request, HttpServletResponse response) throws ParseException {
 		
 		log.warn("여기에 온 copr_name ====> " + corp_name);
 		List<Map<String, Object>> recruitInfo = recruitDAO.selectRecruit(corp_name);
