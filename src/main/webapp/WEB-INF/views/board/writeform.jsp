@@ -60,7 +60,7 @@
 	<tr>
 		<th>회원번호</th>
 		<td>
-			<input type="text" name="post_usernum" maxlength="5" size="12"/>
+			<input type="text" name="post_usernum" maxlength="10" size="12"/>
 		</td>
 	</tr>
 	<tr>

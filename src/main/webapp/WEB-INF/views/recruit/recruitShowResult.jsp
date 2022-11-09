@@ -22,6 +22,15 @@ table {
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/layout/header.jsp"%>
+	
+	<form action="/recruit/recruitSelect" method="get">
+		<input type="text" name="corp_name">
+		<input type="submit" name="검색">
+	
+	</form>
+	<br><br><br>
+	
+	
 	<table cellpadding="3">
 		<tr>
 			<th width="50">번호</th>
@@ -44,6 +53,10 @@ table {
 				<td>${r.RECRUIT_READCOUNT}</td>
 		</c:forEach>
 	</table>
+	<!-- <script>window.onpageshow = function(event) {if ( event.persisted || (window.performance && window.performance.navigation.type == 2)) {  }}</script> -->
+	
+
+
 	
 	<%-- <table width="600">
 		<tr>
