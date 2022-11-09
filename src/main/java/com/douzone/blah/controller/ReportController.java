@@ -149,6 +149,26 @@ public String reportPostUpdate(HttpServletRequest request) throws ServletExcepti
   }
   return "redirect:/admin/ManageReport";
 }
+
+@RequestMapping("/reportForm")
+public String report(HttpServletRequest request) {
+	String r1 = request.getParameter("post_category");
+	String r2 = request.getParameter("post_usernum");
+	String r3 = request.getParameter("post_num");
+	String r4 = request.getParameter("post_title");
+	
+	request.setAttribute("r1", r1);
+	request.setAttribute("r2", r2);
+	request.setAttribute("r3", r3);
+	request.setAttribute("r4", r4);
+	
+	return "board/reportForm";
+}
+
+//${post_category}
+//${post_usernum}
+//${post_num}
+//${post_title}
 //  // 공지사항 삭제
 //  @RequestMapping("/admin/notice/delete")
 //  public String delete(NoticeDTO dto) {
