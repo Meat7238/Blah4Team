@@ -15,8 +15,11 @@
  <h2><li>1 <a href="admin/edit" > 회원정보 관리</a></li></h2></br>
  <h2><li>2 <a href="admin/notice" > 공지사항 관리</a></li></h2></br>
 <h2> <li>3 <a href="admin/ManageReport" > 신고 관리</a></li></h2></br>
-<h2> <li>3 <a href="#" > 채용 공고 등록</a></li></h2></br>
+<h2> <li>3 <a href="admin/ManageReport" > 채용 공고 등록 </a></li></h2></br>
 
-</script>
+로그인 된 관리자 : ${admin_id }
+<form action = "adminLogout" method="post">
+<input type="submit" value = "로그아웃">
+</form>
 </body>
 </html>

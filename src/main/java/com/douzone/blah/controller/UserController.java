@@ -4,15 +4,17 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import javax.annotation.Resource;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -26,8 +28,12 @@ public class UserController {
 	@Resource
 	private User2DAO user2DAOImpl;
 
-	@Autowired
-	private PasswordEncoder passwordEncoder;
+	private BCryptPasswordEncoder passwordEncoder;
+
+	public UserController(BCryptPasswordEncoder passwordEncoder) {
+		super();
+		this.passwordEncoder = passwordEncoder;
+	}
 
 	@RequestMapping("/admin")
 	public String adminHandler(HttpServletRequest request) {
@@ -76,10 +82,18 @@ public class UserController {
 		}
 		return res;
 	}
+	
+	// 로그인 페이지 요청
+	@RequestMapping("/login/loginForm")
+	public String loginView(HttpServletRequest request) {
 
-	// 로그인 페이지로 이동
-	@GetMapping("/login/loginForm")
-	public String logIn() {
+		// 요청 시점의 사용자 URI 정보를 Session의 Attribute에 담아서 전달(잘 지워줘야 함)
+		// 로그인이 틀려서 다시 하면 요청 시점의 URI가 로그인 페이지가 되므로 조건문 설정
+		String uri = request.getHeader("Referer");
+		if (!uri.contains("/login/loginForm")) {
+			request.getSession().setAttribute("prevPage",
+					request.getHeader("Referer"));
+		}
 		return "login/loginForm";
 	}
 
@@ -88,12 +102,13 @@ public class UserController {
 	public String join() {
 		return "join/join";
 	}
-	
 
 	// 회원가입 처리
-	@RequestMapping("/join/joinAction")
-	public String insertUser(@RequestParam String user_id, @RequestParam String user_password, @RequestParam String user_email, 
-			@RequestParam String user_nick, @RequestParam String user_jobgroup, @RequestParam String user_workspace) {
+	@PostMapping("/join/joinAction")
+	public String insertUser(@RequestParam("user_id") String user_id,
+			@RequestParam("user_password") String user_password, @RequestParam("user_email") String user_email,
+			@RequestParam("user_nick") String user_nick, @RequestParam("user_jobgroup") String user_jobgroup,
+			@RequestParam("user_workspace") String user_workspace) {
 		// 비밀번호 암호화
 		Map<String, String> map = new HashMap<>();
 		map.put("user_id", user_id);
@@ -106,5 +121,4 @@ public class UserController {
 		int result = user2DAOImpl.insertUser(map);
 		return "/login/loginForm"; // login.jsp로 이동
 	}
-
 }

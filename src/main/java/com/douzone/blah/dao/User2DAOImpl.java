@@ -3,9 +3,12 @@ package com.douzone.blah.dao;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
+
 import com.douzone.blah.model.User2DTO;
 
 @Component
@@ -13,6 +16,10 @@ public class User2DAOImpl implements User2DAO {
 
 	@Autowired
 	private SqlSession sqlSession;
+	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+	
 
 	// 유저 추가
 	@Override
@@ -52,10 +59,11 @@ public class User2DAOImpl implements User2DAO {
 		return sqlSession.insert("insertUser", map);
 	}
 
-	// 로그인
+	// 로그인 SQL
 	@Override
 	public Map<String, Object> selectUser(String user_id) {
 		return sqlSession.selectOne("selectUser", user_id);
 	}
+
 
 }

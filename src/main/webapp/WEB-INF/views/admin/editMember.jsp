@@ -15,11 +15,12 @@
 			<option value="user_num">유저번호</option>
 			<option value="user_id">아이디</option>
 			<option value="user_nick">닉네임</option>
-		</select> <input type="text" name="keyvalue" stle="width:400px; height:100px;"> <input type="submit"
-			value="검색">
+		</select> <input type="text" name="keyvalue" stle="width:400px; height:100px;"> <!-- <input type="submit"
+			value="검색"> -->
 	</form>
 	<br/>
-	<table border="1" width="850">
+	<br/>
+	<table border="1" width="1300">
 		<tr>
 			<th>번호</th>
 			<th>아이디</th>
@@ -63,5 +64,41 @@
 			}
 		}
 	</script>
+	<table width="600">
+<tr>
+	<td align="center">
+		<!-- 처음 이전 링크 -->
+		<c:if test="${pg>block}">  <!-- 5>10 : false / 15>10 : true -->
+			[<a href="list.htm?pg=1">◀◀</a>]
+			[<a href="list.htm?pg=${fromPage-1}">◀</a>]		
+		</c:if>
+		<c:if test="${pg<=block}"> <!-- 5<=10 :true / 15<=10:false -->
+			[<span style="color:gray">◀◀</span>]	
+			[<span style="color:gray">◀</span>]
+		</c:if>
+		
+		<!-- 블록 범위 찍기 -->
+		<c:forEach begin="${fromPage}" end="${toPage}" var="i">
+			<c:if test="${i==pg}">[${i}]</c:if>
+			<c:if test="${i!=pg}">
+				[<a href="list.htm?pg=${i}">${i}</a>]
+			</c:if>
+		</c:forEach>
+		
+		<!-- 다음, 이후 -->
+		<c:if test="${toPage<allPage}"> <!-- 20<21 : true -->
+				[<a href="list.htm?pg=${toPage+1}">▶</a>]
+				[<a href="list.htm?pg=${allPage}">▶▶</a>]
+		
+		</c:if>	
+		<c:if test="${toPage>=allPage}"> <!-- 21>=21 :true -->
+				[<span style="color:gray">▶</span>]
+				[<span style="color:gray">▶▶</span>]
+		
+		</c:if>			
+		
+	</td>
+</tr>
+</table>
 </body>
 </html>

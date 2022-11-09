@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.douzone.blah.dao.RecruitDAO">
+
+	<!-- 채용공고 검색 -->
+	<select id="selectRecruit" parameterType="String" resultType="map">
+	<![CDATA[
+		select r.recruit_corpnum, c.corp_name, recruit_num, recruit_adminnum, recruit_startdate, recruit_enddate, recruit_jobgroup, recruit_career, recruit_readcount 
+			from recruit r, corp c
+			where r.recruit_corpnum in(select cc.corp_num from corp cc where cc.corp_name = '${value}')
+		]]>
+	</select>
+	
+
+</mapper>

@@ -8,7 +8,10 @@
 	<!-- 공지글 목록 -->
 	<select id="getNoticeList" parameterType="hashmap"
 		resultType="com.douzone.blah.model.NoticeDTO">
-		select * from notice
+		select * FROM (select noti.*, ROWNUM r FROM (select * from
+		notice order by notice_num desc) noti)where r >= #{start} and r &lt;=
+		#{end}
+
 	</select>
 
 	<!-- 공지글 삭제 -->
@@ -48,11 +51,18 @@
 		insert into notice(notice_num, notice_title,
 		notice_category,
 		notice_content, notice_adminnum, notice_regdate,
-		notice_readcount) values((select NVL(max(notice_num),0)+1 from notice),
+		notice_readcount) values((select NVL(max(notice_num),0)+1 from
+		notice),
 		#{notice_title},
 		#{notice_category},
 		#{notice_content},
 		#{notice_adminnum},
 		sysdate, 0)
 	</insert>
+
+	<!-- 공지글 수 카운트 -->
+	<select id="getNoticeCount" resultType="Integer">
+		select count(*) from
+		notice
+	</select>
 </mapper>

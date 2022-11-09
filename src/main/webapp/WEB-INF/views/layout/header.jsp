@@ -18,13 +18,13 @@
 <body>
 	<nav class="navbar">
 		<div class="navbar_logo">
-			<a href="${path }/"><img alt="로고" src="resources/images/logo.png"></a>
+			<a href="${path }/"><img alt="로고" src="${path}/resources/images/logo.png"></a>
 		</div>
 		<ul class="navbar_menu">
-			<li><a href="board">게시판</a></li>
+			<li><a href="${root}board">게시판</a></li>
 			<!-- /blah/home -->
 			<li><a href="${path }/corpreviewhome">기업리뷰</a></li>
-			<li><a href="/ui-e">채용공고</a></li>
+			<li><a href="${root}recruitMain">채용공고</a></li>
 		</ul>
 		<ul class="navbar_right">
 			<li><a href="writeform">글쓰기</a></li>

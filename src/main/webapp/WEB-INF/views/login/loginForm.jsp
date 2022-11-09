@@ -34,8 +34,9 @@
 		<button type="submit" class="btn">로그인</button>
 		
 	</form:form>
-
-
+	
+<br/>
+<a href="<c:url value="/join/join" />">회원가입</a>
 
 </body>
 </html>
