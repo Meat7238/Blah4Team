@@ -20,6 +20,6 @@ public interface Admin2DAO {
   public int insertAdmin(Map<String, String> map);
 
   //로그인
-  public List<Admin2DTO> submit( Map<String, String> map);
+  public String submit( Map<String, String> map);
 
 }

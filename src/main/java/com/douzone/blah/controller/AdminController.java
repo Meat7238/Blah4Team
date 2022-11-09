@@ -1,7 +1,6 @@
 package com.douzone.blah.controller;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -10,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import com.douzone.blah.dao.Admin2DAO;
-import com.douzone.blah.model.Admin2DTO;
 
 @Controller
 public class AdminController {
@@ -24,21 +22,22 @@ public class AdminController {
       return "admin/adminLoginForm";
   }
   //로그인 실행
-  @RequestMapping(value = "/adminlogin", method = RequestMethod.POST)
+  @RequestMapping(value = "/adminLogin", method = RequestMethod.POST)
   public String submit(HttpServletRequest request,HttpSession session) {
+    request.setAttribute("no",0);
     String id = request.getParameter("id");
     String pwd = request.getParameter("pwd");
     Map<String, String> map = new HashMap<>();
-    map.put("admin2_id", id);
-    map.put("admin2_password", pwd);
+    map.put("admin_id", id);
     System.out.println(map);
-    String viewPage = "admin/adminLogin";
-    List<Admin2DTO> list = admin2DAOImpl.submit(map);
-    System.out.println(list);
-//    if(list != null){
-//      session.setAttribute("admin2_id", id);
-//      viewPage = "admin";
-//    }
-    return viewPage;
+    String admin_password = admin2DAOImpl.submit(map);
+
+    System.out.println(admin_password);
+    if(admin_password.equals(pwd)){
+      session.setAttribute("admin_id", id);
+      return "admin/admin";
+    }
+    request.setAttribute("no",1);
+    return "admin/adminLoginForm";
   }
 }

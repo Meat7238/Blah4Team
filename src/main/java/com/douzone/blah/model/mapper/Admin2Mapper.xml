@@ -6,8 +6,8 @@
 <mapper namespace="com.douzone.blah.dao.Admin2DAO">
 
 	<!-- 로그인 -->
-	<select id="submit" parameterType="hashmap">
-		select admin_id,admin_password,enabled,authority from admin2 where
-		admin_id=#{admin2_id}
+	<select id="submit" parameterType="string" resultType="string">
+		select admin_password from admin2 where
+		admin_id='${admin_id}'
 	</select>
 </mapper>
