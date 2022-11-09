@@ -80,15 +80,21 @@ CORP_PAY varchar2(20),
 CORP_DETEAIL varchar2(20)
 );
 ----------------------------------------------------------------------
+
 CREATE TABLE NOTICE( 
-NOTICE_NUM VARCHAR2(20) CONSTRAINT NOTICE_NUM_pk PRIMARY key, 
-NOTICE_TITLE varchar2(20),
+NOTICE_NUM NUMBER CONSTRAINT NOTICE_NUM_pk PRIMARY key, 
+NOTICE_TITLE varchar2(100),
 NOTICE_CATEGORY varchar2(20),
-NOTICE_CONTENT varchar2(20),
-NOTICE_ADMINNUM varchar2(20) CONSTRAINT NOTICE_ADMINNUM_fk REFERENCES ADMIN2(ADMIN_NUM) ON DELETE CASCADE,
+NOTICE_CONTENT varchar2(4000),
+NOTICE_ADMINNUM varchar2(20), 
 NOTICE_REGDATE varchar2(20),
 NOTICE_READCOUNT varchar2(20)
 );
+
+INSERT INTO notice VALUES(1,'공지제목','공지카테고리','공지내용','admin001',sysdate,'12');
+INSERT INTO notice VALUES(2,'공지제목','공지카테고리','공지내용','admin002',sysdate,'5');
+select * from notice;
+COMMIT;
 
 create sequence post_numseq;
 
@@ -176,75 +182,65 @@ RECRUIT_CAREER varchar2(20),
 RECRUIT_READCOUNT varchar2(20)
 );
 ----------------------------------------------------------------------
+DROP TABLE REPORTCR CASCADE CONSTRAINTS;
 CREATE TABLE REPORTCR( 
-REPORTCR_NUM VARCHAR2(20) CONSTRAINT REPORTCR_NUM_pk PRIMARY key,
-REPORTCR_CORPREVIEWNUM varchar2(20) CONSTRAINT REPORTCR_CORPREVIEWNUM_fk REFERENCES CORP(CORP_NUM) ON DELETE CASCADE,
-REPORTCR_USERNUM varchar2(20) CONSTRAINT REPORTCR_USERNUM_fk REFERENCES USER2(USER_NUM) ON DELETE CASCADE,
-REPORTCR_CONTENT varchar2(20),
+REPORTCR_NUM VARCHAR2(30) CONSTRAINT REPORTCR_NUM_pk PRIMARY key,
+REPORTCR_CORPREVIEWNUM VARCHAR2(40) CONSTRAINT REPORTCR_CORPREVIEWNUM_fk REFERENCES CORPREVIEW(CORPREVIEW_NUM) ON DELETE CASCADE,
+REPORTCR_USERNUM varchar2(30) CONSTRAINT REPORTCR_USERNUM_fk REFERENCES USER2(USER_NUM) ON DELETE CASCADE,
+REPORTCR_CONTENT varchar2(2000),
 REPORTCR_RESULT varchar2(20),
-REPORTCR_ADMINNUM varchar2(20)CONSTRAINT REPORTCR_ADMINNUM_fk REFERENCES ADMIN2(ADMIN_NUM) ON DELETE CASCADE,
-REPORTCR_REGDATE varchar2(20),
+REPORTCR_ADMINNUM varchar2(20),
+REPORTCR_REGDATE DATE,
 REPORTCR_TYPE varchar2(20)
 );
+--'0=스팸,1=음란물,2=성격에맞지않는글,3=과도한욕설,4=광고,5=사회분위기를 어지럽히는 글'
+SELECT * FROM REPORTCR;
+INSERT INTO REPORTCR values('1','CR0001','user0000','이 리뷰 불건전해요','검토중',null,sysdate,'1');
+INSERT INTO REPORTCR values('2','CR0002','user0000','이 리뷰 위치가 잘못됬어요','검토중',null,sysdate,'2');
+INSERT INTO REPORTCR values('3','CR0001','user0000','리뷰아닌 광고입니다','완료',null,sysdate,'0');
+COMMIT;
+
+
 ----------------------------------------------------------------------
+DROP TABLE REPORTPR CASCADE CONSTRAINTS;
 CREATE TABLE REPORTPR( 
-REPORTPR_NUM VARCHAR2(20) CONSTRAINT REPORTPR_NUM_pk PRIMARY key,
-REPORTPR_ varchar2(20) CONSTRAINT REPORTPR_CORPREVIEWNUM_fk REFERENCES CORP(CORP_NUM) ON DELETE CASCADE,
-REPORTPR_USERNUM varchar2(20) CONSTRAINT REPORTPR_USERNUM_fk REFERENCES USER2(USER_NUM) ON DELETE CASCADE,
-REPORTPR_CONTENT varchar2(20),
+REPORTPR_NUM varchar2(30) CONSTRAINT REPORTPR_NUM_pk PRIMARY key,
+REPORTPR_POSTREVIEWNUM NUMBER CONSTRAINT REPORTPR_POSTREVIEWNUM_fk REFERENCES POSTREVIEW(POSTREVIEW_NUM) ON DELETE CASCADE,
+REPORTPR_USERNUM varchar2(30) CONSTRAINT REPORTPR_USERNUM_fk REFERENCES USER2(USER_NUM) ON DELETE CASCADE,
+REPORTPR_CONTENT varchar2(2000),
 REPORTPR_RESULT varchar2(20),
-REPORTPR_ADMINNUM varchar2(20)CONSTRAINT REPORTPR_ADMINNUM_fk REFERENCES ADMIN2(ADMIN_NUM) ON DELETE CASCADE,
-REPORTPR_REGDATE varchar2(20),
+REPORTPR_ADMINNUM varchar2(20),
+REPORTPR_REGDATE DATE,
 REPORTPR_TYPE varchar2(20)
 );
+--'0=스팸,1=음란물,2=성격에맞지않는글,3=과도한욕설,4=광고,5=사회분위기를 어지럽히는 글'
+SELECT * FROM REPORTPR;
+INSERT INTO REPORTPR values('1',1,'user0000','이 댓글 불건전해요','검토중',null,sysdate,'1');
+INSERT INTO REPORTPR values('2',2,'user0000','이 댓글 위치가 잘못됬어요','검토중',null,sysdate,'2');
+INSERT INTO REPORTPR values('3',3,'user0000','댓글 광고입니다','완료',null,sysdate,'0');
+COMMIT;
 ----------------------------------------------------------------------
+DROP TABLE REPORTP CASCADE CONSTRAINTS;
 CREATE TABLE REPORTP( 
-REPORTP_NUM NUMBER CONSTRAINT REPORTP_NUM_pk PRIMARY key,
+REPORTP_NUM varchar2(30) CONSTRAINT REPORTP_NUM_pk PRIMARY key,
 REPORTP_POSTNUM NUMBER CONSTRAINT REPORTP_POSTNUM_fk REFERENCES POST(POST_NUM) ON DELETE CASCADE,
 REPORTP_USERNUM varchar2(30) CONSTRAINT REPORTP_USERNUM_fk REFERENCES USER2(USER_NUM) ON DELETE CASCADE,
 REPORTP_CONTENT varchar2(2000),
 REPORTP_RESULT varchar2(20),
-REPORTP_ADMINNUM varchar2(20)CONSTRAINT REPORTP_ADMINNUM_fk REFERENCES ADMIN2(ADMIN_NUM) ON DELETE CASCADE,
+REPORTP_ADMINNUM varchar2(20),
 REPORTP_REGDATE DATE,
 REPORTP_TYPE varchar2(20)
 );
 --'0=스팸,1=음란물,2=성격에맞지않는글,3=과도한욕설,4=광고,5=사회분위기를 어지럽히는 글'
-
-INSERT INTO REPORTP values(1,7,'001','이 게시글 불건전해요','검토중','AD001',sysdate,'1');
-INSERT INTO REPORTP values(2,8,'001','이 게시글 위치가 잘못됬어요','검토중','AD001',sysdate,'2');
-INSERT INTO REPORTP values(3,9,'003','광고입니다','완료','AD001',sysdate,'0');
-
-COMMIT;
-----------------------------------------------------------------------
-----------------------------------------------------------------------
-----------------------------------------------------------------------
-----------------------------------------------------------------------
-
-CREATE TABLE NOTICE( 
-NOTICE_NUM NUMBER CONSTRAINT NOTICE_NUM_pk PRIMARY key, 
-NOTICE_TITLE varchar2(100),
-NOTICE_CATEGORY varchar2(20),
-NOTICE_CONTENT varchar2(4000),
-NOTICE_ADMINNUM varchar2(20) CONSTRAINT NOTICE_ADMINNUM_fk REFERENCES ADMIN2(ADMIN_NUM) ON DELETE CASCADE,
-NOTICE_REGDATE varchar2(20),
-NOTICE_READCOUNT varchar2(20)
-);
-
-INSERT INTO notice VALUES(1,'공지제목','공지카테고리','공지내용','AD001',sysdate,'12');
-INSERT INTO notice VALUES(2,'공지제목','공지카테고리','공지내용','AD002',sysdate,'5');
-
-select * from notice;
-SELECT * FROM POST ;
-SELECT * FROM admin2;
-SELECT * FROM user2;
---SELECT * FROM REPORTCR;
---SELECT * FROM REPORTPR;
 SELECT * FROM REPORTP;
-create sequence noticenum_seq;
-
+INSERT INTO REPORTP values('1',7,'user0000','이 게시글 불건전해요','검토중',null,sysdate,'1');
+INSERT INTO REPORTP values('2',8,'user0000','이 게시글 위치가 잘못됬어요','검토중',null,sysdate,'2');
+INSERT INTO REPORTP values('3',9,'user0000','광고입니다','완료',null,sysdate,'0');
 COMMIT;
-		insert into notice(notice_num, notice_title,
-		notice_category,
-		notice_content, notice_adminnum, notice_regdate,
-		notice_readcount) values(select NVL(max(notice_num),0)+1 from notice),'asdf','asdf','asdfasdf','AD001',sysdate,'0');
+
+----------------------------------------------------------------------
+----------------------------------------------------------------------
+----------------------------------------------------------------------
+----------------------------------------------------------------------
+
 	

@@ -40,4 +40,12 @@ public class AdminController {
     request.setAttribute("no",1);
     return "admin/adminLoginForm";
   }
+
+  //로그아웃
+  @RequestMapping("/adminLogout")
+  public String out(HttpSession session) {
+      session.invalidate(); //세션 정보 종료
+      return "home";
+
+  }
 }

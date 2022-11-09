@@ -28,8 +28,8 @@
 			</tr>
 			<tr>
 				<th>작성자</th>
-				<td><input type="text" name="notice_adminnum" maxlength="5"
-					size="12" value="AD001" /></td>
+				<td><input type="hidden" name="notice_adminnum" maxlength="5"
+					size="12" value=${admin_id} />${admin_id}</td>
 			</tr>
 			<tr>
 				<td colspan="2"><input type="submit"  value="글 등록" >

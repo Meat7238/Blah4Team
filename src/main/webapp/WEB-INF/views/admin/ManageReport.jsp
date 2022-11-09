@@ -43,6 +43,7 @@
 					<form action="${path}/admin/ManageReport" method="post">
 						<input type="hidden" name="reportp_num" value="${r.reportp_num}" />
 						<input type="hidden" name="reportp_result" value="처리완료" /> <input
+							type="hidden" name="admin_id" value=${admin_id } /> <input
 							type="submit" value="처리완료">
 					</form>
 				</td>
@@ -50,6 +51,7 @@
 					<form action="${path}/admin/ManageReport" method="post">
 						<input type="hidden" name="reportp_num" value="${r.reportp_num}" />
 						<input type="hidden" name="reportp_result" value="검토중" /> <input
+							type="hidden" name="admin_id" value=${admin_id } /> <input
 							type="submit" value="검토하기">
 					</form>
 				</td>
@@ -119,7 +121,8 @@
 					<form action="${path}/admin/ManageReport/" method="post">
 						<input type="hidden" name="reportpr_num"
 							value="${pr.reportpr_num}" /> <input type="hidden"
-							name="reportpr_result" value="처리완료" /> <input type="submit"
+							name="reportpr_result" value="처리완료" /> <input type="hidden"
+							name="admin_id" value=${admin_id } /> <input type="submit"
 							value="처리완료">
 					</form>
 				</td>
@@ -127,7 +130,8 @@
 					<form action="${path}/admin/ManageReport/" method="post">
 						<input type="hidden" name="reportpr_num"
 							value="${pr.reportpr_num}" /> <input type="hidden"
-							name="reportpr_result" value="검토중" /> <input type="submit"
+							name="reportpr_result" value="검토중" /> <input type="hidden"
+							name="admin_id" value=${admin_id } /> <input type="submit"
 							value="검토하기">
 					</form>
 				</td>
@@ -196,7 +200,8 @@
 					<form action="${path}/admin/ManageReport/" method="post">
 						<input type="hidden" name="reportcr_num"
 							value="${cr.reportcr_num}" /> <input type="hidden"
-							name="reportcr_result" value="처리완료" /> <input type="submit"
+							name="reportcr_result" value="처리완료" /> <input type="hidden"
+							name="admin_id" value=${admin_id } /> <input type="submit"
 							value="처리완료">
 					</form>
 				</td>
@@ -204,7 +209,8 @@
 					<form action="${path}/admin/ManageReport/" method="post">
 						<input type="hidden" name="reportcr_num"
 							value="${cr.reportcr_num}" /> <input type="hidden"
-							name="reportcr_result" value="검토중" /> <input type="submit"
+							name="reportcr_result" value="검토중" /> <input type="hidden"
+							name="admin_id" value=${admin_id } /><input type="submit"
 							value="검토하기">
 					</form>
 				</td>

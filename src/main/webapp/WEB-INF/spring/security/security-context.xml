@@ -14,6 +14,7 @@
 		<security:intercept-url pattern="/error/*" access="permitAll"/>
 		<security:intercept-url pattern="/info/*" access="permitAll"/>
 				<security:intercept-url pattern="/adminLogin" access="permitAll"/>
+				<security:intercept-url pattern="/adminLogout" access="permitAll"/>
 		<security:intercept-url pattern="/layout/*" access="permitAll"/>
 		<security:intercept-url pattern="/login/logout" access="hasRole('user')"/>
 
