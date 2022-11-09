@@ -21,44 +21,45 @@ table {
 </style>
 </head>
 <body>
-	<%@ include file="/WEB-INF/views/layout/header.jsp"%>
-	
-	<form action="/recruit/recruitSelect" method="get">
-		<input type="text" name="corp_name">
-		<input type="submit" name="검색">
-	
-	</form>
-	<br><br><br>
-	
-	
-	<table cellpadding="3">
-		<tr>
-			<th width="50">번호</th>
-			<th width="200">채용 기업</th>
-			<th width="120">채용 시작일</th>
-			<th width="120">채용 마감일</th>
-			<th width="80">직군</th>
-			<th width="80">경력</th>
-			<th width="50">조회수</th>
-		</tr>
-		<c:forEach var="r" items="${list}">
-			<tr>
-				<td>${r.RECRUIT_NUM}</td>
-				<%-- <td><a href="readform?post_num=${q.post_num}&pg=${pg}">${q.post_title}</a></td> --%>
-				<td>${r.CORP_NAME}</td>
-				<td>${r.RECRUIT_STARTDATE}</td>
-				<td>${r.RECRUIT_ENDDATE}</td>
-				<td>${r.RECRUIT_JOBGROUP}</td>
-				<td>${r.RECRUIT_CAREER}</td>
-				<td>${r.RECRUIT_READCOUNT}</td>
-		</c:forEach>
-	</table>
-	<!-- <script>window.onpageshow = function(event) {if ( event.persisted || (window.performance && window.performance.navigation.type == 2)) {  }}</script> -->
-	
+	<div class="wrapper">
+		<%@ include file="/WEB-INF/views/layout/header.jsp"%>
+		<div class="main-content">
+			<form action="/recruit/recruitSelect" method="get">
+				<input type="text" name="corp_name"> <input type="submit"
+					name="검색">
+
+			</form>
+			<br> <br> <br>
 
 
-	
-	<%-- <table width="600">
+			<table cellpadding="3">
+				<tr>
+					<th width="50">번호</th>
+					<th width="200">채용 기업</th>
+					<th width="120">채용 시작일</th>
+					<th width="120">채용 마감일</th>
+					<th width="80">직군</th>
+					<th width="80">경력</th>
+					<th width="50">조회수</th>
+				</tr>
+				<c:forEach var="r" items="${list}">
+					<tr>
+						<td>${r.RECRUIT_NUM}</td>
+						<%-- <td><a href="readform?post_num=${q.post_num}&pg=${pg}">${q.post_title}</a></td> --%>
+						<td>${r.CORP_NAME}</td>
+						<td>${r.RECRUIT_STARTDATE}</td>
+						<td>${r.RECRUIT_ENDDATE}</td>
+						<td>${r.RECRUIT_JOBGROUP}</td>
+						<td>${r.RECRUIT_CAREER}</td>
+						<td>${r.RECRUIT_READCOUNT}</td>
+				</c:forEach>
+			</table>
+			<!-- <script>window.onpageshow = function(event) {if ( event.persisted || (window.performance && window.performance.navigation.type == 2)) {  }}</script> -->
+
+
+
+
+			<%-- <table width="600">
 		<tr>
 			<td align="center">
 			<!-- 처음 이전 링크 -->
@@ -95,6 +96,8 @@ table {
 			</td>
 		</tr>
 	</table> --%>
-	<%@ include file="/WEB-INF/views/layout/footer.jsp"%>
+		</div>
+		<%@ include file="/WEB-INF/views/layout/footer.jsp"%>
+	</div>
 </body>
 </html>
