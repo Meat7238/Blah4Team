@@ -18,7 +18,7 @@
 <h2> <li>3 <a href="admin/ManageReport" > 채용 공고 등록 </a></li></h2></br>
 
 로그인 된 관리자 : ${admin_id }
-<form action = "logout.kosa" method="post">
+<form action = "adminLogout" method="post">
 <input type="submit" value = "로그아웃">
 </form>
 </body>
