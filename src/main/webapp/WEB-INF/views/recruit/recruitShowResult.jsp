@@ -166,6 +166,8 @@
 			</td>
 		</tr>
 	</table> --%>
-	<%@ include file="/WEB-INF/views/layout/footer.jsp"%>
+		</div>
+		<%@ include file="/WEB-INF/views/layout/footer.jsp"%>
+	</div>
 </body>
 </html>
