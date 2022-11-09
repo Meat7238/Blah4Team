@@ -13,11 +13,13 @@
 
 <%@ include file="/WEB-INF/views/layout/header.jsp"%>
 
-<label>writer</label>
-<input class="form-control" name="writer" value='<sec:authentication property="principal.username"/>' readonly="readonly">
+<label>회원 id</label>
+<input name="writer" value='<sec:authentication property="principal.username"/>' readonly="readonly">
+
+	${username}
 
 <%@ include file="/WEB-INF/views/layout/footer.jsp"%>
 
-
 </body>
 </html>
+

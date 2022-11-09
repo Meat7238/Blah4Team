@@ -1,6 +1,7 @@
 package com.douzone.blah.controller;
 
 import java.io.IOException;
+import java.security.Principal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,19 +11,22 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.douzone.blah.dao.User2DAO;
 import com.douzone.blah.model.User2DTO;
 
+import lombok.extern.log4j.Log4j;
+
 @Controller
+@Log4j
 public class UserController {
 
 	@Resource
@@ -121,4 +125,6 @@ public class UserController {
 		int result = user2DAOImpl.insertUser(map);
 		return "/login/loginForm"; // login.jsp로 이동
 	}
+	
+	
 }
