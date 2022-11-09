@@ -94,7 +94,7 @@ public class UserController {
 			request.getSession().setAttribute("prevPage",
 					request.getHeader("Referer"));
 		}
-		return "login/loginForm";
+		return "/login/loginForm";
 	}
 
 	// 회원가입 페이지로 이동
