@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>ManageReport</title>
+<title>ManageReport</title> 
 </head>
 <body>
 	<h1>신고처리</h1>
