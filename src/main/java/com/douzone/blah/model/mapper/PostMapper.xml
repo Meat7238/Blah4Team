@@ -24,6 +24,16 @@
 		order by post_readcount desc) where ROWNUM &lt;= 3
 	</select>
 
+	<!-- 게시글 전체목록 -->
+	<select id="getPostListAll" parameterType="hashmap"
+		resultType="com.douzone.blah.model.PostDTO">
+		select * from
+			(select A.*, ROWNUM r from
+				(select * from post order by post_num desc) A
+			)
+		where r >= #{start} and r &lt;= #{end}
+	</select>
+	
 	<!-- 글 쓰기 -->
 	<insert id="insertPost"
 		parameterType="com.douzone.blah.model.PostDTO">

@@ -1,16 +1,15 @@
 package com.douzone.blah;
 
-import java.text.DateFormat;
-import java.util.Date;
-import java.util.Locale;
+import java.util.HashMap;
+import java.util.List;
 import javax.annotation.Resource;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import com.douzone.blah.dao.NoticeDAO;
+import com.douzone.blah.dao.PostDAO;
+import com.douzone.blah.model.PostDTO;
 
 /**
  * Handles requests for the application home page.
@@ -18,30 +17,60 @@ import com.douzone.blah.dao.NoticeDAO;
 @Controller
 public class HomeController {
 
-    @Resource
-    private NoticeDAO noticeDAOImpl;
-
-	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
-
+  @Resource
+  private PostDAO postDAOImpl;
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
+	public String home(HttpServletRequest request, Model model) {
 
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+	  int pg=1;
+      String strPg = request.getParameter("pg");
 
-		String formattedDate = dateFormat.format(date);
+      if(strPg!=null){
+          pg = Integer.parseInt(strPg);
+      }
+      int rowSize = 10;
+      int start = (pg*rowSize)-(rowSize -1);
+      int end = pg*rowSize;
 
-		model.addAttribute("serverTime", formattedDate );
+      int total = postDAOImpl.getPostCount(); //총 게시물수
+      System.out.println("시작 : "+start +" 끝:"+end);
+      System.out.println("글의 수 : "+total);
+
+      int allPage = (int) Math.ceil(total/(double)rowSize); //페이지수
+      //int totalPage = total/rowSize + (total%rowSize==0?0:1);
+      System.out.println("페이지수 : "+ allPage);
+
+      int block = 10; //한페이지에 보여줄  범위 << [1] [2] [3] [4] [5] [6] [7] [8] [9] [10] >>
+      int fromPage = ((pg-1)/block*block)+1;  //보여줄 페이지의 시작
+      //((1-1)/10*10)
+      int toPage = ((pg-1)/block*block)+block; //보여줄 페이지의 끝
+      if(toPage> allPage){ // 예) 20>17
+          toPage = allPage;
+      }
+
+      HashMap map = new HashMap();
+      map.put("start", start);
+      map.put("end", end);
+
+      List<PostDTO> list = postDAOImpl.getPostListAll(map);
+      request.setAttribute("list", list);
+      request.setAttribute("pg",pg);
+      request.setAttribute("allPage",allPage);
+      request.setAttribute("block",block);
+      request.setAttribute("fromPage",fromPage);
+      request.setAttribute("toPage",toPage);
+
 
 		return "home";
 	}
 
 	@RequestMapping(value = "/home", method = RequestMethod.POST)
-	public String home() {
+	public String home(HttpServletRequest request) {
+	    String str = request.getParameter("keyvalue");
+	    System.out.println(str);
 		return "home";
 	}
 }

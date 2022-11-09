@@ -25,7 +25,7 @@
 						<li><a href="#">사이트 운영원칙</a></li>
 						<li><a href="#">개인정보취급방침</a></li>
 						<li><a href="#">책임의 한계와 법적고지</a></li>
-						<li><a href="admin">관리자 페이지</a></li>
+						<li><a href="adminLogin">관리자 페이지</a></li>
 					</ul>
 					<address>
 

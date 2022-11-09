@@ -14,4 +14,6 @@ public class Admin2DTO {
 	private String admin_password;
 	private String admin_name;
 	private String admin_email;
+	private int admin_enabled;
+	private String admin_authority;
 }
