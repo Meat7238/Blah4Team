@@ -12,13 +12,18 @@
 
 	<h1>admin login page</h1>
 
+	<c:if test="${no == 1}">
+		<script>
+			alert("아이디와 비밀번호가 잘못되었습니다.")
+		</script>
+	</c:if>
 
-	<form action="aLogin" method = "post">
-		ID : <input type="text" name="id"><br/>
-		PWD : <input type="password" name="pwd"><br/?>
-		<input type="submit" value="로그인">
+	<form action="adminLogin" method="post">
+		ID : <input type="text" name="id"><br /> PWD : <input
+			type="password" name="pwd"><br/?> <input type="submit"
+			value="로그인">
 	</form>
-	
-	<a href="admin" > 관리자페이지</a>
+
+	<a href="admin"> 관리자페이지</a>
 </body>
 </html>
