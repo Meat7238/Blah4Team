@@ -27,13 +27,13 @@ public class RecruitController {
 	private RecruitDAO recruitDAO;
 
 	// 검색 전 매핑
-	@GetMapping("/recruit/recruitMain")
+	@GetMapping("/recruitMain")
 	public String RecruitPage() {
 		return "/recruit/recruitShowResult";
 	}
 
 	// 검색 처리
-	@GetMapping("/recruit/recruitSelect")
+	@GetMapping("/recruitSelect")
 	public String searchRecruit(@RequestParam("corp_name") String corp_name, HttpServletRequest request, HttpServletResponse response) throws ParseException {
 		
 		log.warn("여기에 온 copr_name ====> " + corp_name);
