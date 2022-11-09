@@ -15,9 +15,9 @@
 
 <label>writer</label>
 <input class="form-control" name="writer" value='<sec:authentication property="principal.username"/>' readonly="readonly">
-
 <%@ include file="/WEB-INF/views/layout/footer.jsp"%>
 
 
 </body>
 </html>
+
