@@ -8,7 +8,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Component;
 
 import com.douzone.blah.security.domain.UserDetailsVO;
-
 @Component
 public class UserDetailsServiceCustom implements UserDetailsService {
 
@@ -17,7 +16,6 @@ public class UserDetailsServiceCustom implements UserDetailsService {
 	
 	@Override
 	public UserDetails loadUserByUsername(String inputUserId) {
-
 		// 최종적으로 리턴해야할 객체
 		UserDetailsVO userDetails = new UserDetailsVO();
 
@@ -35,7 +33,7 @@ public class UserDetailsServiceCustom implements UserDetailsService {
 			// 사용자 권한 select해서 받아온 List<String> 객체 주입
 			userDetails.setAuthority(userInfo.get("AUTHORITY").toString());
 		}
-
+		System.out.println(userDetails);
 		return userDetails;
 	}
 
