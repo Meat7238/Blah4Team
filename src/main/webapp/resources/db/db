@@ -181,6 +181,11 @@ RECRUIT_JOBGROUP varchar2(20),
 RECRUIT_CAREER varchar2(20),
 RECRUIT_READCOUNT varchar2(20)
 );
+
+INSERT INTO recruit VALUES('REC0001','CO0011','AD001','2022/11/02','2022/11/30','IT','신입',0);
+INSERT INTO recruit VALUES('REC0002','CO0011','AD002','2022/11/02','2022/11/30','PM','경력',0);
+commit;
+
 ----------------------------------------------------------------------
 DROP TABLE REPORTCR CASCADE CONSTRAINTS;
 CREATE TABLE REPORTCR( 

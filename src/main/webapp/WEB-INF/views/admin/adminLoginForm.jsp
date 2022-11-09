@@ -23,7 +23,10 @@
 			type="password" name="pwd"><br/?> <input type="submit"
 			value="로그인">
 	</form>
-
+	
 	<a href="admin"> 관리자페이지</a>
+	<c:if test="${ admin_id != null}">
+	<meta http-equiv="refresh" content="0; url=admin"></meta>
+	</c:if>
 </body>
 </html>

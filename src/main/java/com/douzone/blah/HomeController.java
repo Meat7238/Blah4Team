@@ -2,6 +2,7 @@ package com.douzone.blah;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
@@ -69,8 +70,16 @@ public class HomeController {
 
 	@RequestMapping(value = "/home", method = RequestMethod.POST)
 	public String home(HttpServletRequest request) {
-	    String str = request.getParameter("keyvalue");
-	    System.out.println(str);
+//      String column = request.getParameter("column");
+      String keyvalue = request.getParameter("keyvalue");
+
+      Map<String, String> map = new HashMap<>(); // collection
+      map.put("column", "post_title"); // column : title or writer or contnet
+      map.put("keyvalue", keyvalue);
+
+      List<PostDTO> list = postDAOImpl.getSearchList(map);
+      System.out.println(list);
+      request.setAttribute("list", list);
 		return "home";
 	}
 }
