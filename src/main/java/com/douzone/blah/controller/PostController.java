@@ -30,7 +30,7 @@ public class PostController {
 	private PostReviewDAO postReviewDAOImpl;
 	
 	// 게시글 목록
-	@RequestMapping("/board/board")
+	@RequestMapping("/board")
 	public String list(HttpServletRequest request) {
 		String result = request.getParameter("category");
 		System.out.println(result);
