@@ -6,6 +6,23 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript">
+	function report_post(){
+		if(document.reportpform.reportp_content.value==""){
+			alert("신고 사유를 입력하세요");
+		}if(document.reportpform.reportp_usernum.value==""){
+			alert("회원번호를 입력하세요");
+		}else{
+			document.reportpform.submit();
+		}
+	}
+	
+	function report_cancel(){
+		history.back();
+	}
+	
+</script>
+
 <style type="text/css">
 input[type=text]{
 	width:100%;
@@ -68,7 +85,7 @@ border-radius: 10px;
 <p>신고 유형을 선택하고 신고 사유를 정확하게 적어주세요.</p>
 <p>스팸, 음란물, 성격에맞지않는글, 과도한욕설, 광고, 사회분위기를 어지럽히는 글</p></div>
 
-<form action="reportp" method="post">
+<form name="reportpform" action="reportp" method="post">
 	<h4>신고 유형</h4>
 	<select name="reportp_type">
 		<option value="0">스팸</option>
@@ -79,7 +96,12 @@ border-radius: 10px;
 		<option value="5">사회 분위기를 어지럽히는 글</option>
 	</select><br /><br /><br />
 <h4>신고 사유</h4>
-	<input type="text" placeholder="신고 사유를 입력해주세요.">
+	<input type="text" name="reportp_content" placeholder="신고 사유를 입력해주세요."/>
+<h4>신고자 ID</h4>
+	<input type="text" name="reportp_usernum" placeholder="신고자 ID"/>
+	<input type="hidden" name="reportp_postnum" value="${r3}"/>
+	<input type="button" value="신고하기" onclick="report_post()"/>
+	<input type="button" value="신고취소" onclick="report_cancel()"/>
 </form>
 
 
