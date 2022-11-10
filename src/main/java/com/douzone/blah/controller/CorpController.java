@@ -1,8 +1,7 @@
 package com.douzone.blah.controller;
 
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.HashMap;
+import java.security.Principal;
 import java.util.List;
 import java.util.Map;
 
@@ -15,7 +14,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.douzone.blah.dao.CorpDAO;
 import com.douzone.blah.dao.User2DAO;
@@ -81,12 +79,20 @@ public class CorpController {
 //	}
 
 	@RequestMapping("/corpreviewmain")
-	public String corpreviewmain(String corpreviewnum, HttpServletRequest request) {
-		List<Map<String, Object>> corpReiviewList = corpDAOImpl.corpReview(corpreviewnum);
-		log.warn("받아온 값 : " + corpReiviewList);
-		request.setAttribute("corplist", corpReiviewList);
-//		model.addAttribute("corplist", corpDAOImpl.corpReview(corpreviewnum));
-		return "/corp/corpreviewmain";
+	public String corpreviewmain(String corpreviewnum, HttpServletRequest request, Principal principal) {
+
+		String user_id = principal.getName();
+		System.out.println("아이디는 =========> " + user_id);
+		if (user_id == null) {
+			return null;
+
+		} else {
+			List<Map<String, Object>> corpReiviewList = corpDAOImpl.corpReview(corpreviewnum);
+			log.warn("받아온 값 : " + corpReiviewList);
+			request.setAttribute("corplist", corpReiviewList);
+			// model.addAttribute("corplist", corpDAOImpl.corpReview(corpreviewnum));
+			return "/corp/corpreviewmain";
+		}
 
 	}
 
@@ -110,15 +116,14 @@ public class CorpController {
 	public String corpreview(CorpreviewDTO dto, HttpServletRequest request) {
 
 		System.out.println("여기오니 ===========> ");
-		System.out.println("dto 정보"+dto);
+		System.out.println("dto 정보" + dto);
 //		request.setAttribute("corpreviewnum", dto.getCorpreview_corpnum());
 //		System.out.println("리뷰번호!===>" + request.getAttribute("corpreviewnum"));
-		
+
 		corpDAOImpl.insertReview(dto);
 
 		System.out.println("들어갔니? ===========> ");
-		
-		
+
 		return "/corp/corpreviewwriteform";
 //		return "redirect:/corpreviewmain";
 	}
