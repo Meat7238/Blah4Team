@@ -14,8 +14,9 @@
 			alert("회원번호를 입력하세요");
 		}else{
 			document.reportpform.submit();
+			//window.close();
 			alert("신고가 완료되었습니다!!");
-			window.close();
+			
 		}
 	}
 	

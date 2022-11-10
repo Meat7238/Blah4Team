@@ -12,10 +12,10 @@
 		window.close();
 	}
 	
-	/* function report_btn(){
-		documetn.report.submit();
+	function report_btn(){
+		document.report.submit();
 	}
-	 */
+
 </script>
 
 <style type="text/css">

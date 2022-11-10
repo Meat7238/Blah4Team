@@ -170,10 +170,10 @@ public class ReportController {
     String r3 = request.getParameter("post_num");
     String r4 = request.getParameter("post_title");
     
-    System.out.println(r1);
-    System.out.println(r2);
-    System.out.println(r3);
-    System.out.println(r4);
+    System.out.println(r1+"가나다라");
+    System.out.println(r2+"가나다라");
+    System.out.println(r3+"가나다라");
+    System.out.println(r4+"가나다라");
 
     request.setAttribute("r1", r1);
     request.setAttribute("r2", r2);
@@ -185,8 +185,11 @@ public class ReportController {
   
   @RequestMapping("/reportp")
   public String reportp(HttpServletRequest request, ReportPDTO dto) {
+	  System.out.println("inset 전");
 	  reportDAOImpl.insertReportP(dto);
-	  return "redirect:/reportForm";
+	  System.out.println("inset 후");
+	  System.out.println(dto);
+	  return "popup/popupClose";
   }
   
   @RequestMapping("/stipulation")
