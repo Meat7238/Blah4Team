@@ -40,7 +40,7 @@ public class UserLoginSuccessHandler implements AuthenticationSuccessHandler {
 
 		// 접속한 페이지로 돌려보내기 위한 uri
 		String prevPage = (String) request.getSession().getAttribute("prevPage");
-		
+		System.out.println("prevPage" + prevPage);
 		// 세션 Attribute 확인
 		Enumeration<String> list = request.getSession().getAttributeNames();
 		while (list.hasMoreElements()) {
