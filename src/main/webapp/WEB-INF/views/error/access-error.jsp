@@ -12,9 +12,7 @@
 </head>
 <body>
 	 
-	 <h1>Access Denied Page</h1>
-	 <h2><c:out value="${SPRING_SECURITY_403_EXCEPTION.getMessge() }" /></h2>
-	 <h2><c:out value="${msg }" /></h2>
+	 <h1>권한이 없는 사용자입니다</h1>
 	 
 </body>
 </html>
