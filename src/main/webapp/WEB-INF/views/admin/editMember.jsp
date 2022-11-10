@@ -19,15 +19,12 @@
 	</form>
 	<br/>
 	<br/>
-	<table border="1" width="1300">
+	<table border="1" width=50%>
 		<tr>
 			<th>번호</th>
 			<th>아이디</th>
-			<th>닉네임</th>
 			<th>포인트</th>
 			<th>이메일</th>
-			<th>입사일</th>
-			<th>퇴사일</th>
 			<th>회사명</th>
 			<th>근무위치</th>
 			<th>*삭제*</th>
@@ -37,11 +34,8 @@
 			<tr>
 				<td>${e.user_num }</td>
 				<td>${e.user_id }</td>
-				<td>${e.user_nick }</td>
 				<td>${e.user_point }</td>
 				<td>${e.user_email }</td>
-				<td>${e.user_startdate }</td>
-				<td>${e.user_enddate }</td>
 				<td>${e.user_jobgroup }</td>
 				<td>${e.user_workspace }</td>
 				<%-- <td><a href="javascript:location.href='${pageContext.request.contextPath}/admin/edit/delete?num=${e.user_num}'">삭제하기</a></td> --%>
