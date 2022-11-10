@@ -13,141 +13,152 @@ DROP TABLE REPORTCR CASCADE CONSTRAINTS;
 DROP TABLE REPORTPR CASCADE CONSTRAINTS;
 DROP TABLE REPORTP CASCADE CONSTRAINTS;
 ----------------------------------------------------------------------
+DROP TABLE USER2 CASCADE CONSTRAINTS;
+
 CREATE TABLE USER2( 
-USER_NUM varchar2(50) CONSTRAINT USER_NUM_pk PRIMARY KEY , 
+USER_NUM varchar2(20) CONSTRAINT USER_NUM_pk PRIMARY KEY , --USER#
 USER_ID varchar2(50) CONSTRAINT user_id_unique UNIQUE,
-USER_PASSWORD varchar2(100),
-USER_NICK varchar2(50),
+USER_PASSWORD varchar2(100),--인코딩
 USER_POINT number,
-USER_EMAIL varchar2(50),
-USER_STARTDATE date,
-USER_ENDDATE date,
+USER_EMAIL varchar2(100) CONSTRAINT user_email_unique UNIQUE,
 USER_JOBGROUP varchar2(50),
 USER_WORKSPACE varchar2(50),
 enabled NUMBER(1,0) default 1,
 authority varchar2(50) default 'ROLE_USER');
 
-insert into user2 
-(USER_NUM, USER_ID, USER_PASSWORD, USER_NICK, USER_POINT, USER_EMAIL, USER_JOBGROUP, USER_WORKSPACE) 
-values ('001', 'aaa', '1234', 'kosa', 3000, 'kosa@kosa.com', sysdate, sysdate, 'IT', '개발');
-insert into user2 
-(USER_NUM, USER_ID, USER_PASSWORD, USER_NICK, USER_POINT, USER_EMAIL, USER_JOBGROUP, USER_WORKSPACE) 
-values ('002', 'bbb', '1234', 'kosa', 3000, 'kosa@kosa.com', sysdate, sysdate, '제조업', '관리직');
+drop sequence USER_NUMseq;
+create sequence USER_NUMseq;
 
 select * from user2;
-commit;
+truncate table user2;
+COMMIT;
+--더미데이터 보류
 ----------------------------------------------------------------------
-CREATE TABLE ADMIN2( 
-ADMIN_NUM VARCHAR2(20) CONSTRAINT ADMIN_NUM_pk PRIMARY key, 
-ADMIN_ID varchar2(20),
-ADMIN_PASSWORD varchar2(20),
-ADMIN_NAME varchar2(20),
-ADMIN_EMAIL varchar2(20)
-);
-INSERT INTO admin2 VALUES('AD001','admin111',123123,'�떊�냼�삙','ssh@kosa.or.kr');
-INSERT INTO admin2 VALUES('AD002','admin222',123123,'源��냼�쁺','ksy@kosa.or.kr');
-INSERT INTO admin2 VALUES('AD003','admin333',123123,'源��닔��','kse@kosa.or.kr');
-INSERT INTO admin2 VALUES('AD004','admin444',123123,'�씠紐낇썕','lmh@kosa.or.kr');
-INSERT INTO admin2 VALUES('AD005','admin555',123123,'諛뺤젙��','pje@kosa.or.kr');
-INSERT INTO admin2 VALUES('AD006','admin666',123123,'諛곕�쇳샇','pmh@kosa.or.kr');
-INSERT INTO admin2 VALUES('AD007','admin777',123123,'�뿀誘�','hm@kosa.or.kr');
-INSERT INTO admin2 VALUES('AD008','admin888',123123,'�씠�룄�뿰','kingsmile@kosa.or.kr');
-----------------------------------------------------------------------
-CREATE TABLE SET2( 
-SET_NUM VARCHAR2(20) CONSTRAINT SET_NUM_pk PRIMARY key, 
+CREATE TABLE SET2( --결제상품
+SET_NUM VARCHAR2(20) CONSTRAINT SET_NUM_pk PRIMARY key, -- SE#
 SET_NAME varchar2(20),
 SET_PRICE varchar2(20),
 SET_POINT varchar2(20)
 );
 ----------------------------------------------------------------------
 CREATE TABLE CORP( 
-CORP_NUM VARCHAR2(20) CONSTRAINT CORP_NUM_pk PRIMARY key, 
+CORP_NUM VARCHAR2(20) CONSTRAINT CORP_NUM_pk PRIMARY key, --CO#
 CORP_NAME varchar2(20),
-CORP_ADDR varchar2(20),
-CORP_CATEGORY varchar2(20),
+CORP_ADDR varchar2(100),
+CORP_CATEGORY varchar2(30),
 CORP_MADEDATE varchar2(20),
 CORP_EMPLCOUNT varchar2(20),
-CORP_LOCATE varchar2(20),
+CORP_LOCATE varchar2(100),
 CORP_PAY varchar2(20),
-CORP_DETEAIL varchar2(20)
+CORP_DETAIL varchar2(200)
 );
+
+INSERT INTO corp VALUES('CO0001','삼성전자','서울 서초구 서초2동 1321-15번지 삼성생명 서초타워','제조','1969.01.13','117,498명','수원','5,396만원','휴대폰,컴퓨터,네트워크시스템,핵심칩,반도체부품,디스플레이패널,가전제품,의료기기,프린터 제조');
+INSERT INTO corp VALUES('CO0002','오뚜기','서울 강남구 영동대로 308 (대치동, 오뚜기센터) 오뚜기센터','제조','1969.05.05 ','3,038명 ','서울','4,337 만원','라면,마요네즈,카레,스프,당면,소오스,토마토케첩,마가린,냉동생지,참치캔,식초,3분요리 제조');
+INSERT INTO corp VALUES('CO0003','엔씨소프트','경기 성남시 분당구 삼평동 668번지','게임·애니메이션','1997.03.11 ','4,504명 ','경기','3,978만원','게임 S/W제작, S/W 개발공급자문');
+INSERT INTO corp VALUES('CO0004','카카오','경기 성남시 분당구 삼평동 681번지 에이치스퀘어 N동','IT','1995.02.16 ','3,603명','제주','3,991만원','데이타베이스업,인터넷관련소프트웨어,시스템통합,인터넷광고사업,무료이메일서비스,전자상거래,인터넷접속서비스,호스팅서비스,캐릭터디자인');
+INSERT INTO corp VALUES('CO0005','현대자동차','서울 서초구 양재동 231 현대자동차','제조','1967.12.29 ','70,670명 ','울산','4,346만원','자동차,자동차부품,자동차전착도료 제조,차량정비사업,항공기,부속품도소매,별정통신,부가통신,부동산임대');
+
+INSERT INTO corp VALUES('CO0006','쿠팡','서울특별시 송파구 송파대로 570 (신천동) 18층','IT','2010.07.01','6,372명 ','경기','4,000만원','이커머스,전자상거래');
+INSERT INTO corp VALUES('CO0007','SK하이닉스','경기 이천시 부발읍 아미리 산 136-1','제조','1969.01.13','1949.10.15','이천','5,500만원','반도체,컴퓨터,통신기기 제조,도매');
+INSERT INTO corp VALUES('CO0008','KCC','서울 서초구 사평대로 344 (서초동, 금강빌딩) KCC','제조','1958.08.12 ','3,423명 ','세종','4,400만원','도료,건축용단열재,내외장재,스레트,밤라이트,암면,석고보드,판유리 제조');
+INSERT INTO corp VALUES('CO0009','LG전자','서울 영등포구 여의도동 20 LG트윈타워 서관 14층','제조','1958.10.01','34,751명','경남','3,979만원','C-TV,V.C.R.,컴퓨터,완전평면 TV,플라즈마 디스플레이 패널 TV,전자제품,CDMA이동통신,전자교환기,전송기기,이동통신단말기 제조');
+INSERT INTO corp VALUES('CO0010','LG화학','서울 영등포구 여의도동 20 LG트윈타워','제조','2001.04.01 ','14,300명 ','경북','4,130만원','유화,기능,합성수지,재생섬유소,기초화학물질,산업재,리튬이온전지,평광판,PVC제조,도매');
+
+INSERT INTO corp VALUES('CO0011','더존비즈온','강원 춘천시 남산면 수동리 749번지 더존IT그룹 강촌캠퍼스','IT','1977.08.20','1,675명','춘천','3,800만원','기업용 솔루션 판매,유지보수')
+commit;
+
 ----------------------------------------------------------------------
+
+DROP TABLE NOTICE CASCADE CONSTRAINTS;
 
 CREATE TABLE NOTICE( 
 NOTICE_NUM NUMBER CONSTRAINT NOTICE_NUM_pk PRIMARY key, 
-NOTICE_TITLE varchar2(100),
+NOTICE_TITLE varchar2(100), --#
 NOTICE_CATEGORY varchar2(20),
 NOTICE_CONTENT varchar2(4000),
-NOTICE_ADMINNUM varchar2(20), 
-NOTICE_REGDATE varchar2(20),
+NOTICE_REGDATE DATE,
 NOTICE_READCOUNT varchar2(20)
 );
 
-INSERT INTO notice VALUES(1,'怨듭��젣紐�','怨듭�移댄뀒怨좊━','怨듭��궡�슜','admin001',sysdate,'12');
-INSERT INTO notice VALUES(2,'怨듭��젣紐�','怨듭�移댄뀒怨좊━','怨듭��궡�슜','admin002',sysdate,'5');
+INSERT INTO notice VALUES(1,'공지제목','공지카테고리','공지내용','admin001',sysdate,'12');
+INSERT INTO notice VALUES(2,'공지제목','공지카테고리','공지내용','admin002',sysdate,'5');
 select * from notice;
 COMMIT;
 
-create sequence post_numseq;
-
 ----------------------------------------------------------------------
-CREATE TABLE PAYLIST( 
+CREATE TABLE PAYLIST( --결제내역 
 PAYLIST_NUM VARCHAR2(20) CONSTRAINT PAYLIST_NUM_pk PRIMARY key, 
 PAYLIST_USERNUM varchar2(20) CONSTRAINT PAYLIST_USERNUM_fk REFERENCES USER2(USER_NUM) ON DELETE CASCADE,
 PAYLIST_SETNUM varchar2(20) CONSTRAINT PAYLIST_SETNUM_fk REFERENCES SET2(SET_NUM) ON DELETE CASCADE
 );
+
+--시퀀스 추가 필요
 ----------------------------------------------------------------------
+DROP TABLE CORPREVIEW CASCADE CONSTRAINTS
 CREATE TABLE CORPREVIEW( 
-CORPREVIEW_NUM VARCHAR2(20) CONSTRAINT CORPREVIEW_NUM_pk PRIMARY key,
+CORPREVIEW_NUM number CONSTRAINT CORPREVIEW_NUM_pk PRIMARY key,		--#####
 CORPREVIEW_STARPOINT1 varchar2(20),
 CORPREVIEW_STARPOINT2 varchar2(20),
 CORPREVIEW_STARPOINT3 varchar2(20),
 CORPREVIEW_STARPOINT4 varchar2(20),
 CORPREVIEW_STARPOINT5 varchar2(20),
-CORPREVIEW_CONCLUSION varchar2(20),
-CORPREVIEW_PROS varchar2(20),
-CORPREVIEW_CONS varchar2(20),
+CORPREVIEW_CONCLUSION varchar2(100),
+CORPREVIEW_PROS varchar2(300),
+CORPREVIEW_CONS varchar2(300),
 CORPREVIEW_REGDATE varchar2(20),
-CORPREVIEW_USERNUM varchar2(20) CONSTRAINT CORPREVIEW_USERNUM_fk REFERENCES USER2(USER_NUM) ON DELETE CASCADE,
-CORPREVIEW_CORPNUM varchar2(20) CONSTRAINT CORPREVIEW_CORPNUM_fk REFERENCES CORP(CORP_NUM) ON DELETE CASCADE
+CORPREVIEW_USERNUM varchar2(20) CONSTRAINT CORPREVIEW_USERNUM_fk REFERENCES USER2(USER_NUM),
+CORPREVIEW_CORPNUM varchar2(20) CONSTRAINT CORPREVIEW_CORPNUM_fk REFERENCES CORP(CORP_NUM)
 );
+
+create sequence corpreview_seq
+increment by 1
+start with 10000
+nocycle;
+
+INSERT INTO corpreview VALUES(10000,'3','3','4','3','1','몸은 썩지만 지갑은 두둑','내가 하고싶은일 하면서 지갑도 두둑','정신상태는 구렁텅이 정치질 장난아님',sysdate,'001','CO0005');
+INSERT INTO corpreview VALUES(10001,'3','3','4','3','1','몸은 썩지만 지갑은 두둑','내가 하고싶은일 하면서 지갑도 두둑','정신상태는 구렁텅이 정치질 장난아님',sysdate,'002','CO0006');
+SELECT * FROM CORPREVIEW;
+commit;
+
 ----------------------------------------------------------------------
 CREATE TABLE REVIEWPAY( 
-REVIEWPAY_NUM VARCHAR2(20) CONSTRAINT REVIEWPAY_NUM_pk PRIMARY key,
+REVIEWPAY_NUM VARCHAR2(20) CONSTRAINT REVIEWPAY_NUM_pk PRIMARY key, --
 REVIEWPAY_CORPREVIEWNUM varchar2(20) CONSTRAINT REVIEWPAY_CORPREVIEWNUM_fk REFERENCES CORPREVIEW(CORPREVIEW_NUM) ON DELETE CASCADE,
 REVIEWPAY_USERNUM varchar2(20) CONSTRAINT REVIEWPAY_USERNUM_fk REFERENCES USER2(USER_NUM) ON DELETE CASCADE,
 REVIEWPAY_POINT varchar2(20)
 );
+--추후논의
 ----------------------------------------------------------------------
 CREATE TABLE POST( 
-POST_NUM number CONSTRAINT POST_NUM_pk PRIMARY key,
-POST_TITLE varchar2(50),
+POST_NUM number CONSTRAINT POST_NUM_pk PRIMARY key,--#
+POST_TITLE varchar2(100),
 POST_CATEGORY varchar2(30),
 POST_CONTENT varchar2(3000),
 POST_USERNUM varchar2(20) CONSTRAINT POST_USERNUM_fk REFERENCES USER2(USER_NUM) ON DELETE CASCADE,
 POST_LIKE number,
 POST_REGDATE date,
-POST_READCOUNT number
+POST_READCOUNT number,
 );
-
+drop sequence post_numseq;
 create sequence post_numseq;
 
 insert into post (POST_NUM, POST_TITLE, POST_CATEGORY, POST_CONTENT, POST_USERNUM, POST_LIKE, POST_REGDATE, POST_READCOUNT) 
-values (post_numseq.nextval, '�뜑議댁엯�땲�떎', '釉붾씪釉붾씪', '醫뗭븘�슂', '001', 0, sysdate, 0);
+values (post_numseq.nextval, '더존입니다', '블라블라', '좋아요', '001', 0, sysdate, 0);
 insert into post (POST_NUM, POST_TITLE, POST_CATEGORY, POST_CONTENT, POST_USERNUM, POST_LIKE, POST_REGDATE, POST_READCOUNT) 
-values (post_numseq.nextval, '肄붿궗�엯�땲�떎', '�쉶�궗�깮�솢', '�뀋�넃�꽩�샇', '002', 0, sysdate, 0);
+values (post_numseq.nextval, '코사입니다', '회사생활', 'ㅇ놓ㄴ호', '002', 0, sysdate, 0);
 insert into post (POST_NUM, POST_TITLE, POST_CATEGORY, POST_CONTENT, POST_USERNUM, POST_LIKE, POST_REGDATE, POST_READCOUNT) 
-values (post_numseq.nextval, '�궪�꽦�엯�땲�떎', '二쇱떇�닾�옄', '�뀋�늿�뀅�꽦�뀆�꽮�꽩�뀋', '003', 0, sysdate, 0);
+values (post_numseq.nextval, '삼성입니다', '주식투자', 'ㅇ눈ㅁㄱㅂㄹㄴㅇ', '003', 0, sysdate, 0);
 insert into post (POST_NUM, POST_TITLE, POST_CATEGORY, POST_CONTENT, POST_USERNUM, POST_LIKE, POST_REGDATE, POST_READCOUNT) 
-values (post_numseq.nextval, '移댁뭅�삤�엯�땲�떎', '�솉蹂�', '�뀘�슚�뀠�꽫�뀋', '004', 0, sysdate, 0);
+values (post_numseq.nextval, '카카오입니다', '홍보', 'ㅑ효ㅗㄶㅇ', '004', 0, sysdate, 0);
 insert into post (POST_NUM, POST_TITLE, POST_CATEGORY, POST_CONTENT, POST_USERNUM, POST_LIKE, POST_REGDATE, POST_READCOUNT) 
-values (post_numseq.nextval, '�쁽���엯�땲�떎', '�씠吏�,而ㅻ━�뼱', '�뀪�뀫�뀫�뀥�뀫�뀚�빆', '005', 0, sysdate, 0);
+values (post_numseq.nextval, '현대입니다', '이직,커리어', 'ㅠㅡㅡㅜㅡㅓ항', '005', 0, sysdate, 0);
 
 select * from post;
 commit;
 ----------------------------------------------------------------------
 CREATE TABLE POSTREVIEW( 
-POSTREVIEW_NUM number CONSTRAINT POSTREVIEW_NUM_pk PRIMARY key,
+POSTREVIEW_NUM number CONSTRAINT POSTREVIEW_NUM_pk PRIMARY key, --#
 POSTREVIEW_USERNUM varchar2(20) CONSTRAINT POSTREVIEW_USERNUM_fk REFERENCES USER2(USER_NUM) ON DELETE CASCADE,
 POSTREVIEW_POSTNUM number CONSTRAINT POSTREVIEW_POSTNUM_fk REFERENCES POST(POST_NUM) ON DELETE CASCADE,
 POSTREVIEW_CONTENT varchar2(500),
@@ -155,89 +166,90 @@ POSTREVIEW_LIKE number,
 POSTREVIEW_REGDATE date
 );
 
+DROP SEQUENCE postreview_seq;
 create sequence postreview_seq;
 
 insert into postreview (POSTREVIEW_NUM, POSTREVIEW_USERNUM, POSTREVIEW_POSTNUM, POSTREVIEW_CONTENT, POSTREVIEW_LIKE, POSTREVIEW_REGDATE)
-values (postreview_seq.nextval, '001', 1, 'asddvsfv', 0, sysdate);
+values (postreview_seq.nextval, 'user1', 1, '댓글내용', 0, sysdate);
+insert into postreview (POSTREVIEW_NUM, POSTREVIEW_USERNUM, POSTREVIEW_POSTNUM, POSTREVIEW_CONTENT, POSTREVIEW_LIKE, POSTREVIEW_REGDATE)
+values (postreview_seq.nextval, 'user2', 2, '댓글내용', 0, sysdate);
+insert into postreview (POSTREVIEW_NUM, POSTREVIEW_USERNUM, POSTREVIEW_POSTNUM, POSTREVIEW_CONTENT, POSTREVIEW_LIKE, POSTREVIEW_REGDATE)
+values (postreview_seq.nextval, 'user3', 3, '댓글내용', 0, sysdate);
+insert into postreview (POSTREVIEW_NUM, POSTREVIEW_USERNUM, POSTREVIEW_POSTNUM, POSTREVIEW_CONTENT, POSTREVIEW_LIKE, POSTREVIEW_REGDATE)
+values (postreview_seq.nextval, 'user4', 4, '댓글내용', 0, sysdate);
 
 select * from postreview;
 commit;
 ----------------------------------------------------------------------
 CREATE TABLE RECRUIT( 
-RECRUIT_NUM VARCHAR2(20) CONSTRAINT RECRUIT_NUM_pk PRIMARY key,
+RECRUIT_NUM VARCHAR2(20) CONSTRAINT RECRUIT_NUM_pk PRIMARY key, --REC#
 RECRUIT_CORPNUM varchar2(20) CONSTRAINT RECRUIT_CORPNUM_fk REFERENCES CORP(CORP_NUM) ON DELETE CASCADE,
-RECRUIT_ADMINNUM varchar2(20) CONSTRAINT RECRUIT_ADMINNUM_fk REFERENCES ADMIN2(ADMIN_NUM) ON DELETE CASCADE,
-RECRUIT_STARTDATE varchar2(20),
-RECRUIT_ENDDATE varchar2(20),
+RECRUIT_ADMINNUM varchar2(20) CONSTRAINT RECRUIT_ADMINNUM_fk REFERENCES USER2(USER_NUM) ON DELETE SET NULL,
+RECRUIT_LINK varchar2(100),
+RECRUIT_ENDDATE DATE,
 RECRUIT_JOBGROUP varchar2(20),
 RECRUIT_CAREER varchar2(20),
-RECRUIT_READCOUNT varchar2(20)
+RECRUIT_READCOUNT number
 );
-
-INSERT INTO recruit VALUES('REC0001','CO0011','AD001','2022/11/02','2022/11/30','IT','�떊�엯',0);
-INSERT INTO recruit VALUES('REC0002','CO0011','AD002','2022/11/02','2022/11/30','PM','寃쎈젰',0);
 commit;
-
 ----------------------------------------------------------------------
 DROP TABLE REPORTCR CASCADE CONSTRAINTS;
 CREATE TABLE REPORTCR( 
-REPORTCR_NUM VARCHAR2(30) CONSTRAINT REPORTCR_NUM_pk PRIMARY key,
-REPORTCR_CORPREVIEWNUM VARCHAR2(40) CONSTRAINT REPORTCR_CORPREVIEWNUM_fk REFERENCES CORPREVIEW(CORPREVIEW_NUM) ON DELETE CASCADE,
-REPORTCR_USERNUM varchar2(30) CONSTRAINT REPORTCR_USERNUM_fk REFERENCES USER2(USER_NUM) ON DELETE CASCADE,
+REPORTCR_NUM VARCHAR2(20) CONSTRAINT REPORTCR_NUM_pk PRIMARY key, --#
+REPORTCR_CORPREVIEWNUM NUMBER CONSTRAINT REPORTCR_CORPREVIEWNUM_fk REFERENCES CORPREVIEW(CORPREVIEW_NUM) ON DELETE CASCADE,
+REPORTCR_USERNUM varchar2(20) CONSTRAINT REPORTCR_USERNUM_fk REFERENCES USER2(USER_NUM) ON DELETE CASCADE,
 REPORTCR_CONTENT varchar2(2000),
-REPORTCR_RESULT varchar2(20),
-REPORTCR_ADMINNUM varchar2(20),
+REPORTCR_RESULT varchar2(20) DEFAULT "처리전",
 REPORTCR_REGDATE DATE,
 REPORTCR_TYPE varchar2(20)
 );
---'0=�뒪�뙵,1=�쓬��臾�,2=�꽦寃⑹뿉留욎��븡�뒗湲�,3=怨쇰룄�븳�슃�꽕,4=愿묎퀬,5=�궗�쉶遺꾩쐞湲곕�� �뼱吏��읇�엳�뒗 湲�'
+--'0=스팸,1=음란물,2=성격에맞지않는글,3=과도한욕설,4=광고,5=사회분위기를 어지럽히는 글'
 SELECT * FROM REPORTCR;
-INSERT INTO REPORTCR values('1','CR0001','user0000','�씠 由щ럭 遺덇굔�쟾�빐�슂','寃��넗以�',null,sysdate,'1');
-INSERT INTO REPORTCR values('2','CR0002','user0000','�씠 由щ럭 �쐞移섍� �옒紐삳맟�뼱�슂','寃��넗以�',null,sysdate,'2');
-INSERT INTO REPORTCR values('3','CR0001','user0000','由щ럭�븘�땶 愿묎퀬�엯�땲�떎','�셿猷�',null,sysdate,'0');
+INSERT INTO REPORTCR values('1','CR0001','user0000','이 리뷰 불건전해요','처리전',null,sysdate,'1');
+INSERT INTO REPORTCR values('2','CR0002','user0000','이 리뷰 위치가 잘못됬어요','처리전',null,sysdate,'2');
+INSERT INTO REPORTCR values('3','CR0001','user0000','리뷰아닌 광고입니다','완료',null,sysdate,'0');
 COMMIT;
 
 
 ----------------------------------------------------------------------
 DROP TABLE REPORTPR CASCADE CONSTRAINTS;
 CREATE TABLE REPORTPR( 
-REPORTPR_NUM varchar2(30) CONSTRAINT REPORTPR_NUM_pk PRIMARY key,
+REPORTPR_NUM varchar2(20) CONSTRAINT REPORTPR_NUM_pk PRIMARY key, --#
 REPORTPR_POSTREVIEWNUM NUMBER CONSTRAINT REPORTPR_POSTREVIEWNUM_fk REFERENCES POSTREVIEW(POSTREVIEW_NUM) ON DELETE CASCADE,
-REPORTPR_USERNUM varchar2(30) CONSTRAINT REPORTPR_USERNUM_fk REFERENCES USER2(USER_NUM) ON DELETE CASCADE,
+REPORTPR_USERNUM varchar2(20) CONSTRAINT REPORTPR_USERNUM_fk REFERENCES USER2(USER_NUM) ON DELETE CASCADE,
 REPORTPR_CONTENT varchar2(2000),
-REPORTPR_RESULT varchar2(20),
-REPORTPR_ADMINNUM varchar2(20),
+REPORTPR_RESULT varchar2(20) DEFAULT "처리전",
 REPORTPR_REGDATE DATE,
 REPORTPR_TYPE varchar2(20)
 );
---'0=�뒪�뙵,1=�쓬��臾�,2=�꽦寃⑹뿉留욎��븡�뒗湲�,3=怨쇰룄�븳�슃�꽕,4=愿묎퀬,5=�궗�쉶遺꾩쐞湲곕�� �뼱吏��읇�엳�뒗 湲�'
+--'0=스팸,1=음란물,2=성격에맞지않는글,3=과도한욕설,4=광고,5=사회분위기를 어지럽히는 글'
 SELECT * FROM REPORTPR;
-INSERT INTO REPORTPR values('1',1,'user0000','�씠 �뙎湲� 遺덇굔�쟾�빐�슂','寃��넗以�',null,sysdate,'1');
-INSERT INTO REPORTPR values('2',2,'user0000','�씠 �뙎湲� �쐞移섍� �옒紐삳맟�뼱�슂','寃��넗以�',null,sysdate,'2');
-INSERT INTO REPORTPR values('3',3,'user0000','�뙎湲� 愿묎퀬�엯�땲�떎','�셿猷�',null,sysdate,'0');
+INSERT INTO REPORTPR values('1',1,'user0000','이 댓글 불건전해요','검토중',null,sysdate,'1');
+INSERT INTO REPORTPR values('2',2,'user0000','이 댓글 위치가 잘못됬어요','검토중',null,sysdate,'2');
+INSERT INTO REPORTPR values('3',3,'user0000','댓글 광고입니다','완료',null,sysdate,'0');
 COMMIT;
 ----------------------------------------------------------------------
 DROP TABLE REPORTP CASCADE CONSTRAINTS;
 CREATE TABLE REPORTP( 
-REPORTP_NUM varchar2(30) CONSTRAINT REPORTP_NUM_pk PRIMARY key,
+REPORTP_NUM varchar2(20) CONSTRAINT REPORTP_NUM_pk PRIMARY key,
 REPORTP_POSTNUM NUMBER CONSTRAINT REPORTP_POSTNUM_fk REFERENCES POST(POST_NUM) ON DELETE CASCADE,
-REPORTP_USERNUM varchar2(30) CONSTRAINT REPORTP_USERNUM_fk REFERENCES USER2(USER_NUM) ON DELETE CASCADE,
+REPORTP_USERNUM varchar2(20) CONSTRAINT REPORTP_USERNUM_fk REFERENCES USER2(USER_NUM) ON DELETE CASCADE,
 REPORTP_CONTENT varchar2(2000),
-REPORTP_RESULT varchar2(20),
-REPORTP_ADMINNUM varchar2(20),
+REPORTP_RESULT varchar2(20) DEFAULT "처리전",
 REPORTP_REGDATE DATE,
 REPORTP_TYPE varchar2(20)
 );
---'0=�뒪�뙵,1=�쓬��臾�,2=�꽦寃⑹뿉留욎��븡�뒗湲�,3=怨쇰룄�븳�슃�꽕,4=愿묎퀬,5=�궗�쉶遺꾩쐞湲곕�� �뼱吏��읇�엳�뒗 湲�'
+--'0=스팸,1=음란물,2=성격에맞지않는글,3=과도한욕설,4=광고,5=사회분위기를 어지럽히는 글'
 SELECT * FROM REPORTP;
-INSERT INTO REPORTP values('1',7,'user0000','�씠 寃뚯떆湲� 遺덇굔�쟾�빐�슂','寃��넗以�',null,sysdate,'1');
-INSERT INTO REPORTP values('2',8,'user0000','�씠 寃뚯떆湲� �쐞移섍� �옒紐삳맟�뼱�슂','寃��넗以�',null,sysdate,'2');
-INSERT INTO REPORTP values('3',9,'user0000','愿묎퀬�엯�땲�떎','�셿猷�',null,sysdate,'0');
+INSERT INTO REPORTP values('1',7,'user0000','이 게시글 불건전해요','검토중',null,sysdate,'1');
+INSERT INTO REPORTP values('2',8,'user0000','이 게시글 위치가 잘못됬어요','검토중',null,sysdate,'2');
+INSERT INTO REPORTP values('3',9,'user0000','광고입니다','완료',null,sysdate,'0');
 COMMIT;
 
 ----------------------------------------------------------------------
 ----------------------------------------------------------------------
 ----------------------------------------------------------------------
 ----------------------------------------------------------------------
+
 
 	

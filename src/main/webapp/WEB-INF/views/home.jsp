@@ -35,7 +35,7 @@
 						<th width=10%>카테고리</th>
 						<th width=40%>제목</th>
 						<th width="80">닉네임</th>
-						<th width="50">좋아요</th>
+						<th width="50">댓글수</th>
 						<th width="150">작성일</th>
 						<th width="80">조회수</th>
 					</tr>
