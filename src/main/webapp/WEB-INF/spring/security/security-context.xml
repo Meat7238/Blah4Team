@@ -20,9 +20,9 @@
 		<!-- 게시판 기능 -->
 		<security:intercept-url pattern="/board/**" access="permitAll"/>
 		
-		<security:intercept-url pattern="/info/*" access="permitAll"/>
-		<security:intercept-url pattern="/layout/*" access="permitAll"/>
-		<security:intercept-url pattern="/popup/*" access="permitAll"/>
+		<security:intercept-url pattern="/info/**" access="permitAll"/>
+		<security:intercept-url pattern="/layout/**" access="permitAll"/>
+		<security:intercept-url pattern="/popup/**" access="permitAll"/>
 		<security:intercept-url pattern="/fail" access="permitAll"/>
 		<security:intercept-url pattern="/home" access="permitAll"/>
 		<security:intercept-url pattern="/list" access="permitAll"/>
