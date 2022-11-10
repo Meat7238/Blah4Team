@@ -19,7 +19,7 @@
 <body>
 	<nav class="navbar">
 		<div class="navbar_logo">
-			<a href="${path }/"><img alt="로고"
+			<a href="${path}/"><img alt="로고"
 				src="${path}/resources/images/logo.png"></a>
 		</div>
 		<ul class="navbar_menu">
@@ -30,7 +30,7 @@
 		<ul class="navbar_right">
 			<li><a href="writeform">글쓰기</a></li>
 			<li><sec:authorize access="isAnonymous()">
-					<a href="${root }login/loginForm">로그인</a>
+					<a href="/login/loginForm">로그인</a>
 				</sec:authorize> 
 				<sec:authorize access="isAuthenticated()">
 					<a href="/member">내 정보</a> &nbsp

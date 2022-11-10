@@ -14,5 +14,4 @@ public class PostReviewDTO {
 	private String postreview_content;
 	private int postreview_like;
 	private String postreview_regdate;
-
 }
