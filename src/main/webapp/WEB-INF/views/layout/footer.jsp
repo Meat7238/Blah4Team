@@ -30,11 +30,11 @@
 									window.open(url, name, option);
 								}
 							</script>
-						<li><a href="adminLogin">관리자 페이지</a></li>
+						<li><a href="${root}admin">관리자 페이지</a></li>
 					</ul>
 					<address>
-						<a href="http://${path}/">Copyright &copy; blahblah All Rights
-							Reserved. </a>
+						<a href="${root}">Copyright &copy; blahblah All Rights
+							Reserved </a>
 					</address>
 				</div>
 			</div>

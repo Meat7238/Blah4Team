@@ -23,7 +23,6 @@
 			<th>게시글 번호</th>
 			<th>유저번호</th>
 			<th>신고내용</th>
-			<th>처리한 관리자</th>
 			<th>신고일</th>
 			<th>*처리완료*</th>
 			<th>*검토*</th>
@@ -37,7 +36,6 @@
 				<td>${r.reportp_postnum }</td>
 				<td>${r.reportp_usernum }</td>
 				<td>${r.reportp_content }</td>
-				<td>${r.reportp_adminnum }</td>
 				<td>${r.reportp_regdate }</td>
 				<td>
 					<form action="${path}/admin/ManageReport" method="post">
@@ -101,7 +99,6 @@
 			<th>댓글 번호</th>
 			<th>유저번호</th>
 			<th>신고내용</th>
-			<th>처리한 관리자</th>
 			<th>신고일</th>
 			<th>*처리완료*</th>
 			<th>*검토*</th>
@@ -115,7 +112,6 @@
 				<td>${pr.reportpr_postreviewnum }</td>
 				<td>${pr.reportpr_usernum }</td>
 				<td>${pr.reportpr_content }</td>
-				<td>${pr.reportpr_adminnum }</td>
 				<td>${pr.reportpr_regdate }</td>
 				<td>
 					<form action="${path}/admin/ManageReport/" method="post">
@@ -180,7 +176,6 @@
 			<th>리뷰 번호</th>
 			<th>유저번호</th>
 			<th>신고내용</th>
-			<th>처리한 관리자</th>
 			<th>신고일</th>
 			<th>*처리완료*</th>
 			<th>*검토*</th>
@@ -194,7 +189,6 @@
 				<td>${cr.reportcr_corpreviewnum }</td>
 				<td>${cr.reportcr_usernum }</td>
 				<td>${cr.reportcr_content }</td>
-				<td>${cr.reportcr_adminnum }</td>
 				<td>${cr.reportcr_regdate }</td>
 				<td>
 					<form action="${path}/admin/ManageReport/" method="post">
