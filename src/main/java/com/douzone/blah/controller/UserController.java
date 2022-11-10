@@ -104,6 +104,17 @@ public class UserController {
 	public String join() {
 		return "join/join";
 	}
+	
+//	// 이메일 중복 확인 로직
+//	public void 여(HttpServletRequest request, HttpServletResponse response) {
+//		//중복체크
+//		String email = request.getParameter("email");
+//		Dao_Login dao = new Dao_Login();
+//		String result = dao.emailDupleCheck(email);
+//		
+//		request.setAttribute("emailDupleCheckResult", result);
+//		request.setAttribute("email", email);
+//	}
 
 	// 회원가입 처리
 	@PostMapping("/joinAction")

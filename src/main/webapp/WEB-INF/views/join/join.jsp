@@ -29,11 +29,9 @@
 		if (!emailValCheck()) {
 			return false;
 		}
-		var url = "confirmEmail.four?email=" + document.signUpForm.email.value;
-		open(
-				url,
-				"confirm",
-				"toolbar=no, location=no,menubar=no,scrollbars=no,resizable=no,width=300,height=200");
+		var url = "confirmEmail?email=" + document.signUpForm.email.value;
+		var condition = "toolbar=no, location=no,menubar=no,scrollbars=no,resizable=no,width=300,height=200"
+		open(url, "confirm", condition);
 	}
 </script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
