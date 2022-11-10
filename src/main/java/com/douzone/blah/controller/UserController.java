@@ -87,7 +87,7 @@ public class UserController {
 	}
 
 	// 로그인 페이지 요청
-	@RequestMapping("/login/loginForm")
+	@RequestMapping("/loginForm")
 	public String loginView(HttpServletRequest request) {
 
 		// 요청 시점의 사용자 URI 정보를 Session의 Attribute에 담아서 전달(잘 지워줘야 함)
@@ -100,13 +100,13 @@ public class UserController {
 	}
 
 	// 회원가입 페이지로 이동
-	@RequestMapping("/join/join")
+	@RequestMapping("/join")
 	public String join() {
 		return "join/join";
 	}
 
 	// 회원가입 처리
-	@PostMapping("/join/joinAction")
+	@PostMapping("/joinAction")
 	public String insertUser(@RequestParam("user_id") String user_id,
 			@RequestParam("user_password") String user_password, @RequestParam("user_email") String user_email,
 			@RequestParam("user_nick") String user_nick, @RequestParam("user_jobgroup") String user_jobgroup,

@@ -58,7 +58,7 @@
 
 
 
-	<form action="/join/joinAction" method="post">
+	<form action="${root}joinAction" method="post">
 		<table>
 
 			<tr>

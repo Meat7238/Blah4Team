@@ -71,8 +71,8 @@
 	<!-- 로그인 관련 설정 -->
 		
 		<security:csrf disabled="true"/>
-		<security:form-login login-page="/login/loginForm" default-target-url="/"
-			authentication-failure-url="/login/loginForm?error"
+		<security:form-login login-page="/loginForm" default-target-url="/"
+			authentication-failure-url="/loginForm?error"
 			login-processing-url="/login"
 			authentication-success-handler-ref="userLoginSuccessHandler"
 			username-parameter="user_id" password-parameter="user_password" />
