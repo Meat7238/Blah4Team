@@ -14,8 +14,7 @@
 		onclick="location.href='corpreviewintro?corpnum=${corplist.get(1).CORPREVIEW_CORPNUM}'" />
 	<input type="button" value="리뷰"
 		onclick="location.href='corpreviewmain?corpreviewnum=${corplist.get(1).CORPREVIEW_CORPNUM}'" />
-	<input type="button" value="리뷰 쓰기"
-		onclick="location.href='corpreviewwriteform'" />
+	
 
 
 	<c:forEach var="corplist" items="${corplist}">

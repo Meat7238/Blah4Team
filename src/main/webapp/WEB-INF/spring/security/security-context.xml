@@ -16,6 +16,9 @@
 				<security:intercept-url pattern="/adminLogin" access="permitAll"/>
 				<security:intercept-url pattern="/adminLogout" access="permitAll"/>
 		<security:intercept-url pattern="/layout/*" access="permitAll"/>
+		
+		<security:intercept-url pattern="/corp/*" access="permitAll"/>
+		
 		<security:intercept-url pattern="/login/logout" access="hasRole('user')"/>
 
 		<!-- 로그인된 상태에서는 로그인이나 회원가입 화면에 접근 못하도록 함 -->

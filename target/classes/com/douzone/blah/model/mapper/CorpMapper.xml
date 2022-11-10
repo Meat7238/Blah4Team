@@ -21,23 +21,27 @@
 		resultType="com.douzone.blah.model.CorpDTO">
 		select * from corp where corp_num = #{corpnum}
 	</select>
-	
+
 	<!-- 기업리뷰 가져오기 -->
-	<!-- <select id="corpReview" parameterType="String"
-		resultType="com.douzone.blah.model.CorpreviewDTO">
-		select * from corpreview where corpreview_corpnum = #{corpreviewnum}
-	</select> -->
+	<!-- <select id="corpReview" parameterType="String" resultType="com.douzone.blah.model.CorpreviewDTO"> 
+		select * from corpreview where corpreview_corpnum = #{corpreviewnum} </select> -->
 	<!-- 기업리뷰 가져오기 -->
-	<select id="corpReview" 
-		resultType="map">
-		select * from corpreview where corpreview_corpnum = #{corpreviewnum}
+	<select id="corpReview" resultType="map">
+		select * from corpreview
+		where corpreview_corpnum = #{corpreviewnum}
 	</select>
-	
+
 	<!-- 기업리뷰 쓰기 -->
 	<insert id="insertReview"
 		parameterType="com.douzone.blah.model.CorpreviewDTO">
-		insert into corpreview values(
-		(select	NVL(max(corpreview_num),0)+1 from corpreview),
+
+		insert into corpreview (corpreview_num, corpreview_starpoint1,
+		corpreview_starpoint2,
+		corpreview_starpoint3, corpreview_starpoint4, corpreview_starpoint5, corpreview_conclusion,
+		corpreview_pros, corpreview_cons, corpreview_regdate,
+		corpreview_usernum, corpreview_corpnum)values(
+		(select
+		NVL(max(corpreview_num),0)+1 from corpreview),
 		#{corpreview_starpoint1},
 		#{corpreview_starpoint2},
 		#{corpreview_starpoint3},
@@ -47,9 +51,15 @@
 		#{corpreview_pros},
 		#{corpreview_cons},
 		sysdate,
-		9,
-		(select corp_num from corp where corp_name = #{corp_name})
-		);
+		'9',
+		#{corpreview_corpnum})
+
 	</insert>
 
+	<!-- 기업번호로 기업이름 가져오는 쿼리 -->
+	<select id="readcorp" parameterType="string" resultType="string">
+		select
+		corp_name from corp where
+		corp_num ='${corpNum}'
+	</select>
 </mapper>

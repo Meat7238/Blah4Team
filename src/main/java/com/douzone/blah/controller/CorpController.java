@@ -1,6 +1,7 @@
 package com.douzone.blah.controller;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.douzone.blah.dao.CorpDAO;
+import com.douzone.blah.dao.User2DAO;
 import com.douzone.blah.model.CorpDTO;
 import com.douzone.blah.model.CorpreviewDTO;
 
@@ -27,6 +29,9 @@ public class CorpController {
 	@Resource
 	private CorpDAO corpDAOImpl;
 
+	@Resource
+	private User2DAO user2DAOImpl;
+
 //	@RequestMapping("/corplist")
 //	public String list(HttpServletRequest request) {
 //		HashMap map = new HashMap();
@@ -37,7 +42,7 @@ public class CorpController {
 
 	@RequestMapping(value = "/corpreviewhome", method = RequestMethod.GET)
 	public String corpreviewhome(HttpServletRequest request) {
-		return "corpreviewhome";
+		return "/corp/corpreviewhome";
 	}
 
 	@RequestMapping(value = "/corpreviewhome", method = RequestMethod.POST)
@@ -49,7 +54,7 @@ public class CorpController {
 
 		request.setAttribute("corplist", corplist);
 
-		return "corpreviewhome";
+		return "/corp/corpreviewhome";
 
 	}
 
@@ -60,7 +65,7 @@ public class CorpController {
 
 		model.addAttribute("corplist", dto);
 
-		return "corpreviewintro";
+		return "/corp/corpreviewintro";
 
 	}
 
@@ -79,19 +84,39 @@ public class CorpController {
 		log.warn("받아온 값 : " + corpReiviewList);
 		request.setAttribute("corplist", corpReiviewList);
 //		model.addAttribute("corplist", corpDAOImpl.corpReview(corpreviewnum));
-		return "corpreviewmain";
+		return "/corp/corpreviewmain";
 
 	}
 
-	@RequestMapping("/corpreviewwriteform")
+	@RequestMapping(value = "/corpreviewwriteform", method = RequestMethod.GET)
 	public String corpreviewwriteform(HttpServletRequest request) {
-		return "corpreviewwriteform";
+		String corpNum = request.getParameter("corp");
+//		Map<String, String> map = new HashMap<>();
+//		map.put("corpNum", corpNum);
+//		System.out.println("dao진입전 map : " + map.get("corpNum"));
+//		String corpName = corpDAOImpl.readcorp(map);
+//		System.out.println(corpName);
+//		request.setAttribute("corpName", corpName);
+		request.setAttribute("corpreview_corpnum", corpNum);
+		
+		System.out.println(corpNum);
+		
+		return "/corp/corpreviewwriteform";
 	}
 
-	@RequestMapping("/corpreview")
-	public String corpreview(CorpreviewDTO dto) {
-		corpDAOImpl.insertReview(dto);
-		return "redirect:/corpreviewmain";
+	@RequestMapping(value = "/corpreview", method = RequestMethod.POST)
+	public String corpreview(CorpreviewDTO dto,HttpServletRequest request) {
+		
+		System.out.println("여기오니 ===========> ");
+		System.out.println(dto);
+		
+	
+		List<CorpreviewDTO> corplist = corpDAOImpl.insertReview(dto);
+		
+		request.setAttribute("corplist", corplist);
+		
+		System.out.println("들어갔니? ===========> ");
+		return "/corp/corpreview";
 	}
 
 }

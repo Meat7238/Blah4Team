@@ -14,6 +14,8 @@
 		onclick="location.href='corpreviewintro?corpnum=${corplist.corp_num}'" />
 	<input type="button" value="리뷰"
 		onclick="location.href='corpreviewmain?corpreviewnum=${corplist.corp_num}'" />
+	<input type="button" value="리뷰 쓰기"
+		onclick="location.href='corpreviewwriteform?corp=${corplist.corp_num}'" />
 
 	<div class="company-infomation-row basic-infomation">
 		<h2 class="header">기업정보</h2>
