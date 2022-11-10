@@ -1,3 +1,5 @@
+DB DDL
+
 DROP TABLE USER2 CASCADE CONSTRAINTS;
 DROP TABLE ADMIN2 CASCADE CONSTRAINTS;
 DROP TABLE SET2 CASCADE CONSTRAINTS;
@@ -18,7 +20,7 @@ DROP TABLE USER2 CASCADE CONSTRAINTS;
 CREATE TABLE USER2( 
 USER_NUM varchar2(20) CONSTRAINT USER_NUM_pk PRIMARY KEY , --USER#
 USER_ID varchar2(50) CONSTRAINT user_id_unique UNIQUE,
-USER_PASSWORD varchar2(100),--ì¸ì½”ë”©
+USER_PASSWORD varchar2(100),--ÀÎÄÚµù
 USER_POINT number,
 USER_EMAIL varchar2(100) CONSTRAINT user_email_unique UNIQUE,
 USER_JOBGROUP varchar2(50),
@@ -28,13 +30,13 @@ authority varchar2(50) default 'ROLE_USER');
 
 drop sequence USER_NUMseq;
 create sequence USER_NUMseq;
-
+UPDATE 
 select * from user2;
 truncate table user2;
 COMMIT;
---ë”ë¯¸ë°ì´í„° ë³´ë¥˜
+--´õ¹Ìµ¥ÀÌÅÍ º¸·ù
 ----------------------------------------------------------------------
-CREATE TABLE SET2( --ê²°ì œìƒí’ˆ
+CREATE TABLE SET2( --°áÁ¦»óÇ°
 SET_NUM VARCHAR2(20) CONSTRAINT SET_NUM_pk PRIMARY key, -- SE#
 SET_NAME varchar2(20),
 SET_PRICE varchar2(20),
@@ -53,19 +55,19 @@ CORP_PAY varchar2(20),
 CORP_DETAIL varchar2(200)
 );
 
-INSERT INTO corp VALUES('CO0001','ì‚¼ì„±ì „ìž','ì„œìš¸ ì„œì´ˆêµ¬ ì„œì´ˆ2ë™ 1321-15ë²ˆì§€ ì‚¼ì„±ìƒëª… ì„œì´ˆíƒ€ì›Œ','ì œì¡°','1969.01.13','117,498ëª…','ìˆ˜ì›','5,396ë§Œì›','íœ´ëŒ€í°,ì»´í“¨í„°,ë„¤íŠ¸ì›Œí¬ì‹œìŠ¤í…œ,í•µì‹¬ì¹©,ë°˜ë„ì²´ë¶€í’ˆ,ë””ìŠ¤í”Œë ˆì´íŒ¨ë„,ê°€ì „ì œí’ˆ,ì˜ë£Œê¸°ê¸°,í”„ë¦°í„° ì œì¡°');
-INSERT INTO corp VALUES('CO0002','ì˜¤ëšœê¸°','ì„œìš¸ ê°•ë‚¨êµ¬ ì˜ë™ëŒ€ë¡œ 308 (ëŒ€ì¹˜ë™, ì˜¤ëšœê¸°ì„¼í„°) ì˜¤ëšœê¸°ì„¼í„°','ì œì¡°','1969.05.05 ','3,038ëª… ','ì„œìš¸','4,337 ë§Œì›','ë¼ë©´,ë§ˆìš”ë„¤ì¦ˆ,ì¹´ë ˆ,ìŠ¤í”„,ë‹¹ë©´,ì†Œì˜¤ìŠ¤,í† ë§ˆí† ì¼€ì²©,ë§ˆê°€ë¦°,ëƒ‰ë™ìƒì§€,ì°¸ì¹˜ìº”,ì‹ì´ˆ,3ë¶„ìš”ë¦¬ ì œì¡°');
-INSERT INTO corp VALUES('CO0003','ì—”ì”¨ì†Œí”„íŠ¸','ê²½ê¸° ì„±ë‚¨ì‹œ ë¶„ë‹¹êµ¬ ì‚¼í‰ë™ 668ë²ˆì§€','ê²Œìž„Â·ì• ë‹ˆë©”ì´ì…˜','1997.03.11 ','4,504ëª… ','ê²½ê¸°','3,978ë§Œì›','ê²Œìž„ S/Wì œìž‘, S/W ê°œë°œê³µê¸‰ìžë¬¸');
-INSERT INTO corp VALUES('CO0004','ì¹´ì¹´ì˜¤','ê²½ê¸° ì„±ë‚¨ì‹œ ë¶„ë‹¹êµ¬ ì‚¼í‰ë™ 681ë²ˆì§€ ì—ì´ì¹˜ìŠ¤í€˜ì–´ Në™','IT','1995.02.16 ','3,603ëª…','ì œì£¼','3,991ë§Œì›','ë°ì´íƒ€ë² ì´ìŠ¤ì—…,ì¸í„°ë„·ê´€ë ¨ì†Œí”„íŠ¸ì›¨ì–´,ì‹œìŠ¤í…œí†µí•©,ì¸í„°ë„·ê´‘ê³ ì‚¬ì—…,ë¬´ë£Œì´ë©”ì¼ì„œë¹„ìŠ¤,ì „ìžìƒê±°ëž˜,ì¸í„°ë„·ì ‘ì†ì„œë¹„ìŠ¤,í˜¸ìŠ¤íŒ…ì„œë¹„ìŠ¤,ìºë¦­í„°ë””ìžì¸');
-INSERT INTO corp VALUES('CO0005','í˜„ëŒ€ìžë™ì°¨','ì„œìš¸ ì„œì´ˆêµ¬ ì–‘ìž¬ë™ 231 í˜„ëŒ€ìžë™ì°¨','ì œì¡°','1967.12.29 ','70,670ëª… ','ìš¸ì‚°','4,346ë§Œì›','ìžë™ì°¨,ìžë™ì°¨ë¶€í’ˆ,ìžë™ì°¨ì „ì°©ë„ë£Œ ì œì¡°,ì°¨ëŸ‰ì •ë¹„ì‚¬ì—…,í•­ê³µê¸°,ë¶€ì†í’ˆë„ì†Œë§¤,ë³„ì •í†µì‹ ,ë¶€ê°€í†µì‹ ,ë¶€ë™ì‚°ìž„ëŒ€');
+INSERT INTO corp VALUES('CO0001','»ï¼ºÀüÀÚ','¼­¿ï ¼­ÃÊ±¸ ¼­ÃÊ2µ¿ 1321-15¹øÁö »ï¼º»ý¸í ¼­ÃÊÅ¸¿ö','Á¦Á¶','1969.01.13','117,498¸í','¼ö¿ø','5,396¸¸¿ø','ÈÞ´ëÆù,ÄÄÇ»ÅÍ,³×Æ®¿öÅ©½Ã½ºÅÛ,ÇÙ½ÉÄ¨,¹ÝµµÃ¼ºÎÇ°,µð½ºÇÃ·¹ÀÌÆÐ³Î,°¡ÀüÁ¦Ç°,ÀÇ·á±â±â,ÇÁ¸°ÅÍ Á¦Á¶');
+INSERT INTO corp VALUES('CO0002','¿À¶Ñ±â','¼­¿ï °­³²±¸ ¿µµ¿´ë·Î 308 (´ëÄ¡µ¿, ¿À¶Ñ±â¼¾ÅÍ) ¿À¶Ñ±â¼¾ÅÍ','Á¦Á¶','1969.05.05 ','3,038¸í ','¼­¿ï','4,337 ¸¸¿ø','¶ó¸é,¸¶¿ä³×Áî,Ä«·¹,½ºÇÁ,´ç¸é,¼Ò¿À½º,Åä¸¶ÅäÄÉÃ¸,¸¶°¡¸°,³Ãµ¿»ýÁö,ÂüÄ¡Äµ,½ÄÃÊ,3ºÐ¿ä¸® Á¦Á¶');
+INSERT INTO corp VALUES('CO0003','¿£¾¾¼ÒÇÁÆ®','°æ±â ¼º³²½Ã ºÐ´ç±¸ »ïÆòµ¿ 668¹øÁö','°ÔÀÓ¡¤¾Ö´Ï¸ÞÀÌ¼Ç','1997.03.11 ','4,504¸í ','°æ±â','3,978¸¸¿ø','°ÔÀÓ S/WÁ¦ÀÛ, S/W °³¹ß°ø±ÞÀÚ¹®');
+INSERT INTO corp VALUES('CO0004','Ä«Ä«¿À','°æ±â ¼º³²½Ã ºÐ´ç±¸ »ïÆòµ¿ 681¹øÁö ¿¡ÀÌÄ¡½ºÄù¾î Nµ¿','IT','1995.02.16 ','3,603¸í','Á¦ÁÖ','3,991¸¸¿ø','µ¥ÀÌÅ¸º£ÀÌ½º¾÷,ÀÎÅÍ³Ý°ü·Ã¼ÒÇÁÆ®¿þ¾î,½Ã½ºÅÛÅëÇÕ,ÀÎÅÍ³Ý±¤°í»ç¾÷,¹«·áÀÌ¸ÞÀÏ¼­ºñ½º,ÀüÀÚ»ó°Å·¡,ÀÎÅÍ³ÝÁ¢¼Ó¼­ºñ½º,È£½ºÆÃ¼­ºñ½º,Ä³¸¯ÅÍµðÀÚÀÎ');
+INSERT INTO corp VALUES('CO0005','Çö´ëÀÚµ¿Â÷','¼­¿ï ¼­ÃÊ±¸ ¾çÀçµ¿ 231 Çö´ëÀÚµ¿Â÷','Á¦Á¶','1967.12.29 ','70,670¸í ','¿ï»ê','4,346¸¸¿ø','ÀÚµ¿Â÷,ÀÚµ¿Â÷ºÎÇ°,ÀÚµ¿Â÷ÀüÂøµµ·á Á¦Á¶,Â÷·®Á¤ºñ»ç¾÷,Ç×°ø±â,ºÎ¼ÓÇ°µµ¼Ò¸Å,º°Á¤Åë½Å,ºÎ°¡Åë½Å,ºÎµ¿»êÀÓ´ë');
 
-INSERT INTO corp VALUES('CO0006','ì¿ íŒ¡','ì„œìš¸íŠ¹ë³„ì‹œ ì†¡íŒŒêµ¬ ì†¡íŒŒëŒ€ë¡œ 570 (ì‹ ì²œë™) 18ì¸µ','IT','2010.07.01','6,372ëª… ','ê²½ê¸°','4,000ë§Œì›','ì´ì»¤ë¨¸ìŠ¤,ì „ìžìƒê±°ëž˜');
-INSERT INTO corp VALUES('CO0007','SKí•˜ì´ë‹‰ìŠ¤','ê²½ê¸° ì´ì²œì‹œ ë¶€ë°œì ì•„ë¯¸ë¦¬ ì‚° 136-1','ì œì¡°','1969.01.13','1949.10.15','ì´ì²œ','5,500ë§Œì›','ë°˜ë„ì²´,ì»´í“¨í„°,í†µì‹ ê¸°ê¸° ì œì¡°,ë„ë§¤');
-INSERT INTO corp VALUES('CO0008','KCC','ì„œìš¸ ì„œì´ˆêµ¬ ì‚¬í‰ëŒ€ë¡œ 344 (ì„œì´ˆë™, ê¸ˆê°•ë¹Œë”©) KCC','ì œì¡°','1958.08.12 ','3,423ëª… ','ì„¸ì¢…','4,400ë§Œì›','ë„ë£Œ,ê±´ì¶•ìš©ë‹¨ì—´ìž¬,ë‚´ì™¸ìž¥ìž¬,ìŠ¤ë ˆíŠ¸,ë°¤ë¼ì´íŠ¸,ì•”ë©´,ì„ê³ ë³´ë“œ,íŒìœ ë¦¬ ì œì¡°');
-INSERT INTO corp VALUES('CO0009','LGì „ìž','ì„œìš¸ ì˜ë“±í¬êµ¬ ì—¬ì˜ë„ë™ 20 LGíŠ¸ìœˆíƒ€ì›Œ ì„œê´€ 14ì¸µ','ì œì¡°','1958.10.01','34,751ëª…','ê²½ë‚¨','3,979ë§Œì›','C-TV,V.C.R.,ì»´í“¨í„°,ì™„ì „í‰ë©´ TV,í”Œë¼ì¦ˆë§ˆ ë””ìŠ¤í”Œë ˆì´ íŒ¨ë„ TV,ì „ìžì œí’ˆ,CDMAì´ë™í†µì‹ ,ì „ìžêµí™˜ê¸°,ì „ì†¡ê¸°ê¸°,ì´ë™í†µì‹ ë‹¨ë§ê¸° ì œì¡°');
-INSERT INTO corp VALUES('CO0010','LGí™”í•™','ì„œìš¸ ì˜ë“±í¬êµ¬ ì—¬ì˜ë„ë™ 20 LGíŠ¸ìœˆíƒ€ì›Œ','ì œì¡°','2001.04.01 ','14,300ëª… ','ê²½ë¶','4,130ë§Œì›','ìœ í™”,ê¸°ëŠ¥,í•©ì„±ìˆ˜ì§€,ìž¬ìƒì„¬ìœ ì†Œ,ê¸°ì´ˆí™”í•™ë¬¼ì§ˆ,ì‚°ì—…ìž¬,ë¦¬íŠ¬ì´ì˜¨ì „ì§€,í‰ê´‘íŒ,PVCì œì¡°,ë„ë§¤');
+INSERT INTO corp VALUES('CO0006','ÄíÆÎ','¼­¿ïÆ¯º°½Ã ¼ÛÆÄ±¸ ¼ÛÆÄ´ë·Î 570 (½ÅÃµµ¿) 18Ãþ','IT','2010.07.01','6,372¸í ','°æ±â','4,000¸¸¿ø','ÀÌÄ¿¸Ó½º,ÀüÀÚ»ó°Å·¡');
+INSERT INTO corp VALUES('CO0007','SKÇÏÀÌ´Ð½º','°æ±â ÀÌÃµ½Ã ºÎ¹ßÀ¾ ¾Æ¹Ì¸® »ê 136-1','Á¦Á¶','1969.01.13','1949.10.15','ÀÌÃµ','5,500¸¸¿ø','¹ÝµµÃ¼,ÄÄÇ»ÅÍ,Åë½Å±â±â Á¦Á¶,µµ¸Å');
+INSERT INTO corp VALUES('CO0008','KCC','¼­¿ï ¼­ÃÊ±¸ »çÆò´ë·Î 344 (¼­ÃÊµ¿, ±Ý°­ºôµù) KCC','Á¦Á¶','1958.08.12 ','3,423¸í ','¼¼Á¾','4,400¸¸¿ø','µµ·á,°ÇÃà¿ë´Ü¿­Àç,³»¿ÜÀåÀç,½º·¹Æ®,¹ã¶óÀÌÆ®,¾Ï¸é,¼®°íº¸µå,ÆÇÀ¯¸® Á¦Á¶');
+INSERT INTO corp VALUES('CO0009','LGÀüÀÚ','¼­¿ï ¿µµîÆ÷±¸ ¿©ÀÇµµµ¿ 20 LGÆ®À©Å¸¿ö ¼­°ü 14Ãþ','Á¦Á¶','1958.10.01','34,751¸í','°æ³²','3,979¸¸¿ø','C-TV,V.C.R.,ÄÄÇ»ÅÍ,¿ÏÀüÆò¸é TV,ÇÃ¶óÁî¸¶ µð½ºÇÃ·¹ÀÌ ÆÐ³Î TV,ÀüÀÚÁ¦Ç°,CDMAÀÌµ¿Åë½Å,ÀüÀÚ±³È¯±â,Àü¼Û±â±â,ÀÌµ¿Åë½Å´Ü¸»±â Á¦Á¶');
+INSERT INTO corp VALUES('CO0010','LGÈ­ÇÐ','¼­¿ï ¿µµîÆ÷±¸ ¿©ÀÇµµµ¿ 20 LGÆ®À©Å¸¿ö','Á¦Á¶','2001.04.01 ','14,300¸í ','°æºÏ','4,130¸¸¿ø','À¯È­,±â´É,ÇÕ¼º¼öÁö,Àç»ý¼¶À¯¼Ò,±âÃÊÈ­ÇÐ¹°Áú,»ê¾÷Àç,¸®Æ¬ÀÌ¿ÂÀüÁö,Æò±¤ÆÇ,PVCÁ¦Á¶,µµ¸Å');
 
-INSERT INTO corp VALUES('CO0011','ë”ì¡´ë¹„ì¦ˆì˜¨','ê°•ì› ì¶˜ì²œì‹œ ë‚¨ì‚°ë©´ ìˆ˜ë™ë¦¬ 749ë²ˆì§€ ë”ì¡´ITê·¸ë£¹ ê°•ì´Œìº í¼ìŠ¤','IT','1977.08.20','1,675ëª…','ì¶˜ì²œ','3,800ë§Œì›','ê¸°ì—…ìš© ì†”ë£¨ì…˜ íŒë§¤,ìœ ì§€ë³´ìˆ˜')
+INSERT INTO corp VALUES('CO0011','´õÁ¸ºñÁî¿Â','°­¿ø ÃáÃµ½Ã ³²»ê¸é ¼öµ¿¸® 749¹øÁö ´õÁ¸IT±×·ì °­ÃÌÄ·ÆÛ½º','IT','1977.08.20','1,675¸í','ÃáÃµ','3,800¸¸¿ø','±â¾÷¿ë ¼Ö·ç¼Ç ÆÇ¸Å,À¯Áöº¸¼ö')
 commit;
 
 ----------------------------------------------------------------------
@@ -81,19 +83,19 @@ NOTICE_REGDATE DATE,
 NOTICE_READCOUNT varchar2(20)
 );
 
-INSERT INTO notice VALUES(1,'ê³µì§€ì œëª©','ê³µì§€ì¹´í…Œê³ ë¦¬','ê³µì§€ë‚´ìš©','admin001',sysdate,'12');
-INSERT INTO notice VALUES(2,'ê³µì§€ì œëª©','ê³µì§€ì¹´í…Œê³ ë¦¬','ê³µì§€ë‚´ìš©','admin002',sysdate,'5');
+INSERT INTO notice VALUES(1,'°øÁöÁ¦¸ñ','°øÁöÄ«Å×°í¸®','°øÁö³»¿ë','admin001',sysdate,'12');
+INSERT INTO notice VALUES(2,'°øÁöÁ¦¸ñ','°øÁöÄ«Å×°í¸®','°øÁö³»¿ë','admin002',sysdate,'5');
 select * from notice;
 COMMIT;
 
 ----------------------------------------------------------------------
-CREATE TABLE PAYLIST( --ê²°ì œë‚´ì—­ 
+CREATE TABLE PAYLIST( --°áÁ¦³»¿ª 
 PAYLIST_NUM VARCHAR2(20) CONSTRAINT PAYLIST_NUM_pk PRIMARY key, 
 PAYLIST_USERNUM varchar2(20) CONSTRAINT PAYLIST_USERNUM_fk REFERENCES USER2(USER_NUM) ON DELETE CASCADE,
 PAYLIST_SETNUM varchar2(20) CONSTRAINT PAYLIST_SETNUM_fk REFERENCES SET2(SET_NUM) ON DELETE CASCADE
 );
 
---ì‹œí€€ìŠ¤ ì¶”ê°€ í•„ìš”
+--½ÃÄö½º Ãß°¡ ÇÊ¿ä
 ----------------------------------------------------------------------
 DROP TABLE CORPREVIEW CASCADE CONSTRAINTS
 CREATE TABLE CORPREVIEW( 
@@ -116,8 +118,8 @@ increment by 1
 start with 10000
 nocycle;
 
-INSERT INTO corpreview VALUES(10000,'3','3','4','3','1','ëª¸ì€ ì©ì§€ë§Œ ì§€ê°‘ì€ ë‘ë‘‘','ë‚´ê°€ í•˜ê³ ì‹¶ì€ì¼ í•˜ë©´ì„œ ì§€ê°‘ë„ ë‘ë‘‘','ì •ì‹ ìƒíƒœëŠ” êµ¬ë í……ì´ ì •ì¹˜ì§ˆ ìž¥ë‚œì•„ë‹˜',sysdate,'001','CO0005');
-INSERT INTO corpreview VALUES(10001,'3','3','4','3','1','ëª¸ì€ ì©ì§€ë§Œ ì§€ê°‘ì€ ë‘ë‘‘','ë‚´ê°€ í•˜ê³ ì‹¶ì€ì¼ í•˜ë©´ì„œ ì§€ê°‘ë„ ë‘ë‘‘','ì •ì‹ ìƒíƒœëŠ” êµ¬ë í……ì´ ì •ì¹˜ì§ˆ ìž¥ë‚œì•„ë‹˜',sysdate,'002','CO0006');
+INSERT INTO corpreview VALUES(10000,'3','3','4','3','1','¸öÀº ½âÁö¸¸ Áö°©Àº µÎµÏ','³»°¡ ÇÏ°í½ÍÀºÀÏ ÇÏ¸é¼­ Áö°©µµ µÎµÏ','Á¤½Å»óÅÂ´Â ±¸··ÅÖÀÌ Á¤Ä¡Áú Àå³­¾Æ´Ô',sysdate,'001','CO0005');
+INSERT INTO corpreview VALUES(10001,'3','3','4','3','1','¸öÀº ½âÁö¸¸ Áö°©Àº µÎµÏ','³»°¡ ÇÏ°í½ÍÀºÀÏ ÇÏ¸é¼­ Áö°©µµ µÎµÏ','Á¤½Å»óÅÂ´Â ±¸··ÅÖÀÌ Á¤Ä¡Áú Àå³­¾Æ´Ô',sysdate,'002','CO0006');
 SELECT * FROM CORPREVIEW;
 commit;
 
@@ -128,7 +130,7 @@ REVIEWPAY_CORPREVIEWNUM varchar2(20) CONSTRAINT REVIEWPAY_CORPREVIEWNUM_fk REFER
 REVIEWPAY_USERNUM varchar2(20) CONSTRAINT REVIEWPAY_USERNUM_fk REFERENCES USER2(USER_NUM) ON DELETE CASCADE,
 REVIEWPAY_POINT varchar2(20)
 );
---ì¶”í›„ë…¼ì˜
+--ÃßÈÄ³íÀÇ
 ----------------------------------------------------------------------
 CREATE TABLE POST( 
 POST_NUM number CONSTRAINT POST_NUM_pk PRIMARY key,--#
@@ -144,15 +146,15 @@ drop sequence post_numseq;
 create sequence post_numseq;
 
 insert into post (POST_NUM, POST_TITLE, POST_CATEGORY, POST_CONTENT, POST_USERNUM, POST_LIKE, POST_REGDATE, POST_READCOUNT) 
-values (post_numseq.nextval, 'ë”ì¡´ìž…ë‹ˆë‹¤', 'ë¸”ë¼ë¸”ë¼', 'ì¢‹ì•„ìš”', '001', 0, sysdate, 0);
+values (post_numseq.nextval, '´õÁ¸ÀÔ´Ï´Ù', 'ºí¶óºí¶ó', 'ÁÁ¾Æ¿ä', '001', 0, sysdate, 0);
 insert into post (POST_NUM, POST_TITLE, POST_CATEGORY, POST_CONTENT, POST_USERNUM, POST_LIKE, POST_REGDATE, POST_READCOUNT) 
-values (post_numseq.nextval, 'ì½”ì‚¬ìž…ë‹ˆë‹¤', 'íšŒì‚¬ìƒí™œ', 'ã…‡ë†“ã„´í˜¸', '002', 0, sysdate, 0);
+values (post_numseq.nextval, 'ÄÚ»çÀÔ´Ï´Ù', 'È¸»ç»ýÈ°', '¤·³õ¤¤È£', '002', 0, sysdate, 0);
 insert into post (POST_NUM, POST_TITLE, POST_CATEGORY, POST_CONTENT, POST_USERNUM, POST_LIKE, POST_REGDATE, POST_READCOUNT) 
-values (post_numseq.nextval, 'ì‚¼ì„±ìž…ë‹ˆë‹¤', 'ì£¼ì‹íˆ¬ìž', 'ã…‡ëˆˆã…ã„±ã…‚ã„¹ã„´ã…‡', '003', 0, sysdate, 0);
+values (post_numseq.nextval, '»ï¼ºÀÔ´Ï´Ù', 'ÁÖ½ÄÅõÀÚ', '¤·´«¤±¤¡¤²¤©¤¤¤·', '003', 0, sysdate, 0);
 insert into post (POST_NUM, POST_TITLE, POST_CATEGORY, POST_CONTENT, POST_USERNUM, POST_LIKE, POST_REGDATE, POST_READCOUNT) 
-values (post_numseq.nextval, 'ì¹´ì¹´ì˜¤ìž…ë‹ˆë‹¤', 'í™ë³´', 'ã…‘íš¨ã…—ã„¶ã…‡', '004', 0, sysdate, 0);
+values (post_numseq.nextval, 'Ä«Ä«¿ÀÀÔ´Ï´Ù', 'È«º¸', '¤ÁÈ¿¤Ç¤¦¤·', '004', 0, sysdate, 0);
 insert into post (POST_NUM, POST_TITLE, POST_CATEGORY, POST_CONTENT, POST_USERNUM, POST_LIKE, POST_REGDATE, POST_READCOUNT) 
-values (post_numseq.nextval, 'í˜„ëŒ€ìž…ë‹ˆë‹¤', 'ì´ì§,ì»¤ë¦¬ì–´', 'ã… ã…¡ã…¡ã…œã…¡ã…“í•­', '005', 0, sysdate, 0);
+values (post_numseq.nextval, 'Çö´ëÀÔ´Ï´Ù', 'ÀÌÁ÷,Ä¿¸®¾î', '¤Ð¤Ñ¤Ñ¤Ì¤Ñ¤ÃÇ×', '005', 0, sysdate, 0);
 
 select * from post;
 commit;
@@ -170,13 +172,13 @@ DROP SEQUENCE postreview_seq;
 create sequence postreview_seq;
 
 insert into postreview (POSTREVIEW_NUM, POSTREVIEW_USERNUM, POSTREVIEW_POSTNUM, POSTREVIEW_CONTENT, POSTREVIEW_LIKE, POSTREVIEW_REGDATE)
-values (postreview_seq.nextval, 'user1', 1, 'ëŒ“ê¸€ë‚´ìš©', 0, sysdate);
+values (postreview_seq.nextval, 'user1', 1, '´ñ±Û³»¿ë', 0, sysdate);
 insert into postreview (POSTREVIEW_NUM, POSTREVIEW_USERNUM, POSTREVIEW_POSTNUM, POSTREVIEW_CONTENT, POSTREVIEW_LIKE, POSTREVIEW_REGDATE)
-values (postreview_seq.nextval, 'user2', 2, 'ëŒ“ê¸€ë‚´ìš©', 0, sysdate);
+values (postreview_seq.nextval, 'user2', 2, '´ñ±Û³»¿ë', 0, sysdate);
 insert into postreview (POSTREVIEW_NUM, POSTREVIEW_USERNUM, POSTREVIEW_POSTNUM, POSTREVIEW_CONTENT, POSTREVIEW_LIKE, POSTREVIEW_REGDATE)
-values (postreview_seq.nextval, 'user3', 3, 'ëŒ“ê¸€ë‚´ìš©', 0, sysdate);
+values (postreview_seq.nextval, 'user3', 3, '´ñ±Û³»¿ë', 0, sysdate);
 insert into postreview (POSTREVIEW_NUM, POSTREVIEW_USERNUM, POSTREVIEW_POSTNUM, POSTREVIEW_CONTENT, POSTREVIEW_LIKE, POSTREVIEW_REGDATE)
-values (postreview_seq.nextval, 'user4', 4, 'ëŒ“ê¸€ë‚´ìš©', 0, sysdate);
+values (postreview_seq.nextval, 'user4', 4, '´ñ±Û³»¿ë', 0, sysdate);
 
 select * from postreview;
 commit;
@@ -199,15 +201,15 @@ REPORTCR_NUM VARCHAR2(20) CONSTRAINT REPORTCR_NUM_pk PRIMARY key, --#
 REPORTCR_CORPREVIEWNUM NUMBER CONSTRAINT REPORTCR_CORPREVIEWNUM_fk REFERENCES CORPREVIEW(CORPREVIEW_NUM) ON DELETE CASCADE,
 REPORTCR_USERNUM varchar2(20) CONSTRAINT REPORTCR_USERNUM_fk REFERENCES USER2(USER_NUM) ON DELETE CASCADE,
 REPORTCR_CONTENT varchar2(2000),
-REPORTCR_RESULT varchar2(20) DEFAULT "ì²˜ë¦¬ì „",
+REPORTCR_RESULT varchar2(20) DEFAULT "Ã³¸®Àü",
 REPORTCR_REGDATE DATE,
 REPORTCR_TYPE varchar2(20)
 );
---'0=ìŠ¤íŒ¸,1=ìŒëž€ë¬¼,2=ì„±ê²©ì—ë§žì§€ì•ŠëŠ”ê¸€,3=ê³¼ë„í•œìš•ì„¤,4=ê´‘ê³ ,5=ì‚¬íšŒë¶„ìœ„ê¸°ë¥¼ ì–´ì§€ëŸ½ížˆëŠ” ê¸€'
+--'0=½ºÆÔ,1=À½¶õ¹°,2=¼º°Ý¿¡¸ÂÁö¾Ê´Â±Û,3=°úµµÇÑ¿å¼³,4=±¤°í,5=»çÈ¸ºÐÀ§±â¸¦ ¾îÁö·´È÷´Â ±Û'
 SELECT * FROM REPORTCR;
-INSERT INTO REPORTCR values('1','CR0001','user0000','ì´ ë¦¬ë·° ë¶ˆê±´ì „í•´ìš”','ì²˜ë¦¬ì „',null,sysdate,'1');
-INSERT INTO REPORTCR values('2','CR0002','user0000','ì´ ë¦¬ë·° ìœ„ì¹˜ê°€ ìž˜ëª»ë¬ì–´ìš”','ì²˜ë¦¬ì „',null,sysdate,'2');
-INSERT INTO REPORTCR values('3','CR0001','user0000','ë¦¬ë·°ì•„ë‹Œ ê´‘ê³ ìž…ë‹ˆë‹¤','ì™„ë£Œ',null,sysdate,'0');
+INSERT INTO REPORTCR values('1','CR0001','user0000','ÀÌ ¸®ºä ºÒ°ÇÀüÇØ¿ä','Ã³¸®Àü',null,sysdate,'1');
+INSERT INTO REPORTCR values('2','CR0002','user0000','ÀÌ ¸®ºä À§Ä¡°¡ Àß¸ø‰ç¾î¿ä','Ã³¸®Àü',null,sysdate,'2');
+INSERT INTO REPORTCR values('3','CR0001','user0000','¸®ºä¾Æ´Ñ ±¤°íÀÔ´Ï´Ù','¿Ï·á',null,sysdate,'0');
 COMMIT;
 
 
@@ -218,15 +220,15 @@ REPORTPR_NUM varchar2(20) CONSTRAINT REPORTPR_NUM_pk PRIMARY key, --#
 REPORTPR_POSTREVIEWNUM NUMBER CONSTRAINT REPORTPR_POSTREVIEWNUM_fk REFERENCES POSTREVIEW(POSTREVIEW_NUM) ON DELETE CASCADE,
 REPORTPR_USERNUM varchar2(20) CONSTRAINT REPORTPR_USERNUM_fk REFERENCES USER2(USER_NUM) ON DELETE CASCADE,
 REPORTPR_CONTENT varchar2(2000),
-REPORTPR_RESULT varchar2(20) DEFAULT "ì²˜ë¦¬ì „",
+REPORTPR_RESULT varchar2(20) DEFAULT "Ã³¸®Àü",
 REPORTPR_REGDATE DATE,
 REPORTPR_TYPE varchar2(20)
 );
---'0=ìŠ¤íŒ¸,1=ìŒëž€ë¬¼,2=ì„±ê²©ì—ë§žì§€ì•ŠëŠ”ê¸€,3=ê³¼ë„í•œìš•ì„¤,4=ê´‘ê³ ,5=ì‚¬íšŒë¶„ìœ„ê¸°ë¥¼ ì–´ì§€ëŸ½ížˆëŠ” ê¸€'
+--'0=½ºÆÔ,1=À½¶õ¹°,2=¼º°Ý¿¡¸ÂÁö¾Ê´Â±Û,3=°úµµÇÑ¿å¼³,4=±¤°í,5=»çÈ¸ºÐÀ§±â¸¦ ¾îÁö·´È÷´Â ±Û'
 SELECT * FROM REPORTPR;
-INSERT INTO REPORTPR values('1',1,'user0000','ì´ ëŒ“ê¸€ ë¶ˆê±´ì „í•´ìš”','ê²€í† ì¤‘',null,sysdate,'1');
-INSERT INTO REPORTPR values('2',2,'user0000','ì´ ëŒ“ê¸€ ìœ„ì¹˜ê°€ ìž˜ëª»ë¬ì–´ìš”','ê²€í† ì¤‘',null,sysdate,'2');
-INSERT INTO REPORTPR values('3',3,'user0000','ëŒ“ê¸€ ê´‘ê³ ìž…ë‹ˆë‹¤','ì™„ë£Œ',null,sysdate,'0');
+INSERT INTO REPORTPR values('1',1,'user0000','ÀÌ ´ñ±Û ºÒ°ÇÀüÇØ¿ä','°ËÅäÁß',null,sysdate,'1');
+INSERT INTO REPORTPR values('2',2,'user0000','ÀÌ ´ñ±Û À§Ä¡°¡ Àß¸ø‰ç¾î¿ä','°ËÅäÁß',null,sysdate,'2');
+INSERT INTO REPORTPR values('3',3,'user0000','´ñ±Û ±¤°íÀÔ´Ï´Ù','¿Ï·á',null,sysdate,'0');
 COMMIT;
 ----------------------------------------------------------------------
 DROP TABLE REPORTP CASCADE CONSTRAINTS;
@@ -235,15 +237,15 @@ REPORTP_NUM varchar2(20) CONSTRAINT REPORTP_NUM_pk PRIMARY key,
 REPORTP_POSTNUM NUMBER CONSTRAINT REPORTP_POSTNUM_fk REFERENCES POST(POST_NUM) ON DELETE CASCADE,
 REPORTP_USERNUM varchar2(20) CONSTRAINT REPORTP_USERNUM_fk REFERENCES USER2(USER_NUM) ON DELETE CASCADE,
 REPORTP_CONTENT varchar2(2000),
-REPORTP_RESULT varchar2(20) DEFAULT "ì²˜ë¦¬ì „",
+REPORTP_RESULT varchar2(20) DEFAULT "Ã³¸®Àü",
 REPORTP_REGDATE DATE,
 REPORTP_TYPE varchar2(20)
 );
---'0=ìŠ¤íŒ¸,1=ìŒëž€ë¬¼,2=ì„±ê²©ì—ë§žì§€ì•ŠëŠ”ê¸€,3=ê³¼ë„í•œìš•ì„¤,4=ê´‘ê³ ,5=ì‚¬íšŒë¶„ìœ„ê¸°ë¥¼ ì–´ì§€ëŸ½ížˆëŠ” ê¸€'
+--'0=½ºÆÔ,1=À½¶õ¹°,2=¼º°Ý¿¡¸ÂÁö¾Ê´Â±Û,3=°úµµÇÑ¿å¼³,4=±¤°í,5=»çÈ¸ºÐÀ§±â¸¦ ¾îÁö·´È÷´Â ±Û'
 SELECT * FROM REPORTP;
-INSERT INTO REPORTP values('1',7,'user0000','ì´ ê²Œì‹œê¸€ ë¶ˆê±´ì „í•´ìš”','ê²€í† ì¤‘',null,sysdate,'1');
-INSERT INTO REPORTP values('2',8,'user0000','ì´ ê²Œì‹œê¸€ ìœ„ì¹˜ê°€ ìž˜ëª»ë¬ì–´ìš”','ê²€í† ì¤‘',null,sysdate,'2');
-INSERT INTO REPORTP values('3',9,'user0000','ê´‘ê³ ìž…ë‹ˆë‹¤','ì™„ë£Œ',null,sysdate,'0');
+INSERT INTO REPORTP values('1',7,'user0000','ÀÌ °Ô½Ã±Û ºÒ°ÇÀüÇØ¿ä','°ËÅäÁß',null,sysdate,'1');
+INSERT INTO REPORTP values('2',8,'user0000','ÀÌ °Ô½Ã±Û À§Ä¡°¡ Àß¸ø‰ç¾î¿ä','°ËÅäÁß',null,sysdate,'2');
+INSERT INTO REPORTP values('3',9,'user0000','±¤°íÀÔ´Ï´Ù','¿Ï·á',null,sysdate,'0');
 COMMIT;
 
 ----------------------------------------------------------------------
@@ -253,3 +255,4 @@ COMMIT;
 
 
 	
+
