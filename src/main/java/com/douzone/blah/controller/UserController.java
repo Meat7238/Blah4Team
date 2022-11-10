@@ -105,16 +105,33 @@ public class UserController {
 		return "join/join";
 	}
 	
-//	// 이메일 중복 확인 로직
-//	public void 여(HttpServletRequest request, HttpServletResponse response) {
-//		//중복체크
-//		String email = request.getParameter("email");
-//		Dao_Login dao = new Dao_Login();
-//		String result = dao.emailDupleCheck(email);
-//		
-//		request.setAttribute("emailDupleCheckResult", result);
-//		request.setAttribute("email", email);
+	// 이메일 중복 확인 로직
+//	@PostMapping("/eamil-authenticate")
+//	public String duplicateCheck(HttpServletRequest request, HttpServletResponse response) {
+//		String uri = request.getRequestURI();
+//		String conPath = request.getContextPath();
+//		String com = uri.substring(conPath.length());
+//
+//		switch (com) {
+//
+//			//...
+//		    
+//			case "/confirmEmail.four":
+//				command = new DupleEmailCheckCommand();
+//				command.execute(request, response);
+//				viewPage = "confirmEmail.jsp";
+//				break;
+//		        
+//		    //...
+//		    
+//		}
+//
+//		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
+//		dispatcher.forward(request, response);
+//
+//		return "redirect:/join";
 //	}
+//	
 
 	// 회원가입 처리
 	@PostMapping("/joinAction")
@@ -138,6 +155,7 @@ public class UserController {
 	@GetMapping("/member")
 	public String memberInfoSelect(Principal principal, HttpServletRequest request) {
 		String user_id = principal.getName();
+		
 		Map<String, Object> userInfoMap = user2DAOImpl.showMemberInfo(user_id);
 		log.warn(userInfoMap);
 		request.setAttribute("user_id", userInfoMap.get("USER_ID"));
