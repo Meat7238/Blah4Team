@@ -119,13 +119,13 @@ public class UserController {
 	// 회원가입 처리
 	@PostMapping("/joinAction")
 	public String insertUser(@RequestParam("user_id") String user_id,
-			@RequestParam("user_password") String user_password, @RequestParam("user_email") String user_email,
-			@RequestParam("user_nick") String user_nick, @RequestParam("user_jobgroup") String user_jobgroup,
+			@RequestParam("user_password") String user_password, 
+			@RequestParam("user_email") String user_email,
+			@RequestParam("user_jobgroup") String user_jobgroup,
 			@RequestParam("user_workspace") String user_workspace) {
 		Map<String, String> map = new HashMap<>();
 		map.put("user_id", user_id);
 		map.put("user_password", passwordEncoder.encode(user_password)); // 비밀번호 암호화
-		map.put("user_nick", user_nick);
 		map.put("user_email", user_email);
 		map.put("user_jobgroup", user_jobgroup);
 		map.put("user_workspace", user_workspace);
@@ -141,7 +141,6 @@ public class UserController {
 		Map<String, Object> userInfoMap = user2DAOImpl.showMemberInfo(user_id);
 		log.warn(userInfoMap);
 		request.setAttribute("user_id", userInfoMap.get("USER_ID"));
-		request.setAttribute("user_nick", userInfoMap.get("USER_NICK"));
 		request.setAttribute("user_point", userInfoMap.get("USER_POINT"));
 		request.setAttribute("user_email", userInfoMap.get("USER_EMAIL"));
 		request.setAttribute("user_startdate", userInfoMap.get("USER_STARTDATE"));
@@ -155,13 +154,12 @@ public class UserController {
 	// 비밀번호 반드시 암호화!
 	@PostMapping("/member/edit")
 	public String memberInfoUpdate(@RequestParam("user_id") String user_id,
-			@RequestParam("user_password") String user_password, @RequestParam("user_nick") String user_nick) {
+			@RequestParam("user_password") String user_password) {
 
 		Map<String, String> userInfoMap = new HashMap<String, String>();
 
 		userInfoMap.put("user_id", user_id);
 		userInfoMap.put("user_password", passwordEncoder.encode(user_password));
-		userInfoMap.put("user_nick", user_nick);
 
 		log.warn(userInfoMap);
 		int result = user2DAOImpl.editMemberInfo(userInfoMap);

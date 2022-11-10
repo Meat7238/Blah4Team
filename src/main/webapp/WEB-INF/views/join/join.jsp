@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 
 	const form = document.signUpForm;
 	
@@ -33,14 +33,14 @@
 		var condition = "toolbar=no, location=no,menubar=no,scrollbars=no,resizable=no,width=300,height=200"
 		open(url, "confirm", condition);
 	}
-</script>
+</script> -->
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>join.jsp page</title>
 </head>
 <body>
 	<h2>회원가입</h2>
 
-	<form action="/eamil-authenticate" method="post"
+<!-- 	<form action="/eamil-authenticate" method="post"
 		enctype="multipart/form-data">
 		<div class="form-group email-form">
 			<label for="email">이메일</label> <input type="text" name="email" id="inputEmailForm" maxlength="30">
@@ -54,7 +54,7 @@
 		</div>
 	</form>
 
-
+ -->
 
 	<form action="${root}joinAction" method="post">
 		<table>
@@ -66,10 +66,6 @@
 			<tr>
 				<td>비밀번호</td>
 				<td><input type="password" name="user_password"></td>
-			</tr>
-			<tr>
-				<td>닉네임</td>
-				<td><input name="user_nick"></td>
 			</tr>
 			<tr>
 				<td>이메일</td>

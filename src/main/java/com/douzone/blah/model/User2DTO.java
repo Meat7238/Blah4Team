@@ -10,15 +10,16 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class User2DTO {
+
+	
 	private String user_num;
 	private String user_id;
 	private String user_password;
-	private String user_nick;
-	private String user_point;
+	private int user_point;
 	private String user_email;
 	private String user_jobgroup;
 	private String user_workspace;
-	private String enabled;
+	private int enabled;
 	private String authority;
 
 }

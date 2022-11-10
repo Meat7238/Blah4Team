@@ -19,8 +19,6 @@
 		<input type="text" name="user_id" value='${user_id}' readonly="readonly"><br> 
 		<label>비밀번호</label> 
 		<input type="password" name="user_password" placeholder="비밀번호"> <br>
-		<label>닉네임</label> 
-		<input type="text" name="user_nick" value='${user_nick}'>
 		<input type="submit" value="수정"><br>
 	</form>
 	<form action="/member/reauthenticate">

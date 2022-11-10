@@ -34,11 +34,11 @@
 	<!-- 회원가입 -->
 	<insert id="insertUser" parameterType="hashmap">
 		insert into
-		user2(user_num, user_id, user_password, user_nick, user_email,
+		user2(user_num, user_id, user_password, user_email,
 		user_jobgroup, user_workspace, enabled, authority)
 		values
 		('user'||TO_CHAR(USER_NUMseq.nextval),
-		#{user_id},#{user_password},#{user_nick},#{user_email},#{user_jobgroup},#{user_workspace},
+		#{user_id},#{user_password},#{user_email},#{user_jobgroup},#{user_workspace},
 		1, 'ROLE_USER')
 	</insert>
 	
@@ -59,7 +59,7 @@
 	<!-- 마이페이지 회원 정보 수정 -->
 	<update id="editMemberInfo" parameterType="hashmap">
 		update user2 
-		set user_password = #{user_password}, user_nick = #{user_nick}
+		set user_password = #{user_password}
 		where user_id=#{user_id}
 	</update>
 
