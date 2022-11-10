@@ -1,6 +1,7 @@
 package com.douzone.blah.controller;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.douzone.blah.dao.CorpDAO;
 import com.douzone.blah.dao.User2DAO;
@@ -98,25 +100,27 @@ public class CorpController {
 //		System.out.println(corpName);
 //		request.setAttribute("corpName", corpName);
 		request.setAttribute("corpreview_corpnum", corpNum);
-		
+
 		System.out.println(corpNum);
-		
+
 		return "/corp/corpreviewwriteform";
 	}
 
 	@RequestMapping(value = "/corpreview", method = RequestMethod.POST)
-	public String corpreview(CorpreviewDTO dto,HttpServletRequest request) {
-		
+	public String corpreview(CorpreviewDTO dto, HttpServletRequest request) {
+
 		System.out.println("여기오니 ===========> ");
-		System.out.println(dto);
+		System.out.println("dto 정보"+dto);
+//		request.setAttribute("corpreviewnum", dto.getCorpreview_corpnum());
+//		System.out.println("리뷰번호!===>" + request.getAttribute("corpreviewnum"));
 		
-	
-		List<CorpreviewDTO> corplist = corpDAOImpl.insertReview(dto);
-		
-		request.setAttribute("corplist", corplist);
-		
+		corpDAOImpl.insertReview(dto);
+
 		System.out.println("들어갔니? ===========> ");
-		return "/corp/corpreview";
+		
+		
+		return "/corp/corpreviewwriteform";
+//		return "redirect:/corpreviewmain";
 	}
 
 }

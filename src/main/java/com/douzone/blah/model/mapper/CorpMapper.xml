@@ -40,8 +40,8 @@
 		corpreview_starpoint3, corpreview_starpoint4, corpreview_starpoint5, corpreview_conclusion,
 		corpreview_pros, corpreview_cons, corpreview_regdate,
 		corpreview_usernum, corpreview_corpnum)values(
-		(select
-		NVL(max(corpreview_num),0)+1 from corpreview),
+		(select NVL(max(corpreview_num),0)+1 from corpreview),
+		<!-- (select max(corpreview_num)+1 from corpreview),  -->
 		#{corpreview_starpoint1},
 		#{corpreview_starpoint2},
 		#{corpreview_starpoint3},
@@ -51,7 +51,7 @@
 		#{corpreview_pros},
 		#{corpreview_cons},
 		sysdate,
-		'9',
+		9,
 		#{corpreview_corpnum})
 
 	</insert>

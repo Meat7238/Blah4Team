@@ -49,14 +49,14 @@ public class CorpDAOImpl implements CorpDAO {
 	}
 
 	@Override
-	public List<CorpreviewDTO> insertReview(CorpreviewDTO dto) {
+	public void insertReview(CorpreviewDTO dto) {
 		System.out.println("1");
 		CorpDAO corpDAO = sqlSession.getMapper(CorpDAO.class);
 		System.out.println(corpDAO);
 		System.out.println("2");
 		corpDAO.insertReview(dto);
 		System.out.println("3");
-		return corpDAO.insertReview(dto);
+		
 	}
 
 //기업번호를 넣어 기업이름을 갖고오는 메소드
