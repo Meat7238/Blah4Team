@@ -64,6 +64,15 @@ public class User2DAOImpl implements User2DAO {
 	public Map<String, Object> selectUser(String user_id) {
 		return sqlSession.selectOne("selectUser", user_id);
 	}
-
+	
+	// 마이페이지 회원 정보 조회
+	public Map<String, Object> showMemberInfo(String user_id){
+		return sqlSession.selectOne("showMemberInfo", user_id);
+	}
+	
+	// 마이페이지 회원 정보 수정
+	public int editMemberInfo(Map<String, String> map) {
+		return sqlSession.update("editMemberInfo", map);
+	}
 
 }

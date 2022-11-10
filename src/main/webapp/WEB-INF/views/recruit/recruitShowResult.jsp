@@ -85,7 +85,7 @@ function nextCalendar(){
 <body>
 	<%@ include file="/WEB-INF/views/layout/header.jsp"%>
 
-	<form action="${root}/recruit/recruitSelect" method="get">
+	<form action="${root}recruit/recruitSelect" method="get">
 		<input type="text" name="corp_name"> <input type="submit"
 			name="검색">
 
