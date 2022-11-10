@@ -14,7 +14,6 @@ public class UserDetailsVO implements UserDetails {
 
 	private String user_id; // ID
 	private String user_password; // PW
-	private String user_nick; 
 	private String user_email;
 	private String user_jobgroup;
 	private String user_workspace;
@@ -26,7 +25,6 @@ public class UserDetailsVO implements UserDetails {
 	
 	public void setUser_id(String user_id) {this.user_id = user_id;	}
 	public void setUser_password(String user_password) {this.user_password = user_password;	}
-	public void setUser_nick(String user_nick) {this.user_nick = user_nick;}
 	public void setUser_email(String user_email) {this.user_email = user_email;}
 	public void setUser_jobgroup(String user_jobgroup) {this.user_jobgroup = user_jobgroup;}
 	public void setUser_workspace(String user_workspace) {this.user_workspace = user_workspace;}
@@ -37,7 +35,6 @@ public class UserDetailsVO implements UserDetails {
 	}
 	public String getUser_id() {return user_id;	}
 	public String getUser_password() {return user_password;	}
-	public String getUser_nick() {return user_nick;}
 	public String getUser_email() {return user_email;}
 	public String getUser_jobgroup() {return user_jobgroup;}
 	public String getUser_workspace() {return user_workspace;}

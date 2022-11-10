@@ -20,9 +20,9 @@
 		<!-- 게시판 기능 -->
 		<security:intercept-url pattern="/board/**" access="permitAll"/>
 		
-		<security:intercept-url pattern="/info/*" access="permitAll"/>
-		<security:intercept-url pattern="/layout/*" access="permitAll"/>
-		<security:intercept-url pattern="/popup/*" access="permitAll"/>
+		<security:intercept-url pattern="/info/**" access="permitAll"/>
+		<security:intercept-url pattern="/layout/**" access="permitAll"/>
+		<security:intercept-url pattern="/popup/**" access="permitAll"/>
 		<security:intercept-url pattern="/fail" access="permitAll"/>
 		<security:intercept-url pattern="/home" access="permitAll"/>
 		<security:intercept-url pattern="/list" access="permitAll"/>
@@ -36,7 +36,7 @@
 		
 	<!-- 로그인 안 한 사용자만 이용하는 페이지 : 로그인된 상태에서는 로그인이나 회원가입 화면에 접근 못하도록 함 -->
 		<security:intercept-url pattern="/login/loginForm" access="isAnonymous()" />
-		<security:intercept-url pattern="/join/**" access="isAnonymous()"/>
+		<security:intercept-url pattern="/join**" access="isAnonymous()"/>
 		
 	
 	<!-- 로그인한 사용자만 이용하는 페이지 -->
@@ -71,8 +71,8 @@
 	<!-- 로그인 관련 설정 -->
 		
 		<security:csrf disabled="true"/>
-		<security:form-login login-page="/login/loginForm" default-target-url="/"
-			authentication-failure-url="/login/loginForm?error"
+		<security:form-login login-page="/loginForm" default-target-url="/"
+			authentication-failure-url="/loginForm?error"
 			login-processing-url="/login"
 			authentication-success-handler-ref="userLoginSuccessHandler"
 			username-parameter="user_id" password-parameter="user_password" />

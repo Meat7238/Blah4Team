@@ -34,12 +34,12 @@
 	<!-- 회원가입 -->
 	<insert id="insertUser" parameterType="hashmap">
 		insert into
-		user2(user_num, user_id, user_password, user_nick, user_email,
+		user2(user_num, user_id, user_password, user_email,
 		user_jobgroup, user_workspace, enabled, authority)
 		values
-		('user'||TO_CHAR(USER_NUMseq.nextval, 00000),
-		#{user_id},#{user_password},#{user_nick},#{user_email},#{user_jobgroup},#{user_workspace},
-		1, 'user')
+		('user'||TO_CHAR(USER_NUMseq.nextval),
+		#{user_id},#{user_password},#{user_email},#{user_jobgroup},#{user_workspace},
+		1, 'ROLE_USER')
 	</insert>
 	
 	<!-- 로그인 -->
@@ -50,6 +50,17 @@
 		where
 		user_id=#{user_id}
 	</select>
-
+	
+	<!-- 마이페이지 회원 정보 조회 -->
+	<select id="showMemberInfo" resultType="hashmap">
+		select * from user2 where user_id=#{user_id}
+	</select>
+	
+	<!-- 마이페이지 회원 정보 수정 -->
+	<update id="editMemberInfo" parameterType="hashmap">
+		update user2 
+		set user_password = #{user_password}
+		where user_id=#{user_id}
+	</update>
 
 </mapper>

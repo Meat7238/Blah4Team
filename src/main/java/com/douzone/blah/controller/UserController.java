@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.douzone.blah.dao.User2DAO;
 import com.douzone.blah.model.User2DTO;
@@ -86,38 +85,47 @@ public class UserController {
 		}
 		return res;
 	}
-	
+
 	// 로그인 페이지 요청
-	@RequestMapping("/login/loginForm")
+	@RequestMapping("/loginForm")
 	public String loginView(HttpServletRequest request) {
 
 		// 요청 시점의 사용자 URI 정보를 Session의 Attribute에 담아서 전달(잘 지워줘야 함)
 		// 로그인이 틀려서 다시 하면 요청 시점의 URI가 로그인 페이지가 되므로 조건문 설정
 		String uri = request.getHeader("Referer");
 		if (!uri.contains("/login/loginForm")) {
-			request.getSession().setAttribute("prevPage",
-					request.getHeader("Referer"));
+			request.getSession().setAttribute("prevPage", request.getHeader("Referer"));
 		}
 		return "/login/loginForm";
 	}
 
 	// 회원가입 페이지로 이동
-	@RequestMapping("/join/join")
+	@RequestMapping("/join")
 	public String join() {
 		return "join/join";
 	}
+	
+//	// 이메일 중복 확인 로직
+//	public void 여(HttpServletRequest request, HttpServletResponse response) {
+//		//중복체크
+//		String email = request.getParameter("email");
+//		Dao_Login dao = new Dao_Login();
+//		String result = dao.emailDupleCheck(email);
+//		
+//		request.setAttribute("emailDupleCheckResult", result);
+//		request.setAttribute("email", email);
+//	}
 
 	// 회원가입 처리
-	@PostMapping("/join/joinAction")
+	@PostMapping("/joinAction")
 	public String insertUser(@RequestParam("user_id") String user_id,
-			@RequestParam("user_password") String user_password, @RequestParam("user_email") String user_email,
-			@RequestParam("user_nick") String user_nick, @RequestParam("user_jobgroup") String user_jobgroup,
+			@RequestParam("user_password") String user_password, 
+			@RequestParam("user_email") String user_email,
+			@RequestParam("user_jobgroup") String user_jobgroup,
 			@RequestParam("user_workspace") String user_workspace) {
-		// 비밀번호 암호화
 		Map<String, String> map = new HashMap<>();
 		map.put("user_id", user_id);
-		map.put("user_password", passwordEncoder.encode(user_password));
-		map.put("user_nick", user_nick);
+		map.put("user_password", passwordEncoder.encode(user_password)); // 비밀번호 암호화
 		map.put("user_email", user_email);
 		map.put("user_jobgroup", user_jobgroup);
 		map.put("user_workspace", user_workspace);
@@ -125,6 +133,59 @@ public class UserController {
 		int result = user2DAOImpl.insertUser(map);
 		return "/login/loginForm"; // login.jsp로 이동
 	}
-	
-	
+
+	// 마이페이지 회원 정보 페이지로 이동, 회원 정보 조회
+	@GetMapping("/member")
+	public String memberInfoSelect(Principal principal, HttpServletRequest request) {
+		String user_id = principal.getName();
+		Map<String, Object> userInfoMap = user2DAOImpl.showMemberInfo(user_id);
+		log.warn(userInfoMap);
+		request.setAttribute("user_id", userInfoMap.get("USER_ID"));
+		request.setAttribute("user_point", userInfoMap.get("USER_POINT"));
+		request.setAttribute("user_email", userInfoMap.get("USER_EMAIL"));
+		request.setAttribute("user_startdate", userInfoMap.get("USER_STARTDATE"));
+		request.setAttribute("user_enddate", userInfoMap.get("USER_ENDDATE"));
+		request.setAttribute("user_jobgroup", userInfoMap.get("USER_JOBGROUP"));
+		request.setAttribute("user_workspace", userInfoMap.get("USER_WORKSPACE"));
+		return "member/member";
+	}
+
+	// 마이페이지 기본 회원 정보 수정 처리
+	// 비밀번호 반드시 암호화!
+	@PostMapping("/member/edit")
+	public String memberInfoUpdate(@RequestParam("user_id") String user_id,
+			@RequestParam("user_password") String user_password) {
+
+		Map<String, String> userInfoMap = new HashMap<String, String>();
+
+		userInfoMap.put("user_id", user_id);
+		userInfoMap.put("user_password", passwordEncoder.encode(user_password));
+
+		log.warn(userInfoMap);
+		int result = user2DAOImpl.editMemberInfo(userInfoMap);
+		if (result == 1)
+			log.warn(userInfoMap);
+		return "redirect:/member";
+	}
+
+	// 마이페이지 기본 회원 정보 수정 처리
+	// 비밀번호 반드시 암호화!
+	@PostMapping("/member/reauthenticate")
+	public String memberReauthenticate(@RequestParam("user_email") String user_email,
+			@RequestParam("user_workspace") String user_workspace,
+			@RequestParam("user_jobgroup") String user_jobgroup) {
+
+		Map<String, String> userInfoMap = new HashMap<String, String>();
+
+		userInfoMap.put("user_email", user_email);
+		userInfoMap.put("user_workspace", user_workspace);
+		userInfoMap.put("user_jobgroup", user_jobgroup);
+
+		log.warn(userInfoMap);
+		int result = user2DAOImpl.editMemberInfo(userInfoMap);
+		if (result == 1)
+			log.warn(userInfoMap);
+		return "redirect:/member";
+	}
+
 }

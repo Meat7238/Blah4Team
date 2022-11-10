@@ -24,7 +24,7 @@
 						<li><a href="javascript:popup()" target="_blank">신고가이드</a></li>
 							<script type="text/javascript">
 								function popup() {
-									var url = "stipulation";
+									var url = "home/stipulation";
 									var name = "info/stipulation";
 									var option = "width = 800px, height=600px, top=300px, left=300px, scrollbars=yes";
 									window.open(url, name, option);

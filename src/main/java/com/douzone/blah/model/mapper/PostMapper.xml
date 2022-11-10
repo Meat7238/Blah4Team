@@ -103,4 +103,25 @@
 	<select id="getPostCountCategory"  parameterType="String" resultType="Integer">
 		select count(*) from post where post_category = ${value}
 	</select>
+	
+	<!-- 마이페이지 내가 쓴 글 목록 조회 -->
+	<select id="getMyPost" parameterType="hashmap" resultType="hashmap">
+		select * from
+			(select A.*, ROWNUM r from
+				(select * from post order by post_num desc) A
+			)
+		where r >= #{start} and r &lt;= #{end} and (post_usernum in (select user_num from user2 where user_id = #{user_id}))
+		
+		<![CDATA[
+		select r.recruit_corpnum, c.corp_name, recruit_num, recruit_adminnum, recruit_startdate, recruit_enddate, recruit_jobgroup, recruit_career, recruit_readcount 
+			from recruit r, corp c
+			where r.recruit_corpnum in(select cc.corp_num from corp cc where cc.corp_name = '${value}')
+		]]>
+		
+		
+	</select>
+	
+	
+	
+	
 </mapper>

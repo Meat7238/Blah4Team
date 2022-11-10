@@ -22,5 +22,11 @@ public interface User2DAO {
 
 	// 로그인 처리
 	public Map<String, Object> selectUser(String user_id);
+	
+	// 마이페이지 회원 정보 조회
+	public Map<String, Object> showMemberInfo(String user_id);
+	
+	// 마이페이지 회원 정보 수정
+	public int editMemberInfo(Map<String, String> map);
 
 }
