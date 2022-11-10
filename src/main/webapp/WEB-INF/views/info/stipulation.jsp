@@ -1,10 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>약관</title>
+
+<script>
+	function close_btn(){
+		window.close();
+	}
+	
+	/* function report_btn(){
+		documetn.report.submit();
+	}
+	 */
+</script>
+
 <style type="text/css">
 .report{
 	text-align: left;
@@ -14,12 +27,28 @@
 	text-align: center;
 	font-size: 12px;
 }
+.btn{
+	text-align: center;
+}
+button{
+	font-size: 15px;
+	border-radius: 8px;
+	background-color: white;
+	color: black;
+	border: 2px solid #969696;
+	padding: 10px 24px;
+}
+button:hover {
+  background-color: #969696;
+  color: white;
+}
 </style>
 </head>
 <body>
 
 <div class="report">
 <br />
+<h2 align="center">게시글 신고</h2>
 <h3>[신고 정책 기준]</h3>
 BlahBlah는 회원들의 자발적인 신고를 통해 더 나은 서비스를 제공하기 위하여 노력하고 있습니다. 신고를 통해 접수된 회원들의 목소리에 귀기울이며, 신속하고 투명하게 신고 내용에 대한 조치를 시행합니다. BlahBlah 반복적으로 위법 부당한 활동을 지속하는 회원의 서비스 이용을 제한할 수 있습니다.
 <br /><br />
@@ -56,5 +85,43 @@ BlahBlah는 피신고인 대신 소명 내용 및 조치계획 등을 공지 가
 신고하기를 통해 접수된 회원들의 목소리에 귀기울이며, 신속하고 투명하게 신고 내용에 대한 조치를 시행하도록 힘쓰겠습니다.
 </div>
 </div>
+<br /><br />
+
+	<div class="btn">
+	<script>
+	function report_btn(){
+		var post_title = opener.$("#post_title").val();
+		//document.write(post_title);
+		//$("#post_title").val(post_title);
+		document.report.post_title.value = post_title;
+		
+		var post_num = opener.$("#post_num").val();
+		//document.write(post_num);
+		//$("#post_num").val(post_num);
+		document.report.post_num.value = post_num;
+		
+		var post_usernum = opener.$("#post_usernum").val();
+		//document.write(post_usernum);
+		//$("#post_usernum").val(post_usernum);
+		document.report.post_usernum.value = post_usernum;
+		
+		var post_category = opener.$("#post_category").val();
+		//document.write(post_category);
+		//$("#post_category").val(post_category);
+		document.report.post_category.value = post_category;
+	}
+	
+	</script>
+	<form name="report" action="reportForm" method="post">
+		<input type="hidden" id="post_title" name="post_title" value=""/>
+		<input type="hidden" id="post_num" name="post_num" value=""/>
+		<input type="hidden" id="post_usernum" name="post_usernum" value=""/>
+		<input type="hidden" id="post_category" name="post_category" value=""/>
+		<button onclick="report_btn()">신고하러가기</button>
+	<button onclick="close_btn()">신고 취소</button>
+	</form>
+	</div>
+
+	<!-- <button onclick="report_btn()">신고하러가기</button> -->
 </body>
 </html>

@@ -14,11 +14,17 @@
 			alert("회원번호를 입력하세요");
 		}else{
 			document.reportpform.submit();
+			alert("신고가 완료되었습니다!!");
+			window.close();
 		}
 	}
 	
-	function report_cancel(){
+	function report_back(){
 		history.back();
+	}
+	
+	function report_cancel(){
+		window.close();
 	}
 	
 </script>
@@ -62,8 +68,6 @@ border-radius: 10px;
 </style>
 </head>
 <body>
-<%@ include file="/WEB-INF/views/layout/header.jsp"%>
-
 <div class="title">
 <h2>게시글 신고하기</h2></div>
 <table border="1">
@@ -102,10 +106,8 @@ border-radius: 10px;
 	<input type="hidden" name="reportp_postnum" value="${r3}"/>
 	<input type="button" value="신고하기" onclick="report_post()"/>
 	<input type="button" value="신고취소" onclick="report_cancel()"/>
+	<input type="button" value="약관보기" onclick="report_back()"/>
 </form>
 
-
-
-<%@ include file="/WEB-INF/views/layout/footer.jsp"%>
 </body>
 </html>
