@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
 	function test3() {
 		if (document.insertReview.postreview_content.value == "") {
@@ -13,50 +14,22 @@
 		} else {
 			document.insertReview.submit();
 		}
-	}   
+	}
+	
+	function reportpop(){
+		var popUrl = "stipulation"
+		var popOption="width = 800px, height=600px, top=300px, left=300px, scrollbars=yes";
+		window.open(popUrl, "title", popOption);
+	}
+
 </script>
 
 <style>
-#modal {
-          display: none;
-          position:relative;
-          width:100%;
-          height:100%;
-          z-index:1;
-}
-        
-#modal h2 {
-          margin:0;
-}
-
-#modal button {
-          display:inline-block;
-          width:100px;
-          margin-left:calc(100% - 100px - 10px);
-}
-        
-#modal .modal_content {
-          width:80%;
-          margin:100px auto;
-          padding:20px 10px;
-          background:#fff;
-          border:2px solid #666;
-}
-        
-#modal .modal_layer {
-          position:fixed;
-          top:0;
-          left:0;
-          width:100%;
-          height:100%;
-          background:rgba(0, 0, 0, 0.5);
-          z-index:-1;
-}   
+   
 </style>
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/layout/header.jsp"%>
-
 	<h2>글 읽기</h2>
 	<a href="board?pg=${pg}">게시판 홈</a>
 	<table width="700">
@@ -81,35 +54,15 @@
 				onclick="location.href='${pageContext.request.contextPath}/updateform?post_num=${b.post_num}&pg=${pg}';" />
 				<input type="button" value="삭제"
 				onclick="location.href='${pageContext.request.contextPath}/delete?post_num=${b.post_num}&pg=${pg}';" />
-				<div id="root">
-					<button type="button" id="modal_opne_btn">게시글 신고하기</button>
-				</div>
-				<div id="modal">
-					<div class="modal_content">
-        				<h2>게시글 신고</h2>
-        				<p>
-        					<%@ include file="/WEB-INF/views/info/stipulation.jsp"%>
-        				</p>
-        				<form action="reportForm" method="post">
-        				<input type="hidden" name="pg" value="${pg}"/>
-        				<input type="hidden" name="post_title" value="${b.post_title}"/>
-						<input type="hidden" name="post_num" value="${b.post_num}"/>
-						<input type="hidden" name="post_usernum" value="${b.post_usernum}"/>
-        				<input type="hidden" name="post_category" value="${b.post_category}"/>
-        				<input type="submit" id="modal_report_btn" value="신고하러가기" />
-						</form>
-						<button type="button" id="modal_close_btn">신고 취소</button>
-				</div>
-				<div class="modal_layer"></div></div>
-				<script>
-					document.getElementById("modal_opne_btn").onclick = function() {
-					document.getElementById("modal").style.display="block";
-				}
-					document.getElementById("modal_close_btn").onclick = function() {
-					document.getElementById("modal").style.display="none";
-				}
-				</script>
-
+	
+			<form name="form">
+				<input type="hidden" name="pg" value="${pg}"/>
+				<input type="hidden" id="post_title" name="post_title" value="${b.post_title}"/>
+				<input type="hidden" id="post_num" name="post_num" value="${b.post_num}"/>
+				<input type="hidden" id="post_usernum" name="post_usernum" value="${b.post_usernum}"/>
+				<input type="hidden" id="post_category" name="post_category" value="${b.post_category}"/>
+				<input type="button" value="게시글 신고" onclick="reportpop(this.form)"/>
+			</form>
 			</td>
 		</tr>
 	</table>

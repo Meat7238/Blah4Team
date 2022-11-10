@@ -15,6 +15,13 @@
 	</select>
 
 	<!-- 게시판 신고하기 -->
+	<insert id="insertReportP" parameterType="com.douzone.blah.model.ReportPDTO">
+		insert into reportp(reportp_num, reportp_postnum, reportp_usernum,
+		reportp_content, reportp_regdate, reportp_type)
+		values( (select NVL(max(reportp_num),0)+1 from reportp), #{reportp_postnum},
+		#{reportp_usernum},
+		#{reportp_content}, sysdate, #{reportp_type})
+	</insert>
 
 	<!-- 게시글신고 처리 반영 -->
 	<update id="updateReportP"
