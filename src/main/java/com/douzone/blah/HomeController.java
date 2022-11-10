@@ -82,7 +82,7 @@ public class HomeController {
       request.setAttribute("list", list);
 		return "home";
 	}
-	@RequestMapping("stipulation")
+	@RequestMapping("home/stipulation")
 	public String stipulation(HttpServletRequest request) {
 	  return "info/stipulation";
 	}
