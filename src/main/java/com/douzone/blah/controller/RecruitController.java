@@ -58,6 +58,11 @@ public class RecruitController {
 	    request.setAttribute("recruitlist", list);
 	    return "admin/Recruit";
 	  }
+
+	  //공고 작성
+      @RequestMapping(value = "admin/RecruitWriteform", method = RequestMethod.GET)
+      public void Recruit() {
+      }
 //	  @RequestMapping(value = "admin/writeform", method = RequestMethod.POST)
 //	  public String writeform(NoticeDTO dto) {
 //	    System.out.println(dto);

@@ -12,7 +12,7 @@
 	<h1>recruitlist Edit</h1>
 
 	<a href="${path}/admin">뒤로가기</a> &nbsp;&nbsp;
-	<a href="${path}/admin/writeform">채용공고 입력하기</a>
+	<a href="${path}/admin/RecruitWriteform">채용공고 입력하기</a>
 
 	<table width="1000" cellpadding="3" border="1">
 		<tr>

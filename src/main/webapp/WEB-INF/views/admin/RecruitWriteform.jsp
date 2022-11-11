@@ -10,7 +10,7 @@
 <body>
 	<h2>채용공고 쓰기</h2>
 	
-	<a href="${pageContext.request.contextPath}/admin">뒤로가기</a> &nbsp;&nbsp;
+	<a href="${pageContext.request.contextPath}/admin/recruit">뒤로가기</a> &nbsp;&nbsp;
 	</br>
 	<form name="writeform" action="RecruitWrite" method="post">
 		<table width="850">
