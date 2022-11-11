@@ -6,7 +6,7 @@
 <mapper namespace="com.douzone.blah.dao.PostReviewDAO">
 
 	<insert id="insertPostReview"
-		parameterType="com.douzone.blah.model.PostReviewDTO">
+		parameterType="hashmap">
 		insert into postreview (postreview_num, postreview_usernum,
 		postreview_postnum,
 		postreview_content, postreview_like, postreview_regdate) values( (select

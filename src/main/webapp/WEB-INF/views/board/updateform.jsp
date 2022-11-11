@@ -13,9 +13,7 @@
 		}else if(document.updateform.post_category.value==""){
 			alert("카테고리를 입력하세요");
 		}else if(document.updateform.post_content.value==""){
-			alert("내용을 입력하세요"gks);
-		}else if(document.updateform.post_usernum.value==""){
-			alert("회원번호를 입력하세요");
+			alert("내용을 입력하세요");
 		}else{
 			document.updateform.submit();
 		}
@@ -55,10 +53,10 @@
 		</td>
 	</tr>
 	<tr>
-		<th>회원번호</th>
+		<th>작성자</th>
 		<td>
-			<%-- <input name="writer" value='<sec:authentication property="principal.username"/>' readonly="readonly"> --%>
-			<input type="text" name="post_usernum" maxlength="5" size="12" value="${b.post_usernum}"/>
+			<input name="writer" value='<sec:authentication property="principal.username"/>' readonly="readonly">
+			<input type="hidden" name="post_usernum" value="${user_num}" maxlength="10" size="12"/>
 		</td>
 	</tr>
 	<tr>
