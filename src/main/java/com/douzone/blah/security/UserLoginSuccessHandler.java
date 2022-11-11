@@ -4,19 +4,26 @@ import java.io.IOException;
 import java.util.Enumeration;
 import java.util.List;
 
+import javax.annotation.Resource;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.WebAuthenticationDetails;
 
+import com.douzone.blah.dao.User2DAO;
+
 import lombok.extern.log4j.Log4j;
 
 @Log4j
 public class UserLoginSuccessHandler implements AuthenticationSuccessHandler {
+	
+	@Resource
+	private User2DAO user2DAOImpl;
 
 	// 로그인 처리가 성공했을 때의 코드
 	@Override
@@ -46,7 +53,7 @@ public class UserLoginSuccessHandler implements AuthenticationSuccessHandler {
 		while (list.hasMoreElements()) {
 			System.out.println(list.nextElement());
 		}
-
+		
 		
 		// 로그인 성공시 보낼 uri
 		response.sendRedirect(prevPage);

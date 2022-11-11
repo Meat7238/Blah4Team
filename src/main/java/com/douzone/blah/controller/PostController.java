@@ -1,6 +1,8 @@
 package com.douzone.blah.controller;
 
+import java.security.Principal;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import javax.annotation.Resource;
@@ -10,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.douzone.blah.dao.PostDAO;
 import com.douzone.blah.dao.PostReviewDAO;
+import com.douzone.blah.dao.User2DAO;
 import com.douzone.blah.model.PostDTO;
 import com.douzone.blah.model.PostReviewDTO;
 
@@ -21,13 +24,17 @@ public class PostController {
 
 	@Resource
 	private PostReviewDAO postReviewDAOImpl;
+	
+	@Resource
+	private User2DAO user2DAOImpl;
 
 	// 게시글 목록
 	@RequestMapping("/board")
-	public String list(HttpServletRequest request) {
+	public String list(HttpServletRequest request, PostDTO dto) {
 		String result = request.getParameter("category");
 		System.out.println(result);
 
+		
 		int pg=1;
 		String strPg = request.getParameter("pg");
 
@@ -67,16 +74,16 @@ public class PostController {
 			String category8 = "취미생활";
 			String category9 = "우리회사 채용해요";
 
-			List<PostDTO> list1 = postDAOImpl.getPostList1(category1);
-			List<PostDTO> list2 = postDAOImpl.getPostList1(category2);
-			List<PostDTO> list3 = postDAOImpl.getPostList1(category3);
-			List<PostDTO> list4 = postDAOImpl.getPostList1(category4);
-			List<PostDTO> list5 = postDAOImpl.getPostList1(category5);
-			List<PostDTO> list6 = postDAOImpl.getPostList1(category6);
-			List<PostDTO> list7 = postDAOImpl.getPostList1(category7);
-			List<PostDTO> list8 = postDAOImpl.getPostList1(category8);
-			List<PostDTO> list9 = postDAOImpl.getPostList1(category9);
-
+			List<Map<String, Object>> list1 = postDAOImpl.getPostList1(category1);
+			List<Map<String, Object>> list2 = postDAOImpl.getPostList1(category2);
+			List<Map<String, Object>> list3 = postDAOImpl.getPostList1(category3);
+			List<Map<String, Object>> list4 = postDAOImpl.getPostList1(category4);
+			List<Map<String, Object>> list5 = postDAOImpl.getPostList1(category5);
+			List<Map<String, Object>> list6 = postDAOImpl.getPostList1(category6);
+			List<Map<String, Object>> list7 = postDAOImpl.getPostList1(category7);
+			List<Map<String, Object>> list8 = postDAOImpl.getPostList1(category8);
+			List<Map<String, Object>> list9 = postDAOImpl.getPostList1(category9);
+			
 			request.setAttribute("list1", list1);
 			request.setAttribute("list2", list2);
 			request.setAttribute("list3", list3);
@@ -117,7 +124,7 @@ public class PostController {
 			map.put("end", end);
 			map.put("post_category", result);
 
-			List<PostDTO> list = postDAOImpl.getPostList(map);
+			List<Map<String, Object>> list = postDAOImpl.getPostList(map);
 
 			request.setAttribute("list", list);
 			request.setAttribute("pg",pg);
@@ -134,25 +141,34 @@ public class PostController {
 
 	// 게시글 쓰기
 	@RequestMapping("/writeform")
-	public String writeform() {
+	public String writeform(HttpServletRequest request, Principal principal) {
+		String user = principal.getName();
+		String user_num = user2DAOImpl.userId(user);	// id -> num변환
+		System.out.println(user_num+"입니다");
+		
+		request.setAttribute("user_num", user_num);
 		return "board/writeform";
 	}
 
 	@RequestMapping("/write")
 	public String write(HttpServletRequest request, PostDTO dto) {
-
+		String userid = request.getParameter("writer");
 		postDAOImpl.insertPost(dto);
 		return "redirect:/board";
 	}
 
 	// 게시글 하나 읽기
 	@RequestMapping("/readform")
-	public String read(int post_num, Model model, int pg) {
+	public String read(HttpServletRequest request, int post_num, Model model, int pg) {
 
 		postDAOImpl.updateHit(post_num);
 //		int postreview_postnum = request.getParameterValues(postreview_postnum);
 //		postDAOImpl.updateReviewCount(postreview_postnum);
 
+		String user_id = user2DAOImpl.getUserID(post_num);
+		System.out.println(user_id+"입니다");
+		request.setAttribute("user_id", user_id);
+		
 		PostDTO dto = postDAOImpl.getPost(post_num);
 		model.addAttribute("b", dto);
 		model.addAttribute("pg", pg);
@@ -176,10 +192,11 @@ public class PostController {
 
 	// 게시글 수정
 	@RequestMapping("/updateform")
-	public String updateform(int post_num, Model model, int pg) {
+	public String updateform(int post_num, Model model, int pg, Principal principal) {
 		PostDTO dto = postDAOImpl.getPost(post_num);
 		model.addAttribute("b", dto);
 		model.addAttribute("pg", pg);
+		System.out.println(principal.getName());
 		return "board/updateform";
 	}
 	@RequestMapping("/update")

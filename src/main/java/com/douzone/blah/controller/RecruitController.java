@@ -8,9 +8,9 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.douzone.blah.dao.RecruitDAO;
@@ -27,23 +27,27 @@ public class RecruitController {
 	// 검색 전 매핑
 	@GetMapping("/recruitMain")
 	public String RecruitPage() {
-		return "/recruit/recruitShowResult";
+		return "/recruit/recruit";
 	}
 
 	// 검색 처리
-	@GetMapping("/recruit/recruitSelect")
+	@GetMapping("/recruitSelect")
 	public String searchRecruit(@RequestParam("corp_name") String corp_name, HttpServletRequest request, HttpServletResponse response) throws ParseException {
 		
 		log.warn("여기에 온 copr_name ====> " + corp_name);
 		List<Map<String, Object>> recruitInfo = recruitDAO.selectRecruit(corp_name);
 		recruitInfo.forEach(x -> log.warn("이거 타나"+x));
 		
+		recruitInfo.get(0).get("CORP_NAME").toString();
+		
+		
 		if (recruitInfo == null) {
 			return null;
 		} else {
 			request.setAttribute("list", recruitInfo);
+			System.out.println("========돌아요");
 		}
-		return "/recruit/recruitShowResult";
+		return "/recruit/recruit";
 	}
 
 }

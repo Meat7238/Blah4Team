@@ -19,6 +19,7 @@ public class User2DTO {
 	private String user_email;
 	private String user_jobgroup;
 	private String user_workspace;
+	private String user_mail_key;
 	private int enabled;
 	private String authority;
 
