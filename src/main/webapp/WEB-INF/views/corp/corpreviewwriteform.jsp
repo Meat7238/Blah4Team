@@ -44,11 +44,12 @@
 
 	<form name="corpreviewwriteform" id="corpreviewwriteform" action="corpreview" method="post">
 	<h2>기업 리뷰 작성</h2>
-
+${corpreview_corpnum}
+${corpreview_usernum}
 
 	<!-- <input type="text" name="corp_name" placeholder="회사명" maxlength="100" size="65" /> -->
 	<input type="hidden" name="corpreview_corpnum" value=${corpreview_corpnum} maxlength="100" size="65" />
-	${corpreview_corpnum}
+	<input type="hidden" name="corpreview_usernum" value=${corpreview_usernum} maxlength="100" size="65" />
 	<h2>항목별 평가</h2>
 		<fieldset>
 			<span class="text-bold">커리어 향상</span> 

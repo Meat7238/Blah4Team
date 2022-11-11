@@ -11,9 +11,9 @@
 	<%@ include file="/WEB-INF/views/layout/header.jsp"%>
 
 	<input type="button" value="소개"
-		onclick="location.href='corpreviewintro?corpnum=${corplist.get(1).CORPREVIEW_CORPNUM}'" />
+		onclick="location.href='corpreviewintro?corpnum=${corplist.get(0).CORPREVIEW_CORPNUM}'" />
 	<input type="button" value="리뷰"
-		onclick="location.href='corpreviewmain?corpreviewnum=${corplist.get(1).CORPREVIEW_CORPNUM}'" />
+		onclick="location.href='corpreviewmain?corpreviewnum=${corplist.get(0).CORPREVIEW_CORPNUM}'" />
 	
 
 
@@ -149,7 +149,7 @@
 							<th class="field-label">평점</th>
 							<td class="field-value">
 								<div class="value-container">
-									<div class="value">${(corplist.corpreview_starpoint1+corplist.corpreview_starpoint2+corplist.corpreview_starpoint3+corplist.corpreview_starpoint4+corplist.corpreview_starpoint5)/5}</div>
+									<div class="value">${(corplist.CORPREVIEW_STARPOINT1+corplist.CORPREVIEW_STARPOINT2+corplist.CORPREVIEW_STARPOINT3+corplist.CORPREVIEW_STARPOINT4+corplist.CORPREVIEW_STARPOINT5)/5}</div>
 								</div>
 							</td>
 

@@ -51,7 +51,7 @@
 		#{corpreview_pros},
 		#{corpreview_cons},
 		sysdate,
-		9,
+		#{corpreview_usernum},
 		#{corpreview_corpnum})
 
 	</insert>
