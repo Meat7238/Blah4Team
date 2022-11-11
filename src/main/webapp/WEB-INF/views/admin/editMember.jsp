@@ -36,7 +36,6 @@ $(function(){
 	   			}
 	  		}//end for
 	  	}//end if
-			
 });
 /* 	  
 	  if (checked >= 2){
@@ -77,8 +76,9 @@ $(function(){
 			<th>분류</th>
 			<th>회사</th>
 			<th>게시글수</th>
-<!-- 			<th>*삭제*</th>
- -->			<th>*수정*</th>
+			<!-- 			<th>*삭제*</th>
+ -->
+			<th>*수정*</th>
 		</tr>
 		<c:forEach var="e" items="${list }">
 			<tr>
@@ -90,12 +90,14 @@ $(function(){
 				<td>${e.user_email }</td>
 				<td>${e.user_jobgroup }</td>
 				<td>${e.user_workspace }</td>
-				<td>게시글수</td>
+		</c:forEach>
+		<c:forEach var="i" items="${user_countlist}">
+				<td>${i}</td>
 				<%-- <td><button onclick="test('${path}','${ e.user_num }')">
 						유저삭제</button></td> --%>
+						</c:forEach>
 				<td>권한수정</td>
 			</tr>
-		</c:forEach>
 	</table>
 	<a href="${path}/admin">뒤로가기</a>
 	<script>
@@ -111,12 +113,12 @@ $(function(){
 		}
 	
 </script>
-	<table width="600">
+		<table width="600">
 		<tr>
 			<td align="center">
 				<!-- 처음 이전 링크 --> <c:if test="${pg>block}">
 					<!-- 5>10 : false / 15>10 : true -->
-			[<a href="${pageContext.request.contextPath}/admin/edit?pg=1">◀◀</a>]
+			[<a href="${pageContext.request.contextPath}/admin/edit?pg=1"> ◀◀ </a>]
 			[<a href="${pageContext.request.contextPath}/admin/edit?pg=${fromPage-1}">◀</a>]		
 		</c:if> <c:if test="${pg<=block}">
 					<!-- 5<=10 :true / 15<=10:false -->

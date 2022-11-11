@@ -2,6 +2,7 @@ package com.douzone.blah.controller;
 
 import java.io.IOException;
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -71,24 +72,36 @@ public class UserController {
      //int totalPage = total/rowSize + (total%rowSize==0?0:1);
      System.out.println("페이지수 : "+ allPage);
 
-     int block = 10; //한페이지에 보여줄  범위 << [1] [2] [3] [4] [5] [6] [7] [8] [9] [10] >>
+     int block = 3; //한페이지에 보여줄  범위
      int fromPage = ((pg-1)/block*block)+1;  //보여줄 페이지의 시작
      //((1-1)/10*10)
      int toPage = ((pg-1)/block*block)+block; //보여줄 페이지의 끝
      if(toPage> allPage){ // 예) 20>17
          toPage = allPage;
      }
-
       HashMap map = new HashMap();
       map.put("start", start);
       map.put("end", end);
       List<User2DTO> list = user2DAOImpl.getAllUserList(map);
+      List<Integer> ali = new ArrayList<Integer>();
+      for(int i=0; i<list.size();i++) {
+        System.out.println(list.get(i).getUser_num());
+        ali.add(user2DAOImpl.getUserPostCount(list.get(i).getUser_num()));
+        System.out.println(ali);
+      }
+//      }
+//      System.out.println(ali);
+//      request.setAttribute("user_countlist", ali);
       request.setAttribute("list", list);
       request.setAttribute("pg",pg);
       request.setAttribute("allPage",allPage);
       request.setAttribute("block",block);
       request.setAttribute("fromPage",fromPage);
       request.setAttribute("toPage",toPage);
+
+//      String user_num = request.getParameter("user_num");
+//      int count = user2DAOImpl.getUserPostCount(user_num);
+//      request.setAttribute("user_count",count);
       System.out.println("갖고온 리스트는 :"+list);
       return "admin/editMember";
    }
@@ -113,6 +126,7 @@ public class UserController {
          return "fail";
       }
    }
+
 
    // 유저 삭제
    @RequestMapping("/admin/edit/delete")

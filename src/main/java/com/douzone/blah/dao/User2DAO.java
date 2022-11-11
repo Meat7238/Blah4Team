@@ -42,5 +42,8 @@ public interface User2DAO {
 
 	//user수 count
 	public int getUserCount();
+
+	//user의 post수 count
+	public int getUserPostCount(String user_num);
 }
 

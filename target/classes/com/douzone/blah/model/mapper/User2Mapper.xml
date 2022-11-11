@@ -118,4 +118,10 @@
 	<select id="getUserCount" resultType="Integer">
 		select count(*) from user2
 	</select>
+	
+	<!-- 특정회원이 읽은 게시글 수 카운트 -->
+	<select id="getUserPostCount" parameterType="String" resultType="Integer">
+		select count(*) from post where post_usernum=#{user_num}
+	</select>
+	
 </mapper>

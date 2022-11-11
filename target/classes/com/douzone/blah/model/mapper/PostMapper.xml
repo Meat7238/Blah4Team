@@ -98,7 +98,7 @@
 	<select id="getSearchList" parameterType="hashMap" resultType="com.douzone.blah.model.PostDTO">
 		select * from post
 		<if test="column != null">
-    		where ${column} like '%' || #{keyvalue} || '%'    	
+    		where ${column} like '%' || #{keyvalue} || '%'    order by post_num desc	
     	</if>
 	</select>
 	

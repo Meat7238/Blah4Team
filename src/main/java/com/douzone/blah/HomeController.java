@@ -41,7 +41,7 @@ public class HomeController {
       int allPage = (int) Math.ceil(total/(double)rowSize); //페이지수
       //int totalPage = total/rowSize + (total%rowSize==0?0:1);
 
-      int block = 10; //한페이지에 보여줄  범위 << [1] [2] [3] [4] [5] [6] [7] [8] [9] [10] >>
+      int block = 3; //한페이지에 보여줄  범위 << [1] [2] [3] [4] [5] [6] [7] [8] [9] [10] >>
       int fromPage = ((pg-1)/block*block)+1;  //보여줄 페이지의 시작
       //((1-1)/10*10)
       int toPage = ((pg-1)/block*block)+block; //보여줄 페이지의 끝

@@ -59,27 +59,27 @@
 					<td align="center">
 						<!-- 처음 이전 링크 --> <c:if test="${pg>block}">
 							<!-- 5>10: false	/	15>10: true -->
-				[<a href="board?pg=1">◀◀</a>]
-				[<a href="board?pg=${fromPage-1}">◀</a>]
+				[<a href="${pageContext.request.contextPath}/?pg=1">◀◀</a>]
+				[<a href="${pageContext.request.contextPath}/?pg=${fromPage-1}">◀</a>]
 			</c:if> <c:if test="${pg<=block}">
 							<!-- 5<=10 :true / 15<=10:false -->
-				[<span style="color: gray">◀◀</span>]	
-				[<span style="color: gray">◀</span>]
+				[<span style="color: gray">◁◁</span>]	
+				[<span style="color: gray">◁</span>]
 			</c:if> <!-- 블록 범위 찍기 --> <c:forEach begin="${fromPage}" end="${toPage}"
 							var="i">
 							<c:if test="${i==pg}">[${i}]</c:if>
 							<c:if test="${i!=pg}">
-					[<a href="board?pg=${i}">${i}</a>]
+					[<a href="${pageContext.request.contextPath}/?pg=${i}">${i}</a>]
 				</c:if>
 						</c:forEach> <!-- 다음, 이후 --> <c:if test="${toPage<allPage}">
 							<!-- 20<21 : true -->
-				[<a href="board?pg=${toPage+1}">▶</a>]
-				[<a href="board?pg=${allPage}">▶▶</a>]
+				[<a href="${pageContext.request.contextPath}/?pg=${toPage+1}">▶</a>]
+				[<a href="${pageContext.request.contextPath}/?pg=${allPage}">▶▶</a>]
 		
 			</c:if> <c:if test="${toPage>=allPage}">
 							<!-- 21>=21 :true -->
-				[<span style="color: gray">▶</span>]	
-				[<span style="color: gray">▶▶</span>]
+				[<span style="color: gray">▷</span>]	
+				[<span style="color: gray">▷▷</span>]
 		
 			</c:if>
 
