@@ -37,7 +37,7 @@ public class NoticeController {
     return "redirect:/admin/notice";
   }
 
-  // 공지사항 작성
+  // 공지사항 추가
   @RequestMapping(value = "admin/writeform", method = RequestMethod.GET)
   public String writeform() {
     return "admin/writeform";

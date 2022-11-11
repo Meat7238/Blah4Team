@@ -23,7 +23,7 @@ $(function(){
 		
 	let chekObj = document.getElementsByClassName("test");
 	let lenth = chekObj.length;
-	alert(lenth);
+	/* alert(lenth); */
 	let checked = 0;
 	let checkid;
 	  	if (confirm("정말 삭제하시겠습니까??") == true){
@@ -31,18 +31,15 @@ $(function(){
 	   		 	if (chekObj[i].checked === true) {
 		    	  checked += 1;
 		    	  checkid = chekObj[i].getAttribute("id");
-	  			  alert(checkid);
-	  			  location.href ='${pageContext.request.contextPath}/admin/edit/delete?num=' +checkid;
+/* 	  			  alert(checkid);
+ */
+			 	  alert("삭제 완료되었습니다!! 잠시 뒤 새로고침합니다.");
+				  location.href ='${pageContext.request.contextPath}/admin/edit/delete?num='+checkid;
 	   			}
 	  		}//end for
 	  	}//end if
 });
-/* 	  
-	  if (checked >= 2){
-	    alert("체크 해제 후 한 가지만 선택해 주세요");
-	    return false;
-	  } */
-	}); 
+}); 
 	
 </script>
 </head>
@@ -62,6 +59,8 @@ $(function(){
 	<!-- ------------------------------------------------------------------------------------------------------------- -->
 
 	<button class="check">체크해서 삭제하기</button>
+	<button class="checkadmin">체크해서 관리자권한 만들기</button>
+	<button class="checkuser">체크해서 유저권한 만들기</button>
 	</br>
 	<table border="1" width=50%>
 		<tr>
@@ -75,10 +74,9 @@ $(function(){
 			<th>이메일</th>
 			<th>분류</th>
 			<th>회사</th>
-			<th>게시글수</th>
+			<th>게시글 작성 수</th>
 			<!-- 			<th>*삭제*</th>
  -->
-			<th>*수정*</th>
 		</tr>
 		<c:forEach var="e" items="${list}" varStatus="status">
 			<tr>
@@ -91,7 +89,6 @@ $(function(){
 				<td>${e.user_jobgroup }</td>
 				<td>${e.user_workspace }</td>
 				<td>${user_countlist[status.index]}</td>
-				<td>권한수정</td>
 			</tr>
 		</c:forEach>
 	</table>

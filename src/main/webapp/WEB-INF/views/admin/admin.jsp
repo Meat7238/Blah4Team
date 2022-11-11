@@ -32,7 +32,7 @@
 	</h2>
 	</br>
 	<h2>
-		<li>3 <a href="${root}admin/ManageReport"> 채용 공고 등록 </a></li>
+		<li>4 <a href="${root}admin/recruit"> 공고 입력 </a></li>
 	</h2>
 	</br> 로그인 된 관리자 :<sec:authentication property="principal.username"/>
 

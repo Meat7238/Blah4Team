@@ -5,27 +5,41 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>공지사항 작성</title>
+<title>채용공고 작성</title>
 </head>
 <body>
-	<h2>공지사항 쓰기</h2>
-	<form name="writeform" action="writeform" method="post">
+	<h2>채용공고 쓰기</h2>
+	
+	<a href="${pageContext.request.contextPath}/admin">뒤로가기</a> &nbsp;&nbsp;
+	</br>
+	<form name="writeform" action="RecruitWrite" method="post">
 		<table width="850">
 			<tr>
-				<th>제목</th>
-				<td><input type="text" name="notice_title" maxlength="50"
-					size="65" /></td>
-			</tr>
-			<tr>
-				<th>카테고리</th>
+				<th>기업(기업번호)</th>
 				<td><input type="text" name="notice_category" maxlength="50"
 					size="65" /></td>
 			</tr>
 			<tr>
-				<th>내용</th>
-				<td><textarea name="notice_content" rows="5" cols="50"></textarea>
-				</td>
+				<th>모집신청 주소</th>
+				<td><input type="text" name="notice_category" maxlength="50"
+					size="65" /></td>
 			</tr>
+			<tr>
+				<th>공고 마감일</th>
+				<td><input type="text" name="notice_category" maxlength="50"
+					size="65" /></td>
+			</tr>
+			<tr>
+				<th>직업 분류</th>
+				<td><input type="text" name="notice_category" maxlength="50"
+					size="65" /></td>
+			</tr>
+			<tr>
+				<th>모집군분류(경력/신입)</th>
+				<td><input type="text" name="notice_category" maxlength="50"
+					size="65" /></td>
+			</tr>
+			
 			<tr>
 				<th>작성자</th>
 				<td><input type="hidden" name="notice_adminnum" maxlength="5"
