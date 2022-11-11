@@ -32,18 +32,14 @@ public class CorpController {
 	@Resource
 	private User2DAO user2DAOImpl;
 
-//	@RequestMapping("/corplist")
-//	public String list(HttpServletRequest request) {
-//		HashMap map = new HashMap();
-//		List<CorpDTO> corplist = corpDAOImpl.getCorpList(map);
-//		request.setAttribute("corplist", corplist);
-//		return "corplist";
-//	}
+	// 기업 정보 검색 페이지 받기
 
 	@RequestMapping(value = "/corpreviewhome", method = RequestMethod.GET)
 	public String corpreviewhome(HttpServletRequest request) {
 		return "corp/corpreviewhome";
 	}
+
+	// 기업 정보 검색 하기
 
 	@RequestMapping(value = "/corpreviewhome", method = RequestMethod.POST)
 	public String editList(HttpServletRequest request, HttpServletResponse response)
@@ -58,6 +54,8 @@ public class CorpController {
 
 	}
 
+	// 기업 정보 받기
+
 	@RequestMapping("/corpreviewintro")
 	public String corpreviewintro(String corpnum, Model model) {
 
@@ -69,27 +67,56 @@ public class CorpController {
 
 	}
 
-//	@RequestMapping("/corpreviewmain")
-//	public String corpreviewmain(String corpreviewnum, Model model) {
-//
-//		model.addAttribute("corplist", corpDAOImpl.corpReview(corpreviewnum));
-//
-//		return "corpreviewmain";
-//
-//	}
+	// 기업에 대해 리뷰 확인
 
 	@RequestMapping("/corpreviewmain")
-	public String corpreviewmain(String corpreviewnum, HttpServletRequest request) {
+	public String corpreviewmain(String corpreviewnum, HttpServletRequest request, Principal principal) {
 
-		
+		String user_id = principal.getName();
+
+		String user_num = user2DAOImpl.userId(user_id);
+
+		request.setAttribute("corpreview_usernum", user_num);
 
 		List<Map<String, Object>> corpReiviewList = corpDAOImpl.corpReview(corpreviewnum);
+
 		log.warn("받아온 값 : " + corpReiviewList);
 		request.setAttribute("corplist", corpReiviewList);
+
 		// model.addAttribute("corplist", corpDAOImpl.corpReview(corpreviewnum));
 		return "corp/corpreviewmain";
 
 	}
+
+	// 기업 리뷰 삭제
+
+	@RequestMapping("/corpreviewdelete")
+	public String corpreviewdelete(String corpreviewnum, HttpServletRequest request, Principal principal) {
+
+		List<Map<String, Object>> corpReiviewList = corpDAOImpl.corpReview(corpreviewnum);
+
+		log.warn("받아온 값 : " + corpReiviewList);
+		request.setAttribute("corplist", corpReiviewList);
+
+		return "corp/corpreviewmain";
+
+	}
+
+	// 기업 리뷰 신고
+
+	@RequestMapping("/corpreviewreport")
+	public String corpreviewreport(String corpreviewnum, HttpServletRequest request, Principal principal) {
+
+		List<Map<String, Object>> corpReiviewList = corpDAOImpl.corpReview(corpreviewnum);
+
+		log.warn("받아온 값 : " + corpReiviewList);
+		request.setAttribute("corplist", corpReiviewList);
+
+		return "corp/corpreviewmain";
+
+	}
+
+	// 기업에 대해 리뷰 작성 양식 받기
 
 	@RequestMapping(value = "/corpreviewwriteform", method = RequestMethod.GET)
 	public String corpreviewwriteform(String user_id, HttpServletRequest request, Principal principal) {
@@ -102,15 +129,12 @@ public class CorpController {
 //		request.setAttribute("corpName", corpName);
 		user_id = principal.getName();
 		System.out.println("아이디는 =========> " + user_id);
-		
-		Map<String, Object> userlist = user2DAOImpl.showMemberInfo(user_id);
-		log.warn("받아온 값 : " + userlist);
-		
-		request.setAttribute("userlist", userlist);
-		
-		
-		
-		
+
+		String user_num = user2DAOImpl.userId(user_id);
+		log.warn("받아온 값 : " + user_num);
+
+		request.setAttribute("corpreview_usernum", user_num);
+
 		request.setAttribute("corpreview_corpnum", corpNum);
 
 		System.out.println(corpNum);
@@ -118,10 +142,11 @@ public class CorpController {
 		return "corp/corpreviewwriteform";
 	}
 
+	// 기업에 대해 리뷰 작성 양식 받기
+
 	@RequestMapping(value = "/corpreview", method = RequestMethod.POST)
 	public String corpreview(CorpreviewDTO dto, HttpServletRequest request) {
-		
-		
+
 		System.out.println("여기오니 ===========> ");
 		System.out.println("dto 정보" + dto);
 //		request.setAttribute("corpreviewnum", dto.getCorpreview_corpnum());

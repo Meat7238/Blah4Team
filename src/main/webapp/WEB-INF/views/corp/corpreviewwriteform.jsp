@@ -33,10 +33,12 @@
 			alert("단점을 입력해주세요");
 			document.corpreviewwriteform.corpreview_cons.focus();
 		}else{
-			document.corpreviewwriteform.submit(); //전송
+			document.corpreviewwriteform.submit(); 
+			confirm('리뷰가 작성되었습니다.');		
 		}
+		
 	}
-	
+	//document.location.href ='corpreviewmain?corpreviewnum=${corpreview_corpnum}';
 </script>
 </head>
 <body>
@@ -44,8 +46,6 @@
 
 	<form name="corpreviewwriteform" id="corpreviewwriteform" action="corpreview" method="post">
 	<h2>기업 리뷰 작성</h2>
-${corpreview_corpnum}
-${corpreview_usernum}
 
 	<!-- <input type="text" name="corp_name" placeholder="회사명" maxlength="100" size="65" /> -->
 	<input type="hidden" name="corpreview_corpnum" value=${corpreview_corpnum} maxlength="100" size="65" />
