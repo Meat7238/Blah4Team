@@ -4,38 +4,6 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<script type="text/javascript">
-
-function check(pattern, taget, message) {
-	if(pattern.test(taget)) {
-    	return true;
-    }
-    alert(message);
-    taget.focus();
-    return false;
-}
-
-const form = document.signUpForm;
-
-function emailValCheck(){
-	var emailPattern= /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
-	var email = form.email.value;
-	if(!check(emailPattern, email, "유효하지 않은 이메일 주소입니다.")) {
-		return false;
-	}
-    return true;
-}
-
-function emailAuthentication(){
-	if (!emailValCheck()){
-    	return false;
-    }
-	var url = "confirmEmail.four?email=" + document.signUpForm.email.value;
-	open(url, "confirm",
-			"toolbar=no, location=no,menubar=no,scrollbars=no,resizable=no,width=300,height=200");
-}
-</script>
-
 
 <title>회원가입</title>
 </head>
@@ -52,6 +20,10 @@ function emailAuthentication(){
 			<tr>
 				<td>비밀번호</td>
 				<td><input type="password" name="user_password"></td>
+			</tr>
+			<tr>
+				<td>비밀번호 확인</td>
+				<td><input type="password" name="user_password2"></td>
 			</tr>
 			<tr>
 				<td>이메일</td>

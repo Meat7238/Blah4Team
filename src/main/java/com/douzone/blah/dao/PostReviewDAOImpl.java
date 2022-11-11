@@ -24,10 +24,24 @@ public class PostReviewDAOImpl implements PostReviewDAO {
 
 	// 댓글 작성
 	@Override
-	public void insertPostReview(PostReviewDTO dto) {
+	public void insertPostReview(HashMap map) {
 		PostReviewDAO postReviewDAO = sqlSession.getMapper(PostReviewDAO.class);
 		
-		postReviewDAO.insertPostReview(dto);
+		postReviewDAO.insertPostReview(map);
+	}
+
+	// 댓글 번호 가져오기
+	@Override
+	public int getReviewNum(int post_num) {
+		PostReviewDAO postReviewDAO = sqlSession.getMapper(PostReviewDAO.class);
+		return postReviewDAO.getReviewNum(post_num);
+	}
+
+	// 댓글 입력한 id 가져오기
+	@Override
+	public String getReviewId(int post_num) {
+		PostReviewDAO postReviewDAO = sqlSession.getMapper(PostReviewDAO.class);
+		return postReviewDAO.getReviewId(post_num);
 	}
 	
 }

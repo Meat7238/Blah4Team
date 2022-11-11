@@ -18,7 +18,6 @@ public class User2DAOImpl implements User2DAO {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 
-
 	// 유저 추가
 	@Override
 	public void insertUser2(User2DTO dto) {
@@ -65,7 +64,7 @@ public class User2DAOImpl implements User2DAO {
 
 	// 마이페이지 회원 정보 조회
 	@Override
-	public Map<String, Object> showMemberInfo(String user_id){
+	public Map<String, Object> showMemberInfo(String user_id) {
 		return sqlSession.selectOne("showMemberInfo", user_id);
 	}
 
@@ -95,17 +94,15 @@ public class User2DAOImpl implements User2DAO {
 
 	// 회원가입 아이디 중복 확인
 	@Override
-  public int idDupleCheck(String user_id) {
+	public int idDupleCheck(String user_id) {
 		return sqlSession.selectOne("idDupleCheck", user_id);
 	}
 
 	// 회원가입 이메일 중복 확인
 	@Override
-  public int emailDupleCheck(String user_email) {
-		return sqlSession.selectOne("idDupleCheck", user_email);
+	public int emailDupleCheck(String user_email) {
+		return sqlSession.selectOne("emailDupleCheck", user_email);
 	}
-
-
 
 	@Override
 	public String getUserID(int post_num) {
@@ -130,5 +127,6 @@ public class User2DAOImpl implements User2DAO {
     User2DAO user2DAO = sqlSession.getMapper(User2DAO.class);
     return user2DAO.getUserPostCount(user_num);
   }
+
 
 }

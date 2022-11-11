@@ -32,6 +32,7 @@ public class UserController {
 
    @Resource
    private User2DAO user2DAOImpl;
+   
    @Autowired
    UserService userService;
 
@@ -164,6 +165,7 @@ public class UserController {
    @PostMapping("/joinAction")
    public String insertUser(@RequestParam("user_id") String user_id,
          @RequestParam("user_password") String user_password,
+         @RequestParam("user_password2") String user_password2,
          @RequestParam("user_email") String user_email,
          @RequestParam("user_jobgroup") String user_jobgroup,
          @RequestParam("user_workspace") String user_workspace,
@@ -171,22 +173,21 @@ public class UserController {
 
       // 정규표현식 확인 로직
       String patternCheckResult = userService.patternCheck(user2dto);
-
       if(patternCheckResult.equals("emailError")) return "join/emilError";
-      else if(patternCheckResult.equals("IdError")) return "join/emilError";
-      else if(patternCheckResult.equals("passwordError")) return "join/emilError";
-
+      else if(patternCheckResult.equals("IdError")) return "join/idError";
+      else if(patternCheckResult.equals("passwordError")) return "join/pwdError";
+      
       // 아이디, 이메일 중복 확인 로직
-
-
-
-
-      // 입력 로직
+      if(userService.dupleCheck(user2dto).equals("idDuple")) return "join/idDuple";
+      else if(userService.dupleCheck(user2dto).equals("emailDuple")) return "join/emailDuple";
+      
+      // 비밀번호 확인 로직
+      if(!user_password.equals(user_password2)) {
+    	  return "join/pwdUnmatched";
+      } else System.out.println("pwd1 : " + user_password + ", pwd2 : " + user_password2 );
+      // 이메일 인증 키 삽입 로직
       String user_email_key = new TempKey().getKey(false, 30);
-      log.warn("이메일 인증 키 ===> " + user_email_key);
-
       Map<String, String> map = new HashMap<>();
-
       map.put("user_id", user_id);
       map.put("user_password", passwordEncoder.encode(user_password)); // 비밀번호 암호화
       map.put("user_email", user_email);
@@ -227,9 +228,9 @@ public class UserController {
 
    // 마이페이지 회원 정보 페이지로 이동, 회원 정보 조회
    @GetMapping("/member")
-   public String memberInfoSelect(Principal principal, HttpServletRequest request) {
+   public String memberInfoSelect(Principal principal, HttpServletRequest request, User2DTO user2dto) {
       String user_id = principal.getName();
-
+      
       Map<String, Object> userInfoMap = user2DAOImpl.showMemberInfo(user_id);
       log.warn(userInfoMap);
       request.setAttribute("user_id", userInfoMap.get("USER_ID"));
@@ -244,12 +245,19 @@ public class UserController {
 
    // 마이페이지 기본 회원 정보 수정 처리
    // 비밀번호 반드시 암호화!
-   @PostMapping("/member/edit")
+   @PostMapping("/member-edit")
    public String memberInfoUpdate(@RequestParam("user_id") String user_id,
-         @RequestParam("user_password") String user_password) {
-
+         @RequestParam("user_password") String user_password,
+         @RequestParam("user_password2") String user_password2,
+         User2DTO user2dto) {
+	  
+	  if(!user_password.equals(user_password2)) return "join/pwdUnmatched";
+	  
+	  user2dto.setUser_password(user_password);
+	  if(!userService.passwordPatternCheck(user2dto)) return "join/pwdError";
+	  
+	  
       Map<String, String> userInfoMap = new HashMap<String, String>();
-
       userInfoMap.put("user_id", user_id);
       userInfoMap.put("user_password", passwordEncoder.encode(user_password));
 
@@ -257,27 +265,27 @@ public class UserController {
       int result = user2DAOImpl.editMemberInfo(userInfoMap);
       if (result == 1)
          log.warn(userInfoMap);
-      return "join/emailAuthSuccess";
-   }
-
-   // 마이페이지 기본 회원 정보 수정 처리
-   // 비밀번호 반드시 암호화!
-   @PostMapping("/member/reauthenticate")
-   public String memberReauthenticate(@RequestParam("user_email") String user_email,
-         @RequestParam("user_workspace") String user_workspace,
-         @RequestParam("user_jobgroup") String user_jobgroup) {
-
-      Map<String, String> userInfoMap = new HashMap<String, String>();
-
-      userInfoMap.put("user_email", user_email);
-      userInfoMap.put("user_workspace", user_workspace);
-      userInfoMap.put("user_jobgroup", user_jobgroup);
-
-      log.warn(userInfoMap);
-      int result = user2DAOImpl.editMemberInfo(userInfoMap);
-      if (result == 1)
-         log.warn(userInfoMap);
       return "redirect:/member";
    }
+
+//   // 마이페이지 인증 회원 정보 수정 처리
+//   // 비밀번호 반드시 암호화!
+//   @PostMapping("/member/reauthenticate")
+//   public String memberReauthenticate(@RequestParam("user_email") String user_email,
+//         @RequestParam("user_workspace") String user_workspace,
+//         @RequestParam("user_jobgroup") String user_jobgroup) {
+//
+//      Map<String, String> userInfoMap = new HashMap<String, String>();
+//
+//      userInfoMap.put("user_email", user_email);
+//      userInfoMap.put("user_workspace", user_workspace);
+//      userInfoMap.put("user_jobgroup", user_jobgroup);
+//
+//      log.warn(userInfoMap);
+//      int result = user2DAOImpl.editMemberInfo(userInfoMap);
+//      if (result == 1)
+//         log.warn(userInfoMap);
+//      return "redirect:/member";
+//   }
 
 }

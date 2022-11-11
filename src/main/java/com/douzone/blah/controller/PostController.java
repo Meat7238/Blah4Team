@@ -174,6 +174,11 @@ public class PostController {
 
 		List<PostReviewDTO> reviewList = postReviewDAOImpl.getPostReview(post_num);
 		model.addAttribute("reviewList", reviewList);
+		
+		/*
+		 * int review_num = postReviewDAOImpl.getReviewNum(post_num); String review_id =
+		 * postReviewDAOImpl.getReviewId(post_num);
+		 */
 
 		return "board/readform";
 	}
@@ -193,25 +198,44 @@ public class PostController {
 	@RequestMapping("/updateform")
 	public String updateform(int post_num, Model model, int pg, Principal principal) {
 		PostDTO dto = postDAOImpl.getPost(post_num);
+		
+		String user = principal.getName();
+		String user_num = user2DAOImpl.userId(user);
+		
+		model.addAttribute("user_num", user_num);
 		model.addAttribute("b", dto);
 		model.addAttribute("pg", pg);
 		System.out.println(principal.getName());
 		return "board/updateform";
 	}
 	@RequestMapping("/update")
-	public String update(PostDTO dto, int pg) {
+	public String update(PostDTO dto, int pg, int post_num) {
+		System.out.println("업데이트 직전까지 왔음!!");
 		int result = postDAOImpl.updatePost(dto);
-		String res= "redirect:/board?pg="+pg;
+		String res= "redirect:/readform?post_num="+post_num+"&pg="+pg;
 		System.out.println(result);
 		return res;
 	}
 
 	// 댓글 작성
 	@RequestMapping("/review")
-	public String insertPostReview(PostReviewDTO dto, int post_num, int pg) {
-	  System.out.println(dto);
-		postReviewDAOImpl.insertPostReview(dto);
-		System.out.println(dto);
+
+	public String insertPostReview(HttpServletRequest request, PostReviewDTO dto, int post_num, int pg) {
+		String writer = request.getParameter("writer");
+		System.out.println(writer + "가 작성한 댓글입니다");
+
+		String postreview_postnum = request.getParameter("postreview_postnum");
+		String postreview_content = request.getParameter("postreview_content");
+		String postreview_usernum = user2DAOImpl.userId(writer);
+		System.out.println(writer+"에 해당하는 user_num은" + postreview_usernum+"입니다");
+		
+		HashMap map = new HashMap();
+		map.put("postreview_usernum", postreview_usernum);
+		map.put("postreview_content", postreview_content);
+		map.put("postreview_postnum", postreview_postnum);
+		
+		postReviewDAOImpl.insertPostReview(map);
+
 		return "redirect:/readform?post_num="+post_num+"&pg="+pg;
 	}
 

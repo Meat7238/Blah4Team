@@ -9,7 +9,6 @@
 <title>Insert title here</title>
 <script type="text/javascript">
 	function post_write(){
-		alert("function come!!");
 		if(document.writeform.post_title.value==""){
 			alert("제목을 입력하세요");
 		}else if(document.writeform.post_category.value==""){

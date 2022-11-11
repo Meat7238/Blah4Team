@@ -55,19 +55,22 @@
 	</update>
 
 	<!-- 회원가입 시 아이디 중복 확인 로직 -->
-	<select id="idDupleCheck">
-		select user_id
-		from user2
-		where user_id = #{user_id}
+	<select id="idDupleCheck" resultType="Integer">
+		select count(user_id)
+			from user2
+			where user_id = #{user_id}
 	</select>
 
 	<!-- 회원가입 시 이메일 중복 확인 로직 -->
-	<select id="emailDupleCheck">
-		select user_email
-		from user2
-		where user_email = #{user_email}
+	<select id="emailDupleCheck" resultType="Integer">
+		select count(user_email)
+			from user2
+			where user_email = #{user_email}
 	</select>
-
+	
+	<!-- 회원가입 시 입력한 이메일 -->
+	
+	<!-- 비밀번호 재발송 -->
 
 	<!-- 로그인 -->
 	<select id="selectUser" resultType="hashmap">

@@ -24,7 +24,8 @@
 		</div>
 		<ul class="navbar_menu">
 			<li><a href="${root}board">게시판</a></li>
-			<li><a href="/ui-r">기업리뷰</a></li>
+			<!-- /blah/home -->
+			<li><a href="${path }/corpreviewhome">기업리뷰</a></li>
 			<li><a href="${root}recruitMain">채용공고</a></li>
 		</ul>
 		<ul class="navbar_right">
@@ -37,7 +38,7 @@
 							property="principal.username" /> 님
 					</a> &nbsp
 					<a href="${root}logout">로그아웃</a></li>
-				</sec:authorize>
+			</sec:authorize>
 		</ul>
 		<a href="" class="navbar_toogleBtn"><img alt="menu"
 			src="resources/images/menu.png"></a>
