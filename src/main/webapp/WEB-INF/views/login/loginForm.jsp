@@ -14,7 +14,7 @@
 	<h1>Custom login page</h1>
 
 
-	<c:url value="/login" var="loginUrl" />
+	<c:url value="${root}login" var="loginUrl" />
 	<form:form name="f" action="${loginUrl}" method="POST">
 		<c:if test="${param.error != null}">
 			<p>아이디와 비밀번호가 잘못되었습니다.</p>

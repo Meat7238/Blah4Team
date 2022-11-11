@@ -7,7 +7,11 @@
 	<!-- 회원 전체 조회 -->
 	<select id="getAllUserList" parameterType="hashmap"
 		resultType="com.douzone.blah.model.User2DTO">
-		select * from user2
+		select * FROM (select noti.*, ROWNUM r FROM (select * from
+		user2 ORDER BY
+		REGEXP_REPLACE(user_num, '[0-9]') , to_number(REGEXP_REPLACE(user_num,
+		'[^0-9]')) desc) noti)where r >= #{start} and r &lt;=
+		#{end}
 	</select>
 
 	<!-- 회원 삭제 -->
@@ -35,13 +39,39 @@
 	<insert id="insertUser" parameterType="hashmap">
 		insert into
 		user2(user_num, user_id, user_password, user_email,
-		user_jobgroup, user_workspace, enabled, authority)
+		user_email_key,
+		user_jobgroup, user_workspace)
 		values
 		('user'||TO_CHAR(USER_NUMseq.nextval),
-		#{user_id},#{user_password},#{user_email},#{user_jobgroup},#{user_workspace},
-		1, 'ROLE_USER')
+		#{user_id},#{user_password},#{user_email},#{user_email_key},#{user_jobgroup},#{user_workspace})
 	</insert>
+
+	<!-- 이메일 인증 후 계정 활성화 -->
+	<update id="updateMailAuth" parameterType="map">
+		update user2 set
+		enabled=1, authority='ROLE_USER' where user_email=#{user_email,
+		jdbcType=VARCHAR, javaType=Object} and
+		user_email_key=#{user_email_key, jdbcType=VARCHAR, javaType=Object}
+	</update>
+
+	<!-- 회원가입 시 아이디 중복 확인 로직 -->
+	<select id="idDupleCheck" resultType="Integer">
+		select count(user_id)
+			from user2
+			where user_id = #{user_id}
+	</select>
+
+	<!-- 회원가입 시 이메일 중복 확인 로직 -->
+	<select id="emailDupleCheck" resultType="Integer">
+		select count(user_email)
+			from user2
+			where user_email = #{user_email}
+	</select>
 	
+	<!-- 회원가입 시 입력한 이메일 -->
+	
+	<!-- 비밀번호 재발송 -->
+
 	<!-- 로그인 -->
 	<select id="selectUser" resultType="hashmap">
 		select user_id as username,
@@ -50,28 +80,45 @@
 		where
 		user_id=#{user_id}
 	</select>
-	
-	<!-- 마이페이지 회원 정보 조회 -->
-	<select id="showMemberInfo" resultType="hashmap">
-		select * from user2 where user_id=#{user_id}
-	</select>
-	
-	<!-- 마이페이지 회원 정보 수정 -->
-	<update id="editMemberInfo" parameterType="hashmap">
-		update user2 
-		set user_password = #{user_password}
-		where user_id=#{user_id}
-	</update>
-	
-	<!-- post_num에 해당하는 user_id 반환 -->
-	<select id="getUserID" parameterType="Integer" resultType="String">
-		select user_id from user2
-		where user_num = (select post_usernum from post where post_num = #{post_num})
-	</select>
-	
-	<!-- userID->userNUm반환 -->
-	<select id="userId" parameterType="String" resultType="String">
-		select user_num from user2 where user_id = #{user_id}
+
+	<!-- 이메일 인증 체크 -->
+	<select id="emailAuthFail" parameterType="String"
+		resultType="int">
+		select count(*) from user2 where user_id=#{user_id} and
+		enabled=1 and authority='ROLE_USER'
 	</select>
 
+
+	<!-- 마이페이지 회원 정보 조회 -->
+	<select id="showMemberInfo" resultType="hashmap">
+		select * from user2 where
+		user_id=#{user_id}
+	</select>
+
+	<!-- 마이페이지 회원 정보 수정 -->
+	<update id="editMemberInfo" parameterType="hashmap">
+		update user2
+		set
+		user_password = #{user_password}
+		where user_id=#{user_id}
+	</update>
+
+	<!-- post_num에 해당하는 user_id 반환 -->
+	<select id="getUserID" parameterType="Integer"
+		resultType="String">
+		select user_id from user2
+		where user_num = (select
+		post_usernum from post where post_num = #{post_num})
+	</select>
+
+	<!-- userID->userNUm반환 -->
+	<select id="userId" parameterType="String" resultType="String">
+		select
+		user_num from user2 where user_id = #{user_id}
+	</select>
+
+	<!-- user수 카운트 -->
+	<select id="getUserCount" resultType="Integer">
+		select count(*) from user2
+	</select>
 </mapper>
