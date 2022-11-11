@@ -127,4 +127,12 @@
 		select count(*) from post where post_usernum=#{user_num}
 	</select>
 	
+	<!-- 권한수정 -->
+	<update id="updateAuthority" parameterType="hashmap">
+		update user2
+		set
+		authority = #{authority}
+		where user_num=#{user_num}
+	</update>
+	
 </mapper>

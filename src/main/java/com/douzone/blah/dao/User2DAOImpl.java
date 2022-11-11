@@ -116,16 +116,25 @@ public class User2DAOImpl implements User2DAO {
 		return user2DAO.userId(user);
 	}
 
+
+  //유저수 카운트
   @Override
   public int getUserCount() {
     User2DAO user2DAO = sqlSession.getMapper(User2DAO.class);
     return user2DAO.getUserCount();
   }
+
   // 특정회원이 읽은 게시글 수 카운트
   @Override
   public int getUserPostCount(String user_num) {
     User2DAO user2DAO = sqlSession.getMapper(User2DAO.class);
     return user2DAO.getUserPostCount(user_num);
+  }
+  //권한 변경
+  @Override
+  public int updateAuthority(Map<String, String> map) {
+    User2DAO user2DAO = sqlSession.getMapper(User2DAO.class);
+    return user2DAO.updateAuthority(map);
   }
 
 

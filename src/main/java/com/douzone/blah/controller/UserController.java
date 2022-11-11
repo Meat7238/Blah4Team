@@ -51,7 +51,7 @@ public class UserController {
       return "admin/admin";
    }
 
-   // 유저 편집 페이지
+   // 유저 편집 페이지 - 유저목록, 페이징처리, 게시글작성 수 등등
    @RequestMapping(value = "/admin/edit", method = RequestMethod.GET)
    public String editList(HttpServletRequest request) {
      int pg = 1;
@@ -97,14 +97,27 @@ public class UserController {
       request.setAttribute("block",block);
       request.setAttribute("fromPage",fromPage);
       request.setAttribute("toPage",toPage);
-
-//      String user_num = request.getParameter("user_num");
-//      int count = user2DAOImpl.getUserPostCount(user_num);
-//      request.setAttribute("user_count",count);
       System.out.println("갖고온 리스트는 :"+list);
       return "admin/editMember";
    }
+//   권한변경
+   @RequestMapping(value = "/admin/edit/authority", method = RequestMethod.GET)
+   public String authorityUpdate(HttpServletRequest request) {
+     String user_num = request.getParameter("num");
+     String authority = request.getParameter("authority");
+     Map<String, String> map = new HashMap<>();
+     map.put("user_num", user_num);
+     map.put("authority", authority);
 
+     int result = user2DAOImpl.updateAuthority(map);
+     if (result == 0) {
+       return "fail";
+     }
+     return "redirect:/admin/edit";
+   }
+
+
+   //유저 검색
    @RequestMapping(value = "/admin/edit", method = RequestMethod.POST)
    public String editList(HttpServletRequest request, HttpServletResponse response)
          throws ServletException, IOException {

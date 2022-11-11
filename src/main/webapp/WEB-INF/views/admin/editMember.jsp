@@ -31,16 +31,54 @@ $(function(){
 	   		 	if (chekObj[i].checked === true) {
 		    	  checked += 1;
 		    	  checkid = chekObj[i].getAttribute("id");
-/* 	  			  alert(checkid);
- */
-			 	  alert("삭제 완료되었습니다!! 잠시 뒤 새로고침합니다.");
+/* 	  			  alert(checkid); */
+			 	  alert("삭제 진행중입니다!! 잠시 뒤 새로고침합니다.");
 				  location.href ='${pageContext.request.contextPath}/admin/edit/delete?num='+checkid;
 	   			}
 	  		}//end for
 	  	}//end if
 });
 }); 
-	
+
+$(function(){
+	$(".checkadmin").on('click',function () {
+	alert("ad");
+	let adchekObj = document.getElementsByClassName("test");
+	let adlenth = adchekObj.length;
+	let msg = "ROLE_ADMIN";
+	let adcheck;
+	  	if (confirm("정말 변경하시겠습니까??") == true){
+	 	 for (i = 0; i < adlenth; i++) {
+	   		 	if (adchekObj[i].checked === true) {
+		    	  adcheck = adchekObj[i].getAttribute("id");
+ 	  			  alert(adcheck); 
+			 	  alert("변경 진행중입니다!! 잠시 뒤 새로고침합니다.");
+				  location.href ='${pageContext.request.contextPath}/admin/edit/authority?num='+adcheck+'&authority='+msg;
+	   			}
+	  		}//end for
+	  	}//end if
+});
+}); 
+
+$(function(){
+	$(".checkuser").on('click',function () {
+	alert("us");
+	let uschekObj = document.getElementsByClassName("test");
+	let uslenth = uschekObj.length;
+	let msg = "ROLE_USER";
+	let uscheck;
+	  	if (confirm("정말 변경하시겠습니까??") == true){
+	 	 for (i = 0; i < uslenth; i++) {
+	   		 	if (uschekObj[i].checked === true) {
+		    	  uscheck = uschekObj[i].getAttribute("id");
+ 	  			  alert(uscheck); 
+			 	  alert("변경 진행중입니다!! 잠시 뒤 새로고침합니다.");
+				  location.href ='${pageContext.request.contextPath}/admin/edit/authority?num='+uscheck+'&authority='+msg;
+	   			}
+	  		}//end for
+	  	}//end if
+});
+}); 
 </script>
 </head>
 <body>
@@ -59,8 +97,8 @@ $(function(){
 	<!-- ------------------------------------------------------------------------------------------------------------- -->
 
 	<button class="check">체크해서 삭제하기</button>
-	<button class="checkadmin">체크해서 관리자권한 만들기</button>
-	<button class="checkuser">체크해서 유저권한 만들기</button>
+	<button class="checkadmin" >체크해서 관리자권한 만들기</button>
+	<button class="checkuser" >체크해서 유저권한 만들기</button>
 	</br>
 	<table border="1" width=50%>
 		<tr>
@@ -70,6 +108,7 @@ $(function(){
 			<!--  data-enpassusermodified="yes"-->
 			<th>번호</th>
 			<th>아이디</th>
+			<th>권한</th>
 			<th>포인트</th>
 			<th>이메일</th>
 			<th>분류</th>
@@ -84,6 +123,7 @@ $(function(){
 					id="${e.user_num}"></td>
 				<td>${e.user_num }</td>
 				<td>${e.user_id }</td>
+				<td>${e.authority}</td>
 				<td>${e.user_point }</td>
 				<td>${e.user_email }</td>
 				<td>${e.user_jobgroup }</td>

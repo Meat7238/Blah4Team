@@ -33,14 +33,14 @@ public interface User2DAO {
 
 	// userId -> userNum
 	public String userId(String user);
-	
-	// 전송한 이메일 키 저장 
+
+	// 전송한 이메일 키 저장
 	int updateMailKey(Map<String, Object> map) throws Exception;
 	// 이메일 인증 후 계정 활성화
 	int updateMailAuth(Map<String, Object> map) throws Exception;
 	// 인증 안 한 아이디 거르기
 	int emailAuthFail(String id) throws Exception;
-	
+
 	// 아이디 중복 확인
 	public int idDupleCheck(String user_id);
 	// 이메일 중복 확인
@@ -51,5 +51,9 @@ public interface User2DAO {
 
 	//user의 post수 count
 	public int getUserPostCount(String user_num);
+
+	//user 권한 update
+	public int updateAuthority(Map<String, String> map);
+
 }
 
