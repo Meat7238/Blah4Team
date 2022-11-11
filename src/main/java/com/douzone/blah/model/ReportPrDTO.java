@@ -13,12 +13,11 @@ public class ReportPrDTO {
     private String reportpr_usernum;
     private String reportpr_content;
     private String reportpr_result;
-    private String reportpr_adminnum;
     private String reportpr_regdate;
     private String reportpr_type;
 }
 
-//CREATE TABLE REPORTPR( 
+//CREATE TABLE REPORTPR(
 //REPORTPR_NUM varchar2(30) CONSTRAINT REPORTPR_NUM_pk PRIMARY key,
 //REPORTPR_POSTREVIEWNUM NUMBER CONSTRAINT REPORTPR_POSTREVIEWNUM_fk REFERENCES POSTREVIEW(POSTREVIEW_NUM) ON DELETE CASCADE,
 //REPORTPR_USERNUM varchar2(30) CONSTRAINT REPORTPR_USERNUM_fk REFERENCES USER2(USER_NUM) ON DELETE CASCADE,

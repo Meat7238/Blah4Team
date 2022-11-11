@@ -29,19 +29,19 @@
 			<li><a href="${root}recruitMain">채용공고</a></li>
 		</ul>
 		<ul class="navbar_right">
-			<li><a href="writeform">글쓰기</a></li>
-			<li><sec:authorize access="isAnonymous()">
+			<li><a href="writeform">글쓰기 </a>&nbsp&nbsp&nbsp
+			<sec:authorize access="isAnonymous()">
 					<a href="${root}loginForm">로그인</a>
-				</sec:authorize> 
-				<sec:authorize access="isAuthenticated()">
-					<a href="${root}member">내 정보</a> &nbsp
-					<a href="${root}logout">로그아웃</a>
-				</sec:authorize></li>
-				
+				</sec:authorize>
+			<sec:authorize access="isAuthenticated()">
+					<a href="${root}member">👤&nbsp&nbsp <sec:authentication
+							property="principal.username" /> 님
+					</a> &nbsp
+					<a href="${root}logout">로그아웃</a></li>
+				</sec:authorize>
 		</ul>
 		<a href="" class="navbar_toogleBtn"><img alt="menu"
 			src="resources/images/menu.png"></a>
 	</nav>
-
 </body>
 </html>

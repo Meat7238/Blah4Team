@@ -80,13 +80,13 @@ table {
 		</tr>
 		<c:forEach var="c1" items="${list1}">
 			<tr>
-				<td><a href="readform?post_num=${c1.post_num}&pg=${pg}">${c1.post_title}
+				<td><a href="readform?post_num=${c1.POST_NUM}&pg=${pg}">${c1.POST_TITLE}
 					<%-- <c:if test="${q.post_reviewcount ne 0}">
 							<small><b>[&nbsp;<c:out value="${q.post_reviewcount}"/>&nbsp;]</b></small>
 						</c:if> --%>
 				</a></td>
-				<td>${c1.post_usernum}</td>
-				<td>${c1.post_readcount}</td>
+				<td>${c1.USER_ID}</td>
+				<td>${c1.POST_READCOUNT}</td>
 		</c:forEach>
 	</table><br />
 	
@@ -99,13 +99,13 @@ table {
 		</tr>
 		<c:forEach var="c2" items="${list2}">
 			<tr>
-				<td><a href="readform?post_num=${c2.post_num}&pg=${pg}">${c2.post_title}
+				<td><a href="readform?post_num=${c2.POST_NUM}&pg=${pg}">${c2.POST_TITLE}
 					<%-- <c:if test="${q.post_reviewcount ne 0}">
 							<small><b>[&nbsp;<c:out value="${q.post_reviewcount}"/>&nbsp;]</b></small>
 						</c:if> --%>
 				</a></td>
-				<td>${c2.post_usernum}</td>
-				<td>${c2.post_readcount}</td>
+				<td>${c2.USER_ID}</td>
+				<td>${c2.POST_READCOUNT}</td>
 		</c:forEach>
 	</table><br />
 	
@@ -118,13 +118,13 @@ table {
 		</tr>
 		<c:forEach var="c3" items="${list3}">
 			<tr>
-				<td><a href="readform?post_num=${c3.post_num}&pg=${pg}">${c3.post_title}
+				<td><a href="readform?post_num=${c3.POST_NUM}&pg=${pg}">${c3.POST_TITLE}
 					<%-- <c:if test="${q.post_reviewcount ne 0}">
 							<small><b>[&nbsp;<c:out value="${q.post_reviewcount}"/>&nbsp;]</b></small>
 						</c:if> --%>
 				</a></td>
-				<td>${c3.post_usernum}</td>
-				<td>${c3.post_readcount}</td>
+				<td>${c3.USER_ID}</td>
+				<td>${c3.POST_READCOUNT}</td>
 		</c:forEach>
 	</table><br />
 	
@@ -137,13 +137,13 @@ table {
 		</tr>
 		<c:forEach var="c4" items="${list4}">
 			<tr>
-				<td><a href="readform?post_num=${c4.post_num}&pg=${pg}">${c4.post_title}
+				<td><a href="readform?post_num=${c4.POST_NUM}&pg=${pg}">${c4.POST_TITLE}
 					<%-- <c:if test="${q.post_reviewcount ne 0}">
 							<small><b>[&nbsp;<c:out value="${q.post_reviewcount}"/>&nbsp;]</b></small>
 						</c:if> --%>
 				</a></td>
-				<td>${c4.post_usernum}</td>
-				<td>${c4.post_readcount}</td>
+				<td>${c4.USER_ID}</td>
+				<td>${c4.POST_READCOUNT}</td>
 		</c:forEach>
 	</table><br />
 	
@@ -156,13 +156,13 @@ table {
 		</tr>
 		<c:forEach var="c5" items="${list5}">
 			<tr>
-				<td><a href="readform?post_num=${c5.post_num}&pg=${pg}">${c5.post_title}
+				<td><a href="readform?post_num=${c5.POST_NUM}&pg=${pg}">${c5.POST_TITLE}
 					<%-- <c:if test="${q.post_reviewcount ne 0}">
 							<small><b>[&nbsp;<c:out value="${q.post_reviewcount}"/>&nbsp;]</b></small>
 						</c:if> --%>
 				</a></td>
-				<td>${c5.post_usernum}</td>
-				<td>${c5.post_readcount}</td>
+				<td>${c5.USER_ID}</td>
+				<td>${c5.POST_READCOUNT}</td>
 		</c:forEach>
 	</table><br />
 	
@@ -175,13 +175,13 @@ table {
 		</tr>
 		<c:forEach var="c6" items="${list6}">
 			<tr>
-				<td><a href="readform?post_num=${c6.post_num}&pg=${pg}">${c6.post_title}
+				<td><a href="readform?post_num=${c6.POST_NUM}&pg=${pg}">${c6.POST_TITLE}
 					<%-- <c:if test="${q.post_reviewcount ne 0}">
 							<small><b>[&nbsp;<c:out value="${q.post_reviewcount}"/>&nbsp;]</b></small>
 						</c:if> --%>
 				</a></td>
-				<td>${c6.post_usernum}</td>
-				<td>${c6.post_readcount}</td>
+				<td>${c6.USER_ID}</td>
+				<td>${c6.POST_READCOUNT}</td>
 		</c:forEach>
 	</table><br />
 	
@@ -194,13 +194,13 @@ table {
 		</tr>
 		<c:forEach var="c7" items="${list7}">
 			<tr>
-				<td><a href="readform?post_num=${c7.post_num}&pg=${pg}">${c7.post_title}
+				<td><a href="readform?post_num=${c7.POST_NUM}&pg=${pg}">${c7.POST_TITLE}
 					<%-- <c:if test="${q.post_reviewcount ne 0}">
 							<small><b>[&nbsp;<c:out value="${q.post_reviewcount}"/>&nbsp;]</b></small>
 						</c:if> --%>
 				</a></td>
-				<td>${c7.post_usernum}</td>
-				<td>${c7.post_readcount}</td>
+				<td>${c7.USER_ID}</td>
+				<td>${c7.POST_READCOUNT}</td>
 		</c:forEach>
 	</table><br />
 	
@@ -213,13 +213,13 @@ table {
 		</tr>
 		<c:forEach var="c8" items="${list8}">
 			<tr>
-				<td><a href="readform?post_num=${c8.post_num}&pg=${pg}">${c8.post_title}
+				<td><a href="readform?post_num=${c8.POST_NUM}&pg=${pg}">${c8.POST_TITLE}
 					<%-- <c:if test="${q.post_reviewcount ne 0}">
 							<small><b>[&nbsp;<c:out value="${q.post_reviewcount}"/>&nbsp;]</b></small>
 						</c:if> --%>
 				</a></td>
-				<td>${c8.post_usernum}</td>
-				<td>${c8.post_readcount}</td>
+				<td>${c8.USER_ID}</td>
+				<td>${c8.POST_READCOUNT}</td>
 		</c:forEach>
 	</table><br />
 	
@@ -232,13 +232,13 @@ table {
 		</tr>
 		<c:forEach var="c9" items="${list9}">
 			<tr>
-				<td><a href="readform?post_num=${c9.post_num}&pg=${pg}">${c9.post_title}
+				<td><a href="readform?post_num=${c9.POST_NUM}&pg=${pg}">${c9.POST_TITLE}
 					<%-- <c:if test="${q.post_reviewcount ne 0}">
 							<small><b>[&nbsp;<c:out value="${q.post_reviewcount}"/>&nbsp;]</b></small>
 						</c:if> --%>
 				</a></td>
-				<td>${c9.post_usernum}</td>
-				<td>${c9.post_readcount}</td>
+				<td>${c9.USER_ID}</td>
+				<td>${c9.POST_READCOUNT}</td>
 		</c:forEach>
 	</table><br />
 	

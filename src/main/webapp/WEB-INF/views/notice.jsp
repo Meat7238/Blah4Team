@@ -18,7 +18,6 @@
 			<th width="50">번호</th>
 			<th width="500">제목</th>
 			<th width="300">분류</th>
-			<th width="100">관리자번호</th>
 			<th width="120">날짜</th>
 			<th width="120">조회수</th>
 		</tr>
@@ -27,7 +26,6 @@
 				<td>${l.notice_num}</td>
 				<td><a href="noticeDetail?notice_num=${l.notice_num}">${l.notice_title}</a></td>
 				<td>${l.notice_category }</td>
-				<td>${l.notice_adminnum}</td>
 				<td>${l.notice_regdate}</td>
 				<td>${l.notice_readcount}</td>
 		</c:forEach>
