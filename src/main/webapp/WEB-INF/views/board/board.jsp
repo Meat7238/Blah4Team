@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -94,18 +95,18 @@ table, th, td {
 		</tr>
 		<c:forEach var="q" items="${list}">
 			<tr>
-				<td>${q.post_num}</td>
-				<td><a href="readform?post_num=${q.post_num}&pg=${pg}">${q.post_title}
+				<td>${q.POST_NUM}</td>
+				<td><a href="readform?post_num=${q.POST_NUM}&pg=${pg}">${q.POST_TITLE}
 					<%-- <c:if test="${q.post_reviewcount ne 0}">
 							<small><b>[&nbsp;<c:out value="${q.post_reviewcount}"/>&nbsp;]</b></small>
 						</c:if> --%>
 				</a></td>
-				<td>${q.post_category }</td>
+				<td>${q.POST_CATEGORY }</td>
 				<%-- <td>${q.post_content}</td> --%>
-				<td>${q.post_usernum}</td>
-				<td>${q.post_like}</td>
-				<td>${q.post_regdate}</td>
-				<td>${q.post_readcount}</td>
+				<td>${q.USER_ID}</td>
+				<td>${q.POST_LIKE}</td>
+				<td>${q.POST_REGDATE}</td>
+				<td>${q.POST_READCOUNT}</td>
 		</c:forEach>
 	</table>
 	

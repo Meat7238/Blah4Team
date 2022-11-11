@@ -75,4 +75,16 @@ public class User2DAOImpl implements User2DAO {
 		return sqlSession.update("editMemberInfo", map);
 	}
 
+	@Override
+	public String getUserID(int post_num) {
+		User2DAO user2DAO = sqlSession.getMapper(User2DAO.class);
+		return user2DAO.getUserID(post_num);
+	}
+
+	@Override
+	public String userId(String user) {
+		User2DAO user2DAO = sqlSession.getMapper(User2DAO.class);
+		return user2DAO.userId(user);
+	}
+
 }

@@ -7,11 +7,11 @@
 
 	<!-- 게시글 목록 -->
 	<select id="getPostList" parameterType="hashmap"
-		resultType="com.douzone.blah.model.PostDTO">
+		resultType="map">
 	select * from
 	(select A.*, ROWNUM r from
-		(select * from post where post_category = ${post_category} order by
-			post_num desc) A
+		(select * from post, user2 where post_category = ${post_category} and post.post_usernum = user2.user_num
+		order by post_num desc) A
 			)
 		where r >= #{start} and r &lt;= #{end}
 		
@@ -19,9 +19,12 @@
 	</select>
 	
 	<select id="getPostList1" parameterType="String"
-		resultType="com.douzone.blah.model.PostDTO">
-		select * from (select * from post where post_category = '${value}'
+		resultType="map">
+		select * from (select * from post, user2 where post_category = '${value}' and post.post_usernum = user2.user_num
 		order by post_readcount desc) where ROWNUM &lt;= 3
+		<!-- select user_id, post_title, post_readcount, post_num from post, user2
+		where post_category = '${value}' and post.post_usernum = user2.user_num -->
+		
 	</select>
 
 	<!-- 게시글 전체목록 -->
@@ -120,8 +123,6 @@
 		
 		
 	</select>
-	
-	
 	
 	
 </mapper>

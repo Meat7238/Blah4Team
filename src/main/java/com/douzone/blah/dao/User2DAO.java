@@ -29,4 +29,11 @@ public interface User2DAO {
 	// 마이페이지 회원 정보 수정
 	public int editMemberInfo(Map<String, String> map);
 
+	// 게시글 작성한 회원 ID얻기
+	public String getUserID(int post_num);
+
+	// userId -> userNum
+	public String userId(String user);
+	
+
 }

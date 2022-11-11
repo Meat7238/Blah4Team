@@ -38,7 +38,7 @@
 		</tr>
 
 		<tr>
-			<td width="20%">${b.post_usernum}</td>
+			<td width="20%">${user_id}</td>
 			<td>${b.post_category}</td>
 			<td width="15%">${b.post_regdate}</td>
 			<td width="15%">조회수 ${b.post_readcount}</td>
@@ -50,6 +50,12 @@
 		</tr>
 
 		<tr>
+		<%-- <sec:authorize access="isAuthenticated()">
+		<sec:authentication property="principal" var="user"/>
+			<c:if test="${user.권한 eq '관리자'}">
+			...인증되고 인가된 사용자에게 표출할 영역
+			</c:if>
+		</sec:authorize> --%>
 			<td colspan="4" align="right"><input type="button" value="수정"
 				onclick="location.href='${pageContext.request.contextPath}/updateform?post_num=${b.post_num}&pg=${pg}';" />
 				<input type="button" value="삭제"
