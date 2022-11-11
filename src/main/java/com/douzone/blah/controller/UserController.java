@@ -5,12 +5,10 @@ import java.security.Principal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import javax.annotation.Resource;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -20,13 +18,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import com.douzone.blah.dao.User2DAO;
 import com.douzone.blah.model.User2DTO;
 import com.douzone.blah.service.UserService;
 import com.douzone.blah.service.mail.MailHandler;
 import com.douzone.blah.service.mail.TempKey;
-
 import lombok.extern.log4j.Log4j;
 
 @Controller
@@ -38,10 +34,10 @@ public class UserController {
    
    @Autowired
    UserService userService;
-   
+
    @Autowired
    JavaMailSender mailSender;
-   
+
    private BCryptPasswordEncoder passwordEncoder;
 
    public UserController(BCryptPasswordEncoder passwordEncoder) {
@@ -57,9 +53,44 @@ public class UserController {
    // 유저 편집 페이지
    @RequestMapping(value = "/admin/edit", method = RequestMethod.GET)
    public String editList(HttpServletRequest request) {
+     int pg = 1;
+     String strPg = request.getParameter("pg");
+
+     if (strPg != null) {
+       pg = Integer.parseInt(strPg);
+     }
+     int rowSize = 10;
+     int start = (pg * rowSize) - (rowSize - 1);
+     int end = pg * rowSize;
+
+     int total = user2DAOImpl.getUserCount(); //총 게시물수
+     System.out.println("시작 : "+start +" 끝:"+end);
+     System.out.println("글의 수 : "+total);
+
+
+     int allPage = (int) Math.ceil(total/(double)rowSize); //페이지수
+     //int totalPage = total/rowSize + (total%rowSize==0?0:1);
+     System.out.println("페이지수 : "+ allPage);
+
+     int block = 10; //한페이지에 보여줄  범위 << [1] [2] [3] [4] [5] [6] [7] [8] [9] [10] >>
+     int fromPage = ((pg-1)/block*block)+1;  //보여줄 페이지의 시작
+     //((1-1)/10*10)
+     int toPage = ((pg-1)/block*block)+block; //보여줄 페이지의 끝
+     if(toPage> allPage){ // 예) 20>17
+         toPage = allPage;
+     }
+
       HashMap map = new HashMap();
+      map.put("start", start);
+      map.put("end", end);
       List<User2DTO> list = user2DAOImpl.getAllUserList(map);
       request.setAttribute("list", list);
+      request.setAttribute("pg",pg);
+      request.setAttribute("allPage",allPage);
+      request.setAttribute("block",block);
+      request.setAttribute("fromPage",fromPage);
+      request.setAttribute("toPage",toPage);
+      System.out.println("갖고온 리스트는 :"+list);
       return "admin/editMember";
    }
 
@@ -115,19 +146,19 @@ public class UserController {
    public String join() {
       return "join/join";
    }
-   
+
    // 회원가입 처리
    @PostMapping("/joinAction")
    public String insertUser(@RequestParam("user_id") String user_id,
-         @RequestParam("user_password") String user_password, 
+         @RequestParam("user_password") String user_password,
          @RequestParam("user_email") String user_email,
          @RequestParam("user_jobgroup") String user_jobgroup,
          @RequestParam("user_workspace") String user_workspace,
          User2DTO user2dto) throws Exception {
-   
+
       // 정규표현식 확인 로직
       String patternCheckResult = userService.patternCheck(user2dto);
-      
+
       if(patternCheckResult.equals("emailError")) return "join/emilError";
       else if(patternCheckResult.equals("IdError")) return "join/idError";
       else if(patternCheckResult.equals("passwordError")) return "join/pwdError";
@@ -135,13 +166,10 @@ public class UserController {
       // 아이디, 이메일 중복 확인 로직
       if(userService.dupleCheck(user2dto).equals("idDuple")) return "join/idDuple";
       else if(userService.dupleCheck(user2dto).equals("emailDuple")) return "join/emailDuple";
-      
-      
-      
       // 입력 로직
       String user_email_key = new TempKey().getKey(false, 30);
       log.warn("이메일 인증 키 ===> " + user_email_key);
-      
+
       Map<String, String> map = new HashMap<>();
 
       map.put("user_id", user_id);
@@ -154,7 +182,7 @@ public class UserController {
       // 회원가입 완료
       int result = user2DAOImpl.insertUser(map);
       log.warn("회원가입 ===> " + user_email_key);
-      
+
       // 이메일 발송
       MailHandler sendMail = new MailHandler(mailSender);
       sendMail.setSubject("[BlaBlah] 현직자 인증 메일입니다");
@@ -172,9 +200,9 @@ public class UserController {
       sendMail.send();
       log.warn("메일 전송 완료 ******** " + user_email);
       return "/join/joinSuccess";
-      
+
    }
-   
+
    @GetMapping("/join/registerEmail")
    public String verify(@RequestParam Map<String, Object> map) throws Exception {
       log.warn(map);
@@ -186,7 +214,7 @@ public class UserController {
    @GetMapping("/member")
    public String memberInfoSelect(Principal principal, HttpServletRequest request) {
       String user_id = principal.getName();
-      
+
       Map<String, Object> userInfoMap = user2DAOImpl.showMemberInfo(user_id);
       log.warn(userInfoMap);
       request.setAttribute("user_id", userInfoMap.get("USER_ID"));

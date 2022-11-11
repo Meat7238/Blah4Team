@@ -14,7 +14,7 @@ public interface User2DAO {
 	public int updateUser2(User2DTO dto); // 수정
 
 	public int deleteUser2(String user_num); // 삭제
-
+	//검색
 	public List<User2DTO> getSearchList(Map<String, String> map);
 
 	// 회원가입 처리
@@ -22,10 +22,10 @@ public interface User2DAO {
 
 	// 로그인 처리
 	public Map<String, Object> selectUser(String user_id);
-	
+
 	// 마이페이지 회원 정보 조회
 	public Map<String, Object> showMemberInfo(String user_id);
-	
+
 	// 마이페이지 회원 정보 수정
 	public int editMemberInfo(Map<String, String> map);
 	// 게시글 작성한 회원 ID얻기
@@ -45,5 +45,8 @@ public interface User2DAO {
 	public int idDupleCheck(String user_id);
 	// 이메일 중복 확인
 	public int emailDupleCheck(String user_email);
+
+	//user수 count
+	public int getUserCount();
 }
 
