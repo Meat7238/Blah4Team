@@ -32,7 +32,7 @@ public class UserController {
 
    @Resource
    private User2DAO user2DAOImpl;
-   
+
    @Autowired
    UserService userService;
 
@@ -90,9 +90,7 @@ public class UserController {
         ali.add(user2DAOImpl.getUserPostCount(list.get(i).getUser_num()));
         System.out.println(ali);
       }
-//      }
-//      System.out.println(ali);
-//      request.setAttribute("user_countlist", ali);
+      request.setAttribute("user_countlist", ali);
       request.setAttribute("list", list);
       request.setAttribute("pg",pg);
       request.setAttribute("allPage",allPage);
@@ -176,11 +174,11 @@ public class UserController {
       if(patternCheckResult.equals("emailError")) return "join/emilError";
       else if(patternCheckResult.equals("IdError")) return "join/idError";
       else if(patternCheckResult.equals("passwordError")) return "join/pwdError";
-      
+
       // 아이디, 이메일 중복 확인 로직
       if(userService.dupleCheck(user2dto).equals("idDuple")) return "join/idDuple";
       else if(userService.dupleCheck(user2dto).equals("emailDuple")) return "join/emailDuple";
-      
+
       // 비밀번호 확인 로직
       if(!user_password.equals(user_password2)) {
     	  return "join/pwdUnmatched";
@@ -230,7 +228,7 @@ public class UserController {
    @GetMapping("/member")
    public String memberInfoSelect(Principal principal, HttpServletRequest request, User2DTO user2dto) {
       String user_id = principal.getName();
-      
+
       Map<String, Object> userInfoMap = user2DAOImpl.showMemberInfo(user_id);
       log.warn(userInfoMap);
       request.setAttribute("user_id", userInfoMap.get("USER_ID"));
@@ -250,13 +248,13 @@ public class UserController {
          @RequestParam("user_password") String user_password,
          @RequestParam("user_password2") String user_password2,
          User2DTO user2dto) {
-	  
+
 	  if(!user_password.equals(user_password2)) return "join/pwdUnmatched";
-	  
+
 	  user2dto.setUser_password(user_password);
 	  if(!userService.passwordPatternCheck(user2dto)) return "join/pwdError";
-	  
-	  
+
+
       Map<String, String> userInfoMap = new HashMap<String, String>();
       userInfoMap.put("user_id", user_id);
       userInfoMap.put("user_password", passwordEncoder.encode(user_password));
