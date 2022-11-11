@@ -38,7 +38,7 @@
 							property="principal.username" /> 님
 					</a> &nbsp
 					<a href="${root}logout">로그아웃</a></li>
-				</sec:authorize>
+			</sec:authorize>
 		</ul>
 		<a href="" class="navbar_toogleBtn"><img alt="menu"
 			src="resources/images/menu.png"></a>

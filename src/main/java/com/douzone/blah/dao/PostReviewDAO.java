@@ -11,6 +11,12 @@ public interface PostReviewDAO {
 	public List<PostReviewDTO> getPostReview(int post_num);
 	
 	//댓글 작성
-	public void insertPostReview(PostReviewDTO dto);
+	public void insertPostReview(HashMap map);
+	
+	// 댓글 작성자 id가져오기
+	public String getReviewId(int post_num);
+	
+	// 댓글 번호 가져오기
+	public int getReviewNum(int post_num);
 	
 }
