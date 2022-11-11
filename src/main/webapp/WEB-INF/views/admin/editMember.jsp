@@ -74,8 +74,8 @@ $(function(){
 			<th>아이디</th>
 			<th>포인트</th>
 			<th>이메일</th>
-			<th>회사명</th>
-			<th>장소</th>
+			<th>분류</th>
+			<th>회사</th>
 			<th>게시글수</th>
 <!-- 			<th>*삭제*</th>
  -->			<th>*수정*</th>
@@ -116,27 +116,27 @@ $(function(){
 			<td align="center">
 				<!-- 처음 이전 링크 --> <c:if test="${pg>block}">
 					<!-- 5>10 : false / 15>10 : true -->
-			[<a href="list.htm?pg=1">◀◀</a>]
-			[<a href="list.htm?pg=${fromPage-1}">◀</a>]		
+			[<a href="${pageContext.request.contextPath}/admin/edit?pg=1">◀◀</a>]
+			[<a href="${pageContext.request.contextPath}/admin/edit?pg=${fromPage-1}">◀</a>]		
 		</c:if> <c:if test="${pg<=block}">
 					<!-- 5<=10 :true / 15<=10:false -->
-			[<span style="color: gray">◀◀</span>]	
-			[<span style="color: gray">◀</span>]
+			[<span style="color: gray">◁◁</span>]	
+			[<span style="color: gray">◁</span>]
 		</c:if> <!-- 블록 범위 찍기 --> <c:forEach begin="${fromPage}" end="${toPage}"
 					var="i">
 					<c:if test="${i==pg}">[${i}]</c:if>
 					<c:if test="${i!=pg}">
-				[<a href="list.htm?pg=${i}">${i}</a>]
+				[<a href="${pageContext.request.contextPath}/admin/edit?pg=${i}">${i}</a>]
 			</c:if>
 				</c:forEach> <!-- 다음, 이후 --> <c:if test="${toPage<allPage}">
 					<!-- 20<21 : true -->
-				[<a href="list.htm?pg=${toPage+1}">▶</a>]
-				[<a href="list.htm?pg=${allPage}">▶▶</a>]
+				[<a href="${pageContext.request.contextPath}/admin/edit?pg=${toPage+1}">▶</a>]
+				[<a href="${pageContext.request.contextPath}/admin/edit?pg=${allPage}">▶▶</a>]
 		
 		</c:if> <c:if test="${toPage>=allPage}">
 					<!-- 21>=21 :true -->
-				[<span style="color: gray">▶</span>]
-				[<span style="color: gray">▶▶</span>]
+				[<span style="color: gray">▷</span>]
+				[<span style="color: gray">▷▷</span>]
 		
 		</c:if>
 
