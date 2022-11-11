@@ -128,8 +128,8 @@ public class UserController {
       String patternCheckResult = userService.patternCheck(user2dto);
       
       if(patternCheckResult.equals("emailError")) return "join/emilError";
-      else if(patternCheckResult.equals("IdError")) return "join/emilError";
-      else if(patternCheckResult.equals("passwordError")) return "join/emilError";
+      else if(patternCheckResult.equals("IdError")) return "join/idError";
+      else if(patternCheckResult.equals("passwordError")) return "join/pwdError";
       
       // 아이디, 이메일 중복 확인 로직
       
