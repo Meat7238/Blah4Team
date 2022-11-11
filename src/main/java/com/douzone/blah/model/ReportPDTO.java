@@ -13,7 +13,6 @@ public class ReportPDTO {
 	private String reportp_usernum;
 	private String reportp_content;
 	private String reportp_result;
-	private String reportp_adminnum;
 	private String reportp_regdate;
 	private String reportp_type;
 }

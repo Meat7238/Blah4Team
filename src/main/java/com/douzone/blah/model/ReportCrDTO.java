@@ -13,7 +13,6 @@ public class ReportCrDTO {
 	private String reportcr_usernum;
 	private String reportcr_content;
 	private String reportcr_result;
-	private String reportcr_adminnum;
 	private String reportcr_regdate;
 	private String reportcr_type;
 }
