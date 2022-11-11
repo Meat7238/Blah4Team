@@ -19,7 +19,6 @@
 		
 		<!-- 게시판 기능 -->
 		<security:intercept-url pattern="/board/**" access="permitAll"/>
-		
 		<security:intercept-url pattern="/info/**" access="permitAll"/>
 		<security:intercept-url pattern="/layout/**" access="permitAll"/>
 		<security:intercept-url pattern="/popup/**" access="permitAll"/>
@@ -28,7 +27,6 @@
 		<security:intercept-url pattern="/list" access="permitAll"/>
 		<security:intercept-url pattern="/notice" access="permitAll"/>
 		<security:intercept-url pattern="/noticeDetail" access="permitAll"/>
-
 		
 		<!-- 채용공고 기능 -->
 		<security:intercept-url pattern="/recruit/recruitSelect**" access="permitAll"/>
@@ -37,20 +35,17 @@
 		
 	<!-- 로그인 안 한 사용자만 이용하는 페이지 : 로그인된 상태에서는 로그인이나 회원가입 화면에 접근 못하도록 함 -->
 		<security:intercept-url pattern="/login/loginForm" access="isAnonymous()" />
-		<security:intercept-url pattern="/join**" access="isAnonymous()"/>
-		
+		<security:intercept-url pattern="/joinAction" access="permitAll"/>
+		<security:intercept-url pattern="/join/**" access="permitAll"/>
+		<security:intercept-url pattern="/join/registerEmail" access="permitAll"/>
 	
 	<!-- 로그인한 사용자만 이용하는 페이지 -->
 		<!-- 계정관련 기능 -->
 		<security:intercept-url pattern="/login/logout" access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')"/>
-		<security:intercept-url pattern="/member" access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')"/>		
-
 		
-		<!--  -->
 		
 		<!-- 리뷰 기능 -->
-		
-		
+
 		<!-- 게시판 기능 -->
 		<security:intercept-url pattern="/writeform" access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')"/>
 		<security:intercept-url pattern="/write" access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')"/>
@@ -58,6 +53,9 @@
 		<security:intercept-url pattern="/updateform" access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')"/>
 		<security:intercept-url pattern="/update" access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')"/>
 		<security:intercept-url pattern="/review" access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')"/>
+		
+		<!-- 마이페이지 -->
+		<security:intercept-url pattern="/member/**" access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')"/>		
 		
 		<!-- 관리자 페이지 -->
 		<security:intercept-url pattern="/adminLogin" access="hasRole('ROLE_ADMIN')"/>
@@ -69,8 +67,9 @@
 		<security:intercept-url pattern="/admin/notice**" access="hasRole('ROLE_ADMIN')"/>
 		<security:intercept-url pattern="/admin/edit/delete" access="hasRole('ROLE_ADMIN')"/>
 		<security:intercept-url pattern="/admin/ManageReport" access="hasRole('ROLE_ADMIN')"/>
+
+
 	<!-- 로그인 관련 설정 -->
-		
 		<security:csrf disabled="true"/>
 		<security:form-login login-page="/loginForm" default-target-url="/"
 			authentication-failure-url="/loginForm?error"

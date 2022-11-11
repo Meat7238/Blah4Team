@@ -2,7 +2,6 @@ package com.douzone.blah.controller;
 
 import java.security.Principal;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import javax.annotation.Resource;
@@ -24,7 +23,7 @@ public class PostController {
 
 	@Resource
 	private PostReviewDAO postReviewDAOImpl;
-	
+
 	@Resource
 	private User2DAO user2DAOImpl;
 
@@ -34,7 +33,7 @@ public class PostController {
 		String result = request.getParameter("category");
 		System.out.println(result);
 
-		
+
 		int pg=1;
 		String strPg = request.getParameter("pg");
 
@@ -83,7 +82,7 @@ public class PostController {
 			List<Map<String, Object>> list7 = postDAOImpl.getPostList1(category7);
 			List<Map<String, Object>> list8 = postDAOImpl.getPostList1(category8);
 			List<Map<String, Object>> list9 = postDAOImpl.getPostList1(category9);
-			
+
 			request.setAttribute("list1", list1);
 			request.setAttribute("list2", list2);
 			request.setAttribute("list3", list3);
@@ -145,7 +144,7 @@ public class PostController {
 		String user = principal.getName();
 		String user_num = user2DAOImpl.userId(user);	// id -> num변환
 		System.out.println(user_num+"입니다");
-		
+
 		request.setAttribute("user_num", user_num);
 		return "board/writeform";
 	}
@@ -168,7 +167,7 @@ public class PostController {
 		String user_id = user2DAOImpl.getUserID(post_num);
 		System.out.println(user_id+"입니다");
 		request.setAttribute("user_id", user_id);
-		
+
 		PostDTO dto = postDAOImpl.getPost(post_num);
 		model.addAttribute("b", dto);
 		model.addAttribute("pg", pg);
@@ -215,6 +214,7 @@ public class PostController {
 
 	// 댓글 작성
 	@RequestMapping("/review")
+
 	public String insertPostReview(HttpServletRequest request, PostReviewDTO dto, int post_num, int pg) {
 		String writer = request.getParameter("writer");
 		System.out.println(writer + "가 작성한 댓글입니다");
@@ -231,6 +231,7 @@ public class PostController {
 		
 		postReviewDAOImpl.insertPostReview(map);
 		request.setAttribute("writer", writer);
+
 		return "redirect:/readform?post_num="+post_num+"&pg="+pg;
 	}
 
