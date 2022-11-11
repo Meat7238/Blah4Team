@@ -101,7 +101,7 @@ table, th, td {
 							<small><b>[&nbsp;<c:out value="${q.post_reviewcount}"/>&nbsp;]</b></small>
 						</c:if> --%>
 				</a></td>
-				<td>${q.POST_CATEGORY }</td>
+				<td>${q.POST_CATEGORY}</td>
 				<%-- <td>${q.post_content}</td> --%>
 				<td>${q.USER_ID}</td>
 				<td>${q.POST_LIKE}</td>

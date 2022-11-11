@@ -174,6 +174,11 @@ public class PostController {
 
 		List<PostReviewDTO> reviewList = postReviewDAOImpl.getPostReview(post_num);
 		model.addAttribute("reviewList", reviewList);
+		
+		/*
+		 * int review_num = postReviewDAOImpl.getReviewNum(post_num); String review_id =
+		 * postReviewDAOImpl.getReviewId(post_num);
+		 */
 
 		return "board/readform";
 	}
@@ -230,7 +235,6 @@ public class PostController {
 		map.put("postreview_postnum", postreview_postnum);
 		
 		postReviewDAOImpl.insertPostReview(map);
-		request.setAttribute("writer", writer);
 
 		return "redirect:/readform?post_num="+post_num+"&pg="+pg;
 	}

@@ -86,7 +86,7 @@
 			<c:forEach items="${reviewList}" var="reviewList">
 				<li>
 					<p>
-						작성자 : ${writer}<br /> 작성 날짜 :
+						작성자 : ${reviewList.postreview_usernum}<br /> 작성 날짜 :
 						${reviewList.postreview_regdate}
 					</p>
 
@@ -102,8 +102,12 @@
 	<div>
 		<h2>댓글 작성하기</h2>
 		<h5>작성자</h5>
+		
 		<form name="insertReview" action="review" method="post">
+					<sec:authorize access="isAuthenticated()">
+		
 			<input name="writer" value='<sec:authentication property="principal.username"/>' readonly="readonly">
+			</sec:authorize>
 			<br />
 			<textarea name="postreview_content" rows="5" cols="50"
 				placeholder="댓글입력하기"></textarea>
