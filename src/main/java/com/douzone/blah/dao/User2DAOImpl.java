@@ -75,4 +75,21 @@ public class User2DAOImpl implements User2DAO {
 		return sqlSession.update("editMemberInfo", map);
 	}
 
+	@Override
+	public int updateMailKey(Map<String, Object> map) throws Exception {
+		return sqlSession.update("updateMailKey", map);
+	}
+
+	@Override
+	public int updateMailAuth(Map<String, Object> map) throws Exception {
+		return sqlSession.update("updateMailAuth", map);
+	}
+
+	@Override
+	public int emailAuthFail(String user_id) throws Exception {
+		return sqlSession.selectOne("emailAuthFail", user_id);
+	}
+	
+	
+
 }

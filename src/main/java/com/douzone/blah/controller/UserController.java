@@ -11,15 +11,20 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.douzone.blah.dao.User2DAO;
+import com.douzone.blah.mail.MailHandler;
+import com.douzone.blah.mail.TempKey;
 import com.douzone.blah.model.User2DTO;
 
 import lombok.extern.log4j.Log4j;
@@ -30,7 +35,9 @@ public class UserController {
 
 	@Resource
 	private User2DAO user2DAOImpl;
-
+	@Autowired
+	JavaMailSender mailSender;
+	
 	private BCryptPasswordEncoder passwordEncoder;
 
 	public UserController(BCryptPasswordEncoder passwordEncoder) {
@@ -104,52 +111,64 @@ public class UserController {
 	public String join() {
 		return "join/join";
 	}
-	
-	// 이메일 중복 확인 로직
-//	@PostMapping("/eamil-authenticate")
-//	public String duplicateCheck(HttpServletRequest request, HttpServletResponse response) {
-//		String uri = request.getRequestURI();
-//		String conPath = request.getContextPath();
-//		String com = uri.substring(conPath.length());
-//
-//		switch (com) {
-//
-//			//...
-//		    
-//			case "/confirmEmail.four":
-//				command = new DupleEmailCheckCommand();
-//				command.execute(request, response);
-//				viewPage = "confirmEmail.jsp";
-//				break;
-//		        
-//		    //...
-//		    
-//		}
-//
-//		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
-//		dispatcher.forward(request, response);
-//
-//		return "redirect:/join";
-//	}
-//	
 
+	
 	// 회원가입 처리
 	@PostMapping("/joinAction")
 	public String insertUser(@RequestParam("user_id") String user_id,
 			@RequestParam("user_password") String user_password, 
 			@RequestParam("user_email") String user_email,
 			@RequestParam("user_jobgroup") String user_jobgroup,
-			@RequestParam("user_workspace") String user_workspace) {
+			@RequestParam("user_workspace") String user_workspace,
+			User2DTO user2dto) throws Exception {
+		
+		String user_email_key = new TempKey().getKey(false, 30);
+		
+		log.warn("이메일 인증 키 ===> " + user_email_key);
+		
 		Map<String, String> map = new HashMap<>();
+
 		map.put("user_id", user_id);
 		map.put("user_password", passwordEncoder.encode(user_password)); // 비밀번호 암호화
 		map.put("user_email", user_email);
 		map.put("user_jobgroup", user_jobgroup);
 		map.put("user_workspace", user_workspace);
-		// affected rows, 영향을 받은 행의 수가 리턴됨
+		map.put("user_email_key", user_email_key);
+
+		// 회원가입 완료
 		int result = user2DAOImpl.insertUser(map);
-		return "/login/loginForm"; // login.jsp로 이동
+		log.warn("회원가입 ===> " + user_email_key);
+		
+		// 이메일 발송
+		MailHandler sendMail = new MailHandler(mailSender);
+		sendMail.setSubject("[BlaBlah] 현직자 인증 메일입니다");
+		sendMail.setText(
+				"<h1>BlahBlah 현직자 인증 이메일입니다.</h1>" +
+				"<br>회원이 되신 걸 환영합니다!" +
+				"<br>아레 이메일 인증 확인을 눌러 현직자 인증 절차를 완료해주세요." +
+				"<br>인증이 완료되면 사이트를 이용하실 수 있습니다." +
+				"<br><a href='http://localhost:8080/blah/join/registerEmail?user_email=" + user_email +
+				"&user_email_key=" + user_email_key +
+				"'target='_balnk'>이메일 인증 확인</a>");
+				System.out.println(user_email_key);
+		sendMail.setForm("blahblahteammanager@gmail.com", "블라블라");
+		sendMail.setTo(user_email);
+		sendMail.send();
+		log.warn("메일 전송 완료 ******** " + user_email);
+		
+		return "/join/joinSuccess";
+		
 	}
+	
+	@GetMapping("/join/registerEmail")
+	public String verify(@RequestParam Map<String, Object> map) throws Exception {
+		log.warn("타요");
+		log.warn(map);
+		user2DAOImpl.updateMailAuth(map);
+		log.warn("타요");
+		return "redirect:/";
+	}
+	
 
 	// 마이페이지 회원 정보 페이지로 이동, 회원 정보 조회
 	@GetMapping("/member")
@@ -183,7 +202,7 @@ public class UserController {
 		int result = user2DAOImpl.editMemberInfo(userInfoMap);
 		if (result == 1)
 			log.warn(userInfoMap);
-		return "redirect:/member";
+		return "join/emailAuthSuccess";
 	}
 
 	// 마이페이지 기본 회원 정보 수정 처리

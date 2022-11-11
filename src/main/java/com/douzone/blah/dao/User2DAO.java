@@ -28,5 +28,9 @@ public interface User2DAO {
 	
 	// 마이페이지 회원 정보 수정
 	public int editMemberInfo(Map<String, String> map);
-
+	
+	int updateMailKey(Map<String, Object> map) throws Exception;
+	int updateMailAuth(Map<String, Object> map) throws Exception;
+	int emailAuthFail(String id) throws Exception;
 }
+

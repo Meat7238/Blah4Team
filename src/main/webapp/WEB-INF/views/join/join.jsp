@@ -3,58 +3,44 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script type="text/javascript">
 
-	const form = document.signUpForm;
-	
-	function check(pattern, taget, message) {
-		if(pattern.test(taget)) {
-	    	return true;
-	    }
-	    alert(message);
-	    taget.focus();
-	    return false;
-	}
+function check(pattern, taget, message) {
+	if(pattern.test(taget)) {
+    	return true;
+    }
+    alert(message);
+    taget.focus();
+    return false;
+}
 
-	function emailValCheck() {
-		var emailPattern = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
-		var email = form.email.value;
-		if (!check(emailPattern, email, "유효하지 않은 이메일 주소입니다.")) {
-			return false;
-		}
-		return true;
+const form = document.signUpForm;
+
+function emailValCheck(){
+	var emailPattern= /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+	var email = form.email.value;
+	if(!check(emailPattern, email, "유효하지 않은 이메일 주소입니다.")) {
+		return false;
 	}
-	
-	function emailAuthentication() {
-		if (!emailValCheck()) {
-			return false;
-		}
-		var url = "confirmEmail?email=" + document.signUpForm.email.value;
-		var condition = "toolbar=no, location=no,menubar=no,scrollbars=no,resizable=no,width=300,height=200"
-		open(url, "confirm", condition);
-	}
+    return true;
+}
+
+function emailAuthentication(){
+	if (!emailValCheck()){
+    	return false;
+    }
+	var url = "confirmEmail.four?email=" + document.signUpForm.email.value;
+	open(url, "confirm",
+			"toolbar=no, location=no,menubar=no,scrollbars=no,resizable=no,width=300,height=200");
+}
 </script>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>join.jsp page</title>
+
+
+<title>회원가입</title>
 </head>
 <body>
 	<h2>회원가입</h2>
-
-	<form action="/eamil-authenticate" method="post"
-		enctype="multipart/form-data">
-		<div class="form-group email-form">
-			<label for="email">이메일</label> <input type="text" name="user_email" id="inputEmailForm" maxlength="30">
-			<button onclick="emailAuthentication()" id="eamilAuthBtn" type="button" class="btnChk">인증 메일 보내기</button><br>
-			
-			<a>인증번호 입력</a>
-			<input type="text" name="authCode" id="inputAuthCode"  maxlength="10" disabled="disabled">
-			<button onclick="authCodeCheck()" id="authCodeCheckBtn" type="button" disabled="disabled" class="btnChk">인증</button>
-			<input type="hidden" name="authPass" id="authPass" value="false">
-			
-		</div>
-	</form>
-
-
 
 	<form action="${root}joinAction" method="post">
 		<table>
@@ -80,8 +66,9 @@
 				<td><input name="user_workspace"></td>
 			</tr>
 			<tr>
-				<td colspan="2" align="center"><input type="submit"
-					value="회원가입"></td>
+				<td colspan="2" align="center">
+					<input type="submit" value="회원가입">
+				</td>
 			</tr>
 		</table>
 	</form>

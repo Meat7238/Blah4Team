@@ -31,17 +31,32 @@
 		</if>
 	</select>
 
+
+	<!-- 계정 활성화 -->
+	<update id="updateMailAuth" parameterType="map">
+		update user2 set
+		enabled=1, authority='ROLE_USER' where user_email=#{user_email, jdbcType=VARCHAR, javaType=Object} and
+		user_email_key=#{user_email_key, jdbcType=VARCHAR, javaType=Object}
+	</update>
+
+	<!-- 이메일 인증 체크 -->
+	<select id="emailAuthFail" parameterType="String"
+		resultType="int">
+		select count(*) from user2 where user_id=#{user_id} and
+		enabled=1 and authority='ROLE_USER'
+	</select>
+
 	<!-- 회원가입 -->
 	<insert id="insertUser" parameterType="hashmap">
 		insert into
 		user2(user_num, user_id, user_password, user_email,
-		user_jobgroup, user_workspace, enabled, authority)
+		user_email_key,
+		user_jobgroup, user_workspace)
 		values
 		('user'||TO_CHAR(USER_NUMseq.nextval),
-		#{user_id},#{user_password},#{user_email},#{user_jobgroup},#{user_workspace},
-		1, 'ROLE_USER')
+		#{user_id},#{user_password},#{user_email},#{user_email_key},#{user_jobgroup},#{user_workspace})
 	</insert>
-	
+
 	<!-- 로그인 -->
 	<select id="selectUser" resultType="hashmap">
 		select user_id as username,
@@ -50,15 +65,16 @@
 		where
 		user_id=#{user_id}
 	</select>
-	
+
 	<!-- 마이페이지 회원 정보 조회 -->
 	<select id="showMemberInfo" resultType="hashmap">
-		select * from user2 where user_id=#{user_id}
+		select * from user2 where
+		user_id=#{user_id}
 	</select>
-	
+
 	<!-- 마이페이지 회원 정보 수정 -->
 	<update id="editMemberInfo" parameterType="hashmap">
-		update user2 
+		update user2
 		set user_password = #{user_password}
 		where user_id=#{user_id}
 	</update>
