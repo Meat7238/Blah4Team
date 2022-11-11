@@ -239,6 +239,10 @@ public class UserController {
 	  
 	  if(!user_password.equals(user_password2)) return "join/pwdUnmatched";
 	  
+	  user2dto.setUser_password(user_password);
+	  if(!userService.passwordPatternCheck(user2dto)) return "join/pwdError";
+	  
+	  
       Map<String, String> userInfoMap = new HashMap<String, String>();
       userInfoMap.put("user_id", user_id);
       userInfoMap.put("user_password", passwordEncoder.encode(user_password));
@@ -250,24 +254,24 @@ public class UserController {
       return "redirect:/member";
    }
 
-   // 마이페이지 인증 회원 정보 수정 처리
-   // 비밀번호 반드시 암호화!
-   @PostMapping("/member/reauthenticate")
-   public String memberReauthenticate(@RequestParam("user_email") String user_email,
-         @RequestParam("user_workspace") String user_workspace,
-         @RequestParam("user_jobgroup") String user_jobgroup) {
-
-      Map<String, String> userInfoMap = new HashMap<String, String>();
-
-      userInfoMap.put("user_email", user_email);
-      userInfoMap.put("user_workspace", user_workspace);
-      userInfoMap.put("user_jobgroup", user_jobgroup);
-
-      log.warn(userInfoMap);
-      int result = user2DAOImpl.editMemberInfo(userInfoMap);
-      if (result == 1)
-         log.warn(userInfoMap);
-      return "redirect:/member";
-   }
+//   // 마이페이지 인증 회원 정보 수정 처리
+//   // 비밀번호 반드시 암호화!
+//   @PostMapping("/member/reauthenticate")
+//   public String memberReauthenticate(@RequestParam("user_email") String user_email,
+//         @RequestParam("user_workspace") String user_workspace,
+//         @RequestParam("user_jobgroup") String user_jobgroup) {
+//
+//      Map<String, String> userInfoMap = new HashMap<String, String>();
+//
+//      userInfoMap.put("user_email", user_email);
+//      userInfoMap.put("user_workspace", user_workspace);
+//      userInfoMap.put("user_jobgroup", user_jobgroup);
+//
+//      log.warn(userInfoMap);
+//      int result = user2DAOImpl.editMemberInfo(userInfoMap);
+//      if (result == 1)
+//         log.warn(userInfoMap);
+//      return "redirect:/member";
+//   }
 
 }
