@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,17 +9,22 @@
 <title>Insert title here</title>
 <script type="text/javascript">
 	function post_write(){
+		alert("function come!!");
 		if(document.writeform.post_title.value==""){
 			alert("제목을 입력하세요");
-		}if(document.writeform.post_category.value==""){
+		}else if(document.writeform.post_category.value==""){
 			alert("카테고리를 입력하세요");
-		}if(document.writeform.post_content.value==""){
+		}else if(document.writeform.post_content.value==""){
 			alert("내용을 입력하세요");
-		}if(document.writeform.post_usernum.value==""){
-			alert("회원번호를 입력하세요");
+		}else if(document.writeform.writer.value==""){
+			alert("아이디를 입력하세요");
 		}else{
+			
 			document.writeform.submit();
+			
 		}
+		
+		
 	}
 	
 </script>
@@ -27,7 +33,7 @@
 <%@ include file="/WEB-INF/views/layout/header.jsp"%>
 <h2>게시글 쓰기</h2>
 <a href="board">게시판</a>
-<form name="writeform" action="write" method="post">
+<form name="writeform" action="${root}write" method="post">
 <table width="850">
 	<tr>
 		<th>제목</th>
@@ -58,9 +64,11 @@
 		</td>
 	</tr>
 	<tr>
-		<th>회원번호</th>
+		<th>작성자</th>
 		<td>
-			<input type="text" name="post_usernum" maxlength="10" size="12"/>
+			<%-- <input type="hidden" name="writer" id="writer" value='<sec:authentication property="principal.username"/>'> --%>
+			<input name="writer" value='<sec:authentication property="principal.username"/>' readonly="readonly">
+			<input type="hidden" name="post_usernum" value="${user_num}" maxlength="10" size="12"/>
 		</td>
 	</tr>
 	<tr>

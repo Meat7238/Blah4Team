@@ -57,6 +57,7 @@
 	<tr>
 		<th>회원번호</th>
 		<td>
+			<%-- <input name="writer" value='<sec:authentication property="principal.username"/>' readonly="readonly"> --%>
 			<input type="text" name="post_usernum" maxlength="5" size="12" value="${b.post_usernum}"/>
 		</td>
 	</tr>

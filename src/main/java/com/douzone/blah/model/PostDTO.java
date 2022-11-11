@@ -18,4 +18,5 @@ public class PostDTO {
 	private String post_regdate;
 	private int post_readcount;
 	private int post_reviewcount;
+
 }
