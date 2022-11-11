@@ -16,16 +16,16 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.douzone.blah.dao.User2DAO;
-import com.douzone.blah.mail.MailHandler;
-import com.douzone.blah.mail.TempKey;
 import com.douzone.blah.model.User2DTO;
+import com.douzone.blah.service.UserService;
+import com.douzone.blah.service.mail.MailHandler;
+import com.douzone.blah.service.mail.TempKey;
 
 import lombok.extern.log4j.Log4j;
 
@@ -35,6 +35,9 @@ public class UserController {
 
 	@Resource
 	private User2DAO user2DAOImpl;
+	@Autowired
+	UserService userService;
+	
 	@Autowired
 	JavaMailSender mailSender;
 	
@@ -111,7 +114,6 @@ public class UserController {
 	public String join() {
 		return "join/join";
 	}
-
 	
 	// 회원가입 처리
 	@PostMapping("/joinAction")
@@ -121,9 +123,21 @@ public class UserController {
 			@RequestParam("user_jobgroup") String user_jobgroup,
 			@RequestParam("user_workspace") String user_workspace,
 			User2DTO user2dto) throws Exception {
+	
+		// 정규표현식 확인 로직
+		String patternCheckResult = userService.patternCheck(user2dto);
 		
+		if(patternCheckResult.equals("emailError")) return "join/emilError";
+		else if(patternCheckResult.equals("IdError")) return "join/emilError";
+		else if(patternCheckResult.equals("passwordError")) return "join/emilError";
+		
+		// 아이디, 이메일 중복 확인 로직
+		
+		
+		
+		
+		// 입력 로직
 		String user_email_key = new TempKey().getKey(false, 30);
-		
 		log.warn("이메일 인증 키 ===> " + user_email_key);
 		
 		Map<String, String> map = new HashMap<>();
@@ -155,20 +169,16 @@ public class UserController {
 		sendMail.setTo(user_email);
 		sendMail.send();
 		log.warn("메일 전송 완료 ******** " + user_email);
-		
 		return "/join/joinSuccess";
 		
 	}
 	
 	@GetMapping("/join/registerEmail")
 	public String verify(@RequestParam Map<String, Object> map) throws Exception {
-		log.warn("타요");
 		log.warn(map);
 		user2DAOImpl.updateMailAuth(map);
-		log.warn("타요");
 		return "redirect:/";
 	}
-	
 
 	// 마이페이지 회원 정보 페이지로 이동, 회원 정보 조회
 	@GetMapping("/member")

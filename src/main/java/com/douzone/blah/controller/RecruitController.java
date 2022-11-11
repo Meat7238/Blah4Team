@@ -38,6 +38,9 @@ public class RecruitController {
 		List<Map<String, Object>> recruitInfo = recruitDAO.selectRecruit(corp_name);
 		recruitInfo.forEach(x -> log.warn("이거 타나"+x));
 		
+		recruitInfo.get(0).get("CORP_NAME").toString();
+		
+		
 		if (recruitInfo == null) {
 			return null;
 		} else {

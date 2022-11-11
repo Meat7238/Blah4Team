@@ -1,4 +1,4 @@
-package com.douzone.blah.mail;
+package com.douzone.blah.service.mail;
 
 import java.io.UnsupportedEncodingException;
 

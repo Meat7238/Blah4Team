@@ -32,5 +32,8 @@ public interface User2DAO {
 	int updateMailKey(Map<String, Object> map) throws Exception;
 	int updateMailAuth(Map<String, Object> map) throws Exception;
 	int emailAuthFail(String id) throws Exception;
+	
+	public int idDupleCheck(String user_id);
+	public int emailDupleCheck(String user_email);
 }
 
