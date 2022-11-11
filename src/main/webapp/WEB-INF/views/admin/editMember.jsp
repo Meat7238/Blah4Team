@@ -12,7 +12,6 @@
 function selectAll(selectAll)  {
 	  const checkboxes 
 	     = document.querySelectorAll('input[type="checkbox"]');
-	  
 	  checkboxes.forEach((checkbox) => {
 	    checkbox.checked = selectAll.checked
 	  })
@@ -33,7 +32,7 @@ $(function(){
 		    	  checked += 1;
 		    	  checkid = chekObj[i].getAttribute("id");
 	  			  alert(checkid);
-	  			  location.href ='${pageContext.request.contextPath}admin/edit/delete?num=' +checkid;
+	  			  location.href ='${pageContext.request.contextPath}/admin/edit/delete?num=' +checkid;
 	   			}
 	  		}//end for
 	  	}//end if

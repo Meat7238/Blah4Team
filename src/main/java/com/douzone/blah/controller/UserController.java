@@ -5,12 +5,10 @@ import java.security.Principal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import javax.annotation.Resource;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,10 +16,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import com.douzone.blah.dao.User2DAO;
 import com.douzone.blah.model.User2DTO;
-
 import lombok.extern.log4j.Log4j;
 
 @Controller
@@ -51,7 +47,7 @@ public class UserController {
 		request.setAttribute("list", list);
 		return "admin/editMember";
 	}
-
+	//유저 검색 페이지
 	@RequestMapping(value = "/admin/edit", method = RequestMethod.POST)
 	public String editList(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -104,7 +100,7 @@ public class UserController {
 	public String join() {
 		return "join/join";
 	}
-	
+
 	// 이메일 중복 확인 로직
 //	@PostMapping("/eamil-authenticate")
 //	public String duplicateCheck(HttpServletRequest request, HttpServletResponse response) {
@@ -115,15 +111,15 @@ public class UserController {
 //		switch (com) {
 //
 //			//...
-//		    
+//
 //			case "/confirmEmail.four":
 //				command = new DupleEmailCheckCommand();
 //				command.execute(request, response);
 //				viewPage = "confirmEmail.jsp";
 //				break;
-//		        
+//
 //		    //...
-//		    
+//
 //		}
 //
 //		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
@@ -131,12 +127,12 @@ public class UserController {
 //
 //		return "redirect:/join";
 //	}
-//	
+//
 
 	// 회원가입 처리
 	@PostMapping("/joinAction")
 	public String insertUser(@RequestParam("user_id") String user_id,
-			@RequestParam("user_password") String user_password, 
+			@RequestParam("user_password") String user_password,
 			@RequestParam("user_email") String user_email,
 			@RequestParam("user_jobgroup") String user_jobgroup,
 			@RequestParam("user_workspace") String user_workspace) {
@@ -155,7 +151,7 @@ public class UserController {
 	@GetMapping("/member")
 	public String memberInfoSelect(Principal principal, HttpServletRequest request) {
 		String user_id = principal.getName();
-		
+
 		Map<String, Object> userInfoMap = user2DAOImpl.showMemberInfo(user_id);
 		log.warn(userInfoMap);
 		request.setAttribute("user_id", userInfoMap.get("USER_ID"));
