@@ -67,7 +67,10 @@
 			from user2
 			where user_email = #{user_email}
 	</select>
-
+	
+	<!-- 회원가입 시 입력한 이메일 -->
+	
+	<!-- 비밀번호 재발송 -->
 
 	<!-- 로그인 -->
 	<select id="selectUser" resultType="hashmap">

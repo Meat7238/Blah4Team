@@ -13,12 +13,19 @@
 <body>
 
 	<%@ include file="/WEB-INF/views/layout/header.jsp"%>
-
-	<form action="/member/edit" method="post">
+	<c:if test="${not empty userInfoMap} ">
+		<script type="text/javascript">
+			alert("이메일 인증 성공!\n이제 다양한 서비스를 이용하실 수 있습니다!")
+			location.href = "${root}";
+		</script>
+	</c:if>
+	<form action="${root}member-edit" method="post">
 		<label>아이디</label> 
 		<input type="text" name="user_id" value='${user_id}' readonly="readonly"><br> 
-		<label>비밀번호</label> 
+		<label>비밀번호</label>
 		<input type="password" name="user_password" placeholder="비밀번호"> <br>
+		<label>비밀번호 확인</label> 
+		<input type="password" name="user_password2" placeholder="비밀번호 확인"> <br>
 		<input type="submit" value="수정"><br>
 	</form>
 	<form action="/member/reauthenticate">
