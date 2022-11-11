@@ -1,6 +1,5 @@
 package com.douzone.blah.service;
 
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,9 +34,6 @@ public class UserService {
 		// 이메일 정규표현식
 		Pattern emailPattern = Pattern.compile(
 				"^([A-Z|a-z|0-9](\\.|_){0,1})+[A-Z|a-z|0-9]\\@([A-Z|a-z|0-9])+((\\.){0,1}[A-Z|a-z|0-9]){2}\\.[a-z]{2,3}$");
-
-		log.warn("패턴 : " + emailPattern);
-		log.warn("true/false : " + emailPattern.matcher(user2dto.getUser_email()).matches());
 		return emailPattern.matcher(user2dto.getUser_email()).matches();
 	}
 
@@ -45,9 +41,6 @@ public class UserService {
 		// 아이디 정규표현식
 		Pattern idPattern = Pattern.compile(
 				"^[a-z0-9]{5,12}$");
-
-		log.warn("패턴 : " + idPattern);
-		log.warn("true/false : " + idPattern.matcher(user2dto.getUser_id()).matches());
 		return idPattern.matcher(user2dto.getUser_id()).matches();
 	}
 
@@ -55,23 +48,33 @@ public class UserService {
 		// 패스웨드 정규표현식
 		Pattern passwordPattern = Pattern.compile(
 				"^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,20}$");
-
-		log.warn("패턴 : " + passwordPattern);
-		log.warn("true/false : " + passwordPattern.matcher(user2dto.getUser_password()).matches());
 		return passwordPattern.matcher(user2dto.getUser_password()).matches();
 	}
 
 	// 중복 확인 로직
+	public String dupleCheck(User2DTO user2dto) {
 
-//	// 아이디 중복 확인 로직
-//	public boolean idDupleCheck(User2DTO user2dto) {
-//		int result = user2dao.idDupleCheck(user2dto.getUser_id());
-//		return 
-//	}
-//	
-//	
-//	// 이메일 중복 확인 로직
-//	public boolean emailDupleCheck(User2DTO user2dto) {
-//		int result = user2dao.idDupleCheck(user2dto.getUser_email());
-//	}
+		if (!idDupleCheck(user2dto))
+			return "idDuple";
+		else if (!emailDupleCheck(user2dto)) {
+			System.out.println(emailDupleCheck(user2dto));
+			return "emailDuple";
+		}
+
+		return "cleared";
+	} 
+
+	// 아이디 중복 확인 로직
+	public boolean idDupleCheck(User2DTO user2dto) {
+		int result = user2dao.idDupleCheck(user2dto.getUser_id());
+		boolean check = (result == 1)?false:true;
+		return check;
+	}
+	
+	// 이메일 중복 확인 로직
+	public boolean emailDupleCheck(User2DTO user2dto) {
+		int result = user2dao.emailDupleCheck(user2dto.getUser_email());
+		boolean check = (result == 1)?false:true;	//중복이면 false
+		return check;
+	}
 }

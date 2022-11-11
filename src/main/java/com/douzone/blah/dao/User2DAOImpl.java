@@ -96,16 +96,16 @@ public class User2DAOImpl implements User2DAO {
 	}
 	
 	// 회원가입 아이디 중복 확인
+	@Override
 	public int idDupleCheck(String user_id) {
 		return sqlSession.selectOne("idDupleCheck", user_id);
 	}
 	
 	// 회원가입 이메일 중복 확인
+	@Override
 	public int emailDupleCheck(String user_email) {
-		return sqlSession.selectOne("idDupleCheck", user_email);
+		return sqlSession.selectOne("emailDupleCheck", user_email);
 	}
-	
-
 
 	@Override
 	public String getUserID(int post_num) {

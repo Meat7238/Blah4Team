@@ -35,6 +35,7 @@ public class UserController {
 
    @Resource
    private User2DAO user2DAOImpl;
+   
    @Autowired
    UserService userService;
    
@@ -132,7 +133,8 @@ public class UserController {
       else if(patternCheckResult.equals("passwordError")) return "join/pwdError";
       
       // 아이디, 이메일 중복 확인 로직
-      
+      if(userService.dupleCheck(user2dto).equals("idDuple")) return "join/idDuple";
+      else if(userService.dupleCheck(user2dto).equals("emailDuple")) return "join/emailDuple";
       
       
       
