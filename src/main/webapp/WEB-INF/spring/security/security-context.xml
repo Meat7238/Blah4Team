@@ -14,6 +14,9 @@
 		<!-- 메인 -->
 		<security:intercept-url pattern="/" access="permitAll"/>
 		
+		<!-- 회원가입 메일 인증 페이지 -->
+		<security:intercept-url pattern="/join/registerEmail" access="permitAll"/>
+		
 		<!-- 에러 페이지 -->
 		<security:intercept-url pattern="/error" access="permitAll"/>
 		
@@ -34,19 +37,20 @@
 		
 		
 	<!-- 로그인 안 한 사용자만 이용하는 페이지 : 로그인된 상태에서는 로그인이나 회원가입 화면에 접근 못하도록 함 -->
-		<security:intercept-url pattern="/login/loginForm" access="isAnonymous()" />
-		<security:intercept-url pattern="/joinAction" access="permitAll"/>
-		<security:intercept-url pattern="/join/**" access="permitAll"/>
-		<security:intercept-url pattern="/join/registerEmail" access="permitAll"/>
+		<security:intercept-url pattern="/loginForm" access="isAnonymous()" />
+		<security:intercept-url pattern="/joinAction" access="isAnonymous()"/>
+		<security:intercept-url pattern="/join/**" access="isAnonymous()"/>
+		
 	
 	<!-- 로그인한 사용자만 이용하는 페이지 -->
 		<!-- 계정관련 기능 -->
-		<security:intercept-url pattern="/login/logout" access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')"/>
+		<security:intercept-url pattern="/logout" access="hasAnyRole('ROLE_NONE','ROLE_USER', 'ROLE_ADMIN')"/>
 		
 		
 		<!-- 리뷰 기능 -->
-		<security:intercept-url pattern="/corpreviewmain" access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')"/>
-		<security:intercept-url pattern="corpreviewwriteform" access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')"/>
+		<security:intercept-url pattern="/corpreviewhome" access="hasAnyRole('ROLE_NONE','ROLE_USER', 'ROLE_ADMIN')"/>
+		<security:intercept-url pattern="/corpreviewmain" access="hasAnyRole('ROLE_NONE','ROLE_USER', 'ROLE_ADMIN')"/>
+		<security:intercept-url pattern="/corpreviewwriteform" access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')"/>
 
 		<!-- 게시판 기능 -->
 		<security:intercept-url pattern="/writeform" access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')"/>
@@ -58,7 +62,7 @@
 		<security:intercept-url pattern="/search" access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')"/>
 		
 		<!-- 마이페이지 -->
-		<security:intercept-url pattern="/member/**" access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')"/>		
+		<security:intercept-url pattern="/member/**" access="hasAnyRole('ROLE_NONE','ROLE_USER', 'ROLE_ADMIN')"/>		
 		
 		<!-- 관리자 페이지 -->
 		<security:intercept-url pattern="/adminLogin" access="hasRole('ROLE_ADMIN')"/>
