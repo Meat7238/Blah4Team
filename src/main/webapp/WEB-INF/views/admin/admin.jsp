@@ -20,7 +20,7 @@
 			<%@ include file="/WEB-INF/views/layout/header.jsp"%>
 		</header>
 		<div class="main-content">
-			<!-- ------------------------------------------------------------------------------------------------------------- -->
+<!-- ------------------------------------------------------------------------------------------------------------- -->
 
 			<div class="tabs">
 				<i font-weight="bold"><h2>Admin Page</h2></i><br />
@@ -44,7 +44,7 @@
 					<div class="active">
 						<i><h2>😄</h2></i>
 						<h1>
-							<a href="${root}admin/edit"> 회원정보 관리</a>
+							<a href="${pageContext.request.contextPath}/admin/edit"> 회원정보 관리</a>
 						</h1>
 						</br>
 						<p>
@@ -57,7 +57,7 @@
 					<div>
 						<i><h2>📃</h2></i>
 						<h1>
-							<a href="${root}admin/notice"> 공지사항 관리</a>
+							<a href="${pageContext.request.contextPath}/admin/notice"> 공지사항 관리</a>
 						</h1>
 						<p>
 						</br>관리자가 공지사항을 작성할 수 있는 공간입니다. 작성된 공지사항을 읽을 수 있습니다.
@@ -67,7 +67,7 @@
 					<div>
 						<i><h2>❗</h2></i>
 						<h1>
-							<a href="${root}admin/ManageReport"> 신고 관리</a>
+							<a href="${pageContext.request.contextPath}/admin/ManageReport"> 신고 관리</a>
 						</h1>
 						</br>
 						<p>게시판신고, 게시판댓글신고, 기업리뷰 신고등을 종합적으로 관리하는 공간입니다.</p>
@@ -76,7 +76,7 @@
 					<div>
 						<i><h2>🏢</h2></i>
 						<h1>
-							<a href="${root}admin/recruit"> 공고 입력 </a>
+							<a href="${pageContext.request.contextPath}/admin/recruit"> 공고 입력 </a>
 						</h1>
 						</br>
 						<p>관리자는 DB에 있는 기업정보를 토대로 해당 기업의 공고를 입력 할 수 있습니다.</p>

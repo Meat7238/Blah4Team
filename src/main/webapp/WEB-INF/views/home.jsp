@@ -14,12 +14,12 @@
 <link href="${pageContext.request.contextPath}/resources/css/home.css"
 	rel="stylesheet" />
 </head>
-<body>
 	<div class="wrapper">
 		<header>
 			<%@ include file="/WEB-INF/views/layout/header.jsp"%>
 		</header>
 		<div class="main-content">
+<!-- ------------------------------------------------------------------------------------------------------------- -->
 			<br /></br>
 			<div id="search_wrapper">
 				<form action="home" method="post">
@@ -87,11 +87,10 @@
 
 					</li>
 			</ul>
-
-
+<!-- ------------------------------------------------------------------------------------------------------------- -->
 		</div>
 		<footer>
-		<%@ include file="/WEB-INF/views/layout/footer.jsp"%>
+			<%@ include file="/WEB-INF/views/layout/footer.jsp"%>
 		</footer>
 	</div>
 </body>

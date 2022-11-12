@@ -8,23 +8,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript">
-	function post_write() {
-		if (document.writeform.post_title.value == "") {
-			alert("제목을 입력하세요");
-		} else if (document.writeform.post_category.value == "") {
-			alert("카테고리를 입력하세요");
-		} else if (document.writeform.post_content.value == "") {
-			alert("내용을 입력하세요");
-		} else if (document.writeform.writer.value == "") {
-			alert("아이디를 입력하세요");
-		} else {
-			document.writeform.submit();
-		}
-	}
-</script>
+
 <style type="text/css">
-@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;800&display=swap');
+@import
+	url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;800&display=swap')
+	;
 
 * {
 	box-sizing: border-box;
@@ -50,22 +38,6 @@ footer {
 }
 
 table {
-	position: relative;
-	align-content: center;
-	align-items: center;
-	display: table;
-	margin: auto;
-	cellpadding: "3";
-	border: 20px #a39485 solid;
-	font-size: 14px;
-	box-shadow: 0 2px 20px rgba(0, 0, 0, .50);
-	width: 40%;
-	height: 100%;
-	border-collapse: collapse;
-	border-radius: 5px;
-	overflow: hidden;
-	font-style: font-family:"Raleway";
-	
 }
 
 img {
@@ -85,6 +57,22 @@ input {
 }
 
 .form_box {
+	position: relative;
+	align-content: center;
+	align-items: center;
+	display: table;
+	margin: auto;
+	cellpadding: "3";
+	overflow: hidden;
+	font-style: font-family:"Raleway";
+	height: 100%;
+	border-collapse: collapse;
+	border-radius: 5px;
+	font-size: 14px;
+	box-shadow: 0 2px 20px rgba(0, 0, 0, .50);
+	width: 40%;
+		border: 20px #a39485 solid;
+	
 	/* background-color: #ffffff;
 	margin: 10px;
 	border-radius: 4px;
@@ -195,13 +183,10 @@ input {
 		</header>
 		<div class="main-content">
 			<!-- ------------------------------------------------------------------------------------------------------------- -->
-
 			</br>
-
-
-			<form name="writeform"
-				action="${pageContext.request.contextPath}/write" method="post">
-				<div class="form_box">
+			<div class="form_box">
+				<form name="writeform"
+					action="${pageContext.request.contextPath}/write" method="post">
 					<table>
 						<tr>
 							<td><input class="input_field" type="text" name="post_title"
@@ -210,7 +195,7 @@ input {
 						<tr>
 							<td><img alt="edit_bar"
 								src="${pageContext.request.contextPath}/resources/images/editBar.png">
-								</td>
+							</td>
 						</tr>
 						<tr>
 
@@ -227,10 +212,8 @@ input {
 							</select></td>
 						</tr>
 						<tr>
-						<td>
-						<textarea class="textarea_field" name="post_content"
-									placeholder="내용을 입력해주세요" rows="5" cols="50"></textarea>
-						</td>
+							<td><textarea class="textarea_field" name="post_content"
+									placeholder="내용을 입력해주세요" rows="5" cols="50"></textarea></td>
 						</tr>
 						<tr>
 							<td>
@@ -241,25 +224,36 @@ input {
 								name="post_usernum" value="${user_num}" />
 							</td>
 						</tr>
-						<tr>
-							<td colspan="2">
-								<div class="btn-holder">
-									<button class="btn btn-1 hover-filled-opacity"
-										onclick="post_write()">
-										<span>쓰기</span>
-									</button>
-								</div>
-								<div class="btn-holder">
-									<button class="btn btn-1 hover-filled-opacity"
-										onclick="location.href='javascript:history.back();'">
-										<span>이전 페이지</span>
-									</button>
-								</div>
-							</td>
-						</tr>
 					</table>
-				</div>
-			</form>
+				</form>
+			<div class="btn-holder">
+				<button id="one" class="btn btn-1 hover-filled-opacity"
+					onclick="post_write()">
+					<span>쓰기</span>
+				</button>
+				<script type="text/javascript">
+				function post_write() {
+					if (document.writeform.post_title.value == "") {
+					alert("제목을 입력하세요");
+				} else if (document.writeform.post_category.value == "") {
+					alert("카테고리를 입력하세요");
+				} else if (document.writeform.post_content.value == "") {
+					alert("내용을 입력하세요");
+				} else if (document.writeform.writer.value == "") {
+					alert("아이디를 입력하세요");
+				} else {
+					document.writeform.submit();
+				}
+				}</script>
+
+			</div>
+			<div class="btn-holder">
+				<button id="two" class="btn btn-1 hover-filled-opacity"
+					onclick="history.go(-1);">
+					<span>이전 페이지</span>
+				</button>
+			</div>
+			</div>
 			<!-- ------------------------------------------------------------------------------------------------------------- -->
 		</div>
 		<footer>
