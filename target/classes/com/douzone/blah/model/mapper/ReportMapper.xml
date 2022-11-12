@@ -30,8 +30,7 @@
 	<!-- 게시글신고 처리 반영 -->
 	<update id="updateReportP"
 		parameterType="com.douzone.blah.model.ReportPDTO">
-		UPDATE reportp SET reportp_result = #{reportp_result},
-		reportp_adminnum = #{admin_id}
+		UPDATE reportp SET reportp_result = #{reportp_result}
 		WHERE reportp_num =#{reportp_num}
 	</update>
 
@@ -72,7 +71,7 @@
 	<update id="updateReportPr"
 		parameterType="com.douzone.blah.model.ReportPrDTO">
 		UPDATE reportpr SET reportpr_result =
-		#{reportpr_result}, reportpr_adminnum = #{admin_id}
+		#{reportpr_result}
 		WHERE reportpr_num
 		=#{reportpr_num}
 	</update>
@@ -99,7 +98,7 @@
 	<update id="updateReportCr"
 		parameterType="com.douzone.blah.model.ReportCrDTO">
 		UPDATE reportcr SET reportcr_result =
-		#{reportcr_result}, reportcr_adminnum = #{admin_id}
+		#{reportcr_result}
 		WHERE reportcr_num
 		=#{reportcr_num}
 	</update>
