@@ -30,7 +30,9 @@
 									window.open(url, name, option);
 								}
 							</script>
+							<sec:authorize access="hasRole('ROLE_ADMIN')">
 						<li><a href="${pageContext.request.contextPath}/admin">관리자 페이지</a></li>
+							</sec:authorize>
 					</ul>
 					<address>
 						<a href="${pageContext.request.contextPath}">Copyright &copy; blahblah All Rights

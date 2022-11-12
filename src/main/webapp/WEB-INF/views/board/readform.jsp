@@ -66,6 +66,9 @@
 				<input type="button" value="삭제" onclick="location.href='${pageContext.request.contextPath}/delete?post_num=${b.post_num}&pg=${pg}';" />
 			</c:if>
 			</sec:authorize>
+			<sec:authorize access="hasRole('ROLE_ADMIN')">
+				<input type="button" value="삭제" onclick="location.href='${pageContext.request.contextPath}/delete?post_num=${b.post_num}&pg=${pg}';" />
+			</sec:authorize>
 			
 			<form name="form">
 				<input type="hidden" name="pg" value="${pg}"/>
