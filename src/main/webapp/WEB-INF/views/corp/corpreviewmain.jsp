@@ -26,20 +26,18 @@
 					기업리뷰&nbsp;&nbsp;&nbsp;
 					<c:if test="${corpreview_usernum == corplist.CORPREVIEW_USERNUM}">
 						<input type="button" value="삭제"
-							onclick="location.href='corpreviewdelete?corpreviewnum=${corplist.CORPREVIEW_NUM}'" />
-						${corplist.CORPREVIEW_NUM}
-						
+							onclick="alert('리뷰가 삭제되었습니다.');
+								document.location.href='corpreviewdelete?corpreview_num=${corplist.CORPREVIEW_NUM}';
+							 " />
+
 					</c:if>
 					<c:if test="${corpreview_usernum != corplist.CORPREVIEW_USERNUM}">
 						<input type="button" value="신고"
-							onclick="location.href='corpreviewreport?corpreviewnum=${corplist.CORPREVIEW_NUM}'" />
-						${corplist.CORPREVIEW_NUM}
-						
+							onclick="location.href='corpreviewreportwriteform?corpreviewnum=${corplist.CORPREVIEW_NUM}'" />
+
+
 					</c:if>
 				</h2>
-
-
-
 
 				<div
 					class="company-infomation-container basic-infomation-container left">
@@ -274,7 +272,7 @@
 
 	<c:if test="${empty corplist}">
 		<script>
-			alert('리뷰가 없습니다. 이전페이지로 돌아갑니다.');
+			alert('이전페이지로 돌아갑니다.');
 			history.back();
 		</script>
 	</c:if>

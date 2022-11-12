@@ -40,6 +40,13 @@ public class CorpDAOImpl implements CorpDAO {
 	 * corpDAO = sqlSession.getMapper(CorpDAO.class); return
 	 * corpDAO.corpReview(corpreviewnum); }
 	 */
+	
+	@Override
+	public List<CorpreviewDTO> searchReview(String corp_num) {
+		CorpDAO corpDAO = sqlSession.getMapper(CorpDAO.class);
+		return corpDAO.searchReview(corp_num);
+	}
+	
 
 	@Override
 	public List<Map<String, Object>> corpReview(String corpreviewnum) {
@@ -56,7 +63,7 @@ public class CorpDAOImpl implements CorpDAO {
 		System.out.println("2");
 		corpDAO.insertReview(dto);
 		System.out.println("3");
-		
+
 	}
 
 //기업번호를 넣어 기업이름을 갖고오는 메소드
@@ -65,5 +72,14 @@ public class CorpDAOImpl implements CorpDAO {
 		System.out.println("dao 안: " + map);
 		return sqlSession.getMapper(CorpDAO.class).readcorp(map);
 
+	}
+	
+	@Override
+	public void deleteCorpreview(String corpreview_num) {
+		System.out.println("1");
+		CorpDAO corpDAO = sqlSession.getMapper(CorpDAO.class);
+		System.out.println("2");
+		corpDAO.deleteCorpreview(corpreview_num);
+		System.out.println("3");
 	}
 }

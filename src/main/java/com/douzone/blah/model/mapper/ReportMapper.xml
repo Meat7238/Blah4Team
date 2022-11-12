@@ -15,12 +15,16 @@
 	</select>
 
 	<!-- 게시판 신고하기 -->
-	<insert id="insertReportP" parameterType="com.douzone.blah.model.ReportPDTO">
-		insert into reportp(reportp_num, reportp_postnum, reportp_usernum,
+	<insert id="insertReportP"
+		parameterType="com.douzone.blah.model.ReportPDTO">
+		insert into reportp(reportp_num, reportp_postnum,
+		reportp_usernum,
 		reportp_content, reportp_regdate, reportp_type)
-		values( (select NVL(max(reportp_num),0)+1 from reportp), #{reportp_postnum},
+		values( (select NVL(max(reportp_num),0)+1 from reportp),
+		#{reportp_postnum},
 		#{reportp_usernum},
-		#{reportp_content}, sysdate, #{reportp_type})
+		#{reportp_content}, sysdate,
+		#{reportp_type})
 	</insert>
 
 	<!-- 게시글신고 처리 반영 -->
@@ -49,6 +53,20 @@
 	</select>
 
 	<!-- 댓글 신고하기 -->
+
+	<!-- 기업리뷰 신고하기 -->
+	<insert id="insertReportCr"
+		parameterType="com.douzone.blah.model.ReportCrDTO">
+		
+		insert into reportcr
+		values( (select NVL(max(reportcr_num),0)+1 from reportcr),
+		#{reportcr_corpreviewnum},
+		#{reportcr_usernum},
+		#{reportcr_content},
+		null,
+		 sysdate,
+		#{reportcr_type})
+	</insert>
 
 	<!-- 댓글 신고 처리 반영 -->
 	<update id="updateReportPr"

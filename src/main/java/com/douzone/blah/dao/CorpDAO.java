@@ -21,4 +21,9 @@ public interface CorpDAO {
 	public void insertReview(CorpreviewDTO dto); //기업 리뷰 쓰기
 	
 	public String readcorp( Map<String, String> map);
+	
+	public List<CorpreviewDTO> searchReview(String corpreview_num); //기업 리뷰 조회
+	
+	public void deleteCorpreview(String corpreview_num); // 기업 리뷰 삭제
+	
 }

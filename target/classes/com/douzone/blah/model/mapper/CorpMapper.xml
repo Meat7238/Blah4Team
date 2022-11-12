@@ -22,15 +22,30 @@
 		select * from corp where corp_num = #{corpnum}
 	</select>
 
-	<!-- 기업리뷰 가져오기 -->
-	<!-- <select id="corpReview" parameterType="String" resultType="com.douzone.blah.model.CorpreviewDTO"> 
-		select * from corpreview where corpreview_corpnum = #{corpreviewnum} </select> -->
+	
+	
 	<!-- 기업리뷰 가져오기 -->
 	<select id="corpReview" resultType="map">
 		select * from corpreview
 		where corpreview_corpnum = #{corpreviewnum}
 	</select>
-
+	
+	<!-- 기업리뷰 하나 가져오기 -->
+	<select id="searchReview" resultType="map">
+		select * from corpreview
+		where corpreview_num = #{corpreviewnum}
+	</select>
+	
+ 	<!-- 기업리뷰 삭제 -->
+	
+	<delete id="deleteCorpreview"
+		parameterType="com.douzone.blah.model.CorpreviewDTO">
+		delete from corpreview where corpreview_num = #{corpreview_num}
+	</delete>
+	
+	
+	
+ 
 	<!-- 기업리뷰 쓰기 -->
 	<insert id="insertReview"
 		parameterType="com.douzone.blah.model.CorpreviewDTO">

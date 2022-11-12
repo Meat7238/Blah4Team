@@ -3,6 +3,8 @@ package com.douzone.blah.dao;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import com.douzone.blah.model.CorpreviewDTO;
 import com.douzone.blah.model.ReportCrDTO;
 import com.douzone.blah.model.ReportPDTO;
 import com.douzone.blah.model.ReportPrDTO;
@@ -44,9 +46,11 @@ public interface ReportDAO {
   public List getReportCr(HashMap map3);
 
   // 리뷰 신고하기
-  public void insertReportCr(ReportCrDTO dto3);
+  public void insertReportCr(ReportCrDTO dto);
 
   // 신고된 리뷰 처리하기
   public int updateReportCr(Map<String, String> map3);
+
+  
 
 }

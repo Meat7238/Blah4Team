@@ -46,7 +46,7 @@
 		
 		<!-- 리뷰 기능 -->
 		<security:intercept-url pattern="/corpreviewmain" access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')"/>
-		<security:intercept-url pattern="corpreviewwriteform" access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')"/>
+		<security:intercept-url pattern="/corpreviewwriteform" access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')"/>
 
 		<!-- 게시판 기능 -->
 		<security:intercept-url pattern="/writeform" access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')"/>
