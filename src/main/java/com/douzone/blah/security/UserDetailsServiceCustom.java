@@ -29,11 +29,9 @@ public class UserDetailsServiceCustom implements UserDetailsService {
 		} else {
 			userDetails.setUser_id(userInfo.get("USERNAME").toString());
 			userDetails.setUser_password(userInfo.get("PASSWORD").toString());
-
 			// 사용자 권한 select해서 받아온 List<String> 객체 주입
 			userDetails.setAuthority(userInfo.get("AUTHORITY").toString());
 		}
-		System.out.println(userDetails);
 		return userDetails;
 	}
 
