@@ -19,7 +19,7 @@
 		<div class="main-content">
 			<!-- ------------------------------------------------------------------------------------------------------------- -->
 			<div class="tabs">
-				<h2>😄 회원정보 관리</h2>
+				<h2>Admin Page > 😄 회원정보 관리</h2>
 				<div class="tab-header">
 					<i id="search_wrapper">
 						<form action="edit" method="post" id="search_wrapper">
@@ -142,41 +142,19 @@
 						</table>
 
 
-						<script>
-		function test(str, num) {
-			if (confirm("정말 삭제하시겠습니까??") == true) { //확인
-				/*     		 window.location.href =path+'/admin/edit/delete?num='+ e.user_num; */
-
-				location.href = str + '/admin/edit/delete?num=' + num;
-				alert("삭제완료했습니다.");
-			} else { //취소
-				return false;
-			}
-		}
-	
-</script>
 
 					</div>
 				</div>
 			</div>
 
-
+<!-- ------------------------------------------------------------------------------------------------------------- -->
 		</div>
 		<footer>
 			<%@ include file="/WEB-INF/views/layout/footer.jsp"%>
 		</footer>
 	</div>
-
-	<script type="text/javascript">
-function selectAll(selectAll)  {
-	  const checkboxes 
-	     = document.querySelectorAll('input[type="checkbox"]');
-	  checkboxes.forEach((checkbox) => {
-	    checkbox.checked = selectAll.checked
-	  })
-	}
-</script>
-	<script>
+<script src="${pageContext.request.contextPath}/resources/js/editMember.js" type="text/javascript"></script>
+<script>
 $(function(){
 	$("#check").on('click',function () {
 		

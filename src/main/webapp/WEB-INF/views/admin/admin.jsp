@@ -20,9 +20,10 @@
 			<%@ include file="/WEB-INF/views/layout/header.jsp"%>
 		</header>
 		<div class="main-content">
+			<!-- ------------------------------------------------------------------------------------------------------------- -->
 
 			<div class="tabs">
-					<i font-weight="bold"><h2>Admin Page</h2></i><br />
+				<i font-weight="bold"><h2>Admin Page</h2></i><br />
 				<div class="tab-header">
 					<div class="active">
 						<i class="fa fa-code"></i> 😄 회원정보 관리
@@ -42,9 +43,9 @@
 
 					<div class="active">
 						<i><h2>😄</h2></i>
-						<h2>
+						<h1>
 							<a href="${root}admin/edit"> 회원정보 관리</a>
-						</h2>
+						</h1>
 						</br>
 						<p>
 							회원정보를 관리하는 공간입니다.<br> 유저를 검색할 수 있으며, <br> 최근 가입한 유저 순으로
@@ -55,27 +56,28 @@
 
 					<div>
 						<i><h2>📃</h2></i>
-						<h2>
+						<h1>
 							<a href="${root}admin/notice"> 공지사항 관리</a>
-						</h2>
+						</h1>
+						<p>
 						</br>관리자가 공지사항을 작성할 수 있는 공간입니다. 작성된 공지사항을 읽을 수 있습니다.
 						</p>
 					</div>
 
 					<div>
 						<i><h2>❗</h2></i>
-						<h2>
+						<h1>
 							<a href="${root}admin/ManageReport"> 신고 관리</a>
-						</h2>
+						</h1>
 						</br>
 						<p>게시판신고, 게시판댓글신고, 기업리뷰 신고등을 종합적으로 관리하는 공간입니다.</p>
 					</div>
 
 					<div>
 						<i><h2>🏢</h2></i>
-						<h2>
+						<h1>
 							<a href="${root}admin/recruit"> 공고 입력 </a>
-						</h2>
+						</h1>
 						</br>
 						<p>관리자는 DB에 있는 기업정보를 토대로 해당 기업의 공고를 입력 할 수 있습니다.</p>
 					</div>
@@ -92,25 +94,36 @@
 	</form>
  --%>
 			<script type="text/javascript">
-			function _class(name){
-				  return document.getElementsByClassName(name);
+				function _class(name) {
+					return document.getElementsByClassName(name);
 				}
 
-				let tabPanes = _class("tab-header")[0].getElementsByTagName("div");
+				let tabPanes = _class("tab-header")[0]
+						.getElementsByTagName("div");
 
-				for(let i=0;i<tabPanes.length;i++){
-				  tabPanes[i].addEventListener("click",function(){
-				    _class("tab-header")[0].getElementsByClassName("active")[0].classList.remove("active");
-				    tabPanes[i].classList.add("active");
-				    
-				    _class("tab-indicator")[0].style.top += `${i*30}px`;
-				    
-				    _class("tab-content")[0].getElementsByClassName("active")[0].classList.remove("active");
-				    _class("tab-content")[0].getElementsByTagName("div")[i].classList.add("active");
-				    
-				  });
+				for (let i = 0; i < tabPanes.length; i++) {
+					tabPanes[i]
+							.addEventListener(
+									"click",
+									function() {
+										_class("tab-header")[0]
+												.getElementsByClassName("active")[0].classList
+												.remove("active");
+										tabPanes[i].classList.add("active");
+
+										_class("tab-indicator")[0].style.top += `${i*30}px`;
+
+										_class("tab-content")[0]
+												.getElementsByClassName("active")[0].classList
+												.remove("active");
+										_class("tab-content")[0]
+												.getElementsByTagName("div")[i].classList
+												.add("active");
+
+									});
 				}
 			</script>
+<!-- ------------------------------------------------------------------------------------------------------------- -->
 		</div>
 		<footer>
 			<%@ include file="/WEB-INF/views/layout/footer.jsp"%>

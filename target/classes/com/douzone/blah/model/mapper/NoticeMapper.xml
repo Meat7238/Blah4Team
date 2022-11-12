@@ -10,7 +10,7 @@
 		resultType="com.douzone.blah.model.NoticeDTO">
 		select * FROM (select noti.*, ROWNUM r FROM (select * from
 		notice order by notice_num desc) noti)where r >= #{start} and r &lt;=
-		#{end}
+		#{end} and ROWNUM &lt;= 4
 
 	</select>
 
@@ -39,7 +39,6 @@
 		update notice set notice_title=#{notice_title},
 		notice_category= #{notice_category},
 		notice_content=#{notice_content},
-		notice_adminnum=#{notice_adminnum},
 		notice_regdate=sysdate
 		where
 		notice_num = #{notice_num}
@@ -50,13 +49,12 @@
 		parameterType="com.douzone.blah.model.NoticeDTO">
 		insert into notice(notice_num, notice_title,
 		notice_category,
-		notice_content, notice_adminnum, notice_regdate,
+		notice_content,notice_regdate,
 		notice_readcount) values((select NVL(max(notice_num),0)+1 from
 		notice),
 		#{notice_title},
 		#{notice_category},
 		#{notice_content},
-		#{notice_adminnum},
 		sysdate, 0)
 	</insert>
 

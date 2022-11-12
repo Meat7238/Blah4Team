@@ -47,7 +47,7 @@ public class NoticeController {
   public String writeform(NoticeDTO dto) {
     System.out.println(dto);
     noticeDAOImpl.insertNotice(dto);
-    return "redirect:notice";
+    return "redirect:/admin/notice";
   }
 
 

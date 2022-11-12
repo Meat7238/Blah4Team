@@ -8,13 +8,10 @@ import javax.annotation.Resource;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
 import com.douzone.blah.dao.PostDAO;
 import com.douzone.blah.dao.ReportDAO;
-import com.douzone.blah.model.PostDTO;
 import com.douzone.blah.model.ReportCrDTO;
 import com.douzone.blah.model.ReportPDTO;
 import com.douzone.blah.model.ReportPrDTO;
@@ -24,7 +21,7 @@ public class ReportController {
 
   @Resource
   private ReportDAO reportDAOImpl;
-  
+
   @Resource
 	private PostDAO postDAOImpl;
 
@@ -120,12 +117,9 @@ public class ReportController {
   public String reportPostUpdate(HttpServletRequest request) throws ServletException, IOException {
     String p_result = request.getParameter("reportp_result");
     String p_num = request.getParameter("reportp_num");
-    String admin_id = request.getParameter("admin_id");
-    System.out.println(admin_id);
     Map<String, String> resultP = new HashMap<>();
     resultP.put("reportp_result", p_result);
     resultP.put("reportp_num", p_num);
-    resultP.put("admin_id", admin_id);
 
     System.out.println(resultP);
     if (p_result != null) {
@@ -139,7 +133,6 @@ public class ReportController {
     Map<String, String> resultPr = new HashMap<>();
     resultPr.put("reportpr_result", pr_result);
     resultPr.put("reportpr_num", pr_num);
-    resultPr.put("admin_id", admin_id);
     System.out.println("resultPr : " + resultPr);
     if (pr_result != null) {
       int turn = reportDAOImpl.updateReportPr(resultPr);
@@ -152,7 +145,6 @@ public class ReportController {
     Map<String, String> resultCr = new HashMap<>();
     resultCr.put("reportcr_result", cr_result);
     resultCr.put("reportcr_num", cr_num);
-    resultCr.put("admin_id", admin_id);
     System.out.println("resultCr : " + resultCr);
     if (cr_result != null) {
       int turn = reportDAOImpl.updateReportCr(resultCr);
@@ -169,7 +161,7 @@ public class ReportController {
     String r2 = request.getParameter("post_usernum");
     String r3 = request.getParameter("post_num");
     String r4 = request.getParameter("post_title");
-    
+
     System.out.println(r1+"가나다라");
     System.out.println(r2+"가나다라");
     System.out.println(r3+"가나다라");
@@ -182,7 +174,7 @@ public class ReportController {
 
     return "board/reportForm";
   }
-  
+
   @RequestMapping("/reportp")
   public String reportp(HttpServletRequest request, ReportPDTO dto) {
 	  System.out.println("inset 전");
@@ -191,10 +183,10 @@ public class ReportController {
 	  System.out.println(dto);
 	  return "popup/popupClose";
   }
-  
+
   @RequestMapping("/stipulation")
   public String reportPost(HttpServletRequest request) {
-	
+
 	  return "info/stipulation";
   }
 
