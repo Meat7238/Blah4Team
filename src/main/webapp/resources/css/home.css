@@ -21,9 +21,9 @@ table {
 	display: table;
 	margin: auto;
 	cellpadding: "3";
-	border: 1px #a39485 solid;
+	border: 20px #a39485 solid;
 	font-size: .9em;
-	box-shadow: 0 2px 5px rgba(0, 0, 0, .25);
+	box-shadow: 0 2px 20px rgba(0, 0, 0, .25);
 	width: 80%;
 	border-collapse: collapse;
 	border-radius: 5px;
