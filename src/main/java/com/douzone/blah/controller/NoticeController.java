@@ -86,6 +86,7 @@ public class NoticeController {
     map.put("start", start);
     map.put("end", end);
     List<NoticeDTO> list = noticeDAOImpl.getNoticeList(map);
+
     request.setAttribute("noticelist", list);
     request.setAttribute("pg",pg);
     request.setAttribute("allPage",allPage);

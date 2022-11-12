@@ -11,7 +11,7 @@
 		user2 ORDER BY
 		REGEXP_REPLACE(user_num, '[0-9]') , to_number(REGEXP_REPLACE(user_num,
 		'[^0-9]')) desc) noti)where r >= #{start} and r &lt;=
-		#{end}
+		#{end} and ROWNUM &lt;= 7
 	</select>
 
 	<!-- 회원 삭제 -->
@@ -30,8 +30,11 @@
 		resultType="com.douzone.blah.model.User2DTO">
 		select * from user2
 		<if test="keyvalue != ''">
-			where ${column} = #{keyvalue}
+			where ${column} = #{keyvalue} 
 			<!-- where ${column} like '%' || #{keyvalue} || '%' -->
+		</if>
+		<if test="keyvalue ==''">
+			where ROWNUM &lt;= 7
 		</if>
 	</select>
 

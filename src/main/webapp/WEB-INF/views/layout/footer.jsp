@@ -16,7 +16,7 @@
 			<div class="row">
 				<div class="footer">
 					<ul>
-						<li><a href="notice">공지사항</a></li>
+						<li><a href="${pageContext.request.contextPath}/notice">공지사항</a></li>
 						<li><a href="#">사이트 도움말</a></li>
 						<li><a href="https://kr.teamblind.com/setting/term">사이트
 								이용약관</a></li>
@@ -30,10 +30,10 @@
 									window.open(url, name, option);
 								}
 							</script>
-						<li><a href="${root}admin">관리자 페이지</a></li>
+						<li><a href="${pageContext.request.contextPath}/admin">관리자 페이지</a></li>
 					</ul>
 					<address>
-						<a href="${root}">Copyright &copy; blahblah All Rights
+						<a href="${pageContext.request.contextPath}">Copyright &copy; blahblah All Rights
 							Reserved </a>
 					</address>
 				</div>

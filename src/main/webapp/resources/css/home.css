@@ -115,4 +115,17 @@ table #recent {
 		border-bottom: 1px solid #e5e5e5;
 	}
 } */
+html,body{
+	width: 100%; height:100%;
+}
+.wrapper{
+	display:flex;
+	flex-direction: column;
+	height: 100%;
+}
+.main-content{
+	flex:1;
+}
+footer{
+	height:60px;
 }

@@ -11,11 +11,14 @@
 <style type="text/css">
 </style>
 
-<link href="${pageContext.request.contextPath}/resources/css/home.css" rel="stylesheet" />
+<link href="${pageContext.request.contextPath}/resources/css/home.css"
+	rel="stylesheet" />
 </head>
 <body>
 	<div class="wrapper">
-		<%@ include file="/WEB-INF/views/layout/header.jsp"%>
+		<header>
+			<%@ include file="/WEB-INF/views/layout/header.jsp"%>
+		</header>
 		<div class="main-content">
 			<br /></br>
 			<div id="search_wrapper">
@@ -54,9 +57,8 @@
 				</c:forEach>
 			</table>
 
-			<table>
-				<tr>
-					<td align="center">
+			<ul>
+				<li align="center">
 						<!-- 처음 이전 링크 --> <c:if test="${pg>block}">
 							<!-- 5>10: false	/	15>10: true -->
 				[<a href="${pageContext.request.contextPath}/?pg=1">◀◀</a>]
@@ -83,13 +85,14 @@
 		
 			</c:if>
 
-					</td>
-				</tr>
-			</table>
-			
+					</li>
+			</ul>
+
 
 		</div>
+		<footer>
 		<%@ include file="/WEB-INF/views/layout/footer.jsp"%>
+		</footer>
 	</div>
 </body>
 </html>
