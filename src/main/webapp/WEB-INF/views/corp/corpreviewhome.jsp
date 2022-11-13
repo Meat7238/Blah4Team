@@ -57,8 +57,8 @@ footer {
 			<br />
 
 			<table border="2" width="1500">
-
 				<c:forEach var="c" items="${ corplist }">
+<thead>
 					<tr>
 						<th width="80">기업 이름</th>
 						<th width="200">홈페이지</th>
@@ -70,6 +70,7 @@ footer {
 						<th width="500">세부 사항</th>
 
 					</tr>
+					</thead>
 					<tr>
 
 						<td><a href="corpreviewintro?corpnum=${c.corp_num}">${c.corp_name}</a></td>

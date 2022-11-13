@@ -30,6 +30,14 @@ html, body {
 
 footer {
 	height: 60px;
+		
+}
+
+#corpreviewwriteform th{
+	font-weight: bold;
+	color: #fff;
+	background: #292b33;
+	
 }
 </style>
 

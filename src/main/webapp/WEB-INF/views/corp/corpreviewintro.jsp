@@ -24,6 +24,12 @@ html, body {
 footer {
 	height: 60px;
 }
+.field th.field-label{
+	font-weight: bold;
+	color: #fff;
+	background: #292b33;
+	
+}
 </style>
 <meta charset="UTF-8">
 <title>기업 리뷰 소개</title>
@@ -57,13 +63,15 @@ footer {
 					<h1 class="header">기업정보</h1>
 					<br>
 					<br>
-					<table class="table-basic-infomation-primary">
+					<table class="table-basic-infomation-primary" style="width : 70%;">
 						<colgroup>
 							<col class="col-label">
 							<col class="col-value">
 							<col class="col-label">
 							<col class="col-value">
 						</colgroup>
+						
+						
 						<tbody>
 
 							<tr class="field">

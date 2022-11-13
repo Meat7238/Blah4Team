@@ -29,6 +29,12 @@ html, body {
 footer {
 	height: 60px;
 }
+
+th.field-label {
+	font-weight: bold;
+	color: #fff;
+	background: #292b33;
+}
 </style>
 <link href="${path}/resources/css/star.css" rel="stylesheet" />
 
@@ -111,6 +117,8 @@ footer {
 
 									<tr class="field">
 										<th class="field-label">항목별 평가</th>
+										<td class="field-value"
+											style="font-weight: bold; color: #fff; background: #292b33;" />
 									<tr class="field">
 										<th class="field-label">커리어 향상</th>
 										<td class="field-value">
@@ -144,19 +152,19 @@ footer {
 											<div class="value-container">
 												<div class="value">
 													<form name="corpreviewemain" class="corpreviewemain">
-														<c:if test="${corplist.CORPREVIEW_STARPOINT1 == 1}">
+														<c:if test="${corplist.CORPREVIEW_STARPOINT2 == 1}">
 															★☆☆☆☆
 														</c:if>
-														<c:if test="${corplist.CORPREVIEW_STARPOINT1 == 2}">
+														<c:if test="${corplist.CORPREVIEW_STARPOINT2 == 2}">
 															★★☆☆☆
 														</c:if>
-														<c:if test="${corplist.CORPREVIEW_STARPOINT1 == 3}">
+														<c:if test="${corplist.CORPREVIEW_STARPOINT2 == 3}">
 															★★★☆☆
 														</c:if>
-														<c:if test="${corplist.CORPREVIEW_STARPOINT1 == 4}">
+														<c:if test="${corplist.CORPREVIEW_STARPOINT2 == 4}">
 															★★★★☆
 														</c:if>
-														<c:if test="${corplist.CORPREVIEW_STARPOINT1 == 5}">
+														<c:if test="${corplist.CORPREVIEW_STARPOINT2 == 5}">
 															★★★★★
 														</c:if>
 													</form>
@@ -172,19 +180,19 @@ footer {
 											<div class="value-container">
 												<div class="value">
 													<form name="corpreviewemain" class="corpreviewemain">
-														<c:if test="${corplist.CORPREVIEW_STARPOINT1 == 1}">
+														<c:if test="${corplist.CORPREVIEW_STARPOINT3 == 1}">
 															★☆☆☆☆
 														</c:if>
-														<c:if test="${corplist.CORPREVIEW_STARPOINT1 == 2}">
+														<c:if test="${corplist.CORPREVIEW_STARPOINT3 == 2}">
 															★★☆☆☆
 														</c:if>
-														<c:if test="${corplist.CORPREVIEW_STARPOINT1 == 3}">
+														<c:if test="${corplist.CORPREVIEW_STARPOINT3 == 3}">
 															★★★☆☆
 														</c:if>
-														<c:if test="${corplist.CORPREVIEW_STARPOINT1 == 4}">
+														<c:if test="${corplist.CORPREVIEW_STARPOINT3 == 4}">
 															★★★★☆
 														</c:if>
-														<c:if test="${corplist.CORPREVIEW_STARPOINT1 == 5}">
+														<c:if test="${corplist.CORPREVIEW_STARPOINT3 == 5}">
 															★★★★★
 														</c:if>
 													</form>
@@ -200,19 +208,19 @@ footer {
 											<div class="value-container">
 												<div class="value">
 													<form name="corpreviewemain" class="corpreviewemain">
-														<c:if test="${corplist.CORPREVIEW_STARPOINT1 == 1}">
+														<c:if test="${corplist.CORPREVIEW_STARPOINT4 == 1}">
 															★☆☆☆☆
 														</c:if>
-														<c:if test="${corplist.CORPREVIEW_STARPOINT1 == 2}">
+														<c:if test="${corplist.CORPREVIEW_STARPOINT4 == 2}">
 															★★☆☆☆
 														</c:if>
-														<c:if test="${corplist.CORPREVIEW_STARPOINT1 == 3}">
+														<c:if test="${corplist.CORPREVIEW_STARPOINT4 == 3}">
 															★★★☆☆
 														</c:if>
-														<c:if test="${corplist.CORPREVIEW_STARPOINT1 == 4}">
+														<c:if test="${corplist.CORPREVIEW_STARPOINT4 == 4}">
 															★★★★☆
 														</c:if>
-														<c:if test="${corplist.CORPREVIEW_STARPOINT1 == 5}">
+														<c:if test="${corplist.CORPREVIEW_STARPOINT4 == 5}">
 															★★★★★
 														</c:if>
 													</form>
@@ -228,19 +236,19 @@ footer {
 											<div class="value-container">
 												<div class="value">
 													<form name="corpreviewemain" class="corpreviewemain">
-														<c:if test="${corplist.CORPREVIEW_STARPOINT1 == 1}">
+														<c:if test="${corplist.CORPREVIEW_STARPOINT5 == 1}">
 															★☆☆☆☆
 														</c:if>
-														<c:if test="${corplist.CORPREVIEW_STARPOINT1 == 2}">
+														<c:if test="${corplist.CORPREVIEW_STARPOINT5 == 2}">
 															★★☆☆☆
 														</c:if>
-														<c:if test="${corplist.CORPREVIEW_STARPOINT1 == 3}">
+														<c:if test="${corplist.CORPREVIEW_STARPOINT5 == 3}">
 															★★★☆☆
 														</c:if>
-														<c:if test="${corplist.CORPREVIEW_STARPOINT1 == 4}">
+														<c:if test="${corplist.CORPREVIEW_STARPOINT5 == 4}">
 															★★★★☆
 														</c:if>
-														<c:if test="${corplist.CORPREVIEW_STARPOINT1 == 5}">
+														<c:if test="${corplist.CORPREVIEW_STARPOINT5 == 5}">
 															★★★★★
 														</c:if>
 													</form>
@@ -265,15 +273,11 @@ footer {
 									<col class="col-value">
 								</colgroup>
 								<tbody>
+								
 									<tr class="field">
 										<th class="field-label">기업 세부 리뷰</th>
-										<td class="field-value">
-											<div class="value-container">
-												<div class="value"></div>
-											</div>
-										</td>
-
-									</tr>
+										<td class="field-value"
+											style="font-weight: bold; color: #fff; background: #292b33;" />
 									<tr class="field">
 										<th class="field-label">한줄평</th>
 										<td class="field-value">
@@ -313,6 +317,9 @@ footer {
 										</td>
 
 									</tr>
+									
+									
+									
 								</tbody>
 							</table>
 						</div>

@@ -57,6 +57,12 @@ thead {
 	color: #fff;
 	background: #292b33;
 }
+.field th.field-label{
+	font-weight: bold;
+	color: #fff;
+	background: #292b33;
+	
+}
 
 .list {
 	width: 800px;
