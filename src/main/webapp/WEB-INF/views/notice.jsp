@@ -5,21 +5,29 @@
 <head>
 <meta charset="UTF-8">
 <title>client notice view</title>
+<link href="${pageContext.request.contextPath}/resources/css/home.css"
+	rel="stylesheet" />
 </head>
 <body>
 
-	<%@ include file="/WEB-INF/views/layout/header.jsp"%>
-	<h1>client notice view</h1>
+	<div class="wrapper">
+		<header>
+			<%@ include file="/WEB-INF/views/layout/header.jsp"%>
+		</header>
+		<div class="main-content">
+<!-- ------------------------------------------------------------------------------------------------------------- -->
+		<h1>client Notice Page</h1>
 	</br>
-	<a href="${path}/">뒤로가기</a>
-	</br>
+		</br>
 	<table width="1000" cellpadding="3" border="1">
+	<thead>
 		<tr>
 			<th width="50">번호</th>
 			<th width="500">제목</th>
 			<th width="300">분류</th>
 			<th width="120">날짜</th>
 			<th width="120">조회수</th>
+	</thead>
 		</tr>
 		<c:forEach var="l" items="${noticelist}">
 			<tr>
@@ -30,9 +38,9 @@
 				<td>${l.notice_readcount}</td>
 		</c:forEach>
 	</table>
-	<table width="600">
-		<tr>
-			<td align="center">
+	</br>
+		<ul>
+			<li align="center" style="font-size: 20px;" >
 				<!-- 처음 이전 링크 --> <c:if test="${pg>block}">
 					<!-- 5>10 : false / 15>10 : true -->
 			[<a href="notice?pg=1">◀◀</a>]
@@ -58,11 +66,14 @@
 				[<span style="color: gray">▶▶</span>]
 		
 		</c:if>
-
-			</td>
-		</tr>
-	</table>
-	<%@ include file="/WEB-INF/views/layout/footer.jsp"%>
-
+<br>
+			</li>
+		</ul>
+<!-- ------------------------------------------------------------------------------------------------------------- -->
+		</div>
+		<footer>
+			<%@ include file="/WEB-INF/views/layout/footer.jsp"%>
+		</footer>
+	</div>
 </body>
 </html>

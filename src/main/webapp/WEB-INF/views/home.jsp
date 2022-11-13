@@ -56,9 +56,9 @@
 					</tbody>
 				</c:forEach>
 			</table>
-
+				</br>
 			<ul>
-				<li align="center">
+				<li align="center" style="font-size: 20px;" >
 						<!-- 처음 이전 링크 --> <c:if test="${pg>block}">
 							<!-- 5>10: false	/	15>10: true -->
 				[<a href="${pageContext.request.contextPath}/?pg=1">◀◀</a>]
@@ -84,6 +84,8 @@
 				[<span style="color: gray">▷▷</span>]
 		
 			</c:if>
+			</br>
+			</br>
 
 					</li>
 			</ul>
