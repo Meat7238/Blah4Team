@@ -10,7 +10,12 @@
 
 </head>
 <body>
-<%@ include file="/WEB-INF/views/layout/header.jsp"%>
+<div class="wrapper">
+		<header>
+			<%@ include file="/WEB-INF/views/layout/header.jsp"%>
+		</header>
+		<div class="main-content">
+			<!-- ------------------------------------------------------------------------------------------------------------- -->
 
 <br />
 	<div class="searchbox"><h3>게시글 검색</h3>
@@ -36,7 +41,7 @@
 		<li class="item"><a href="board?category='우리회사 채용해요'">@우리회사 채용해요</a></li>
 	</ul></nav></div><br /><hr><br />
 	
-<div class="wrapper">
+<div class="abs">
 	<div class="int">
 	<table>
 	<caption>블라블라</caption>
@@ -232,9 +237,11 @@
 	</div>
 </div>
 
-<div class="footer">
-<%@ include file="/WEB-INF/views/layout/footer.jsp"%>
-</div>
-
+<!-- ------------------------------------------------------------------------------------------------------------- -->
+		</div>
+		<footer>
+			<%@ include file="/WEB-INF/views/layout/footer.jsp"%>
+		</footer>
+	</div>
 </body>
 </html>

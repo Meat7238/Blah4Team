@@ -34,56 +34,55 @@
 			<%@ include file="/WEB-INF/views/layout/header.jsp"%>
 		</header>
 		<div class="main-content">
+			<!-- ------------------------------------------------------------------------------------------------------------- -->
+
 			<h2 align="center">글 읽기</h2>
 			<a href="board?pg=${pg}">게시판 홈</a>
-			<table>
+			
+			<table class="read">
+				
+					<caption>${b.post_title}</caption>
+				
 				<tr>
-					<th colspan="4">${b.post_title}</th>
+					<th>작성자</th>
+					<th>카테고리</th>
+					<th>작성일</th>
+					<th>조회수</th>
 				</tr>
-
 				<tr>
-					<td width="20%">${user_id}</td>
+					<td>${user_id}</td>
 					<td>${b.post_category}</td>
-					<td width="15%">${b.post_regdate}</td>
-					<td width="15%">조회수 ${b.post_readcount}</td>
+					<td>${b.post_regdate}</td>
+					<td>조회수 ${b.post_readcount}</td>
 				</tr>
 
 				<tr>
-					<td colspan="4"><textarea rows="10" cols="100"
+					<td colspan="4"><textarea class="textContent"
 							readonly="readonly">${b.post_content}</textarea></td>
 				</tr>
+				<tr>
 
-		<tr>
-			<%-- <sec:authorize access="isAuthenticated()">
-		<sec:authentication property="principal" var="user"/>
-			<c:if test="${user.권한 eq '관리자'}">
-			...인증되고 인가된 사용자에게 표출할 영역
-			</c:if>
-		</sec:authorize> --%>
-
-			<td colspan="4" align="right"><sec:authentication
-					property="principal" var="pinfo" /> <sec:authorize
-					access="isAuthenticated()">
+			<td colspan="4" align="right">
+			<sec:authentication property="principal" var="pinfo" />
+			<sec:authorize access="isAuthenticated()">
 					<c:choose>
 						<c:when test="${pinfo.username eq user_id }">
-							<input type="button" value="수정"
+							<input type="button" value="수정" class="button"
 								onclick="location.href='${pageContext.request.contextPath}/updateform?post_num=${b.post_num}&pg=${pg}';" />
-							<input type="button" value="삭제"
+							<input type="button" value="삭제" class="button"
 								onclick="location.href='${pageContext.request.contextPath}/delete?post_num=${b.post_num}&pg=${pg}';" />
 						</c:when>
 						<c:otherwise>
 						<form name="form">
-					<input type="hidden" name="pg" value="${pg}" /> <input
-						type="hidden" id="post_title" name="post_title"
-						value="${b.post_title}" /> <input type="hidden" id="post_num"
-						name="post_num" value="${b.post_num}" /> <input type="hidden"
-						id="post_usernum" name="post_usernum" value="${b.post_usernum}" />
-					<input type="hidden" id="post_category" name="post_category"
-						value="${b.post_category}" /> <input type="button" value="게시글 신고"
-						onclick="reportpop(this.form)" />
-				</form>
+							<input type="hidden" name="pg" value="${pg}" />
+							<input type="hidden" id="post_title" name="post_title" value="${b.post_title}" />
+							<input type="hidden" id="post_num" name="post_num" value="${b.post_num}" />
+							<input type="hidden" id="post_usernum" name="post_usernum" value="${b.post_usernum}" />
+							<input type="hidden" id="post_category" name="post_category" value="${b.post_category}" />
+							<input type="button" class="button" value="게시글 신고" onclick="reportpop(this.form)" />
+						</form>
 							<sec:authorize access="hasRole('ROLE_ADMIN')">
-								<input type="button" value="삭제"
+								<input type="button" value="삭제" class="button"
 									onclick="location.href='${pageContext.request.contextPath}/delete?post_num=${b.post_num}&pg=${pg}';" />
 							</sec:authorize>
 						</c:otherwise>
@@ -91,59 +90,60 @@
 				</sec:authorize>
 				</td>
 		</tr>
-	</table>
-
-<div id="postReview">
-				<h2>댓글</h2>
-				<br />
-				<!-- <ol class="reviewList"> -->
-				<c:forEach items="${reviewList}" var="reviewList">
-					<table>
-						<tr>
-							<td>작성자</td>
-							<td>${reviewList.postreview_usernum}</td>
-						</tr>
-						<tr>
-							<td>작성 날짜</td>
-							<td>${reviewList.postreview_regdate}</td>
-						</tr>
-						<tr>
-							<td colspan="2">${reviewList.postreview_content}</td>
-						</tr>
-					</table>
-				</c:forEach>
-				<!-- </ol> -->
-			</div>
-
+	</table><br />
+	
 	<div>
-		<h2>댓글 작성하기</h2>
-		<h5>작성자</h5>
-
+	<table class="reviewWrite">
+		<tr>
+			<th align="left">댓글 작성하기</th>
+			<th style="text-align: right;">작성자&nbsp;&nbsp;:&nbsp;&nbsp;
+				<sec:authorize access="isAuthenticated()">
+				<sec:authentication property="principal.username"/>
+			</sec:authorize>
+			</th>
+		</tr>
+		<tr><td colspan="2" >
 		<form name="insertReview" action="review" method="post">
 			<sec:authorize access="isAuthenticated()">
-
-				<input name="writer"
-					value='<sec:authentication property="principal.username"/>'
-					readonly="readonly">
+				<input  type="hidden" name="writer" value='<sec:authentication property="principal.username"/>' readonly="readonly">
 			</sec:authorize>
 			<br />
-			<textarea name="postreview_content" rows="5" cols="50"
-				placeholder="댓글입력하기"></textarea>
-			<input type="hidden" name="pg" value="${pg}" /> <input type="hidden"
-				name="post_num" value="${b.post_num}" /> <input type="hidden"
-				name="postreview_postnum" value="${b.post_num}" /> <input
-				type="button" value="쓰기" onclick="test3()" /> <input type="reset"
-				value="취소" />
+				<textarea class="reply" name="postreview_content" placeholder="댓글입력하기"></textarea>
+				<input type="hidden" name="pg" value="${pg}" />
+				<input type="hidden" name="post_num" value="${b.post_num}" />
+				<input type="hidden" name="postreview_postnum" value="${b.post_num}" />
+				<input type="button" class="button" value="쓰기" onclick="test3()" />
+				<input type="reset" class="button" value="취소" />		
+		</form>
+		</td></tr>
+		</table>
+</div>
 
-			
-
-						
-				</form>
+<br />
+<div class="padding">
+				<!-- <ol class="reviewList"> -->
+					<table class="reviewWrite">
+				<caption class="cap">댓글</caption>
+				<c:forEach items="${reviewList}" var="reviewList">
+						<tr>
+							<th>작성자</th>
+							<td rowspan="2">${reviewList.postreview_content}</td>
+							<th>작성 날짜</th>
+						</tr>
+						<tr id="trtr">
+							<td>${reviewList.postreview_usernum}</td>
+							<td>${reviewList.postreview_regdate}</td>
+						</tr>
+				</c:forEach>
+					</table>
+				<!-- </ol> -->
 			</div>
+<br /><br />
+			<!-- ------------------------------------------------------------------------------------------------------------- -->
 		</div>
-	<footer>
-		<%@ include file="/WEB-INF/views/layout/footer.jsp"%>
-	</footer>
+		<footer>
+			<%@ include file="/WEB-INF/views/layout/footer.jsp"%>
+		</footer>
 	</div>
 </body>
 </html>
