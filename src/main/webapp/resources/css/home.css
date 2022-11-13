@@ -61,6 +61,7 @@ table td {
 
 a {
 	color: #73685d;
+	text-decoration-line: none;
 }
 
 table #recent {
