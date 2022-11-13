@@ -20,12 +20,14 @@
 	}
 	
 </script>
+<link href="${pageContext.request.contextPath}/resources/css/updateform.css" rel="stylesheet" />
+</head>
 <body>
 <%@ include file="/WEB-INF/views/layout/header.jsp"%>
 <h2>게시글 수정</h2>
 <a href="board">게시판</a>
 <form name="updateform" action="update" method="post">
-<table width="850">
+<table>
 
 	
 	<tr>
