@@ -219,7 +219,6 @@ public class PostController {
 
 	// 댓글 작성
 	@RequestMapping("/review")
-
 	public String insertPostReview(HttpServletRequest request, PostReviewDTO dto, int post_num, int pg) {
 		String writer = request.getParameter("writer");
 		System.out.println(writer + "가 작성한 댓글입니다");

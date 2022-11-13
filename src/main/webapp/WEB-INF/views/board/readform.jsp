@@ -23,29 +23,35 @@
 	}
 </script>
 
-<style>
-</style>
+<link
+	href="${pageContext.request.contextPath}/resources/css/readform.css"
+	rel="stylesheet" />
+
 </head>
 <body>
-	<%@ include file="/WEB-INF/views/layout/header.jsp"%>
-	<h2>글 읽기</h2>
-	<a href="board?pg=${pg}">게시판 홈</a>
-	<table width="700">
-		<tr>
-			<th colspan="4">${b.post_title}</th>
-		</tr>
+	<div class="wrapper">
+		<header>
+			<%@ include file="/WEB-INF/views/layout/header.jsp"%>
+		</header>
+		<div class="main-content">
+			<h2 align="center">글 읽기</h2>
+			<a href="board?pg=${pg}">게시판 홈</a>
+			<table>
+				<tr>
+					<th colspan="4">${b.post_title}</th>
+				</tr>
 
-		<tr>
-			<td width="20%">${user_id}</td>
-			<td>${b.post_category}</td>
-			<td width="15%">${b.post_regdate}</td>
-			<td width="15%">조회수 ${b.post_readcount}</td>
-		</tr>
+				<tr>
+					<td width="20%">${user_id}</td>
+					<td>${b.post_category}</td>
+					<td width="15%">${b.post_regdate}</td>
+					<td width="15%">조회수 ${b.post_readcount}</td>
+				</tr>
 
-		<tr>
-			<td colspan="4"><textarea rows="10" cols="100"
-					readonly="readonly">${b.post_content}</textarea></td>
-		</tr>
+				<tr>
+					<td colspan="4"><textarea rows="10" cols="100"
+							readonly="readonly">${b.post_content}</textarea></td>
+				</tr>
 
 		<tr>
 			<%-- <sec:authorize access="isAuthenticated()">
@@ -66,14 +72,7 @@
 								onclick="location.href='${pageContext.request.contextPath}/delete?post_num=${b.post_num}&pg=${pg}';" />
 						</c:when>
 						<c:otherwise>
-							<sec:authorize access="hasRole('ROLE_ADMIN')">
-								<input type="button" value="삭제"
-									onclick="location.href='${pageContext.request.contextPath}/delete?post_num=${b.post_num}&pg=${pg}';" />
-							</sec:authorize>
-						</c:otherwise>
-					</c:choose>
-				</sec:authorize>
-				<form name="form">
+						<form name="form">
 					<input type="hidden" name="pg" value="${pg}" /> <input
 						type="hidden" id="post_title" name="post_title"
 						value="${b.post_title}" /> <input type="hidden" id="post_num"
@@ -82,29 +81,39 @@
 					<input type="hidden" id="post_category" name="post_category"
 						value="${b.post_category}" /> <input type="button" value="게시글 신고"
 						onclick="reportpop(this.form)" />
-				</form></td>
+				</form>
+							<sec:authorize access="hasRole('ROLE_ADMIN')">
+								<input type="button" value="삭제"
+									onclick="location.href='${pageContext.request.contextPath}/delete?post_num=${b.post_num}&pg=${pg}';" />
+							</sec:authorize>
+						</c:otherwise>
+					</c:choose>
+				</sec:authorize>
+				</td>
 		</tr>
 	</table>
 
-	<div id="postReview">
-		<h2>댓글</h2>
-		<br />
-		<ol class="reviewList">
-			<c:forEach items="${reviewList}" var="reviewList">
-				<li>
-					<p>
-						작성자 : ${reviewList.postreview_usernum}<br /> 작성 날짜 :
-						${reviewList.postreview_regdate}
-					</p>
-
-					<p>${reviewList.postreview_content}</p>
-				</li>
+<div id="postReview">
+				<h2>댓글</h2>
 				<br />
-				<br />
-			</c:forEach>
-		</ol>
-
-	</div>
+				<!-- <ol class="reviewList"> -->
+				<c:forEach items="${reviewList}" var="reviewList">
+					<table>
+						<tr>
+							<td>작성자</td>
+							<td>${reviewList.postreview_usernum}</td>
+						</tr>
+						<tr>
+							<td>작성 날짜</td>
+							<td>${reviewList.postreview_regdate}</td>
+						</tr>
+						<tr>
+							<td colspan="2">${reviewList.postreview_content}</td>
+						</tr>
+					</table>
+				</c:forEach>
+				<!-- </ol> -->
+			</div>
 
 	<div>
 		<h2>댓글 작성하기</h2>
@@ -126,10 +135,15 @@
 				type="button" value="쓰기" onclick="test3()" /> <input type="reset"
 				value="취소" />
 
-		</form>
+			
 
+						
+				</form>
+			</div>
+		</div>
+	<footer>
+		<%@ include file="/WEB-INF/views/layout/footer.jsp"%>
+	</footer>
 	</div>
-
-	<%@ include file="/WEB-INF/views/layout/footer.jsp"%>
 </body>
 </html>
