@@ -19,10 +19,16 @@
 
 <title>블라블라 :: 로그인</title>
 <style type="text/css">
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;800&display=swap');
+
 .login {
 	display: block;
 	margin: auto;
 	margin-top: 150px;
+	padding: 50px 10px;
+	width: 480px;
+	border-radius: 5px;
+	box-shadow: 5px 5px 40px gray;
 }
 
 .btn-dark {
@@ -43,13 +49,24 @@ a:hover {
 	margin-bottom: 10px;
 }
 
-.id {
-	margin-bottom: 0;
-}
-
 .error {
 	margin-bottom: 0;
 	height: 30px;
+	color: red;
+}
+
+.id {
+	border-radius: 5px 5px 0 0;
+	margin-bottom: 0;
+}
+.pwd {
+	border-radius: 0 0 5px 5px;
+	border-top: 0;
+}
+
+.form-control {
+	height: 50px;
+
 }
 
 </style>
@@ -61,25 +78,25 @@ a:hover {
 		<form:form name="f" action="${root}login" method="POST">
 			
 			<div class="row logo justify-content-center">
-				<div class="col-lg-3">
+				<div class="col-lg-10">
 					<a href="${path}/"> 
 						<img class="mb-4" src="${path}/resources/images/logo.png" alt="블라블라" width="auto" height="auto">
 					</a>
 				</div>
 			</div>
 			<div class="row id justify-content-center">
-				<div class="col-lg-3">
-					<input type="text" class="form-control" name="user_id" placeholder="아이디">
+				<div class="col-lg-10">
+					<input type="text" class="form-control id" name="user_id" placeholder="아이디">
 				</div>
 
 			</div>
 			<div class="row pwd justify-content-center">
-				<div class="col-lg-3">
-					<input type="password" class="form-control" name="user_password" placeholder="비밀번호"> 
+				<div class="col-lg-10">
+					<input type="password" class="form-control pwd" name="user_password" placeholder="비밀번호"> 
 				</div>
 			</div>
 			<div class="row error justify-content-center">
-				<div class="col-lg-3">
+				<div class="col-lg-10">
 				<c:if test="${param.error != null}">
 					<p>아이디와 비밀번호를 확인해주세요</p>
 				</c:if>
@@ -90,13 +107,15 @@ a:hover {
 			</div>
 			<div class="row button justify-content-center">
 				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-				<div class="col-lg-3">
+				<div class="col-lg-10">
 					<button class="w-100 btn btn-lg btn-dark" type="submit">로그인</button>
 				</div>
 			</div>
 			<div class="row justify-content-center">
-				<div class="col-lg-3">
-					<p><a class="link" href="<c:url value="/join" />">회원가입</a></p>
+				<div class="col-lg-10">
+					<span><a class="link" href="<c:url value="/join" />">회원가입</a></span>
+					<span>|</span>
+					<span><a class="link" href="<c:url value="/join" />">비밀번호 찾기</a></span>
 				</div>
 			</div>
 			
