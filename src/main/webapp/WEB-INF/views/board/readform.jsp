@@ -3,6 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
+
+
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -28,6 +30,8 @@
 	rel="stylesheet" />
 
 </head>
+
+
 <body>
 	<div class="wrapper">
 		<header>
@@ -53,47 +57,54 @@
 							readonly="readonly">${b.post_content}</textarea></td>
 				</tr>
 
-		<tr>
-			<%-- <sec:authorize access="isAuthenticated()">
+				<tr>
+					<%-- <sec:authorize access="isAuthenticated()">
 		<sec:authentication property="principal" var="user"/>
 			<c:if test="${user.권한 eq '관리자'}">
 			...인증되고 인가된 사용자에게 표출할 영역
 			</c:if>
 		</sec:authorize> --%>
 
-			<td colspan="4" align="right"><sec:authentication
-					property="principal" var="pinfo" /> <sec:authorize
-					access="isAuthenticated()">
-					<c:choose>
-						<c:when test="${pinfo.username eq user_id }">
-							<input type="button" value="수정"
-								onclick="location.href='${pageContext.request.contextPath}/updateform?post_num=${b.post_num}&pg=${pg}';" />
-							<input type="button" value="삭제"
-								onclick="location.href='${pageContext.request.contextPath}/delete?post_num=${b.post_num}&pg=${pg}';" />
-						</c:when>
-						<c:otherwise>
-						<form name="form">
-					<input type="hidden" name="pg" value="${pg}" /> <input
-						type="hidden" id="post_title" name="post_title"
-						value="${b.post_title}" /> <input type="hidden" id="post_num"
-						name="post_num" value="${b.post_num}" /> <input type="hidden"
-						id="post_usernum" name="post_usernum" value="${b.post_usernum}" />
-					<input type="hidden" id="post_category" name="post_category"
-						value="${b.post_category}" /> <input type="button" value="게시글 신고"
-						onclick="reportpop(this.form)" />
-				</form>
-							<sec:authorize access="hasRole('ROLE_ADMIN')">
-								<input type="button" value="삭제"
-									onclick="location.href='${pageContext.request.contextPath}/delete?post_num=${b.post_num}&pg=${pg}';" />
-							</sec:authorize>
-						</c:otherwise>
-					</c:choose>
-				</sec:authorize>
-				</td>
-		</tr>
-	</table>
+					<td colspan="4" align="right"><sec:authentication
+							property="principal" var="pinfo" /> <sec:authorize
+							access="isAuthenticated()">
+							<c:choose>
 
-<div id="postReview">
+
+								<c:when test="${pinfo.username eq user_id }">
+									<input type="button" value="수정"
+										onclick="location.href='${pageContext.request.contextPath}/updateform?post_num=${b.post_num}&pg=${pg}';" />
+									<input type="button" value="삭제"
+										onclick="location.href='${pageContext.request.contextPath}/delete?post_num=${b.post_num}&pg=${pg}';" />
+								</c:when>
+
+
+								<c:otherwise>
+									<form name="form">
+										<input type="hidden" name="pg" value="${pg}" /> <input
+											type="hidden" id="post_title" name="post_title"
+											value="${b.post_title}" /> <input type="hidden"
+											id="post_num" name="post_num" value="${b.post_num}" /> <input
+											type="hidden" id="post_usernum" name="post_usernum"
+											value="${b.post_usernum}" /> <input type="hidden"
+											id="post_category" name="post_category"
+											value="${b.post_category}" /> <input type="button"
+											value="게시글 신고" onclick="reportpop(this.form)" />
+									</form>
+									<sec:authorize access="hasRole('ROLE_ADMIN')">
+										<input type="button" value="삭제"
+											onclick="location.href='${pageContext.request.contextPath}/delete?post_num=${b.post_num}&pg=${pg}';" />
+									</sec:authorize>
+								</c:otherwise>
+
+
+
+							</c:choose>
+						</sec:authorize></td>
+				</tr>
+			</table>
+
+			<div id="postReview">
 				<h2>댓글</h2>
 				<br />
 				<!-- <ol class="reviewList"> -->
@@ -115,35 +126,35 @@
 				<!-- </ol> -->
 			</div>
 
-	<div>
-		<h2>댓글 작성하기</h2>
-		<h5>작성자</h5>
+			<div>
+				<h2>댓글 작성하기</h2>
+				<h5>작성자</h5>
 
-		<form name="insertReview" action="review" method="post">
-			<sec:authorize access="isAuthenticated()">
+				<form name="insertReview" action="review" method="post">
+					<sec:authorize access="isAuthenticated()">
 
-				<input name="writer"
-					value='<sec:authentication property="principal.username"/>'
-					readonly="readonly">
-			</sec:authorize>
-			<br />
-			<textarea name="postreview_content" rows="5" cols="50"
-				placeholder="댓글입력하기"></textarea>
-			<input type="hidden" name="pg" value="${pg}" /> <input type="hidden"
-				name="post_num" value="${b.post_num}" /> <input type="hidden"
-				name="postreview_postnum" value="${b.post_num}" /> <input
-				type="button" value="쓰기" onclick="test3()" /> <input type="reset"
-				value="취소" />
+						<input name="writer"
+							value='<sec:authentication property="principal.username"/>'
+							readonly="readonly">
+					</sec:authorize>
+					<br />
+					<textarea name="postreview_content" rows="5" cols="50"
+						placeholder="댓글입력하기"></textarea>
+					<input type="hidden" name="pg" value="${pg}" /> <input
+						type="hidden" name="post_num" value="${b.post_num}" /> <input
+						type="hidden" name="postreview_postnum" value="${b.post_num}" />
+					<input type="button" value="쓰기" onclick="test3()" /> <input
+						type="reset" value="취소" />
 
-			
 
-						
+
+
 				</form>
 			</div>
 		</div>
-	<footer>
-		<%@ include file="/WEB-INF/views/layout/footer.jsp"%>
-	</footer>
+		<footer>
+			<%@ include file="/WEB-INF/views/layout/footer.jsp"%>
+		</footer>
 	</div>
 </body>
 </html>
