@@ -4,6 +4,27 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+<style type="text/css">
+html, body {
+	width: 100%;
+	height: 100%;
+}
+
+.wrapper {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+}
+
+.main-content {
+	flex: 1;
+}
+
+footer {
+	height: 60px;
+}
+</style>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript">
@@ -63,6 +84,8 @@ input[type=text]:focus {
 </style>
 </head>
 <body>
+
+
 	<div class="title">
 		<h2>게시글 신고하기</h2>
 	</div>
@@ -99,13 +122,13 @@ input[type=text]:focus {
 			<option value="5">사회 분위기를 어지럽히는 글</option>
 		</select><br /> <br /> <br />
 		<h4>신고 사유</h4>
-		<input type="text" name="reportcr_content" placeholder="신고 사유를 입력해주세요." />
-		<input type="hidden" name="reportcr_usernum"
-			value="${corpreview_usernum}" /> <input type="hidden"
-			name="reportcr_corpreviewnum" value="${corpreview_num}" /> <input
-			type="button" value="신고하기" onclick="btn1()" /> <input
-			type="button" value="신고취소" onclick="btn2()" /> <input
-			type="button" value="약관보기" onclick="btn3()" />
+		<input type="text" name="reportcr_content"
+			placeholder="신고 사유를 입력해주세요." /> <input type="hidden"
+			name="reportcr_usernum" value="${corpreview_usernum}" /> <input
+			type="hidden" name="reportcr_corpreviewnum" value="${corpreview_num}" />
+		<input type="button" value="신고하기" onclick="btn1()" /> <input
+			type="button" value="신고취소" onclick="btn2()" /> <input type="button"
+			value="약관보기" onclick="btn3()" />
 	</form>
 
 </body>
