@@ -247,9 +247,9 @@ public class PostController {
 		map.put("column", column); // column : title or writer or contnet
 		map.put("keyvalue", keyvalue);
 		System.out.println(keyvalue);
-		List<PostDTO> list = postDAOImpl.getSearchList(map);
+		List<Map<String, String>> list = postDAOImpl.getSearchList2(map);
 		request.setAttribute("list", list);
-		request.setAttribute("pg",pg);
+		/* request.setAttribute("pg",pg); */
 
 		return "board/board";
 	}
