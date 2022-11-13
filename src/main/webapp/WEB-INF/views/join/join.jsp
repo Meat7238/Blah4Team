@@ -233,6 +233,8 @@ document.querySelector("#joinForm").addEventListener("submit", function(e){
       e.preventDefault();
    }
 });
+
+
 </script>
 </body>
 
