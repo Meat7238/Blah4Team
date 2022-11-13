@@ -13,7 +13,7 @@
 <body>
 	<footer id="footer">
 		<div class="container">
-			<div class="row">
+			<div class="row foot">
 				<div class="footer">
 					<ul>
 						<li><a href="${pageContext.request.contextPath}/notice">공지사항</a></li>
