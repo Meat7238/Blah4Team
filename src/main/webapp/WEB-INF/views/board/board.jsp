@@ -55,20 +55,22 @@
 			<th width="80">작성자</th>
 			<th width="200">작성일</th>
 			<th width="120">조회수</th>
+			<th width="120">댓글수</th>
 		</tr></thead>
-		<c:forEach var="q" items="${list}">
+		<c:forEach var="q" items="${list}" varStatus="status">
 			<tr class="boardlist">
-				<td>${q.POST_NUM}</td>
-				<td class="title"><a href="readform?post_num=${q.POST_NUM}&pg=${pg}">${q.POST_TITLE}
+				<td>${q.post_num}</td>
+				<td class="title"><a href="readform?post_num=${q.post_num}&pg=${pg}">${q.post_title}
 					<%-- <c:if test="${q.post_reviewcount ne 0}">
 							<small><b>[&nbsp;<c:out value="${q.post_reviewcount}"/>&nbsp;]</b></small>
 						</c:if> --%>
 				</a></td>
-				<td>${q.POST_CATEGORY}</td>
+				<td>${q.post_category}</td>
 				<%-- <td>${q.post_content}</td> --%>
-				<td>${q.USER_ID}</td>
-				<td>${q.POST_REGDATE}</td>
-				<td>${q.POST_READCOUNT}</td>
+				<td>${postid[status.index]}</td>
+				<td>${q.post_regdate}</td>
+				<td>${q.post_readcount}</td>
+				<td>${postrivew_count[status.index]}</td>
 		</c:forEach>
 	</table>
 	

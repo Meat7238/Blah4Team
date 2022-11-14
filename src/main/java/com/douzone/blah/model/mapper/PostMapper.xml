@@ -5,15 +5,15 @@
 
 <mapper namespace="com.douzone.blah.dao.PostDAO">
 
-	<!-- 게시글 목록 -->
+	<!-- 카테고리별 게시글 목록 -->
 	<select id="getPostList" parameterType="hashmap"
-		resultType="map">
+		resultType="com.douzone.blah.model.PostDTO">
 	select * from
-	(select A.*, ROWNUM r from
-		(select * from post, user2 where post_category = ${post_category} and post.post_usernum = user2.user_num
-		order by post_num desc) A
-			)
-		where r >= #{start} and r &lt;= #{end}
+			(select A.*, ROWNUM r from
+				(select * from post where post_category = ${post_category} order by post_num desc) A
+			)		where r >= #{start} and r &lt;= #{end} and post_category = ${post_category}
+		
+		
 		
 		<!-- 게시글 번호로 내림차순한거를 A로 네이밍. A에서 ROWNUM r 설정. r이 start와 end 범위에서 전체 출력 -->
 	</select>

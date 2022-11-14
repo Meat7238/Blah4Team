@@ -16,7 +16,7 @@ public class PostDAOImpl implements PostDAO {
 
 	// 게시판 목록
 	@Override
-	public List<PostDTO> getPostList(HashMap map) {
+	public List getPostList(HashMap map) {
 		PostDAO postDAO = sqlSession.getMapper(PostDAO.class);
 		return postDAO.getPostList(map);
 	}

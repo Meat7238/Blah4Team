@@ -1,6 +1,7 @@
 package com.douzone.blah.controller;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -122,8 +123,18 @@ public class PostController {
 			map.put("end", end);
 			map.put("post_category", result);
 
-			List<Map<String, Object>> list = postDAOImpl.getPostList(map);
-
+			List<PostDTO> list = postDAOImpl.getPostList(map);
+			List<Integer> ali = new ArrayList<Integer>();
+		      for(int i=0; i<list.size();i++) {
+		        ali.add(postDAOImpl.getPostReviewCount(list.get(i).getPost_num()));
+		      }
+		      List<String> idList = new ArrayList<String>();
+		      for(int i=0; i<list.size(); i++) {
+		        idList.add(postDAOImpl.getUserID(list.get(i).getPost_usernum()));
+		      }
+		      request.setAttribute("postrivew_count", ali);
+		      System.out.println(idList);
+		      request.setAttribute("postid", idList);
 			request.setAttribute("list", list);
 			request.setAttribute("pg",pg);
 			request.setAttribute("allPage",allPage);
@@ -173,7 +184,8 @@ public class PostController {
 
 		List<PostReviewDTO> reviewList = postReviewDAOImpl.getPostReview(post_num);
 		model.addAttribute("reviewList", reviewList);
-
+		int reviewnum = postDAOImpl.getPostReviewCount(Integer.toString(post_num));
+		model.addAttribute("review_num", reviewnum);
 		/*
 		 * int review_num = postReviewDAOImpl.getReviewNum(post_num); String review_id =
 		 * postReviewDAOImpl.getReviewId(post_num);

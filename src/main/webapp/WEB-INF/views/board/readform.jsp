@@ -103,7 +103,7 @@
 	<div>
 	<table class="reviewWrite">
 		<tr>
-			<th align="left">댓글수 #</th>
+			<th align="left">댓글수 ${review_num }</th>
 			<th style="text-align: right;">작성자&nbsp;&nbsp;:&nbsp;&nbsp;
 				<sec:authorize access="isAuthenticated()">
 				<sec:authentication property="principal.username"/>
