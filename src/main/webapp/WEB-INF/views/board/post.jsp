@@ -19,7 +19,7 @@
 
 <br />
 	<div class="searchbox"><h3>게시글 검색</h3>
-	<form action="search" method="post">
+	<form action="search" method="get">
 		<select name="column">
 			<option value="post_title">제목</option>
 			<option value="post_usernum">작성자</option>

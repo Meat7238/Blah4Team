@@ -36,8 +36,7 @@
 		<div class="main-content">
 			<!-- ------------------------------------------------------------------------------------------------------------- -->
 
-			<!-- <h2 align="center">글 읽기</h2> -->
-			<a href="board?pg=${pg}">게시판 홈</a>
+			<input type="button" class="button" onclick="javascript:history.back();" value="이전 페이지">
 			
 			<table class="read">
 				<tr>

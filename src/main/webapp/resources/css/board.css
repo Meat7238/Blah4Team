@@ -101,7 +101,7 @@ thead {
 
 .item a {
   display: block;
-  color: #969696;
+  color: #73685d;
   text-align: center;
   padding: 2px 30px;
   text-decoration: none;
@@ -130,6 +130,7 @@ thead {
 
 .title a{
 	text-decoration-line: none;
+	color: #73685d;
 }
 
 .searchbox{

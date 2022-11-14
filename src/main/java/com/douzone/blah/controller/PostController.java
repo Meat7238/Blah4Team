@@ -30,6 +30,7 @@ public class PostController {
 	// 게시글 목록
 	@RequestMapping("/board")
 	public String list(HttpServletRequest request, PostDTO dto) {
+
 		String result = request.getParameter("category");
 		System.out.println(result);
 
@@ -60,9 +61,7 @@ public class PostController {
 			toPage = allPage;
 		}
 
-
 		if(result == null) {
-
 			String category1 = "블라블라";
 			String category2 = "주식투자";
 			String category3 = "썸,연애";
@@ -247,11 +246,15 @@ public class PostController {
 		map.put("column", column); // column : title or writer or contnet
 		map.put("keyvalue", keyvalue);
 		System.out.println(keyvalue);
-		List<PostDTO> list = postDAOImpl.getSearchList(map);
-		request.setAttribute("list", list);
-		request.setAttribute("pg",pg);
 
-		return "board/board";
+		List<Map<String, String>> list = postDAOImpl.getSearchList2(map);
+		
+
+		request.setAttribute("list", list);
+		request.setAttribute("pg", pg);
+
+
+		return "board/searchlist";
 	}
 
 }
