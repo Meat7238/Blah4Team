@@ -219,16 +219,21 @@ document.querySelector("#validationCustom04").addEventListener("input", function
 document.querySelector("#validationCustom04").addEventListener("change", function(){
 	//1. 입력한 value 값을 읽어온다.
 	let autoInput=this.value;
-	let autoInputPattern = /[a-z0-9]+@gmail.com/g;
+	let googlePattern = /[a-z0-9]+@gmail.com/g;
+	let naverPattern = /[a-z0-9]+@naver.com/g;
 	   
 	//3. 검증
-	autoWorkplacInput = autoInputPattern.test(autoInput);
+	googleInput = googlePattern.test(autoInput);
+	naverInput = naverPattern.test(autoInput);
 	
 	//4. 유효하다면 input 요소에 is-valid 클래스 추가, 아니라면 is-invalid 클래스 추가
 	
-	if(autoWorkplacInput) {
+	if(googleInput) {
 		document.querySelector("#validationCustom05").removeAttribute( 'disabled' );
 		document.querySelector("#validationCustom05").value = '구글';
+	} else if(naverInput) {
+		document.querySelector("#validationCustom05").removeAttribute( 'disabled' );
+		document.querySelector("#validationCustom05").value = '네이버';
 	} else {
 		document.querySelector("#validationCustom05").setAttribute( 'readonly',  false);
 	}
