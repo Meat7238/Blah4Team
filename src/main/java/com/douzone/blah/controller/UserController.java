@@ -280,4 +280,20 @@ public class UserController {
       return "redirect:/member";
    }
 
+   // 관리자 비밀번호 변경
+   // 비밀번호 반드시 암호화!
+   @GetMapping("/adminUpdatePwd")
+   public String changeAdmUpdate() {return "/admin/adminUpdatePwd";}
+   
+   @PostMapping("/adminUpdatePwd")
+   public String memberInfoUpdate(@RequestParam("user_password") String user_password, User2DTO user2dto) {
+
+ 	  user2dto.setUser_password(user_password);
+ 	  user2dto.setUser_id("admin0");
+
+      Map<String, String> userInfoMap = new HashMap<String, String>();
+      userInfoMap.put("user_id", "admin0");
+      userInfoMap.put("user_password", passwordEncoder.encode(user_password));
+      return "/admin/changeAdmUpdate";
+   }
 }

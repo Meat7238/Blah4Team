@@ -96,7 +96,7 @@
 		user_password = #{user_password}
 		where user_id=#{user_id}
 	</update>
-
+	
 	<!-- post_num에 해당하는 user_id 반환 -->
 	<select id="getUserID" parameterType="Integer"
 		resultType="String">
