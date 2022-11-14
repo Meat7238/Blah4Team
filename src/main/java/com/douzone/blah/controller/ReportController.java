@@ -181,7 +181,7 @@ public class ReportController {
     String r2 = request.getParameter("postreview_usernum");
 
     String user = principal.getName();
-	String user_num = user2DAOImpl.userId(user);
+	String user_num = user2DAOImpl.getUserNum(user);
 	
     System.out.println(r1);
     System.out.println(r2);

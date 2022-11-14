@@ -153,13 +153,17 @@ public class UserController {
       return res;
    }
 
-   //회원탈퇴
+   //회원 탈퇴
    @RequestMapping("/member/delete")
    public String memberDelete(HttpServletRequest request, User2DTO dto) {
-      String num = request.getParameter("user_num");
+
+      String id = request.getParameter("user_id");
+
+      System.out.println("/member/delete에서의 id값 : "+id);
+      String num = user2DAOImpl.getUserNum(id);
       System.out.println("/member/delete에서의 num값 : "+num);
       int cnt = user2DAOImpl.deleteUser2(num);
-      String res = "redirect:/admin/edit";
+      String res = "redirect:/";
       if (cnt == 0) {
          res = "fail";
       }

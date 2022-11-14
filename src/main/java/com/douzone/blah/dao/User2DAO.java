@@ -14,7 +14,7 @@ public interface User2DAO {
 	public int updateUser2(User2DTO dto); // 수정
 
 	public int deleteUser2(String user_num); // 삭제
-	
+
 	public List<User2DTO> getSearchList(Map<String, String> map);	// 검색
 
 	// 회원가입
@@ -28,13 +28,13 @@ public interface User2DAO {
 
 	// 이메일 인증 키 부여
 	int updateMailKey(Map<String, Object> map) throws Exception;
-	
+
 	// 이메일 인증 후 계정 활성화
 	int updateMailAuth(Map<String, Object> map) throws Exception;
-	
+
 	// 이메일 인증 안한 계정 처리
 	int emailAuthFail(String id) throws Exception;
-	
+
 	// 로그인
 	public Map<String, Object> selectUser(String user_id);
 
@@ -48,7 +48,7 @@ public interface User2DAO {
 	public String getUserID(int post_num);
 
 	// userId -> userNum
-	public String userId(String user);
+	public String getUserNum(String user);
 
 	// user수 count
 	public int getUserCount();

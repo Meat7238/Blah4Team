@@ -111,12 +111,12 @@
 		<div class="row justify-content-center">
 			<div class="col-lg-6">
 				
-				<button class="w-100 btn btn-lg btn-dark" type="button" onclick="location.href='${pageContext.request.contextPath}/member/delete?user_num=${user_num}';"   value="탈퇴" >회원 탈퇴</button>
+				<button class="w-100 btn btn-lg btn-dark" type="button" onclick="location.href='${pageContext.request.contextPath}/member/delete?user_id=${user_id}';"   value="탈퇴" >회원 탈퇴</button>
 			</div>
 		</div>
 	</form>
 </div>
-
+유저번호 있니?? ${user_num}
 	<%@ include file="/WEB-INF/views/layout/footer.jsp"%>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"

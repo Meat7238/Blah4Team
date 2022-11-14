@@ -141,7 +141,7 @@ public class PostController {
 	@RequestMapping("/writeform")
 	public String writeform(HttpServletRequest request, Principal principal) {
 		String user = principal.getName();
-		String user_num = user2DAOImpl.userId(user);	// id -> num변환
+		String user_num = user2DAOImpl.getUserNum(user);	// id -> num변환
 		System.out.println(user_num+"입니다");
 
 		request.setAttribute("user_num", user_num);
@@ -199,7 +199,7 @@ public class PostController {
 		PostDTO dto = postDAOImpl.getPost(post_num);
 
 		String user = principal.getName();
-		String user_num = user2DAOImpl.userId(user);
+		String user_num = user2DAOImpl.getUserNum(user);
 
 		model.addAttribute("user_num", user_num);
 		model.addAttribute("b", dto);
@@ -224,7 +224,7 @@ public class PostController {
 
 		String postreview_postnum = request.getParameter("postreview_postnum");
 		String postreview_content = request.getParameter("postreview_content");
-		String postreview_usernum = user2DAOImpl.userId(writer);
+		String postreview_usernum = user2DAOImpl.getUserNum(writer);
 		System.out.println(writer+"에 해당하는 user_num은" + postreview_usernum+"입니다");
 
 		HashMap map = new HashMap();
