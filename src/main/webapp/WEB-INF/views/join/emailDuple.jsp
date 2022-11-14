@@ -16,7 +16,7 @@
 	url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;800&display=swap')
 	;
 .container, .container-md, .container-sm{
-	max-width:2080px;
+	max-width: 1920px;
 }
 html,body{
 width: 100%; height:100%;

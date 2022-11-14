@@ -23,7 +23,7 @@
 	
 <style TYPE="text/css">
 .container, .container-md, .container-sm {
-	max-width: 2500px;
+	max-width: 1920px;
 }
 
 .input-group {
