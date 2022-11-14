@@ -87,7 +87,7 @@
 			<div class="row align-items-end justify-content-center needs-validation">
 				<div class="col-md-6 col-lg-4">
 					<label for="validationCustom05" class="form-label">직장</label>
-					<input type="text"  name="user_workspace" class="form-control" id="validationCustom05" placeholder="직장" required>
+					<input type="text"  name="user_workspace" class="form-control" id="validationCustom05" placeholder="직장" disabled required>
 				</div>
 			</div>
 			<div class="row align-items-end justify-content-center needs-validation">
@@ -126,15 +126,6 @@
 		<script type="text/javascript">
 
 
-//select에 따라 disable처리
-document.querySelector("#validationCustom06").addEventListener("change", function(){
-	if(this.value=="기타") {
-		document.querySelector("#excForm").removeAttribute( 'disabled' );
-	} else {
-		document.querySelector("#excForm").setAttribute( 'disabled',  false);
-		document.querySelector("#excForm").value ='';
-	}
-})
 
 //id의 유효성 여부를 저장할 변수를 만들고 초기값 false 부여
 let isIdValid=false;
@@ -224,6 +215,37 @@ document.querySelector("#validationCustom04").addEventListener("input", function
 	}
 });
 
+//직장 자동 입력
+document.querySelector("#validationCustom04").addEventListener("change", function(){
+	//1. 입력한 value 값을 읽어온다.
+	let autoInput=this.value;
+	let autoInputPattern = /[a-z0-9]+@gmail.com/g;
+	   
+	//3. 검증
+	autoWorkplacInput = autoInputPattern.test(autoInput);
+	
+	//4. 유효하다면 input 요소에 is-valid 클래스 추가, 아니라면 is-invalid 클래스 추가
+	
+	if(autoWorkplacInput) {
+		document.querySelector("#validationCustom05").removeAttribute( 'disabled' );
+		document.querySelector("#validationCustom05").value = '구글';
+	} else {
+		document.querySelector("#validationCustom05").setAttribute( 'readonly',  false);
+	}
+	
+	
+});
+
+//select에 따라 disable처리
+document.querySelector("#validationCustom06").addEventListener("change", function(){
+	if(this.value=="기타") {
+		document.querySelector("#excForm").removeAttribute( 'disabled' );
+	} else {
+		document.querySelector("#excForm").setAttribute( 'disabled',  false);
+		document.querySelector("#excForm").value ='';
+	}
+})
+
 
 //폼에 submit 이벤트가 일어 났을때 실행할 함수 등록
 document.querySelector("#joinForm").addEventListener("submit", function(e){
@@ -233,7 +255,6 @@ document.querySelector("#joinForm").addEventListener("submit", function(e){
       e.preventDefault();
    }
 });
-
 
 </script>
 </body>
