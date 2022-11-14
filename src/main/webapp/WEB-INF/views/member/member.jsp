@@ -22,7 +22,7 @@
 	url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;800&display=swap')
 	;
 .container, .container-md, .container-sm{
-	max-width: 2500px;
+	max-width: 1920px;
 }
 .info {
 	margin: 20px auto;
@@ -116,7 +116,6 @@
 		</div>
 	</form>
 </div>
-유저번호 있니?? ${user_num}
 	<%@ include file="/WEB-INF/views/layout/footer.jsp"%>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
