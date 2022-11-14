@@ -105,7 +105,8 @@ border-radius: 10px;
 <h4>신고 사유</h4>
 	<input type="text" name="reportp_content" placeholder="신고 사유를 입력해주세요."/>
 <h4>신고자 ID</h4>
-	<input type="text" name="reportp_usernum" placeholder="신고자 ID"/>
+	<input type="text" value='<sec:authentication property="principal.username"/>'readonly="readonly">
+	<input type="hidden" name="reportp_usernum" value="${r2}"/>
 	<input type="hidden" name="reportp_postnum" value="${r3}"/>
 	<input type="button" value="신고하기" onclick="report_post()"/>
 	<input type="button" value="신고취소" onclick="report_cancel()"/>
