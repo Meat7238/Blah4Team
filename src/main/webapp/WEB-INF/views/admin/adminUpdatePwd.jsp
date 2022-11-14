@@ -9,6 +9,7 @@
 <body>
 
 <form action="${root}adminUpdatePwd" method="post">
+	<input type="text" name="user_id">
 	<input type="text" name="user_password">
 	<input type="submit" value="비밀번호 변경">
 </form>
