@@ -32,6 +32,12 @@ flex:1;
 footer{
 height:60px;
 }
+.alert {
+	width: 800px;
+	margin: auto;
+	margin-top: 100px;
+}
+
 
 </style>
 

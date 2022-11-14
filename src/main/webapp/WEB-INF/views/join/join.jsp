@@ -87,13 +87,13 @@
 			<div class="row align-items-end justify-content-center needs-validation">
 				<div class="col-md-6 col-lg-4">
 					<label for="validationCustom05" class="form-label">직장</label>
-					<input type="text"  name="user_workspace" class="form-control" id="validationCustom05" placeholder="직장">
+					<input type="text"  name="user_workspace" class="form-control" id="validationCustom05" placeholder="직장" required>
 				</div>
 			</div>
 			<div class="row align-items-end justify-content-center needs-validation">
 				<div class="col-md-3 col-lg-2">
 					<label for="validationCustom06" class="form-label">직군</label>
-					<select name="user_jobgroup" form="joinForm" class="form-select" id="validationCustom06">
+					<select name="user_jobgroup" form="joinForm" class="form-select" id="validationCustom06" required>
   						<option selected disabled value="직군">직군</option>
   						<option value="홍보">홍보</option>
 						<option value="회계">회계</option>
