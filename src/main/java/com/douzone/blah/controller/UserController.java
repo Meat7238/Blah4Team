@@ -244,11 +244,11 @@ public class UserController {
    }
 
    // 이메일 인증 후
-   @GetMapping("/join/registerEmail")
+   @RequestMapping("/join/registerEmail")
    public String verify(@RequestParam Map<String, Object> map) throws Exception {
       log.warn(map);
       user2DAOImpl.updateMailAuth(map);
-      return "redirect:/";
+      return "join/emailAuthSuccess";
    }
 
    // 로그인 페이지 요청
@@ -315,7 +315,6 @@ public class UserController {
    public String memberInfoUpdate(@RequestParam("user_id") String user_id,
 	         @RequestParam("user_password") String user_password,
 	         User2DTO user2dto) {
-
 
 		  user2dto.setUser_password(user_password);
 
