@@ -99,6 +99,7 @@ a:hover {
 				<div class="col-lg-10">
 				<c:if test="${param.error != null}">
 					<p>아이디와 비밀번호를 확인해주세요</p>
+					${prevPage}
 				</c:if>
 				<c:if test="${param.error == null}">
 				</c:if>

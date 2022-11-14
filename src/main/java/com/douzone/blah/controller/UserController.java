@@ -113,7 +113,7 @@ public class UserController {
      if (result == 0) {
        return "fail";
      }
-     return "redirect:/admin/edit";
+     return "admin/editMember";
    }
 
 
