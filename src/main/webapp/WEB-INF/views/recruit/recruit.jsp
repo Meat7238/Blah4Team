@@ -42,7 +42,7 @@
 	margin: 20px auto;
 }
 
-.main-content {
+.recruit-null {
 	heigh: 1000px;
 }
 
@@ -58,6 +58,9 @@
 .btn-dark {
 	background-color: $gray-800;
 }
+
+
+
 </style>
 <title>블라블라 : 채용공고</title>
 </head>
@@ -82,8 +85,8 @@
 		</form>
 		
 		<c:if test="${list == null }">
-			<div class="row justify-content-center">
-				<div class="col-lg-12 bar">
+			<div class="row justify-content-center recruit-null">
+				<div class="col-lg-12">
 					<img src="${path}/resources/images/recruit-main.png"
 							class="card-img-top" alt="채용공고">
 				</div>

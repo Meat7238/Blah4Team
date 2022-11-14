@@ -22,22 +22,8 @@
 	url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;800&display=swap')
 	;
 .container, .container-md, .container-sm{
-	max-width:2080px;
+	max-width: 2500px;
 }
-/* html,body{
-	width: 100%; height:100%;
-}
-.wrapper{
-	display:flex;
-	flex-direction: column;
-	height: 120%;
-}
-.main-content{
-	flex:2;
-}
-footer{
-	height:60px;
-} */
 .info {
 	margin: 20px auto;
 	
