@@ -290,11 +290,30 @@ public class UserController {
       userInfoMap.put("user_id", user_id);
       userInfoMap.put("user_password", passwordEncoder.encode(user_password));
 
-      log.warn(userInfoMap);
       int result = user2DAOImpl.editMemberInfo(userInfoMap);
       if (result == 1)
          log.warn(userInfoMap);
       return "redirect:/member";
    }
 
+   // 관리자 비밀번호 변경
+   // 비밀번호 반드시 암호화!
+   @GetMapping("/adminUpdatePwd")
+   public String changeAdmUpdate() {return "/admin/adminUpdatePwd";}
+   
+   @PostMapping("/adminUpdatePwd")
+   public String memberInfoUpdate(@RequestParam("user_id") String user_id,
+	         @RequestParam("user_password") String user_password,
+	         User2DTO user2dto) {
+
+
+		  user2dto.setUser_password(user_password);
+
+	      Map<String, String> userInfoMap = new HashMap<String, String>();
+	      userInfoMap.put("user_id", user_id);
+	      userInfoMap.put("user_password", passwordEncoder.encode(user_password));
+	      int result = user2DAOImpl.editMemberInfo(userInfoMap);
+
+	      return "redirect:/member";
+	   }
 }
