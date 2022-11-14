@@ -248,7 +248,7 @@ public class PostController {
 		System.out.println(keyvalue);
 
 		List<Map<String, String>> list = postDAOImpl.getSearchList2(map);
-		
+
 
 		request.setAttribute("list", list);
 		request.setAttribute("pg", pg);

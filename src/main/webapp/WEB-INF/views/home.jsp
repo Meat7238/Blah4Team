@@ -22,7 +22,9 @@
 <!-- ------------------------------------------------------------------------------------------------------------- -->
 			<br /></br>
 			<div id="search_wrapper">
-				<form action="home" method="post">
+				<form action="search" method="get">
+					<input type="hidden" name="column" value="post_title">
+					<input type="hidden" name="pg" value="1">
 					<input type="text" name="keyvalue" placeholder="검색어 입력"> <img
 						src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png">
 				</form>
