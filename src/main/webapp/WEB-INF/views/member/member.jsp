@@ -22,22 +22,8 @@
 	url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;800&display=swap')
 	;
 .container, .container-md, .container-sm{
-	max-width:2080px;
+	max-width: 2500px;
 }
-/* html,body{
-	width: 100%; height:100%;
-}
-.wrapper{
-	display:flex;
-	flex-direction: column;
-	height: 120%;
-}
-.main-content{
-	flex:2;
-}
-footer{
-	height:60px;
-} */
 .info {
 	margin: 20px auto;
 	
@@ -86,7 +72,7 @@ footer{
 		<div class="row justify-content-center needs-validation">
 			<div class="col-lg-6">
 				<label class="form-label">비밀번호</label>
-				<input type="password" name="user_password"  id="validationCustom02"  class="is-invalid form-control" placeholder="비밀번호"><br>
+				<input type="password" name="user_password"  id="validationCustom02"  class="form-control" placeholder="비밀번호"><br>
     			<div class="valid-feedback">사용 가능한 비밀번호입니다.</div>
     			<div class="invalid-feedback">영문자와 숫자를 조합해서 8글자 이상 20글자 이하로 입력해주세요</div>
 			</div>
@@ -94,7 +80,7 @@ footer{
 		<div class="row justify-content-center needs-validation">
 			<div class="col-lg-6">
 				<label class="form-label">비밀번호 확인</label>
-				<input type="password" name="user_password2" id="validationCustom03" class="is-invalid form-control" placeholder="비밀번호 확인"> <br>
+				<input type="password" name="user_password2" id="validationCustom03" class="form-control" placeholder="비밀번호 확인"> <br>
 				<div class="invalid-feedback">입력하신 비밀번호가 일치하지 않습니다.</div>
 				<div class="valid-feedback">사용 가능한 비밀번호입니다.</div>
 			</div>
