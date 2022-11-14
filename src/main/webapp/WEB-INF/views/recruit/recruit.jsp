@@ -41,6 +41,11 @@
 	max-width: 1080px; 
 	margin: 20px auto;
 }
+
+.main-content {
+	heigh: 1000px;
+}
+
 .bar {
 	margin-left: auto;
 	margin-right: auto;
@@ -50,13 +55,16 @@
 	margin-bottom: 20px;
 }
 
+.btn-dark {
+	background-color: $gray-800;
+}
 </style>
 <title>블라블라 : 채용공고</title>
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/layout/header.jsp"%>
 
-	<div class="wrapper">
+	<div class="wrapper main-content">
 		<form action="${root}recruitSelect"
 			class="container main-content search" method="get">
 			<div class="row justify-content-center">
@@ -74,7 +82,12 @@
 		</form>
 		
 		<c:if test="${list == null }">
-			
+			<div class="row justify-content-center">
+				<div class="col-lg-12 bar">
+					<img src="${path}/resources/images/recruit-main.png"
+							class="card-img-top" alt="채용공고">
+				</div>
+			</div>
 		</c:if>
 		<c:if test="${list != null }">
 		<div class="container card-content">
@@ -82,7 +95,6 @@
 				<c:forEach var="r" items="${list}">
 					<div class="col-lg-4">
 						<div class="card" style="width: 18rem;">
-						
 							<img src="${path}/resources/images/samsung.jpg"
 								class="card-img-top" alt="삼성전자">
 							<div class="card-body">
@@ -90,7 +102,7 @@
 								<p class="card-text">${r.RECRUIT_ENDDATE}</p>
 								<p class="card-text">${r.RECRUIT_JOBGROUP}</p>
 								<p class="card-text">${r.RECRUIT_CAREER}</p>
-								<a href="${r.RECRUIT_LINK}" class="btn btn-primary">채용 사이트</a>
+								<a href="${r.RECRUIT_LINK}" class="btn btn-dark">채용 사이트</a>
 							</div>
 						</div>
 					</div>
