@@ -108,6 +108,12 @@
 				<button class="w-100 btn btn-lg btn-dark" type="submit" value="수정">회원 정보 수정</button>
 			</div>
 		</div>
+		<div class="row justify-content-center">
+			<div class="col-lg-6">
+				
+				<button class="w-100 btn btn-lg btn-dark" type="button" onclick="location.href='${pageContext.request.contextPath}/member/delete?user_num=${user_num}';"   value="탈퇴" >회원 탈퇴</button>
+			</div>
+		</div>
 	</form>
 </div>
 
