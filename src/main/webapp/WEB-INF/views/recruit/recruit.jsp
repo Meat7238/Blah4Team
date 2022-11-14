@@ -98,8 +98,14 @@
 				<c:forEach var="r" items="${list}">
 					<div class="col-lg-4">
 						<div class="card" style="width: 18rem;">
-							<img src="${path}/resources/images/samsung.jpg"
+						<c:if test="${r.CORP_NAME.toString().equals('삼성전자')}">
+							<img src="${path}/resources/images/samsung.jpg" 
 								class="card-img-top" alt="삼성전자">
+						</c:if>
+						<c:if test="${r.CORP_NAME.toString().equals('오뚜기')}">
+							<img src="${path}/resources/images/ottogi.png" 
+								class="card-img-top" alt="오뚜기">
+						</c:if>
 							<div class="card-body">
 								<h5 class="card-title">${r.CORP_NAME}</h5>
 								<p class="card-text">${r.RECRUIT_ENDDATE}</p>

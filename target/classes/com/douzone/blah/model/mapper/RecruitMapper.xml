@@ -11,7 +11,7 @@
 	<![CDATA[
 		select r.recruit_corpnum, c.corp_name, recruit_num, recruit_adminnum, recruit_link, recruit_enddate, recruit_jobgroup, recruit_career, recruit_readcount 
     		from recruit r left outer join corp c on r.recruit_corpnum = c.corp_num
-			where r.recruit_corpnum in(select cc.corp_num from corp cc where cc.corp_name = #{corp_name})
+			where r.recruit_corpnum in(select cc.corp_num from corp cc where cc.corp_name like '%' || #{corp_name} || '%' )
 		]]>
 	</select>
 

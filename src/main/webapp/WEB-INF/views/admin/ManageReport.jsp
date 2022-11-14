@@ -62,7 +62,7 @@
 									<td>${r.reportp_result }</td>
 									<td>${r.reportp_type }</td>
 									<td>${r.reportp_num }</td>
-									<td>${r.reportp_postnum }</td>
+									<td> <a href="${path}/readform?post_num=${r.reportp_postnum }&pg=1">${r.reportp_postnum }</a> </td>
 									<td>${r.reportp_usernum }</td>
 									<td>${r.reportp_content }</td>
 									<td>${r.reportp_regdate }</td>

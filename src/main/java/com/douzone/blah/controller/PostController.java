@@ -245,7 +245,8 @@ public class PostController {
 		Map<String, String> map = new HashMap<>(); // collection
 		map.put("column", column); // column : title or writer or contnet
 		map.put("keyvalue", keyvalue);
-		System.out.println(keyvalue);
+		System.out.println("column :"+ column);
+		System.out.println("keyvalue :"+keyvalue);
 
 		List<Map<String, String>> list = postDAOImpl.getSearchList2(map);
 
