@@ -39,7 +39,7 @@
 </body>
 <script type="text/javascript">
 	function popup() {
-		var url = "home/stipulation";
+		var url = "${pageContext.request.contextPath}/home/stipulation";
 		var name = "info/stipulation";
 		var option = "width = 800px, height=600px, top=300px, left=300px, scrollbars=yes fullscreen=yes";
 		window.open(url, name, option);
