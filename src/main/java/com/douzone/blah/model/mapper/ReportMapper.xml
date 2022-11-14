@@ -52,6 +52,16 @@
 	</select>
 
 	<!-- 댓글 신고하기 -->
+	<insert id="insertReportPr" parameterType="com.douzone.blah.model.ReportPrDTO">
+		insert into reportpr(reportpr_num, reportpr_postreviewnum,
+		reportpr_usernum,
+		reportpr_content, reportpr_regdate, reportpr_type)
+		values( (select NVL(max(reportpr_num),0)+1 from reportpr),
+		#{reportpr_postreviewnum},
+		#{reportpr_usernum},
+		#{reportpr_content}, sysdate,
+		#{reportpr_type})
+	</insert>
 
 	<!-- 기업리뷰 신고하기 -->
 	<insert id="insertReportCr"

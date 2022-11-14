@@ -32,7 +32,7 @@ public interface ReportDAO {
   public List getReportPr(HashMap map2);
 
   // 댓글 신고하기
-  public void insertReportPr(ReportPrDTO dto2);
+  public void insertReportPr(ReportPrDTO dto);
 
   // 신고된 댓글 처리하기
   public int updateReportPr(Map<String, String> map2);

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-    <%@ taglib prefix="sec"
+   <%@ taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
 <html>
@@ -10,12 +10,12 @@
 <title>Insert title here</title>
 <script type="text/javascript">
 	function report_post(){
-		if(document.reportpform.reportp_content.value==""){
+		if(document.reportpformR.reportpr_content.value==""){
 			alert("신고 사유를 입력하세요");
-		}if(document.reportpform.reportp_usernum.value==""){
+		}else if(document.reportpformR.reportpr_usernum.value==""){
 			alert("회원번호를 입력하세요");
 		}else{
-			document.reportpform.submit();
+			document.reportpformR.submit();
 			//window.close();
 			alert("신고가 완료되었습니다!!");
 			
@@ -72,19 +72,15 @@ border-radius: 10px;
 </head>
 <body>
 <div class="title">
-<h2>게시글 신고하기</h2></div>
+<h2>댓글 신고하기</h2></div>
 <table border="1">
 	<tr>
-		<th>신고할 게시글 제목</th>
-		<th>게시글 번호</th>
-		<th>게시판 작성자</th>
-		<th>게시글 분류</th>
+		<th>댓글 번호</th>
+		<th>댓글 작성자</th>
 	</tr>
 	<tr>
-		<td>${r4}</td>
-		<td>${r3}</td>
-		<td>${r2}</td>
 		<td>${r1}</td>
+		<td>${r2}</td>
 	</tr>
 </table>
 
@@ -92,9 +88,9 @@ border-radius: 10px;
 <p>신고 유형을 선택하고 신고 사유를 정확하게 적어주세요.</p>
 <p>스팸, 음란물, 성격에맞지않는글, 과도한욕설, 광고, 사회분위기를 어지럽히는 글</p></div>
 
-<form name="reportpform" action="reportp" method="post">
+<form name="reportpformR" action="reportp2" method="post">
 	<h4>신고 유형</h4>
-	<select name="reportp_type">
+	<select name="reportpr_type">
 		<option value="0">스팸</option>
 		<option value="1">음란물</option>
 		<option value="2">성격에 맞지 않는 글</option>
@@ -103,10 +99,11 @@ border-radius: 10px;
 		<option value="5">사회 분위기를 어지럽히는 글</option>
 	</select><br /><br /><br />
 <h4>신고 사유</h4>
-	<input type="text" name="reportp_content" placeholder="신고 사유를 입력해주세요."/>
+	<input type="text" name="reportpr_content" placeholder="신고 사유를 입력해주세요."/>
 <h4>신고자 ID</h4>
-	<input type="text" name="reportp_usernum" placeholder="신고자 ID"/>
-	<input type="hidden" name="reportp_postnum" value="${r3}"/>
+	<input type="text" value='<sec:authentication property="principal.username"/>'readonly="readonly">
+	<input type="hidden" name="reportpr_usernum" value="${user_num}"/>
+	<input type="hidden" name="reportpr_postreviewnum" value="${r1}"/>
 	<input type="button" value="신고하기" onclick="report_post()"/>
 	<input type="button" value="신고취소" onclick="report_cancel()"/>
 	<input type="button" value="약관보기" onclick="report_back()"/>

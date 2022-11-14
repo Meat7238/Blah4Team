@@ -21,6 +21,13 @@
 		var popOption = "width = 800px, height=600px, top=300px, left=300px, scrollbars=yes";
 		window.open(popUrl, "title", popOption);
 	}
+	
+	function reportpopR() {
+		var popUrl = "stipulation2"
+		var popOption = "width = 800px, height=600px, top=300px, left=300px, scrollbars=yes";
+		window.open(popUrl, "title", popOption);
+	}
+	
 </script>
 
 <link
@@ -123,7 +130,7 @@
 
 <br />
 <div class="padding">
-				<!-- <ol class="reviewList"> -->
+				
 					<table class="reviewWrite">
 				<caption class="cap">댓글</caption>
 				<c:forEach items="${reviewList}" var="reviewList">
@@ -132,13 +139,22 @@
 							<td rowspan="2">${reviewList.postreview_content}</td>
 							<th>작성 날짜</th>
 						</tr>
-						<tr id="trtr">
+						<tr>
 							<td>${reviewList.postreview_usernum}</td>
 							<td>${reviewList.postreview_regdate}</td>
 						</tr>
+						<tr  id="trtr"><td colspan="3" style="text-align: right; ">
+						<sec:authorize access="isAuthenticated()">
+							<form name="form">
+								<input type="hidden" name="pg" value="${pg}" />
+								<input type="hidden" id="postreview_num" name="postreview_num" value="${reviewList.postreview_num}" />
+								<input type="hidden" id="postreview_usernum" name="postreview_usernum" value="${reviewList.postreview_usernum}" />
+								<input type="button" value="댓글 신고" onclick="reportpopR(this.form)" />
+							</form>
+						</sec:authorize>
+						</td></tr>
 				</c:forEach>
 					</table>
-				<!-- </ol> -->
 			</div>
 <br /><br />
 <script>
