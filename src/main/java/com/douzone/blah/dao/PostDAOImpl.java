@@ -91,7 +91,7 @@ public class PostDAOImpl implements PostDAO {
 	}
 
 	@Override
-	public List<Map<String, String>> getSearchList2(Map<String, String> map) {
+	public List<Map<String, Object>> getSearchList2(Map<String, String> map) {
 		PostDAO postDAO = sqlSession.getMapper(PostDAO.class);
 		return postDAO.getSearchList2(map);
 	}

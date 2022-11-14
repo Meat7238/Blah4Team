@@ -24,7 +24,7 @@
 	<form action="search" method="get">
 		<select name="column">
 			<option value="post_title">제목</option>
-			<option value="post_usernum">작성자</option>
+			<option value="post_usernum">작성자(ID)</option>
 			<option value="post_content">내용</option>
 		</select> <input type="text" name="keyvalue"> <input type="submit"	value="검색">
 		<input type="hidden" name="pg" value="${pg}" />

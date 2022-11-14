@@ -103,14 +103,14 @@
 	
 	<!-- 게시글 검색 -->
 	<select id="getSearchList2" parameterType="hashMap" resultType="map">
-		select * from post
+		
 		<if test="column != null">
 			<choose>
 				<when test =" column == 'post_usernum' ">
-					where ${column} = #{keyvalue} order by post_num desc	
+				select * from post,(select user_id from user2 where user_id = #{keyvalue})	where post_usernum = (select user_num from user2 where user_id = #{keyvalue}) order by post_num desc
 				</when>
 				<otherwise>
-    				, user2 where ${column} like '%' || #{keyvalue} || '%'  and post.post_usernum = user2.user_num  order by post_num desc	
+    			select * from post	, user2 where ${column} like '%' || #{keyvalue} || '%'  and post.post_usernum = user2.user_num  order by post_num desc	
 				</otherwise>
 			</choose>
     	</if>
