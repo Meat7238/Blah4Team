@@ -103,10 +103,19 @@
 	
 	<!-- 게시글 검색 -->
 	<select id="getSearchList2" parameterType="hashMap" resultType="map">
-		select * from post, user2
+		select * from post
 		<if test="column != null">
-    		where ${column} like '%' || #{keyvalue} || '%'  and post.post_usernum = user2.user_num  order by post_num desc	
+			<choose>
+				<when test =" column == 'post_usernum' ">
+					where ${column} = #{keyvalue} order by post_num desc	
+				</when>
+				<otherwise>
+    				, user2 where ${column} like '%' || #{keyvalue} || '%'  and post.post_usernum = user2.user_num  order by post_num desc	
+				</otherwise>
+			</choose>
     	</if>
+    	
+    	
 	</select>
 	
 	<!-- 카테고리 페이징 위한 게시글 카운트 -->

@@ -41,7 +41,7 @@
 	function popup() {
 		var url = "home/stipulation";
 		var name = "info/stipulation";
-		var option = "width = 800px, height=600px, top=300px, left=300px, scrollbars=yes";
+		var option = "width = 800px, height=600px, top=300px, left=300px, scrollbars=yes fullscreen=yes";
 		window.open(url, name, option);
 	}
 </script>
