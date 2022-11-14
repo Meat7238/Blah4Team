@@ -41,7 +41,7 @@
 				<div class="tab-indicator"></div>
 				<div class="tab-content">
 					<div class="active">
-						<table width="1000" cellpadding="3" border="1">
+						<table cellpadding="3" border="1"  style="width: 90%;">
 						<thead>
 							<tr>
 								<th >번호</th>
