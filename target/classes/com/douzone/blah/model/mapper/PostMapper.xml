@@ -8,34 +8,38 @@
 	<!-- 카테고리별 게시글 목록 -->
 	<select id="getPostList" parameterType="hashmap"
 		resultType="com.douzone.blah.model.PostDTO">
-	select * from
-			(select A.*, ROWNUM r from
-				(select * from post where post_category = ${post_category} order by post_num desc) A
-			)		where r >= #{start} and r &lt;= #{end} and post_category = ${post_category}
-		
-		
-		
+		select * from
+		(select A.*, ROWNUM r from
+		(select * from post where post_category = ${post_category} order by post_num
+		desc) A
+		) where r >= #{start} and r &lt;= #{end} and post_category =
+		${post_category}
+
+
+
 		<!-- 게시글 번호로 내림차순한거를 A로 네이밍. A에서 ROWNUM r 설정. r이 start와 end 범위에서 전체 출력 -->
 	</select>
-	
+
+	<!-- 9개 카테고리 view 목록 -->
 	<select id="getPostList1" parameterType="String"
-		resultType="map">
-		select * from (select * from post, user2 where post_category = '${value}' and post.post_usernum = user2.user_num
-		order by post_readcount desc) where ROWNUM &lt;= 3
-		<!-- select user_id, post_title, post_readcount, post_num from post, user2
-		where post_category = '${value}' and post.post_usernum = user2.user_num -->
+		resultType="com.douzone.blah.model.PostDTO">
+		select * from
+		(select A.*, ROWNUM r from
+		(select * from post where post_category = '${value}' order by post_readcount
+		desc) A
+		) where ROWNUM &lt;= 3 and post_category = '${value}'
 	</select>
 
 	<!-- 게시글 전체목록 -->
 	<select id="getPostListAll" parameterType="hashmap"
 		resultType="com.douzone.blah.model.PostDTO">
 		select * from
-			(select A.*, ROWNUM r from
-				(select * from post order by post_num desc) A
-			)
+		(select A.*, ROWNUM r from
+		(select * from post order by post_num desc) A
+		)
 		where r >= #{start} and r &lt;= #{end}
 	</select>
-	
+
 	<!-- 글 쓰기 -->
 	<insert id="insertPost"
 		parameterType="com.douzone.blah.model.PostDTO">
@@ -85,51 +89,57 @@
 	<!-- 댓글 개수 -->
 	<update id="updateReviewCount" parameterType="Integer">
 		update post
-		set post_reviewcount = post_reviewcount + #{amount} where post_num=#{post_num}
-		<!-- set
-		p.post_reviewcount = (select count(postreview_num) from postreview
-		where postreview_postnum=#{postreview_postnum})
-		where
-		p.post_num=#{post_num} -->
+		set post_reviewcount = post_reviewcount + #{amount} where
+		post_num=#{post_num}
+		<!-- set p.post_reviewcount = (select count(postreview_num) from postreview 
+			where postreview_postnum=#{postreview_postnum}) where p.post_num=#{post_num} -->
 	</update>
-	
+
 	<!-- 게시글 검색 -->
-	<select id="getSearchList" parameterType="hashMap" resultType="com.douzone.blah.model.PostDTO">
+	<select id="getSearchList" parameterType="hashMap"
+		resultType="com.douzone.blah.model.PostDTO">
 		select * from post
 		<if test="column != null">
-    		where ${column} like '%' || #{keyvalue} || '%'    order by post_num desc	
-    	</if>
+			where ${column} like '%' || #{keyvalue} || '%' order by post_num desc
+		</if>
 	</select>
-	
+
 	<!-- 게시글 검색 -->
-	<select id="getSearchList2" parameterType="hashMap" resultType="map">
-		
+	<select id="getSearchList2" parameterType="hashMap"
+		resultType="map">
+
 		<if test="column != null">
 			<choose>
-				<when test =" column == 'post_usernum' ">
-				select * from post,(select user_id from user2 where user_id = #{keyvalue})	where post_usernum = (select user_num from user2 where user_id = #{keyvalue}) order by post_num desc
+				<when test=" column == 'post_usernum' ">
+					select * from post,(select user_id from user2 where user_id =
+					#{keyvalue}) where post_usernum = (select user_num from user2 where
+					user_id = #{keyvalue}) order by post_num desc
 				</when>
 				<otherwise>
-    			select * from post	, user2 where ${column} like '%' || #{keyvalue} || '%'  and post.post_usernum = user2.user_num  order by post_num desc	
+					select * from post , user2 where ${column} like '%' || #{keyvalue} || '%'
+					and post.post_usernum = user2.user_num order by post_num desc
 				</otherwise>
 			</choose>
-    	</if>
-    	
-    	
+		</if>
+
+
 	</select>
-	
+
 	<!-- 카테고리 페이징 위한 게시글 카운트 -->
-	<select id="getPostCountCategory"  parameterType="String" resultType="Integer">
+	<select id="getPostCountCategory" parameterType="String"
+		resultType="Integer">
 		select count(*) from post where post_category = ${value}
 	</select>
-	
+
 	<!-- 마이페이지 내가 쓴 글 목록 조회 -->
-	<select id="getMyPost" parameterType="hashmap" resultType="hashmap">
+	<select id="getMyPost" parameterType="hashmap"
+		resultType="hashmap">
 		select * from
-			(select A.*, ROWNUM r from
-				(select * from post order by post_num desc) A
-			)
-		where r >= #{start} and r &lt;= #{end} and (post_usernum in (select user_num from user2 where user_id = #{user_id}))
+		(select A.*, ROWNUM r from
+		(select * from post order by post_num desc) A
+		)
+		where r >= #{start} and r &lt;= #{end} and (post_usernum in (select
+		user_num from user2 where user_id = #{user_id}))
 		
 		<![CDATA[
 		select r.recruit_corpnum, c.corp_name, recruit_num, recruit_adminnum, recruit_startdate, recruit_enddate, recruit_jobgroup, recruit_career, recruit_readcount 
@@ -137,15 +147,18 @@
 			where r.recruit_corpnum in(select cc.corp_num from corp cc where cc.corp_name = '${value}')
 		]]>
 	</select>
-	
+
 	<!-- 특정 게시글에 있는 댓글 수 카운트 -->
-	<select id="getPostReviewCount" parameterType="String" resultType="Integer">
-		select count(*) from postreview where postreview_postnum=#{post_num}
+	<select id="getPostReviewCount" parameterType="String"
+		resultType="Integer">
+		select count(*) from postreview where
+		postreview_postnum=#{post_num}
 	</select>
-	
+
 	<!-- 특정게시글의 유저 id 얻어오기 -->
-	<select id="getUserID" parameterType="String" resultType="String">
+	<select id="getUserID" parameterType="String"
+		resultType="String">
 		select user_id from user2 where user_num = #{post_usernum}
 	</select>
-	
+
 </mapper>
