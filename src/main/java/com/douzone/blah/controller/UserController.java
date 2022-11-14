@@ -113,7 +113,7 @@ public class UserController {
      if (result == 0) {
        return "fail";
      }
-     return "redirect:/admin/edit";
+     return "admin/editMember";
    }
 
 
@@ -153,7 +153,24 @@ public class UserController {
       return res;
    }
 
-  
+   //회원 탈퇴
+   @RequestMapping("/member/delete")
+   public String memberDelete(HttpServletRequest request, User2DTO dto) {
+
+      String id = request.getParameter("user_id");
+
+      System.out.println("/member/delete에서의 id값 : "+id);
+      String num = user2DAOImpl.getUserNum(id);
+      System.out.println("/member/delete에서의 num값 : "+num);
+      int cnt = user2DAOImpl.deleteUser2(num);
+      String res = "redirect:/";
+      if (cnt == 0) {
+         res = "fail";
+      }
+      return res;
+   }
+
+
    // 회원가입 페이지로 이동
    @RequestMapping("/join")
    public String join() {
@@ -182,7 +199,7 @@ public class UserController {
 
       // 비밀번호 확인 로직
       if(!user_password.equals(user_password2))  return "join/pwdUnmatched";
-   
+
       // 이메일 인증 키 삽입 로직
       String user_email_key = new TempKey().getKey(false, 30);
       Map<String, String> map = new HashMap<>();
@@ -215,7 +232,7 @@ public class UserController {
       return "/join/joinSuccess";
 
    }
-   
+
    // 이메일 인증 후
    @GetMapping("/join/registerEmail")
    public String verify(@RequestParam Map<String, Object> map) throws Exception {
@@ -223,7 +240,7 @@ public class UserController {
       user2DAOImpl.updateMailAuth(map);
       return "redirect:/";
    }
-   
+
    // 로그인 페이지 요청
    @RequestMapping("/loginForm")
    public String loginView(HttpServletRequest request) {

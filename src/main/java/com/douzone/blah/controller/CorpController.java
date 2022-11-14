@@ -79,7 +79,7 @@ public class CorpController {
 
 		String user_id = principal.getName();
 
-		String user_num = user2DAOImpl.userId(user_id);
+		String user_num = user2DAOImpl.getUserNum(user_id);
 
 		request.setAttribute("corpreview_usernum", user_num);
 
@@ -111,7 +111,7 @@ public class CorpController {
 
 		String user_id = principal.getName();
 
-		String user_num = user2DAOImpl.userId(user_id);
+		String user_num = user2DAOImpl.getUserNum(user_id);
 
 		request.setAttribute("corpreview_usernum", user_num);
 
@@ -163,7 +163,7 @@ public class CorpController {
 		user_id = principal.getName();
 		System.out.println("아이디는 =========> " + user_id);
 
-		String user_num = user2DAOImpl.userId(user_id);
+		String user_num = user2DAOImpl.getUserNum(user_id);
 		log.warn("받아온 값 : " + user_num);
 
 		request.setAttribute("corpreview_usernum", user_num);

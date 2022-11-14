@@ -168,8 +168,6 @@ $(function(){
 	   		 	if (chekObj[i].checked === true) {
 		    	  checked += 1;
 		    	  checkid = chekObj[i].getAttribute("id");
-/* 	  			  alert(checkid); */
-			 	  alert("삭제 진행중입니다!! 잠시 뒤 새로고침합니다.");
 				  location.href ='${pageContext.request.contextPath}/admin/edit/delete?num='+checkid;
 	   			}
 	  		}//end for
@@ -179,7 +177,6 @@ $(function(){
 
 $(function(){
 	$("#checkadmin").on('click',function () {
-	alert("ad");
 	let adchekObj = document.getElementsByClassName("test");
 	let adlenth = adchekObj.length;
 	let msg = "ROLE_ADMIN";
@@ -188,8 +185,6 @@ $(function(){
 	 	 for (i = 0; i < adlenth; i++) {
 	   		 	if (adchekObj[i].checked === true) {
 		    	  adcheck = adchekObj[i].getAttribute("id");
- 	  			  alert(adcheck); 
-			 	  alert("변경 진행중입니다!! 잠시 뒤 새로고침합니다.");
 				  location.href ='${pageContext.request.contextPath}/admin/edit/authority?num='+adcheck+'&authority='+msg;
 	   			}
 	  		}//end for
@@ -208,8 +203,6 @@ $(function(){
 	 	 for (i = 0; i < uslenth; i++) {
 	   		 	if (uschekObj[i].checked === true) {
 		    	  uscheck = uschekObj[i].getAttribute("id");
- 	  			  alert(uscheck); 
-			 	  alert("변경 진행중입니다!! 잠시 뒤 새로고침합니다.");
 				  location.href ='${pageContext.request.contextPath}/admin/edit/authority?num='+uscheck+'&authority='+msg;
 	   			}
 	  		}//end for

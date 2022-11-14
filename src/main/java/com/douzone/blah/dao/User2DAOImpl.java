@@ -111,9 +111,9 @@ public class User2DAOImpl implements User2DAO {
 	}
 
 	@Override
-	public String userId(String user) {
+	public String getUserNum(String user) {
 		User2DAO user2DAO = sqlSession.getMapper(User2DAO.class);
-		return user2DAO.userId(user);
+		return user2DAO.getUserNum(user);
 	}
 
 	// 유저수 카운트

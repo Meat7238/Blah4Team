@@ -106,7 +106,7 @@
 	</select>
 
 	<!-- userID->userNUm반환 -->
-	<select id="userId" parameterType="String" resultType="String">
+	<select id="getUserNum" parameterType="String" resultType="String">
 		select
 		user_num from user2 where user_id = #{user_id}
 	</select>
