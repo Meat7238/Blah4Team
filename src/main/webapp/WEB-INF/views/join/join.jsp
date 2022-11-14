@@ -87,7 +87,7 @@
 			<div class="row align-items-end justify-content-center needs-validation">
 				<div class="col-md-6 col-lg-4">
 					<label for="validationCustom05" class="form-label">직장</label>
-					<input type="text"  name="user_workspace" class="form-control" id="validationCustom05" placeholder="직장" disabled required>
+					<input type="text"  name="user_workspace" class="form-control" id="validationCustom05" placeholder="직장" disabled readonly required>
 				</div>
 			</div>
 			<div class="row align-items-end justify-content-center needs-validation">
