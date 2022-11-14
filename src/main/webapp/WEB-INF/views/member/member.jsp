@@ -57,9 +57,9 @@
 				<li class="nav-item">
 					<a class="nav-link active" aria-current="page" href="#">회원정보 수정</a>
 				</li>
-				<li class="nav-item">
+				<!-- <li class="nav-item">
 					<a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">내가 쓴 게시글</a>
-				</li>
+				</li> -->
 			</ul>
 			</div>
 		</div>
@@ -160,6 +160,8 @@ document.querySelector("#validationCustom03").addEventListener("input", function
 	}
    
 });
+
+
 </script>
 
 </html>
