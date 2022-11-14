@@ -74,7 +74,7 @@
 	top: 0;
 	left: 0;
 	width: 100%;
-	padding: 15px 20px;
+	padding: 15px 0px;
 	transition: 0.3s;
 }
 
@@ -101,8 +101,8 @@
 					<span>공지 목록 돌아가기</span>
 				</button>
 			</div>
-
-			<table width="700" border="1">
+		</br>
+			<table width="700" border="1" style="font-size: 20px;'">
 				<thead>
 					<tr>
 						<th colspan="4">${p.notice_title}</th>
@@ -116,7 +116,7 @@
 				</tr>
 				<tr>
 					<td colspan="4"><textarea rows="10" cols="100"
-							readonly="readonly">${p.notice_content}</textarea></td>
+							readonly="readonly" style="width:100%; font-size:18px; border: none;">${p.notice_content}</textarea></td>
 				</tr>
 			</table>
 
