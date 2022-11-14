@@ -163,6 +163,7 @@ $(function(){
 	/* alert(lenth); */
 	let checked = 0;
 	let checkid;
+	if(uslenth != 0){
 	  	if (confirm("정말 삭제하시겠습니까??") == true){
 	 	 for (i = 0; i < lenth; i++) {
 	   		 	if (chekObj[i].checked === true) {
@@ -172,6 +173,7 @@ $(function(){
 	   			}
 	  		}//end for
 	  	}//end if
+	  	}
 });
 }); 
 
@@ -181,32 +183,28 @@ $(function(){
 	let adlenth = adchekObj.length;
 	let msg = "ROLE_ADMIN";
 	let adcheck;
-	  	if (confirm("정말 변경하시겠습니까??") == true){
 	 	 for (i = 0; i < adlenth; i++) {
+	 		 
 	   		 	if (adchekObj[i].checked === true) {
 		    	  adcheck = adchekObj[i].getAttribute("id");
-				  location.href ='${pageContext.request.contextPath}/admin/edit/authority?num='+adcheck+'&authority='+msg;
+				  location.href ='${pageContext.request.contextPath}/admin/edit/authority?numid='+adcheck+'&authority='+msg;
 	   			}
 	  		}//end for
-	  	}//end if
 });
 }); 
 
 $(function(){
 	$("#checkuser").on('click',function () {
-	alert("us");
 	let uschekObj = document.getElementsByClassName("test");
 	let uslenth = uschekObj.length;
 	let msg = "ROLE_USER";
 	let uscheck;
-	  	if (confirm("정말 변경하시겠습니까??") == true){
 	 	 for (i = 0; i < uslenth; i++) {
 	   		 	if (uschekObj[i].checked === true) {
 		    	  uscheck = uschekObj[i].getAttribute("id");
-				  location.href ='${pageContext.request.contextPath}/admin/edit/authority?num='+uscheck+'&authority='+msg;
-	   			}
+ 				  location.href ='${pageContext.request.contextPath}/admin/edit/authority?numid='+uscheck+'&authority='+msg;
+ 	   			}
 	  		}//end for
-	  	}//end if
 });
 }); 
 
