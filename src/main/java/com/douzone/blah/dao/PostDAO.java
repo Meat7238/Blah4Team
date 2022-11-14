@@ -43,4 +43,8 @@ public interface PostDAO {
 
 	// 카테고리 게시물 수
 	public int getPostCountCategory(String category);
+
+	// 게시글 작성한 회원 ID얻기
+    public String getUserID(String string);
 }
+

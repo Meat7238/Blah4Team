@@ -101,6 +101,12 @@ public class PostDAOImpl implements PostDAO {
     PostDAO postDAO = sqlSession.getMapper(PostDAO.class);
     return postDAO.getPostReviewCount(post_num);
     }
+  //아이디 얻기
+  @Override
+  public String getUserID(String post_num) {
+    PostDAO postDAO = sqlSession.getMapper(PostDAO.class);
+    return postDAO.getUserID(post_num);
+  }
 
 //	@Override
 //	public void updateReviewCount(Long post_num, int amount) {

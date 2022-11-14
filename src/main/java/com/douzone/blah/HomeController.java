@@ -21,6 +21,7 @@ public class HomeController {
 
   @Resource
   private PostDAO postDAOImpl;
+
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
@@ -58,7 +59,13 @@ public class HomeController {
       for(int i=0; i<list.size();i++) {
         ali.add(postDAOImpl.getPostReviewCount(list.get(i).getPost_num()));
       }
+      List<String> idList = new ArrayList<String>();
+      for(int i=0; i<list.size(); i++) {
+        idList.add(postDAOImpl.getUserID(list.get(i).getPost_usernum()));
+      }
+      System.out.println(idList);
       request.setAttribute("postrivew_count", ali);
+      request.setAttribute("postid", idList);
       request.setAttribute("list", list);
       request.setAttribute("pg",pg);
       request.setAttribute("allPage",allPage);

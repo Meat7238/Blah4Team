@@ -39,7 +39,7 @@
 						<th width="50">번호</th>
 						<th width=10%>카테고리</th>
 						<th width=40%>제목</th>
-						<th width="80">닉네임</th>
+						<th width="80">아이디</th>
 						<th width="50">댓글수</th>
 						<th width="150">작성일</th>
 						<th width="80">조회수</th>
@@ -51,7 +51,7 @@
 							<td>${q.post_num}</td>
 							<td>${q.post_category }</td>
 							<td><a href="readform?post_num=${q.post_num}&pg=${pg}">${q.post_title}</a></td>
-							<td>${q.post_usernum}</td>
+							<td>${postid[status.index]}</td>
 							<td>${postrivew_count[status.index]}</td>
 							<td>${q.post_regdate}</td>
 							<td>${q.post_readcount}</td>
