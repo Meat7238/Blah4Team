@@ -103,17 +103,17 @@ public class UserController {
 //   권한변경
    @RequestMapping(value = "/admin/edit/authority", method = RequestMethod.GET)
    public String authorityUpdate(HttpServletRequest request) {
-     String user_num = request.getParameter("num");
+     String user_num = request.getParameter("numid");
      String authority = request.getParameter("authority");
      Map<String, String> map = new HashMap<>();
      map.put("user_num", user_num);
      map.put("authority", authority);
-
+     System.out.println(map);
      int result = user2DAOImpl.updateAuthority(map);
      if (result == 0) {
        return "fail";
      }
-     return "admin/editMember";
+     return "redirect:/admin/edit";
    }
 
 
