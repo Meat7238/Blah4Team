@@ -182,14 +182,16 @@ $(function(){
 	let adchekObj = document.getElementsByClassName("test");
 	let adlenth = adchekObj.length;
 	let msg = "ROLE_ADMIN";
-	let adcheck;
+	let adcheck= new Array();
 	 	 for (i = 0; i < adlenth; i++) {
-	 		 
+	 		if(adchekObj[i].checked != true){
+	 		 	continue;	
+	 		 	}
 	   		 	if (adchekObj[i].checked === true) {
-		    	  adcheck = adchekObj[i].getAttribute("id");
-				  location.href ='${pageContext.request.contextPath}/admin/edit/authority?numid='+adcheck+'&authority='+msg;
+	   		 	adcheck.push(adchekObj[i].getAttribute("id"));
 	   			}
 	  		}//end for
+		location.href ='${pageContext.request.contextPath}/admin/edit/authority?numid='+adcheck+'&authority='+msg;
 });
 }); 
 
@@ -198,13 +200,16 @@ $(function(){
 	let uschekObj = document.getElementsByClassName("test");
 	let uslenth = uschekObj.length;
 	let msg = "ROLE_USER";
-	let uscheck;
+	let uscheck = new Array();
 	 	 for (i = 0; i < uslenth; i++) {
+	 		 	if(uschekObj[i].checked != true){
+	 		 	continue;	
+	 		 	}
 	   		 	if (uschekObj[i].checked === true) {
-		    	  uscheck = uschekObj[i].getAttribute("id");
- 				  location.href ='${pageContext.request.contextPath}/admin/edit/authority?numid='+uscheck+'&authority='+msg;
+	   		 		uscheck.push(uschekObj[i].getAttribute("id"));
  	   			}
 	  		}//end for
+ 		 location.href ='${pageContext.request.contextPath}/admin/edit/authority?numid='+uscheck+'&authority='+msg;
 });
 }); 
 

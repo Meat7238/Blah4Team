@@ -86,9 +86,7 @@ public class UserController {
       List<User2DTO> list = user2DAOImpl.getAllUserList(map);
       List<Integer> ali = new ArrayList<Integer>();
       for(int i=0; i<list.size();i++) {
-        System.out.println(list.get(i).getUser_num());
         ali.add(user2DAOImpl.getUserPostCount(list.get(i).getUser_num()));
-        System.out.println(ali);
       }
       request.setAttribute("user_countlist", ali);
       request.setAttribute("list", list);
@@ -103,17 +101,29 @@ public class UserController {
 //   권한변경
    @RequestMapping(value = "/admin/edit/authority", method = RequestMethod.GET)
    public String authorityUpdate(HttpServletRequest request) {
-     String user_num = request.getParameter("numid");
+     String[] array = request.getParameterValues("numid");
      String authority = request.getParameter("authority");
-     Map<String, String> map = new HashMap<>();
-     map.put("user_num", user_num);
-     map.put("authority", authority);
-     System.out.println(map);
-     int result = user2DAOImpl.updateAuthority(map);
+     String user_num;
+     int result=0;
+     System.out.println("controller" + array);
+     System.out.println(array.length);
+
+     String[] arrayStr = array[0].split(",");
+     System.out.println(arrayStr);
+     for(int i=0; i<arrayStr.length;i++) {
+       user_num = arrayStr[i];
+       Map<String, String> map = new HashMap<>();
+       map.put("user_num", user_num);
+       map.put("authority", authority);
+       System.out.println(map);
+       result += user2DAOImpl.updateAuthority(map);
+
+     }
      if (result == 0) {
        return "fail";
      }
      return "redirect:/admin/edit";
+
    }
 
 
@@ -167,7 +177,7 @@ public class UserController {
       if (cnt == 0) {
          res = "fail";
       }
-      return res;
+      return "redirect:/logout";
    }
 
 
@@ -300,7 +310,7 @@ public class UserController {
    // 비밀번호 반드시 암호화!
    @GetMapping("/adminUpdatePwd")
    public String changeAdmUpdate() {return "/admin/adminUpdatePwd";}
-   
+
    @PostMapping("/adminUpdatePwd")
    public String memberInfoUpdate(@RequestParam("user_id") String user_id,
 	         @RequestParam("user_password") String user_password,
