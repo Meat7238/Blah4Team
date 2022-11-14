@@ -115,7 +115,7 @@ a:hover {
 				<div class="col-lg-10">
 					<span><a class="link" href="<c:url value="/join" />">회원가입</a></span>
 					<%-- <span>|</span>
-					<span><a class="link" href="<c:url value="/join" />">비밀번호 찾기</a></span> --%>
+					<span><a class="link" href="<c:url value="/loginUpdatePwd" />">비밀번호 찾기</a></span> --%>
 				</div>
 			</div>
 			
