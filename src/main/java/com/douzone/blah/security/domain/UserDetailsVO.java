@@ -18,10 +18,8 @@ public class UserDetailsVO implements UserDetails {
 	private String user_jobgroup;
 	private String user_workspace;
 	private String authority;
-	
 
 	private List<GrantedAuthority> authorities;
-
 	
 	public void setUser_id(String user_id) {this.user_id = user_id;	}
 	public void setUser_password(String user_password) {this.user_password = user_password;	}

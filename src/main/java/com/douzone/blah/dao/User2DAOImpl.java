@@ -56,7 +56,37 @@ public class User2DAOImpl implements User2DAO {
 		return sqlSession.insert("insertUser", map);
 	}
 
-	// 로그인 SQL
+	// 회원가입 아이디 중복 확인
+	@Override
+	public int idDupleCheck(String user_id) {
+		return sqlSession.selectOne("idDupleCheck", user_id);
+	}
+
+	// 회원가입 이메일 중복 확인
+	@Override
+	public int emailDupleCheck(String user_email) {
+		return sqlSession.selectOne("emailDupleCheck", user_email);
+	}
+
+	// 이메일 인증 키 부여
+	@Override
+	public int updateMailKey(Map<String, Object> map) throws Exception {
+		return sqlSession.update("updateMailKey", map);
+	}
+
+	// 이메일 인증 후 계정 활성화
+	@Override
+	public int updateMailAuth(Map<String, Object> map) throws Exception {
+		return sqlSession.update("updateMailAuth", map);
+	}
+
+	// 이메일 인증 안한 계정 처리
+	@Override
+	public int emailAuthFail(String user_id) throws Exception {
+		return sqlSession.selectOne("emailAuthFail", user_id);
+	}
+
+	// 로그인
 	@Override
 	public Map<String, Object> selectUser(String user_id) {
 		return sqlSession.selectOne("selectUser", user_id);
@@ -74,36 +104,6 @@ public class User2DAOImpl implements User2DAO {
 		return sqlSession.update("editMemberInfo", map);
 	}
 
-	// 이메일 인증 키 부여
-	@Override
-	public int updateMailKey(Map<String, Object> map) throws Exception {
-		return sqlSession.update("updateMailKey", map);
-	}
-
-	// 이메일 인증 후 권한 변경
-	@Override
-	public int updateMailAuth(Map<String, Object> map) throws Exception {
-		return sqlSession.update("updateMailAuth", map);
-	}
-
-	// 이메일 인증 실패 후 처리
-	@Override
-	public int emailAuthFail(String user_id) throws Exception {
-		return sqlSession.selectOne("emailAuthFail", user_id);
-	}
-
-	// 회원가입 아이디 중복 확인
-	@Override
-	public int idDupleCheck(String user_id) {
-		return sqlSession.selectOne("idDupleCheck", user_id);
-	}
-
-	// 회원가입 이메일 중복 확인
-	@Override
-	public int emailDupleCheck(String user_email) {
-		return sqlSession.selectOne("emailDupleCheck", user_email);
-	}
-
 	@Override
 	public String getUserID(int post_num) {
 		User2DAO user2DAO = sqlSession.getMapper(User2DAO.class);
@@ -116,26 +116,25 @@ public class User2DAOImpl implements User2DAO {
 		return user2DAO.userId(user);
 	}
 
+	// 유저수 카운트
+	@Override
+	public int getUserCount() {
+		User2DAO user2DAO = sqlSession.getMapper(User2DAO.class);
+		return user2DAO.getUserCount();
+	}
 
-  //유저수 카운트
-  @Override
-  public int getUserCount() {
-    User2DAO user2DAO = sqlSession.getMapper(User2DAO.class);
-    return user2DAO.getUserCount();
-  }
+	// 특정회원이 읽은 게시글 수 카운트
+	@Override
+	public int getUserPostCount(String user_num) {
+		User2DAO user2DAO = sqlSession.getMapper(User2DAO.class);
+		return user2DAO.getUserPostCount(user_num);
+	}
 
-  // 특정회원이 읽은 게시글 수 카운트
-  @Override
-  public int getUserPostCount(String user_num) {
-    User2DAO user2DAO = sqlSession.getMapper(User2DAO.class);
-    return user2DAO.getUserPostCount(user_num);
-  }
-  //권한 변경
-  @Override
-  public int updateAuthority(Map<String, String> map) {
-    User2DAO user2DAO = sqlSession.getMapper(User2DAO.class);
-    return user2DAO.updateAuthority(map);
-  }
-
+	// 권한 변경
+	@Override
+	public int updateAuthority(Map<String, String> map) {
+		User2DAO user2DAO = sqlSession.getMapper(User2DAO.class);
+		return user2DAO.updateAuthority(map);
+	}
 
 }

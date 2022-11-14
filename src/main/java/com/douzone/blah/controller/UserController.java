@@ -153,19 +153,7 @@ public class UserController {
       return res;
    }
 
-   // 로그인 페이지 요청
-   @RequestMapping("/loginForm")
-   public String loginView(HttpServletRequest request) {
-
-      // 요청 시점의 사용자 URI 정보를 Session의 Attribute에 담아서 전달(잘 지워줘야 함)
-      // 로그인이 틀려서 다시 하면 요청 시점의 URI가 로그인 페이지가 되므로 조건문 설정
-      String uri = request.getHeader("Referer");
-      if (!uri.contains("/login/loginForm")) {
-         request.getSession().setAttribute("prevPage", request.getHeader("Referer"));
-      }
-      return "/login/loginForm";
-   }
-
+  
    // 회원가입 페이지로 이동
    @RequestMapping("/join")
    public String join() {
@@ -193,9 +181,8 @@ public class UserController {
       else if(userService.dupleCheck(user2dto).equals("emailDuple")) return "join/emailDuple";
 
       // 비밀번호 확인 로직
-      if(!user_password.equals(user_password2)) {
-    	  return "join/pwdUnmatched";
-      } else System.out.println("pwd1 : " + user_password + ", pwd2 : " + user_password2 );
+      if(!user_password.equals(user_password2))  return "join/pwdUnmatched";
+   
       // 이메일 인증 키 삽입 로직
       String user_email_key = new TempKey().getKey(false, 30);
       Map<String, String> map = new HashMap<>();
@@ -208,7 +195,6 @@ public class UserController {
 
       // 회원가입 완료
       int result = user2DAOImpl.insertUser(map);
-      log.warn("회원가입 ===> " + user_email_key);
 
       // 이메일 발송
       MailHandler sendMail = new MailHandler(mailSender);
@@ -216,9 +202,9 @@ public class UserController {
       sendMail.setText(
             "<h1>BlahBlah 현직자 인증 이메일입니다.</h1>" +
             "<br>회원이 되신 걸 환영합니다!" +
-            "<br>아레 이메일 인증 확인을 눌러 현직자 인증 절차를 완료해주세요." +
+            "<br>아래 이메일 인증 확인을 눌러 현직자 인증 절차를 완료해주세요." +
             "<br>인증이 완료되면 사이트를 이용하실 수 있습니다." +
-            "<br><a href='http://localhost:8080/blah/join/registerEmail?user_email=" + user_email +
+            "<br><br><a href='http://localhost:8080/blah/join/registerEmail?user_email=" + user_email +
             "&user_email_key=" + user_email_key +
             "'target='_balnk'>이메일 인증 확인</a>");
             System.out.println(user_email_key);
@@ -229,13 +215,28 @@ public class UserController {
       return "/join/joinSuccess";
 
    }
-
+   
+   // 이메일 인증 후
    @GetMapping("/join/registerEmail")
    public String verify(@RequestParam Map<String, Object> map) throws Exception {
       log.warn(map);
       user2DAOImpl.updateMailAuth(map);
       return "redirect:/";
    }
+   
+   // 로그인 페이지 요청
+   @RequestMapping("/loginForm")
+   public String loginView(HttpServletRequest request) {
+
+      // 요청 시점의 사용자 URI 정보를 Session의 Attribute에 담아서 전달(잘 지워줘야 함)
+      // 로그인이 틀려서 다시 하면 요청 시점의 URI가 로그인 페이지가 되므로 조건문 설정
+      String uri = request.getHeader("Referer");
+      if (!uri.contains("/login/loginForm")) {
+         request.getSession().setAttribute("prevPage", request.getHeader("Referer"));
+      }
+      return "/login/loginForm";
+   }
+
 
    // 마이페이지 회원 정보 페이지로 이동, 회원 정보 조회
    @GetMapping("/member")
@@ -278,25 +279,5 @@ public class UserController {
          log.warn(userInfoMap);
       return "redirect:/member";
    }
-
-//   // 마이페이지 인증 회원 정보 수정 처리
-//   // 비밀번호 반드시 암호화!
-//   @PostMapping("/member/reauthenticate")
-//   public String memberReauthenticate(@RequestParam("user_email") String user_email,
-//         @RequestParam("user_workspace") String user_workspace,
-//         @RequestParam("user_jobgroup") String user_jobgroup) {
-//
-//      Map<String, String> userInfoMap = new HashMap<String, String>();
-//
-//      userInfoMap.put("user_email", user_email);
-//      userInfoMap.put("user_workspace", user_workspace);
-//      userInfoMap.put("user_jobgroup", user_jobgroup);
-//
-//      log.warn(userInfoMap);
-//      int result = user2DAOImpl.editMemberInfo(userInfoMap);
-//      if (result == 1)
-//         log.warn(userInfoMap);
-//      return "redirect:/member";
-//   }
 
 }

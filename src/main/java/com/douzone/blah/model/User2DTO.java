@@ -10,7 +10,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class User2DTO {
-
 	
 	private String user_num;
 	private String user_id;

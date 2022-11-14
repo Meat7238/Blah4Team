@@ -31,47 +31,27 @@ public class RecruitController {
 
 	// 검색 처리
 	@GetMapping("/recruitSelect")
-	public String searchRecruit(@RequestParam("corp_name") String corp_name, HttpServletRequest request, HttpServletResponse response) throws ParseException {
+	public String searchRecruit(@RequestParam("corp_name") String corp_name, HttpServletRequest request,
+			HttpServletResponse response) throws ParseException {
 		List<Map<String, Object>> recruitInfo = recruitDAO.selectRecruit(corp_name);
-		
+
 		request.setAttribute("list", recruitInfo);
 
 		return "/recruit/recruit";
 	}
 
-	//공고 조회
-	  @RequestMapping(value = "admin/recruit", method = RequestMethod.GET)
-	  public String Recruit(HttpServletRequest request) {
-	    HashMap map = new HashMap();
-	    List<RecruitDTO> list = recruitDAO.getRecruitList(map);
-	    System.out.println(list);
-	    request.setAttribute("recruitlist", list);
-	    return "admin/Recruit";
-	  }
+	// 공고 조회
+	@RequestMapping(value = "admin/recruit", method = RequestMethod.GET)
+	public String Recruit(HttpServletRequest request) {
+		HashMap map = new HashMap();
+		List<RecruitDTO> list = recruitDAO.getRecruitList(map);
+		System.out.println(list);
+		request.setAttribute("recruitlist", list);
+		return "admin/Recruit";
+	}
 
-	  //공고 작성
-      @RequestMapping(value = "admin/RecruitWriteform", method = RequestMethod.GET)
-      public void Recruit() {
-      }
-//	  @RequestMapping(value = "admin/writeform", method = RequestMethod.POST)
-//	  public String writeform(NoticeDTO dto) {
-//	    System.out.println(dto);
-////	    noticeDAOImpl.insertNotice(dto);
-//	    return "redirect:notice";
-//	  }
+	// 공고 작성
+	@RequestMapping(value = "admin/RecruitWriteform", method = RequestMethod.GET)
+	public void Recruit() {
+	}
 }
-
-//
-//  for (Map<String, Object> map : recruitInfo) {
-//  recruitDTO.setRecruit_adminnum(map.get("RECRUIT_ADMINNUM").toString());
-//  recruitDTO.setRecruit_num(map.get("RECRUIT_NUM").toString());
-//  corpDTO.setCorp_name(map.get("CORP_NAME").toString());
-//  recruitDTO.setRecruit_corpnum(map.get("RECRUIT_CORPNUM").toString());
-//  recruitDTO.setRecruit_startdate(formatter.parse(map.get("RECRUIT_STARTDATE").
-//  toString()));
-//  recruitDTO.setRecruit_enddate(formatter.parse(map.get("RECRUIT_ENDDATE").
-//  toString()));
-//  recruitDTO.setRecruit_jobgroup(map.get("RECRUIT_JOBGROUP").toString());
-//  recruitDTO.setRecruit_readcount(Integer.parseInt(map.get("RECRUIT_READCOUNT")
-//  .toString())); }
-//
