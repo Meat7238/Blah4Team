@@ -14,13 +14,28 @@ public interface User2DAO {
 	public int updateUser2(User2DTO dto); // 수정
 
 	public int deleteUser2(String user_num); // 삭제
-	//검색
-	public List<User2DTO> getSearchList(Map<String, String> map);
+	
+	public List<User2DTO> getSearchList(Map<String, String> map);	// 검색
 
-	// 회원가입 처리
+	// 회원가입
 	public int insertUser(Map<String, String> map);
 
-	// 로그인 처리
+	// 회원가입 아이디 중복 확인
+	public int idDupleCheck(String user_id);
+
+	// 회원가입 이메일 중복 확인
+	public int emailDupleCheck(String user_email);
+
+	// 이메일 인증 키 부여
+	int updateMailKey(Map<String, Object> map) throws Exception;
+	
+	// 이메일 인증 후 계정 활성화
+	int updateMailAuth(Map<String, Object> map) throws Exception;
+	
+	// 이메일 인증 안한 계정 처리
+	int emailAuthFail(String id) throws Exception;
+	
+	// 로그인
 	public Map<String, Object> selectUser(String user_id);
 
 	// 마이페이지 회원 정보 조회
@@ -28,32 +43,20 @@ public interface User2DAO {
 
 	// 마이페이지 회원 정보 수정
 	public int editMemberInfo(Map<String, String> map);
+
 	// 게시글 작성한 회원 ID얻기
 	public String getUserID(int post_num);
 
 	// userId -> userNum
 	public String userId(String user);
 
-	// 전송한 이메일 키 저장
-	int updateMailKey(Map<String, Object> map) throws Exception;
-	// 이메일 인증 후 계정 활성화
-	int updateMailAuth(Map<String, Object> map) throws Exception;
-	// 인증 안 한 아이디 거르기
-	int emailAuthFail(String id) throws Exception;
-
-	// 아이디 중복 확인
-	public int idDupleCheck(String user_id);
-	// 이메일 중복 확인
-	public int emailDupleCheck(String user_email);
-
-	//user수 count
+	// user수 count
 	public int getUserCount();
 
-	//user의 post수 count
+	// user의 post수 count
 	public int getUserPostCount(String user_num);
 
-	//user 권한 update
+	// user 권한 update
 	public int updateAuthority(Map<String, String> map);
 
 }
-

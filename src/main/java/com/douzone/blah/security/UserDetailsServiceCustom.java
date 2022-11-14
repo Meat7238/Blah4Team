@@ -25,6 +25,7 @@ public class UserDetailsServiceCustom implements UserDetailsService {
 		// 사용자 정보 없으면 null 처리
 		if (userInfo == null) {
 			return null;
+			
 		// 사용자 정보 있을 경우 로직 전개 (userDetails에 데이터 넣기)
 		} else {
 			userDetails.setUser_id(userInfo.get("USERNAME").toString());

@@ -30,20 +30,11 @@ public class UserLoginSuccessHandler implements AuthenticationSuccessHandler {
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication auth)
 			throws IOException, ServletException {
-
-		// IP, 세션 ID
+		
+		// 세션
 		WebAuthenticationDetails web = (WebAuthenticationDetails) auth.getDetails();
-		System.out.println("IP : " + web.getRemoteAddress());
-		System.out.println("Session ID : " + web.getSessionId());
-		// 인증 ID
-		System.out.println("name : " + auth.getName());
-
 		// 권한 리스트
 		List<GrantedAuthority> authList = (List<GrantedAuthority>) auth.getAuthorities();
-		System.out.print("권한 : ");
-		for (int i = 0; i < authList.size(); i++) {
-			System.out.println(authList.get(i).getAuthority() + " , i =  " + i);
-		}
 
 		// 디폴트 URI
 		String uri = "/";
@@ -63,10 +54,6 @@ public class UserLoginSuccessHandler implements AuthenticationSuccessHandler {
 		// 직접 로그인 페이지로 접속한 것
 		else if (prevPage != null && !prevPage.equals("")) uri = prevPage;
 
-		
-
-		System.out.println(uri);
-		
 		// 로그인 성공시 보낼 uri
 		response.sendRedirect(uri);
 	}
