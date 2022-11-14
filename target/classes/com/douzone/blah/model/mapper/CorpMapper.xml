@@ -27,7 +27,7 @@
 	<!-- 기업리뷰 가져오기 -->
 	<select id="corpReview" resultType="map">
 		select * from corpreview
-		where corpreview_corpnum = #{corpreviewnum}
+		where corpreview_corpnum = #{corpreviewnum} order by corpreview_num desc
 	</select>
 	
 	<!-- 기업리뷰 하나 가져오기 -->

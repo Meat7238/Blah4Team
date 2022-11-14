@@ -4,24 +4,20 @@ import java.io.IOException;
 import java.security.Principal;
 import java.util.List;
 import java.util.Map;
-
 import javax.annotation.Resource;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
 import com.douzone.blah.dao.CorpDAO;
 import com.douzone.blah.dao.ReportDAO;
 import com.douzone.blah.dao.User2DAO;
 import com.douzone.blah.model.CorpDTO;
 import com.douzone.blah.model.CorpreviewDTO;
 import com.douzone.blah.model.ReportCrDTO;
-
 import lombok.extern.log4j.Log4j;
 
 @Log4j
@@ -186,12 +182,9 @@ public class CorpController {
 //		System.out.println("리뷰번호!===>" + request.getAttribute("corpreviewnum"));
 
 		corpDAOImpl.insertReview(dto);
-
-		System.out.println("들어갔니? ===========> ");
-
 		String str = request.getParameter("corpreview_corpnum");
-		System.out.println(str);
-		return "redirect:corpreviewmain?corpreviewnum=" + str;
+
+		return "redirect:corpreviewintro?corpnum="+str;
 	}
 
 }
