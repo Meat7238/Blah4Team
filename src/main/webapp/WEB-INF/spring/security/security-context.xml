@@ -46,10 +46,8 @@
 		<!-- 계정관련 기능 -->
 		<security:intercept-url pattern="/logout" access="hasAnyRole('ROLE_NONE','ROLE_USER', 'ROLE_ADMIN')"/>
 		
-		
 		<!-- 리뷰 기능 -->
-		<security:intercept-url pattern="/corpreviewmain" access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')"/>
-		
+		<security:intercept-url pattern="/corpreviewmain**" access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')"/>
 		<security:intercept-url pattern="/corpreviewwriteform" access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')"/>
 
 		<!-- 게시판 기능 -->
