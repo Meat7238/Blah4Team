@@ -1,6 +1,7 @@
 package com.douzone.blah.controller;
 
 import java.io.IOException;
+import java.security.Principal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import com.douzone.blah.dao.PostDAO;
 import com.douzone.blah.dao.ReportDAO;
+import com.douzone.blah.dao.User2DAO;
 import com.douzone.blah.model.ReportCrDTO;
 import com.douzone.blah.model.ReportPDTO;
 import com.douzone.blah.model.ReportPrDTO;
@@ -24,6 +26,9 @@ public class ReportController {
 
   @Resource
 	private PostDAO postDAOImpl;
+  
+  @Resource
+	private User2DAO user2DAOImpl;
 
   // 신고사항 보기
   @RequestMapping("admin/ManageReport")
@@ -161,12 +166,7 @@ public class ReportController {
     String r2 = request.getParameter("post_usernum");
     String r3 = request.getParameter("post_num");
     String r4 = request.getParameter("post_title");
-
-    System.out.println(r1+"가나다라");
-    System.out.println(r2+"가나다라");
-    System.out.println(r3+"가나다라");
-    System.out.println(r4+"가나다라");
-
+    
     request.setAttribute("r1", r1);
     request.setAttribute("r2", r2);
     request.setAttribute("r3", r3);
@@ -174,13 +174,38 @@ public class ReportController {
 
     return "board/reportForm";
   }
+  
+  @RequestMapping("/reportFormR")
+  public String reportR(HttpServletRequest request, Principal principal) {
+    String r1 = request.getParameter("postreview_num");
+    String r2 = request.getParameter("postreview_usernum");
+
+    String user = principal.getName();
+	String user_num = user2DAOImpl.userId(user);
+	
+    System.out.println(r1);
+    System.out.println(r2);
+
+    request.setAttribute("r1", r1);
+    request.setAttribute("r2", r2);
+    request.setAttribute("user_num", user_num);
+
+    return "board/reportForm2";
+  }
 
   @RequestMapping("/reportp")
   public String reportp(HttpServletRequest request, ReportPDTO dto) {
-	  System.out.println("inset 전");
+
 	  reportDAOImpl.insertReportP(dto);
-	  System.out.println("inset 후");
-	  System.out.println(dto);
+
+	  return "popup/popupClose";
+  }
+  
+  @RequestMapping("/reportp2")
+  public String reportp2(HttpServletRequest request, ReportPrDTO dto) {
+
+	  reportDAOImpl.insertReportPr(dto);
+
 	  return "popup/popupClose";
   }
 
@@ -188,6 +213,12 @@ public class ReportController {
   public String reportPost(HttpServletRequest request) {
 
 	  return "info/stipulation";
+  }
+  
+  @RequestMapping("/stipulation2")
+  public String reportPost2(HttpServletRequest request) {
+
+	  return "info/stipulation2";
   }
 
 }

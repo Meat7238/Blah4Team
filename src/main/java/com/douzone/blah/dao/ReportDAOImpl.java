@@ -49,8 +49,8 @@ public class ReportDAOImpl implements ReportDAO {
 	// 댓글 신고하기
 	@Override
 	public void insertReportPr(ReportPrDTO dto) {
-		// TODO Auto-generated method stub
-
+		ReportDAO reportPDAO = sqlSession.getMapper(ReportDAO.class);
+		reportPDAO.insertReportPr(dto);
 	}
 
 	// 신고된 댓글 처리하기
