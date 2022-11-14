@@ -45,14 +45,14 @@
 						<th width="80">조회수</th>
 					</tr>
 				</thead>
-				<c:forEach var="q" items="${list}">
+				<c:forEach var="q" items="${list}" varStatus="status">
 					<tbody>
 						<tr>
 							<td>${q.post_num}</td>
 							<td>${q.post_category }</td>
 							<td><a href="readform?post_num=${q.post_num}&pg=${pg}">${q.post_title}</a></td>
 							<td>${q.post_usernum}</td>
-							<td>${q.post_like}</td>
+							<td>${postrivew_count[status.index]}</td>
 							<td>${q.post_regdate}</td>
 							<td>${q.post_readcount}</td>
 					</tbody>

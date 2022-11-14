@@ -1,5 +1,6 @@
 package com.douzone.blah;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -52,8 +53,12 @@ public class HomeController {
       HashMap map = new HashMap();
       map.put("start", start);
       map.put("end", end);
-
       List<PostDTO> list = postDAOImpl.getPostListAll(map);
+      List<Integer> ali = new ArrayList<Integer>();
+      for(int i=0; i<list.size();i++) {
+        ali.add(postDAOImpl.getPostReviewCount(list.get(i).getPost_num()));
+      }
+      request.setAttribute("postrivew_count", ali);
       request.setAttribute("list", list);
       request.setAttribute("pg",pg);
       request.setAttribute("allPage",allPage);

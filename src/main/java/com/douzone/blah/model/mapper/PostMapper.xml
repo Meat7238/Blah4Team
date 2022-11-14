@@ -136,8 +136,11 @@
 			from recruit r, corp c
 			where r.recruit_corpnum in(select cc.corp_num from corp cc where cc.corp_name = '${value}')
 		]]>
-		
-		
+	</select>
+	
+	<!-- 특정 게시글에 있는 댓글 수 카운트 -->
+	<select id="getPostReviewCount" parameterType="String" resultType="Integer">
+		select count(*) from postreview where postreview_postnum=#{post_num}
 	</select>
 	
 	

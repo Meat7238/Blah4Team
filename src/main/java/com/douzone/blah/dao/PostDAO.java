@@ -34,10 +34,10 @@ public interface PostDAO {
 
 	// 댓글 개수
 	//public void updateReviewCount(@Param("post_num") Long post_num, @Param("amount") int amount);
-
+	public int getPostReviewCount(String post_num);
 	// 게시글 검색
 	public List<PostDTO> getSearchList(Map<String, String> map);
-	
+
 	// 게시글 검색
 	public List<Map<String, Object>> getSearchList2(Map<String, String> map);
 

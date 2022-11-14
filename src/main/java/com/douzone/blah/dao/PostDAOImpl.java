@@ -95,6 +95,12 @@ public class PostDAOImpl implements PostDAO {
 		PostDAO postDAO = sqlSession.getMapper(PostDAO.class);
 		return postDAO.getSearchList2(map);
 	}
+	//댓글 수
+  @Override
+  public int getPostReviewCount(String post_num) {
+    PostDAO postDAO = sqlSession.getMapper(PostDAO.class);
+    return postDAO.getPostReviewCount(post_num);
+    }
 
 //	@Override
 //	public void updateReviewCount(Long post_num, int amount) {
