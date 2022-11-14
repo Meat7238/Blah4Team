@@ -221,10 +221,12 @@ document.querySelector("#validationCustom04").addEventListener("change", functio
 	let autoInput=this.value;
 	let googlePattern = /[a-z0-9]+@gmail.com/g;
 	let naverPattern = /[a-z0-9]+@naver.com/g;
-	   
+	let kakaoPattern = /[a-z0-9]+@kakao.com/g; 
+	
 	//3. 검증
 	googleInput = googlePattern.test(autoInput);
 	naverInput = naverPattern.test(autoInput);
+	kakaoInput = kakaoPattern.test(autoInput);
 	
 	//4. 유효하다면 input 요소에 is-valid 클래스 추가, 아니라면 is-invalid 클래스 추가
 	
@@ -234,6 +236,9 @@ document.querySelector("#validationCustom04").addEventListener("change", functio
 	} else if(naverInput) {
 		document.querySelector("#validationCustom05").removeAttribute( 'disabled' );
 		document.querySelector("#validationCustom05").value = '네이버';
+	} else if(kakaoInput) {
+		document.querySelector("#validationCustom05").removeAttribute( 'disabled' );
+		document.querySelector("#validationCustom05").value = '카카오';
 	} else {
 		document.querySelector("#validationCustom05").setAttribute( 'readonly',  false);
 	}
