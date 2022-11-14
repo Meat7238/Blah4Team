@@ -4,11 +4,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>블라블라 : 로그인</title>
+<title>Insert title here</title>
 </head>
 <body>
-
-<h1>/login/member</h1>
-
+<script type="text/javascript">
+history.go(-2);
+</script>
 </body>
 </html>

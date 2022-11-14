@@ -43,7 +43,8 @@
 					<div class="active">
 						<i><h2>⚠️</h2></i>
 						<h1>신고접수된 게시판</h1>
-						<table border="1" width="1000">
+						<table border="1" style="width: 90%;" >
+						<thead>
 							<tr>
 								<th>처리상태</th>
 								<th>신고유형</th>
@@ -55,6 +56,7 @@
 								<th>*처리완료*</th>
 								<th>*검토*</th>
 							</tr>
+						</thead>
 							<c:forEach var="r" items="${reportPostList}">
 								<tr>
 									<td>${r.reportp_result }</td>
@@ -117,7 +119,8 @@
 					<div>
 						<i><h2>⚠️</h2></i>
 						<h1>신고접수된 댓글</h1>
-						<table border="1" width="1000">
+						<table border="1"  style="width: 90%;">
+						<thead>
 							<tr>
 								<th>처리상태</th>
 								<th>신고유형</th>
@@ -129,7 +132,7 @@
 								<th>*처리완료*</th>
 								<th>*검토*</th>
 							</tr>
-
+</thead>
 							<c:forEach var="pr" items="${reportPostReviewList}">
 								<tr>
 									<td>${pr.reportpr_result }</td>
@@ -194,7 +197,8 @@
 						<i><h2>⚠️</h2></i>
 						<h1>신고접수된 기업리뷰</h1>
 						</br>
-						<table border="1" width="1000">
+						<table border="1"  style="width: 90%;">
+						<thead>
 							<tr>
 								<th>처리상태</th>
 								<th>신고유형</th>
@@ -206,6 +210,7 @@
 								<th>*처리완료*</th>
 								<th>*검토*</th>
 							</tr>
+							</thead>
 
 							<c:forEach var="cr" items="${reportcopReviewList}">
 								<tr>

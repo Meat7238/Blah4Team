@@ -24,7 +24,6 @@
 		order by post_readcount desc) where ROWNUM &lt;= 3
 		<!-- select user_id, post_title, post_readcount, post_num from post, user2
 		where post_category = '${value}' and post.post_usernum = user2.user_num -->
-		
 	</select>
 
 	<!-- 게시글 전체목록 -->
@@ -99,6 +98,14 @@
 		select * from post
 		<if test="column != null">
     		where ${column} like '%' || #{keyvalue} || '%'    order by post_num desc	
+    	</if>
+	</select>
+	
+	<!-- 게시글 검색 -->
+	<select id="getSearchList2" parameterType="hashMap" resultType="map">
+		select * from post, user2
+		<if test="column != null">
+    		where ${column} like '%' || #{keyvalue} || '%'  and post.post_usernum = user2.user_num  order by post_num desc	
     	</if>
 	</select>
 	

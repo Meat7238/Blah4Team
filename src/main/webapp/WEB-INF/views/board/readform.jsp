@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+	<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
@@ -36,13 +36,15 @@
 		<div class="main-content">
 			<!-- ------------------------------------------------------------------------------------------------------------- -->
 
-			<h2 align="center">글 읽기</h2>
-			<a href="board?pg=${pg}">게시판 홈</a>
+			<input type="button" class="button" onclick="javascript:history.back();" value="이전 페이지">
 			
 			<table class="read">
-				
-					<caption>${b.post_title}</caption>
-				
+				<tr>
+				<td colspan="4" style="	font-weight: bold;
+	font-size: 20px; text-align: left">
+					${b.post_title}
+				</td>
+				<tr>
 				<tr>
 					<th>작성자</th>
 					<th>카테고리</th>
@@ -53,11 +55,10 @@
 					<td>${user_id}</td>
 					<td>${b.post_category}</td>
 					<td>${b.post_regdate}</td>
-					<td>조회수 ${b.post_readcount}</td>
+					<td >조회수 ${b.post_readcount}</td>
 				</tr>
 
-				<tr>
-					<td colspan="4"><textarea class="textContent"
+					<td style="border-top: 1px solid #cdd0d4;" colspan="4"><textarea class="textContent" style="overflow: hidden;"
 							readonly="readonly">${b.post_content}</textarea></td>
 				</tr>
 				<tr>
@@ -95,14 +96,15 @@
 	<div>
 	<table class="reviewWrite">
 		<tr>
-			<th align="left">댓글 작성하기</th>
+			<th align="left">댓글수 #</th>
 			<th style="text-align: right;">작성자&nbsp;&nbsp;:&nbsp;&nbsp;
 				<sec:authorize access="isAuthenticated()">
 				<sec:authentication property="principal.username"/>
 			</sec:authorize>
 			</th>
 		</tr>
-		<tr><td colspan="2" >
+		<tr><td colspan="2" style=" border-top : 1px solid #cdd0d4;
+	border-bottom : 1px solid #cdd0d4;">
 		<form name="insertReview" action="review" method="post">
 			<sec:authorize access="isAuthenticated()">
 				<input  type="hidden" name="writer" value='<sec:authentication property="principal.username"/>' readonly="readonly">
@@ -139,6 +141,17 @@
 				<!-- </ol> -->
 			</div>
 <br /><br />
+<script>
+function adjustHeight() {
+	  var textEle = $('.textContent');
+	  textEle[0].style.height = 'auto';
+	  var textEleHeight = textEle.prop('scrollHeight');
+	  textEle.css('height', textEleHeight);
+	};
+
+	adjustHeight(); // 함수를 실행하면 자동으로 textarea의 높이 조절
+
+</script>
 			<!-- ------------------------------------------------------------------------------------------------------------- -->
 		</div>
 		<footer>

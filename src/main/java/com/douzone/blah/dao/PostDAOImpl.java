@@ -22,11 +22,11 @@ public class PostDAOImpl implements PostDAO {
 	}
 
 	// 게시판 카테고리
-		@Override
-		public List getPostList1(String category) {
-			PostDAO postDAO = sqlSession.getMapper(PostDAO.class);
-			return postDAO.getPostList1(category);
-		}
+	@Override
+	public List getPostList1(String category) {
+		PostDAO postDAO = sqlSession.getMapper(PostDAO.class);
+		return postDAO.getPostList1(category);
+	}
 
 	// 게시글 작성
 	@Override
@@ -84,19 +84,22 @@ public class PostDAOImpl implements PostDAO {
 		return postDAO.getPostCountCategory(category);
 	}
 
-  @Override
-  public List getPostListAll(HashMap map) {
-    PostDAO postDAO = sqlSession.getMapper(PostDAO.class);
-    return postDAO.getPostListAll(map);
-  }
+	@Override
+	public List getPostListAll(HashMap map) {
+		PostDAO postDAO = sqlSession.getMapper(PostDAO.class);
+		return postDAO.getPostListAll(map);
+	}
 
-
+	@Override
+	public List<Map<String, String>> getSearchList2(Map<String, String> map) {
+		PostDAO postDAO = sqlSession.getMapper(PostDAO.class);
+		return postDAO.getSearchList2(map);
+	}
 
 //	@Override
 //	public void updateReviewCount(Long post_num, int amount) {
 //		PostDAO postDAO = sqlSession.getMapper(PostDAO.class);
 //		postDAO.updateReviewCount(post_num, amount);
 //	}
-
 
 }

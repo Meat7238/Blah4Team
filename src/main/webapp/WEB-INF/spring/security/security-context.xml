@@ -92,6 +92,7 @@
 	</security:http>
 	<!--  secured method  -->
 	<security:global-method-security secured-annotations="enabled" />
+	
 	<bean id="userLoginSuccessHandler"		class="com.douzone.blah.security.UserLoginSuccessHandler" />
 	<bean id="userLoginService" class="com.douzone.blah.security.UserDetailsServiceCustom"/>
 	<bean id="passwordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />

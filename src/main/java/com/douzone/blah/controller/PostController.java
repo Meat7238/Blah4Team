@@ -30,6 +30,7 @@ public class PostController {
 	// 게시글 목록
 	@RequestMapping("/board")
 	public String list(HttpServletRequest request, PostDTO dto) {
+
 		String result = request.getParameter("category");
 		System.out.println(result);
 
@@ -60,9 +61,7 @@ public class PostController {
 			toPage = allPage;
 		}
 
-
 		if(result == null) {
-
 			String category1 = "블라블라";
 			String category2 = "주식투자";
 			String category3 = "썸,연애";
@@ -174,7 +173,7 @@ public class PostController {
 
 		List<PostReviewDTO> reviewList = postReviewDAOImpl.getPostReview(post_num);
 		model.addAttribute("reviewList", reviewList);
-		
+
 		/*
 		 * int review_num = postReviewDAOImpl.getReviewNum(post_num); String review_id =
 		 * postReviewDAOImpl.getReviewId(post_num);
@@ -191,17 +190,17 @@ public class PostController {
 		if(result == 0) {
 			res = "fail";
 		}
-		return res;
+		return "history";
 	}
 
 	// 게시글 수정
 	@RequestMapping("/updateform")
 	public String updateform(int post_num, Model model, int pg, Principal principal) {
 		PostDTO dto = postDAOImpl.getPost(post_num);
-		
+
 		String user = principal.getName();
 		String user_num = user2DAOImpl.userId(user);
-		
+
 		model.addAttribute("user_num", user_num);
 		model.addAttribute("b", dto);
 		model.addAttribute("pg", pg);
@@ -227,12 +226,12 @@ public class PostController {
 		String postreview_content = request.getParameter("postreview_content");
 		String postreview_usernum = user2DAOImpl.userId(writer);
 		System.out.println(writer+"에 해당하는 user_num은" + postreview_usernum+"입니다");
-		
+
 		HashMap map = new HashMap();
 		map.put("postreview_usernum", postreview_usernum);
 		map.put("postreview_content", postreview_content);
 		map.put("postreview_postnum", postreview_postnum);
-		
+
 		postReviewDAOImpl.insertPostReview(map);
 
 		return "redirect:/readform?post_num="+post_num+"&pg="+pg;
@@ -247,11 +246,15 @@ public class PostController {
 		map.put("column", column); // column : title or writer or contnet
 		map.put("keyvalue", keyvalue);
 		System.out.println(keyvalue);
-		List<PostDTO> list = postDAOImpl.getSearchList(map);
-		request.setAttribute("list", list);
-		request.setAttribute("pg",pg);
 
-		return "board/board";
+		List<Map<String, String>> list = postDAOImpl.getSearchList2(map);
+
+
+		request.setAttribute("list", list);
+		request.setAttribute("pg", pg);
+
+
+		return "board/searchlist";
 	}
 
 }

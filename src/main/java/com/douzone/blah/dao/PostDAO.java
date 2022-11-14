@@ -37,6 +37,9 @@ public interface PostDAO {
 
 	// 게시글 검색
 	public List<PostDTO> getSearchList(Map<String, String> map);
+	
+	// 게시글 검색
+	public List<Map<String, String>> getSearchList2(Map<String, String> map);
 
 	// 카테고리 게시물 수
 	public int getPostCountCategory(String category);
