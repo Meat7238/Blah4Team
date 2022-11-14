@@ -18,7 +18,7 @@
 	<!-- 채용공고 조회 -->
 	<select id="getRecruitList" parameterType="hashmap"
 		resultType="com.douzone.blah.model.RecruitDTO">
-		select * from recruit
+		select * from recruit where ROWNUM &lt;= 4
 	</select>
 
 </mapper>
