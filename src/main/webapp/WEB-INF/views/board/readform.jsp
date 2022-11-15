@@ -103,8 +103,8 @@
 	<div>
 	<table class="reviewWrite">
 		<tr>
-			<th align="left">댓글수 ${review_num }</th>
-			<th style="text-align: right;">작성자&nbsp;&nbsp;:&nbsp;&nbsp;
+			<th align="left"></th>
+			<th style="text-align: right;">작성자
 				<sec:authorize access="isAuthenticated()">
 				<sec:authentication property="principal.username"/>
 			</sec:authorize>
@@ -130,17 +130,16 @@
 
 <br />
 <div class="padding">
-				
 					<table class="reviewWrite">
-				<caption class="cap">댓글</caption>
-				<c:forEach items="${reviewList}" var="reviewList">
+				<caption class="cap">&nbsp;&nbsp;&nbsp;&nbsp;댓글수 [${review_num }]</caption>
+				<c:forEach items="${reviewList}" var="reviewList" varStatus="statusR">
 						<tr>
 							<th>작성자</th>
 							<td rowspan="2">${reviewList.postreview_content}</td>
 							<th>작성 날짜</th>
 						</tr>
 						<tr>
-							<td>${reviewList.postreview_usernum}</td>
+							<td>${reviewListId[statusR.index]}</td>
 							<td>${reviewList.postreview_regdate}</td>
 						</tr>
 						<tr  id="trtr"><td colspan="3" style="text-align: right; ">

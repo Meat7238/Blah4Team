@@ -282,6 +282,11 @@ public class PostController {
     model.addAttribute("pg", pg);
 
     List<PostReviewDTO> reviewList = postReviewDAOImpl.getPostReview(post_num);
+    List<String> reviewListId = new ArrayList<String>();
+    for(int i=0; i<reviewList.size();i++) {
+      reviewListId.add(user2DAOImpl.getUserID(reviewList.get(i).getPostreview_num()));
+    }
+    model.addAttribute("reviewListId", reviewListId);
     model.addAttribute("reviewList", reviewList);
     int reviewnum = postDAOImpl.getPostReviewCount(Integer.toString(post_num));
     model.addAttribute("review_num", reviewnum);

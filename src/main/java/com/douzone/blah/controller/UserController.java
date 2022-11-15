@@ -265,7 +265,8 @@ public class UserController {
       // 로그인이 틀려서 다시 하면 요청 시점의 URI가 로그인 페이지가 되므로 조건문 설정
       String uri = request.getHeader("Referer");
       if (!uri.contains("/login/loginForm")) {
-         request.getSession().setAttribute("prevPage", request.getHeader("Referer"));
+        request.getSession().setAttribute("prevPage", request.getHeader("Referer"));
+        System.out.println("if 문 안에 들어왔음 !!");
       }
       return "/login/loginForm";
    }
