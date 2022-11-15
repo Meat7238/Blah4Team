@@ -44,8 +44,8 @@ public class UserLoginSuccessHandler implements AuthenticationSuccessHandler {
 		if (prevPage != null) request.getSession().removeAttribute("prevPage");
 
 		// 로그인 실패 후 로그인 성공 시 홈페이지로 돌아가기
-		if (prevPage.equals("http://localhost:8080/blah/loginForm"))  uri = "/blah";
-		if (prevPage.equals("http://localhost:8080/blah/loginForm?error"))  uri = "/blah";
+		if (prevPage.equals("http://192.168.110.40:8080/blah/loginForm"))  uri = "/blah";
+		if (prevPage.equals("http://192.168.110.40:8080/blah/loginForm?error"))  uri = "/blah";
 		// intercept uri
 		else if (savedRequest != null) uri = savedRequest.getRedirectUrl();
 		// 직접 로그인 페이지로 접속한 것
