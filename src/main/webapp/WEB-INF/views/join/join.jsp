@@ -56,7 +56,7 @@
          <div class="row align-items-start justify-content-center needs-validation">   
             <div class="col-md-6 col-lg-4">
                <label for="validationCustom01" class="form-label">아이디</label>
-               <input type="text" name="user_id" class="form-control is-invalid" id="validationCustom01" placeholder="아이디" required>
+               <input type="text" name="user_id" class="form-control is-invalid" id="validationCustom01" placeholder="아이디" required autocomplete="off">
                <div class="valid-feedback">사용 가능한 아이디입니다.</div>
                <div class="invalid-feedback">영문 소문자와 숫자를 조합해서 5글자 이상 12글자 이하로 입력해주세요</div>
             </div>
@@ -65,7 +65,7 @@
          <div class="row align-items-end justify-content-center needs-validation">
             <div class="col-md-6 col-lg-4">
                <label for="validationCustom02" class="form-label">비밀번호</label> 
-               <input type="password" name="user_password" class="form-control is-invalid" id="validationCustom02" placeholder="비밀번호" required>
+               <input type="password" name="user_password" class="form-control is-invalid" id="validationCustom02" placeholder="비밀번호" required autocomplete="off">
                 <div class="valid-feedback">사용 가능한 비밀번호입니다.</div>
                 <div class="invalid-feedback">영문자와 숫자를 조합해서 8글자 이상 20글자 이하로 입력해주세요</div>
             </div>
@@ -73,14 +73,14 @@
          <div class="row align-items-end justify-content-center needs-validation">
             <div class="col-md-6 col-lg-4">
                <label for="validationCustom02" class="form-label">비밀번호 확인</label>
-               <input type="password" name="user_password2"  class="form-control is-invalid" id="validationCustom03" placeholder="비밀번호 확인" required>
+               <input type="password" name="user_password2"  class="form-control is-invalid" id="validationCustom03" placeholder="비밀번호 확인" required autocomplete="off">
                <div class="invalid-feedback">입력하신 비밀번호가 일치하지 않습니다.</div>
             </div>
          </div>
          <div class="row align-items-end justify-content-center needs-validation">
             <div class="col-md-6 col-lg-4">
                <label for="validationCustom03" class="form-label">이메일</label> 
-               <input type="email" name="user_email" class="form-control is-invalid" id="validationCustom04" placeholder="회사 계정의 이메일 주소를 입력하세요" required>
+               <input type="email" name="user_email" class="form-control is-invalid" id="validationCustom04" placeholder="회사 계정의 이메일 주소를 입력하세요" required autocomplete="off">
                 <div class="invalid-feedback">유효한 이메일 주소를 입력해주세요.</div>
             </div>
          </div>
