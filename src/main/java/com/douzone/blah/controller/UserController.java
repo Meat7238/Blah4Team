@@ -153,10 +153,16 @@ public class UserController {
    // 유저 삭제
    @RequestMapping("/admin/edit/delete")
    public String delete(HttpServletRequest request, User2DTO dto) {
-      String num = request.getParameter("num");
-      System.out.println(num);
-      int cnt = user2DAOImpl.deleteUser2(num);
-      String res = "redirect:/admin/edit";
+     String[] array = request.getParameterValues("num");
+     String user_num;
+     int cnt=0;
+     String res="/";
+     String[] arrayStr = array[0].split(",");
+     for(int i=0; i<arrayStr.length;i++) {
+       user_num = arrayStr[i];
+       cnt = user2DAOImpl.deleteUser2(user_num);
+       res = "redirect:/admin/edit";
+     }
       if (cnt == 0) {
          res = "fail";
       }
@@ -231,7 +237,7 @@ public class UserController {
             "<br>회원이 되신 걸 환영합니다!" +
             "<br>아래 이메일 인증 확인을 눌러 현직자 인증 절차를 완료해주세요." +
             "<br>인증이 완료되면 사이트를 이용하실 수 있습니다." +
-            "<br><br><a href='http://localhost:8080/blah/join/registerEmail?user_email=" + user_email +
+            "<br><br><a href='http://192.168.110.40:8080/blah/join/registerEmail?user_email=" + user_email +
             "&user_email_key=" + user_email_key +
             "'target='_balnk'>이메일 인증 확인</a>");
             System.out.println(user_email_key);

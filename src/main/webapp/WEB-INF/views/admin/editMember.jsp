@@ -160,20 +160,21 @@ $(function(){
 		
 	let chekObj = document.getElementsByClassName("test");
 	let lenth = chekObj.length;
-	/* alert(lenth); */
-	let checked = 0;
-	let checkid;
-	if(uslenth != 0){
+	 alert(lenth); 
+	/* let checked = 0; */
+	let check= new Array();
 	  	if (confirm("정말 삭제하시겠습니까??") == true){
 	 	 for (i = 0; i < lenth; i++) {
+	 		if (chekObj[i].checked != true) {
+	 			continue;
+	 			}
 	   		 	if (chekObj[i].checked === true) {
-		    	  checked += 1;
-		    	  checkid = chekObj[i].getAttribute("id");
-				  location.href ='${pageContext.request.contextPath}/admin/edit/delete?num='+checkid;
+		    	  /* checked += 1; */
+		    	  check.push(chekObj[i].getAttribute("id"));
+				  location.href ='${pageContext.request.contextPath}/admin/edit/delete?num='+check;
 	   			}
 	  		}//end for
 	  	}//end if
-	  	}
 });
 }); 
 
