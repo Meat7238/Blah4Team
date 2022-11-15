@@ -282,10 +282,15 @@ public class PostController {
     model.addAttribute("pg", pg);
 
     List<PostReviewDTO> reviewList = postReviewDAOImpl.getPostReview(post_num);
+
+    System.out.println(reviewList);
+    System.out.println("reviewList 의 사이즈 :"+reviewList.size());
     List<String> reviewListId = new ArrayList<String>();
     for(int i=0; i<reviewList.size();i++) {
-      reviewListId.add(user2DAOImpl.getUserID(reviewList.get(i).getPostreview_num()));
+      reviewListId.add(user2DAOImpl.getUserIdByString(reviewList.get(i).getPostreview_usernum()) );
+      System.out.println(user2DAOImpl.getUserID(reviewList.get(i).getPostreview_num()));
     }
+    System.out.println(reviewListId);
     model.addAttribute("reviewListId", reviewListId);
     model.addAttribute("reviewList", reviewList);
     int reviewnum = postDAOImpl.getPostReviewCount(Integer.toString(post_num));

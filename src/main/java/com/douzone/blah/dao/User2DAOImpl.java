@@ -137,4 +137,10 @@ public class User2DAOImpl implements User2DAO {
 		return user2DAO.updateAuthority(map);
 	}
 
+  @Override
+  public String getUserIdByString(String str) {
+    User2DAO user2DAO = sqlSession.getMapper(User2DAO.class);
+    return user2DAO.getUserIdByString(str);
+  }
+
 }

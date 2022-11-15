@@ -104,7 +104,12 @@
 		where user_num = (select
 		post_usernum from post where post_num = #{post_num})
 	</select>
-
+	
+	<select id="getUserIdByString" parameterType="String" resultType="String">
+	select user_id from user2
+		where user_num =#{postreview_usernum}
+	</select>
+	
 	<!-- userID->userNUm반환 -->
 	<select id="getUserNum" parameterType="String" resultType="String">
 		select

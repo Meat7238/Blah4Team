@@ -45,8 +45,8 @@ public interface User2DAO {
 	public int editMemberInfo(Map<String, String> map);
 
 	// 게시글 작성한 회원 ID얻기
-	public String getUserID(int string);
-
+	public String getUserID(int number);
+	public String getUserIdByString(String str);
 	// userId -> userNum
 	public String getUserNum(String user);
 
